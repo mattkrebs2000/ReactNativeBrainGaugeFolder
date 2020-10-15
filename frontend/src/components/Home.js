@@ -1,21 +1,17 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 
 class Home extends React.Component {
    
     render() {
         return (
+            
             <View style={styles.container}>
                 <Text style={styles.text}>Brain Gauge.</Text>
-                <Image
-                    style={styles.image}
-                    source={{
-                        uri:
-                            "../../assets/brain.png",
-                    }}
-                ></Image>
             </View>
+              
+          
         );
     }
 }
@@ -36,10 +32,9 @@ const styles = StyleSheet.create({
         color: "white",
         
     },
-    image: {
-
-
-        width: 100,
+    images: {
+width: 200,
 
     },
+    
 });

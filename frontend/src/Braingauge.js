@@ -8,9 +8,9 @@ export default class Braingauge extends Component {
     render() {
         return(
 
-        <View>
+       
            <Home />
-    </View>
+    
         );
     }
 }
