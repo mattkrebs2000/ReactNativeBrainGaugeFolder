@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import Braingauge from './src/Braingauge';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Brain Gauge</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends React.Component {
+  render() {
+    return(
+    <Braingauge />
+    );
+  }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
+    color: "white",
     alignItems: 'center',
     justifyContent: 'center',
   },
