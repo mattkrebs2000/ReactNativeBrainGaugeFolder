@@ -15,17 +15,19 @@ class Welcome extends React.Component {
                         source={{ uri: "https://media.giphy.com/media/35B3Val0pYgtpScqsz/giphy.gif" }}
                         style={styles.image}
 
-                        onPress={() => Linking.openURL('http://google.com')}
+                        onPress={() => Linking.openURL('/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/src/components/SignIn.js')}
 
                     ></Image>
                 </View>
                 <Text style={styles.text2}>See Results</Text>
                 <View style={styles.containerofimage}>
                     <Image
-                        source={{ uri: "https://media.giphy.com/media/35B3Val0pYgtpScqsz/giphy.gif" }}
+                        source={{ uri: "https://i.pinimg.com/originals/c9/91/72/c99172c17b83d3c620b997858351b2a5.gif" }}
                         style={styles.image}
 
-                        onPress={() => Linking.openURL('http://google.com')}
+                        onPress={() => {
+                            Linking.openURL(`mailto:${email}`)
+                        }}
 
                     ></Image>
                 </View>
@@ -42,44 +44,38 @@ const styles = StyleSheet.create({
         backgroundColor: "black",
         color: "white",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
+        flexDirection: "column",
+        marginBottom:200,
 
     },
     text: {
+        flex: 1.5,
         color: "white",
         fontSize: 30,
-        marginBottom: 30
-
     },
    
     text2: {
+        flex: 1,
         color: "white",
-        margin: "12%",
+        margin: "1%",
         textAlign: "center",
-        justifyContent: "flex-start",
-
-        fontSize: 15
-    },
-    middle: {
-        width: 150,
-        alignItems: "center",
-    },
-
-    img: {
-        width: "100%",
-        height: 120,
-        borderRadius: 5,
+        justifyContent: "center",
+        fontSize: 20
     },
     image: {
-        width: 100,
-        height: 120,
+        
+        width: 180,
+       height:200,
         borderRadius: 5,
 
     },
     containerofimage: {
-        width: 100,
+        flex: 5,
+        width: 200,
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
+        marginBottom: "10%", 
     },
 });

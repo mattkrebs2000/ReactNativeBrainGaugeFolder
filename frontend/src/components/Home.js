@@ -1,9 +1,26 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View, Text, Image } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 class Home extends React.Component {
-   
-    render() {
+
+    constructor(props) {
+        super(props);
+        this.navigation = props.navigation;
+    }
+  render() {
+
+      const pressHandler = () => {
+    this.navigation.navigate("SignIn")
+      };
+
+      const pressHandler2 = () => {
+        this.navigation.navigate("SignUp")
+      };
+
+
+
+
+
         return (
           
             <SafeAreaView style={styles.container}>
@@ -17,6 +34,24 @@ class Home extends React.Component {
                 />
             </View>
                 <Text style={styles.text2}>This is the App that measures your mental responsiveness and tells you when you are at your best.</Text>
+               <View style={styles.buttons}>
+                    <TouchableOpacity style={styles.btn} onPress={pressHandler} 
+
+                // onPress={this.signUp} 
+                >
+                    <Text accessibilityLabel="Sign In" style={styles.text3} >Sign In</Text>
+                </TouchableOpacity>
+
+
+                    <TouchableOpacity style={styles.btn} onPress={pressHandler2} 
+
+                // onPress={this.signUp} 
+                >
+                        <Text accessibilityLabel="Sign Up" style={styles.text3}>Sign Up</Text>
+                </TouchableOpacity>
+                </View>
+
+
             </SafeAreaView>          
         );
     }
@@ -56,4 +91,29 @@ const styles = StyleSheet.create({
       width: 200, 
       
     },
+    btn: {
+        borderColor:"#167bff",
+        borderWidth: 1, 
+        width: 100,
+        height: 45,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'black',
+        borderRadius: 10,
+        shadowColor: 'white',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 3,
+        color: "white",
+        margin: 5,
+    },
+    text3: {
+        color: "white",
+        fontSize: 20,
+        textAlign: 'center',
+    },
+    buttons: {
+flexDirection: "row",
+
+    }
 });

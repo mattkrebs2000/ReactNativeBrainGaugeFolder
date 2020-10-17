@@ -16,15 +16,16 @@ import {
 
 
 class SignUp extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
             username: '',
             password: '',
             rePassword: '',
             fontLoaded: false,
-        }
+        }, 
+        this.navigation = props.navigation;
     }
 
     // Make sure the font loaded before using
@@ -68,6 +69,11 @@ class SignUp extends Component {
     // }
 
     render() {
+
+        const pressHandler = () => {
+            this.navigation.navigate("SignIn")
+        };
+
         return (
             
             <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -146,9 +152,9 @@ class SignUp extends Component {
                    
                     accessibilityLabel="Link to Sign In page"
 
-                    style={{ color: '#167bff' }}
+                        style={{ color: '#167bff' }} onPress={pressHandler} 
                 >
-                    Already have an account? Log In
+                    Already have an account? Sign In
                 </Text>
                 </SafeAreaView>
             </KeyboardAvoidingView>

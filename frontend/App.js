@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import Braingauge from './src/Braingauge';
+import Navigator1 from './routes/homestack';
 
 export default class App extends React.Component {
   render() {
     return(
-    <Braingauge />
+    <Navigator1 />
     );
   }
 }
