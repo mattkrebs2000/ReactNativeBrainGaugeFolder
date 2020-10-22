@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import { AuthContext } from "./context";
+import { AuthContext } from "./src/context";
 import {
   SignIn,
   CreateAccount,
@@ -14,7 +14,16 @@ import {
   Search2,
   Profile,
   Splash
-} from "./Screens";
+} from "./src/Screens";
+
+const headerStyle = {
+  backgroundColor: "black",
+};
+
+const headerTitleStyle = {
+  color: "white",
+}
+
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -27,7 +36,9 @@ const AuthStackScreen = () => (
     <AuthStack.Screen
       name="CreateAccount"
       component={CreateAccount}
-      options={{ title: "Create Account" }}
+      options={{
+        title: "Create Account", headerStyle,
+        headerTitleStyle,}}
     />
   </AuthStack.Navigator>
 );
@@ -140,6 +151,8 @@ export default () => {
     </AuthContext.Provider>
   );
 };
+
+
 
 
 

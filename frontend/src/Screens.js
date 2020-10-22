@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import SignUp from "./components/SignUp.js"
 
 import { AuthContext } from "./context";
 
@@ -107,8 +108,12 @@ export const CreateAccount = () => {
 
     return (
         <ScreenContainer>
+
+            <SignUp />
+
             <Text>Create Account Screen</Text>
             <Button title="Sign Up" onPress={() => signUp()} />
+
         </ScreenContainer>
     );
 };
