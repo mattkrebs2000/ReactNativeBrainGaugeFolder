@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import SignUp from "./components/SignUp.js"
+import SignInn from "./components/SignIn.js"
+import HomeScreen from "./components/Home.js"
 
 import { AuthContext } from "./context";
 
@@ -93,6 +95,8 @@ export const SignIn = ({ navigation }) => {
 
     return (
         <ScreenContainer>
+                <SignInn />
+
             <Text>Sign In Screen</Text>
             <Button title="Sign In" onPress={() => signIn()} />
             <Button
@@ -103,7 +107,7 @@ export const SignIn = ({ navigation }) => {
     );
 };
 
-export const CreateAccount = () => {
+export const CreateAccount = ({ navigation }) => {
     const { signUp } = React.useContext(AuthContext);
 
     return (
@@ -113,6 +117,10 @@ export const CreateAccount = () => {
 
             <Text>Create Account Screen</Text>
             <Button title="Sign Up" onPress={() => signUp()} />
+            <Button
+                title="Sign In"
+                onPress={() => navigation.push("SignIn")}
+            />
 
         </ScreenContainer>
     );

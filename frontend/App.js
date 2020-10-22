@@ -27,19 +27,26 @@ const headerTitleStyle = {
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
-  <AuthStack.Navigator>
+
+
+  <AuthStack.Navigator >
+  
     <AuthStack.Screen
       name="SignIn"
       component={SignIn}
-      options={{ title: "Sign In" }}
+      options={{
+        title: "Sign In", headerStyle,
+        headerTitleStyle }}
     />
     <AuthStack.Screen
       name="CreateAccount"
       component={CreateAccount}
       options={{
         title: "Create Account", headerStyle,
-        headerTitleStyle,}}
+        headerTitleStyle}}
     />
+   
+
   </AuthStack.Navigator>
 );
 
