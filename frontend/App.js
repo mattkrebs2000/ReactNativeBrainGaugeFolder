@@ -9,11 +9,12 @@ import {
   SignIn,
   CreateAccount,
   Search,
-  Home,
+  Welcome,
   Details,
   Search2,
   Profile,
-  Splash
+  Splash,
+  Home,
 } from "./src/Screens";
 
 const headerStyle = {
@@ -30,7 +31,13 @@ const AuthStackScreen = () => (
 
 
   <AuthStack.Navigator >
-  
+
+    <AuthStack.Screen name="Home" component={Home}
+      options={{
+        title: "Home", headerStyle,
+        headerTitleStyle
+      }} />
+
     <AuthStack.Screen
       name="SignIn"
       component={SignIn}
@@ -45,6 +52,7 @@ const AuthStackScreen = () => (
         title: "Create Account", headerStyle,
         headerTitleStyle}}
     />
+    
    
 
   </AuthStack.Navigator>
@@ -56,7 +64,7 @@ const SearchStack = createStackNavigator();
 
 const HomeStackScreen = () => (
   <HomeStack.Navigator>
-    <HomeStack.Screen name="Home" component={Home} />
+    <HomeStack.Screen name="Welcome" component={Welcome} />
     <HomeStack.Screen
       name="Details"
       component={Details}
@@ -83,7 +91,7 @@ const ProfileStackScreen = () => (
 
 const TabsScreen = () => (
   <Tabs.Navigator>
-    <Tabs.Screen name="Home" component={HomeStackScreen} />
+    <Tabs.Screen name="Welcome" component={HomeStackScreen} />
     <Tabs.Screen name="Search" component={SearchStackScreen} />
   </Tabs.Navigator>
 );
@@ -91,7 +99,7 @@ const TabsScreen = () => (
 const Drawer = createDrawerNavigator();
 const DrawerScreen = () => (
   <Drawer.Navigator initialRouteName="Profile">
-    <Drawer.Screen name="Home" component={TabsScreen} />
+    <Drawer.Screen name="Welcome" component={TabsScreen} />
     <Drawer.Screen name="Profile" component={ProfileStackScreen} />
   </Drawer.Navigator>
 );
@@ -134,6 +142,10 @@ export default () => {
         setUserToken("asdf");
       },
       signOut: () => {
+        setIsLoading(false);
+        setUserToken(null);
+      },
+       home: () => {
         setIsLoading(false);
         setUserToken(null);
       }

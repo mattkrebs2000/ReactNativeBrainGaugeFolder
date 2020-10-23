@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import SignUp from "./components/SignUp.js"
 import SignInn from "./components/SignIn.js"
 import HomeScreen from "./components/Home.js"
+import Welcomee from "./components/Welcome.js"
 
 import { AuthContext } from "./context";
 
@@ -20,12 +21,29 @@ const styles = StyleSheet.create({
     }
 });
 
+
+
 const ScreenContainer = ({ children }) => (
     <View style={styles.container}>{children}</View>
 );
 
 export const Home = ({ navigation }) => (
+
     <ScreenContainer>
+        <HomeScreen title="GO BACK"/>
+        <Button
+            title="GO BACK"
+            onPress={() =>
+                navigation.push("SignIn", { name: "SignIn " })
+            }
+        />
+    </ScreenContainer>
+);
+
+
+export const Welcome = ({ navigation }) => (
+    <ScreenContainer>
+    <Welcome />
         <Text>Master List Screen</Text>
         <Button
             title="React Native by Example"
@@ -108,7 +126,7 @@ export const SignIn = ({ navigation }) => {
 };
 
 export const CreateAccount = ({ navigation }) => {
-    const { signUp } = React.useContext(AuthContext);
+    const { home } = React.useContext(AuthContext);
 
     return (
         <ScreenContainer>
@@ -116,10 +134,10 @@ export const CreateAccount = ({ navigation }) => {
             <SignUp />
 
             <Text>Create Account Screen</Text>
-            <Button title="Sign Up" onPress={() => signUp()} />
+            <Button title="Home" onPress={() => home()} />
             <Button
-                title="Sign In"
-                onPress={() => navigation.push("SignIn")}
+                title="Home"
+                onPress={() => navigation.push("Home")}
             />
 
         </ScreenContainer>

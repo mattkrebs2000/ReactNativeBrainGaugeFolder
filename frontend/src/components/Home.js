@@ -1,27 +1,20 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
+
 class Home extends React.Component {
 
     constructor(props) {
         super(props);
-        this.navigation = props.navigation;
+       this.props = props; 
     }
+
+   
   render() {
 
-      const pressHandler = () => {
-    this.navigation.navigate("SignIn")
-      };
-
-      const pressHandler2 = () => {
-        this.navigation.navigate("SignUp")
-      };
-
-
-
-
-
+      console.log(this.props);
         return (
+            
           
             <SafeAreaView style={styles.container}>
            
@@ -35,19 +28,28 @@ class Home extends React.Component {
             </View>
                 <Text style={styles.text2}>This is the App that measures your mental responsiveness and tells you when you are at your best.</Text>
                <View style={styles.buttons}>
-                    <TouchableOpacity style={styles.btn} onPress={pressHandler} 
-
+                    <TouchableOpacity style={styles.btn} 
+                        onPress={() => navigation.push("CreateAccount")}
                 // onPress={this.signUp} 
                 >
-                    <Text accessibilityLabel="Sign In" style={styles.text3} >Sign In</Text>
+                    <Text accessibilityLabel="Sign In" style={styles.text3} 
+                    
+                         
+                    
+                    >Sign In</Text>
                 </TouchableOpacity>
 
 
-                    <TouchableOpacity style={styles.btn} onPress={pressHandler2} 
+                    <TouchableOpacity style={styles.btn} 
 
                 // onPress={this.signUp} 
                 >
-                        <Text accessibilityLabel="Sign Up" style={styles.text3}>Sign Up</Text>
+                        <Text accessibilityLabel="Sign Up" style={styles.text3}
+                        
+                            onPress={() =>
+                                navigation.push("SignIn", { name: "SignIn " })
+                            }
+                        >Sign Up</Text>
                 </TouchableOpacity>
                 </View>
 
