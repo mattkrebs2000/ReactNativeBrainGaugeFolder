@@ -5,10 +5,10 @@ import SignInn from "./components/SignIn.js"
 import HomeScreen from "./components/Home.js"
 import Welcomee from "./components/Welcome.js"
 
-import { AuthContext } from "./context";
+
 
 const styles = StyleSheet.create({
-    container: {
+    container2: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     }
 });
 const ScreenContainer = ({ children }) => (
-    <View style={styles.container}>{children}</View>
+    <View style={styles.container2}>{children}</View>
 );
 
 export const Home = ({ navigation }) => (
@@ -34,7 +34,6 @@ export const Home = ({ navigation }) => (
 
 export const Welcome = ({ navigation }) => (
     <ScreenContainer>
-    <Welcome />
         <Text>Master List Screen</Text>
         <Button
             title="React Native by Example"
@@ -53,6 +52,7 @@ export const Welcome = ({ navigation }) => (
 );
 
 export const Details = ({ route }) => (
+    
     <ScreenContainer>
         <Text>Details Screen</Text>
         {route.params.name && <Text>{route.params.name}</Text>}
@@ -82,14 +82,14 @@ export const Search2 = () => (
 );
 
 export const Profile = ({ navigation }) => {
-    const { signOut } = React.useContext(AuthContext);
 
     return (
-        <ScreenContainer>
-            <Text>Profile Screen</Text>
-            <Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
-            <Button title="Sign Out" onPress={() => signOut()} />
-        </ScreenContainer>
+      <View>
+        <Welcomee navigation={navigation} />
+        <Text>Profile Screen</Text>
+        <Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
+
+      </View>
     );
 };
 
@@ -100,37 +100,21 @@ export const Splash = () => (
 );
 
 export const SignIn = ({ navigation }) => {
-    const { signIn } = React.useContext(AuthContext);
 
     return (
-        <ScreenContainer>
-                <SignInn />
-
-            <Text>Sign In Screen</Text>
-            <Button title="Sign In" onPress={() => signIn()} />
-            <Button
-                title="Create Account"
-                onPress={() => navigation.push("CreateAccount")}
-            />
-        </ScreenContainer>
+      <ScreenContainer>
+        <SignInn navigation={navigation} />
+      </ScreenContainer>
     );
 };
 
 export const CreateAccount = ({ navigation }) => {
-    const { home } = React.useContext(AuthContext);
+
+    // const { home } = React.useContext(AuthContext);
 
     return (
-        <ScreenContainer>
-
-            <SignUp />
-
-            <Text>Create Account Screen</Text>
-            <Button title="Home" onPress={() => home()} />
-            <Button
-                title="Home"
-                onPress={() => navigation.push("Home")}
-            />
-
-        </ScreenContainer>
+      <ScreenContainer>
+        <SignUp navigation={navigation} />
+      </ScreenContainer>
     );
 };

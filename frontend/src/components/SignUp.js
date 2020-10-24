@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     View,
     Text,
@@ -14,20 +14,19 @@ import {
 // import { Font } from 'expo';
 // import axios from 'axios';
 
+import { AuthContext } from "../context";
 
-class SignUp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            username: '',
-            password: '',
-            rePassword: '',
-            fontLoaded: false,
-        }, 
-        this.navigation = props.navigation;
-    }
+const SignUp = props => {
+      
+    console.log(props.navigate, "wait here");
+    
 
+    // const [state, setState] = React.UseState({email: '',
+    //     username: '',
+    //     password: '',
+    //     rePassword: '',
+    //     fontLoaded: false})
+       
     // Make sure the font loaded before using
     // componentDidMount = async () => {
     //     await Font.loadAsync({
@@ -68,100 +67,94 @@ class SignUp extends Component {
     //     this.props.navigation.navigate('SignIn');
     // }
 
-    render() {
+   
 
-        const pressHandler = () => {
-            this.navigation.navigate("SignIn")
-        };
+        // const pressHandler = () => {
+        //     this.navigation.navigate("SignIn")
+        // };
 
         return (
-            
-            <KeyboardAvoidingView style={styles.container} behavior="padding">
-                {/* App Header */}
+          <KeyboardAvoidingView style={styles.container} behavior="padding">
+            {/* App Header */}
 
-                <SafeAreaView style={styles.container} behavior="padding">
+            <SafeAreaView style={styles.container} behavior="padding">
+              <View style={styles.middle}>
+                <Image
+                  source={{
+                    uri:
+                      "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+                  }}
+                  style={styles.img}
+                />
+              </View>
+              <Text> {"\n"} </Text>
+              <Text style={styles.text2}>Create Account</Text>
+              <View style={styles.divider_bar}></View>
 
+              {/* Sign Up Form */}
+              <View style={styles.form}>
+                <TextInput
+                  placeholder="Phone number or email"
+                  // value={this.state.email}
 
+                  // onChangeText={email => this.setState({ email })}
 
+                  style={styles.input}
+                />
 
-               
-              
-                <View style={styles.middle}>
-                    <Image
-                        source={{ uri: "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png" }}
-                        style={styles.img}
-                    />
-                </View>
-                <Text> {'\n'} </Text>
-                <Text style={styles.text2}>Create Account</Text>
-                <View style={styles.divider_bar}></View>
+                <TextInput
+                  placeholder="User name"
+                  // value={this.state.username}
 
-                {/* Sign Up Form */}
-                <View style={styles.form}>
-                    <TextInput
-                        placeholder="Phone number or email"
-                        
-                        // value={this.state.email}
+                  // onChangeText={username => this.setState({ username })}
 
-                        // onChangeText={email => this.setState({ email })}
+                  style={styles.input}
+                />
 
-                        style={styles.input}
-                    />
+                <TextInput
+                  placeholder="Password"
+                  // value={this.state.password}
 
-                    <TextInput
-                        placeholder="User name"
-                        
-                        // value={this.state.username}
+                  // onChangeText={password => this.setState({ password })}
 
-                        // onChangeText={username => this.setState({ username })}
+                  style={styles.input}
+                />
 
-                        style={styles.input}
-                    />
+                <TextInput
+                  placeholder="Re-enter password"
+                  // value={this.state.rePassword}
+                  style={styles.input}
+                />
+              </View>
 
-                    <TextInput
-                        placeholder="Password"
+              {/* Sign Up Button */}
+              <TouchableOpacity
+                style={styles.btn}
 
-                        // value={this.state.password}
-
-                        // onChangeText={password => this.setState({ password })}
-
-                        style={styles.input}
-
-                    />
-
-                    <TextInput
-                        placeholder="Re-enter password"
-
-                        // value={this.state.rePassword}
-                        style={styles.input}
-                    />
-                </View>
-
-                {/* Sign Up Button */}
-                <TouchableOpacity style={styles.btn} 
-                
-                // onPress={this.signUp} 
-                >
-                    <Text accessibilityLabel="Sign up" style={styles.text}>Sign Up</Text>
-                </TouchableOpacity>
-
-                <View style={styles.divider_bar}></View>
-
-                {/* Log In */}
-                <Text
-                   
-                    accessibilityLabel="Link to Sign In page"
-
-                        style={{ color: '#167bff' }} onPress={pressHandler} 
-                >
-                    Already have an account? Sign In
+                // onPress={this.signUp}
+              >
+                <Text accessibilityLabel="Sign up" style={styles.text}>
+                  Sign Up
                 </Text>
-                </SafeAreaView>
-            </KeyboardAvoidingView>
-         
+              </TouchableOpacity>
+
+              <View style={styles.divider_bar}></View>
+
+              {/* Log In */}
+              <Text
+                accessibilityLabel="Link to Sign In page"
+                style={{ color: "#167bff" }}
+                onPress={() => {
+                  props.navigation.navigate("SignIn");
+                }}
+              >
+                Already have an account? Sign In
+              </Text>
+            </SafeAreaView>
+          </KeyboardAvoidingView>
         );
     }
-}
+
 
 export default SignUp;
 
