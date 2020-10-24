@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "black"
     },
     button: {
         paddingHorizontal: 20,
@@ -20,23 +21,13 @@ const styles = StyleSheet.create({
         borderRadius: 5
     }
 });
-
-
-
 const ScreenContainer = ({ children }) => (
     <View style={styles.container}>{children}</View>
 );
 
 export const Home = ({ navigation }) => (
-
     <ScreenContainer>
-        <HomeScreen title="GO BACK"/>
-        <Button
-            title="GO BACK"
-            onPress={() =>
-                navigation.push("SignIn", { name: "SignIn " })
-            }
-        />
+        <HomeScreen navigation={navigation} title="GO BACK"/>
     </ScreenContainer>
 );
 

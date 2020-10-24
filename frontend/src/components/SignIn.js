@@ -11,22 +11,30 @@ import {
     SafeAreaView,
 } from 'react-native';
 
+import { AuthContext } from "../context";
+
 // import { Font } from 'expo';
 // import axios from 'axios';
 
 
-class SignIn extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            username: '',
-            password: '',
-            rePassword: '',
-            fontLoaded: false,
-        },
-            this.navigation = props.navigation;
-    }
+//change to functional component
+//export const SignIn{
+//const { signIn } = React.useContext(AuthContext);
+//onPress={() => signIn()}
+
+
+
+const SignIn = props => {
+    const { signIn } = React.useContext(AuthContext);
+
+    // const [state, setState] = React.UseState({email: '',
+    //     username: '',
+    //     password: '',
+    //     rePassword: '',
+    //     fontLoaded: false})
+       
+           
+    
 
     // Make sure the font loaded before using
     // componentDidMount = async () => {
@@ -68,10 +76,10 @@ class SignIn extends Component {
     //     this.props.navigation.navigate('SignIn');
     // }
 
-    render() {
+    
 
         const pressHandler = () => {
-            this.navigation.navigate("SignUp")
+            props.navigation.navigate("SignUp")
         };
 
         return (
@@ -129,7 +137,10 @@ class SignIn extends Component {
 
                     // onPress={this.signUp} 
                     >
-                        <Text accessibilityLabel="Sign In" style={styles.text}>Sign In</Text>
+                        <Text accessibilityLabel="Sign In" style={styles.text}
+                            onPress={() => signIn()}
+                        
+                        >Sign In</Text>
                     </TouchableOpacity>
 
                     <View style={styles.divider_bar}></View>
@@ -148,7 +159,7 @@ class SignIn extends Component {
             </KeyboardAvoidingView>
 
         );
-    }
+    
 }
 
 export default SignIn;

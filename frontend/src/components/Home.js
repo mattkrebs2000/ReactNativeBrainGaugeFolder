@@ -4,15 +4,9 @@ import { SafeAreaView, StyleSheet, View, Text, Image, TouchableOpacity } from 'r
 
 class Home extends React.Component {
 
-    constructor(props) {
-        super(props);
-       this.props = props; 
-    }
-
-   
   render() {
 
-      console.log(this.props);
+      console.log(this.props, "whaaaaa");
         return (
             
           
@@ -33,6 +27,9 @@ class Home extends React.Component {
                 // onPress={this.signUp} 
                 >
                     <Text accessibilityLabel="Sign In" style={styles.text3} 
+                    onPress={() => {
+                        this.props.navigation.navigate("SignIn")
+                    }}
                     
                          
                     
@@ -46,9 +43,9 @@ class Home extends React.Component {
                 >
                         <Text accessibilityLabel="Sign Up" style={styles.text3}
                         
-                            onPress={() =>
-                                navigation.push("SignIn", { name: "SignIn " })
-                            }
+                            onPress={() => {
+                                this.props.navigation.navigate("CreateAccount")
+                            }}
                         >Sign Up</Text>
                 </TouchableOpacity>
                 </View>
