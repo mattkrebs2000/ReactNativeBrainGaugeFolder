@@ -8,42 +8,43 @@ const { signOut } = React.useContext(AuthContext);
 
         return (
           <SafeAreaView style={styles.container}>
-            <Text> {"\n"} </Text>
-            <Text style={styles.text}>Welcome ___</Text>
-            <Text style={styles.text2}>Play Game</Text>
-            <View style={styles.containerofimage}>
-              <Image
-                source={{
-                  uri:
-                    "https://media.giphy.com/media/35B3Val0pYgtpScqsz/giphy.gif",
-                }}
-                style={styles.image}
-                onPress={() =>
-                  Linking.openURL(
-                    "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/src/components/SignIn.js"
-                  )
-                }
-              ></Image>
-            </View>
-            <Text style={styles.text2}>See Results</Text>
-            <View style={styles.containerofimage}>
-              <Image
-                source={{
-                  uri:
-                    "https://i.pinimg.com/originals/c9/91/72/c99172c17b83d3c620b997858351b2a5.gif",
-                }}
-                style={styles.image}
-                onPress={() => {
-                  Linking.openURL(`mailto:${email}`);
-                }}
-              ></Image>
+            <View style={styles.container2}>
+              <Text> {"\n"} </Text>
+              <Text style={styles.text}>Welcome ___</Text>
+              <Text
+                style={styles.text2}
+                onPress={() => props.navigation.navigate("Survey")}
+              >
+                Play Game
+              </Text>
+              <View style={styles.containerofimage}>
+                <Image
+                  source={{
+                    uri:
+                      "https://media.giphy.com/media/35B3Val0pYgtpScqsz/giphy.gif",
+                  }}
+                  style={styles.image}
+                ></Image>
+              </View>
+              <Text style={styles.text2}>See Results</Text>
+              <View style={styles.containerofimage}>
+                <Image
+                  source={{
+                    uri:
+                      "https://i.pinimg.com/originals/c9/91/72/c99172c17b83d3c620b997858351b2a5.gif",
+                  }}
+                  style={styles.image}
+                  onPress={() => {
+                    Linking.openURL(`mailto:${email}`);
+                  }}
+                ></Image>
+              </View>
               <View style={styles.bottombuttons}>
                 <Button
-                  title="Drawer"
+                  title="Results Categories"
                   onPress={() => props.navigation.toggleDrawer()}
                 />
-                <Text title="Sign Out" onPress={() => signOut()}>HelloHELLO
-            </Text>
+                <Button title="Sign Out" onPress={() => signOut()} />
               </View>
             </View>
           </SafeAreaView>
@@ -59,19 +60,25 @@ const styles = StyleSheet.create({
     color: "white",
     alignItems: "center",
     justifyContent: "flex-start",
-    flexDirection: "column",
+    
   
   },
+  container2: {
+
+flexDirection: "column",
+
+
+
+  },
   text: {
-    flex: 1.5,
+    flex: .5,
     color: "white",
     fontSize: 30,
   },
 
   text2: {
-    flex: 1,
+    flex: .5,
     color: "white",
-    margin: "1%",
     textAlign: "center",
     justifyContent: "center",
     fontSize: 20,
@@ -82,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   containerofimage: {
-    flex: 5,
+    flex: 2,
     width: 200,
     flexDirection: "column",
     alignItems: "center",
@@ -90,8 +97,9 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
   },
   bottombuttons: {
-width: 200,
-height: 200,
-    flex:1
+
+    flex:2,
+    alignItems:"center",
+    justifyContent:"flex-start",
   }
 });

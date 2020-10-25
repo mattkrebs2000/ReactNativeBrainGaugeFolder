@@ -15,7 +15,11 @@ import {
   Profile,
   Splash,
   Home,
+  Survey,
 } from "./src/Screens";
+
+
+
 
 const headerStyle = {
   backgroundColor: "black",
@@ -79,7 +83,24 @@ const SearchStackScreen = () => (
 const ProfileStack = createStackNavigator();
 const ProfileStackScreen = () => (
   <ProfileStack.Navigator>
-    <ProfileStack.Screen name="Profile" component={Profile} />
+    <ProfileStack.Screen
+      name="Profile"
+      component={Profile}
+      options={{
+        title: "Welcome",
+        headerStyle,
+        headerTitleStyle,
+      }}
+    />
+    <ProfileStack.Screen
+      name="Survey"
+      component={Survey}
+      options={{
+        title: "Survey",
+        headerStyle,
+        headerTitleStyle,
+      }}
+    />
   </ProfileStack.Navigator>
 );
 

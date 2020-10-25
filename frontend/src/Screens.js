@@ -4,23 +4,11 @@ import SignUp from "./components/SignUp.js"
 import SignInn from "./components/SignIn.js"
 import HomeScreen from "./components/Home.js"
 import Welcomee from "./components/Welcome.js"
+import SurveyScreen from "./components/Survey.js"
 
 
 
-const styles = StyleSheet.create({
-    container2: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "black"
-    },
-    button: {
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        marginVertical: 10,
-        borderRadius: 5
-    }
-});
+
 const ScreenContainer = ({ children }) => (
     <View style={styles.container2}>{children}</View>
 );
@@ -29,6 +17,12 @@ export const Home = ({ navigation }) => (
     <ScreenContainer>
         <HomeScreen navigation={navigation} title="GO BACK"/>
     </ScreenContainer>
+);
+
+export const Survey = ({ navigation }) => (
+<ScreenContainer>
+<SurveyScreen navigation = {navigation}/>
+</ScreenContainer>
 );
 
 
@@ -118,3 +112,18 @@ export const CreateAccount = ({ navigation }) => {
       </ScreenContainer>
     );
 };
+
+const styles = StyleSheet.create({
+  container2: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "black",
+  },
+  button: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginVertical: 10,
+    borderRadius: 5,
+  },
+});

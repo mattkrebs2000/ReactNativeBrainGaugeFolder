@@ -78,10 +78,7 @@ const SignIn = props => {
 
     
 
-        const pressHandler = () => {
-            props.navigation.navigate("SignUp")
-        };
-
+       
         return (
           <KeyboardAvoidingView style={styles.container} behavior="padding">
             {/* App Header */}
