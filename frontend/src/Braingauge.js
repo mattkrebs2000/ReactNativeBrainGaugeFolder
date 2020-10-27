@@ -14,18 +14,7 @@ import Search from "./components/Mood";
 import Search2 from "./components/Home";
 import Profile from "./components/Welcome";
 import Splash from"./components/Home";
-import Survey from "./components/Home";
-
-
-
-// import Search from "./components/Home";
-
-
-// import Details from "./components/Home";
-// import Search2 from "./components/Home";
-// import Profile from "./components/Home";
-// import Splash from"./components/Home";
-// import Survey from "./components/Home";
+import Survey from "./components/Survey";
 
 const headerStyle = {
   backgroundColor: "black",

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Slider, Icon } from "react-native-elements";
 import {
   SafeAreaView,
 StyleSheet,
@@ -6,62 +7,90 @@ StyleSheet,
   Text,
   Image,
   TouchableOpacity,
+  Animated,
 } from "react-native";
+import { Value } from 'react-native-reanimated';
 
 
 const Survey = () => {
 
     return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Brain Gauge</Text>
-
-      <View style={styles.middle}>
-        <Image
-          source={{
-            uri:
-              "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
-          }}
-          style={styles.img}
-        />
-      </View>
-      <Text style={styles.text2}>
-        This is the App that measures your mental responsiveness and tells you
-        when you are at your best.
-      </Text>
-      <View style={styles.buttons}>
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => navigation.navigate("CreateAccount")}
-          // onPress={this.signUp}
+      <SafeAreaView style={styles.container}>
+        <View
+          style={{ flex: 1, alignItems: "stretch", justifyContent: "center" }}
         >
-          <Text
-            accessibilityLabel="Sign In"
-            style={styles.text3}
-            onPress={() => {
-              navigation.navigate("SignIn");
+          <Slider
+            style={{
+              color: "white",
+              width: 200,
+              maximumValue: 5,
+              minimumValue: 1,
             }}
+
+            // value={this.state.value}
+
+            // onValueChange={(value) => this.setState({ value })}
+          />
+
+          <Text
+            style={{ color: "white"}}
           >
-            Sign In
+            6
           </Text>
-        </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity
-          style={styles.btn}
-
-          // onPress={this.signUp}
+        <View
+          style={{ flex: 1, alignItems: "stretch", justifyContent: "center" }}
         >
-          <Text
-            accessibilityLabel="Sign Up"
-            style={styles.text3}
-            onPress={() => {
-              navigation.navigate("CreateAccount");
+          <Slider
+            // value={this.state.value}
+            // onValueChange={(value) => this.setState({ value })}
+            thumbStyle={{
+              height: 40,
+              width: 100,
+              backgroundColor: "transparent",
             }}
-          >
-            Sign Up
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+            thumbProps={{
+              Component: Animated.Image,
+              source: {
+                uri:
+                  "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
+              },
+            }}
+          />
+          <Text>Value: 5</Text>
+        </View>
+        <View
+          style={{ flex: 1, alignItems: "stretch", justifyContent: "center" }}
+        >
+          <Slider
+            // value={value}
+            // onValueChange={setValue}
+            maximumValue={50}
+            minimumValue={20}
+            step={1}
+            trackStyle={{ height: 10, backgroundColor: "transparent" }}
+            thumbStyle={{
+              height: 20,
+              width: 200,
+              backgroundColor: "transparent",
+            }}
+            thumbProps={{
+              children: (
+                <Icon
+                  name="heartbeat"
+                  type="font-awesome"
+                  size={20}
+                  reverse
+                  containerStyle={{ bottom: 20, right: 20 }}
+                  color="#f50"
+                />
+              ),
+            }}
+          />
+          <Text>Value: 40</Text>
+        </View>
+      </SafeAreaView>
     );
 };
 export default Survey;
