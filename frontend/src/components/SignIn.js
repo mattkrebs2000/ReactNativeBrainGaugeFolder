@@ -24,7 +24,7 @@ import { AuthContext } from "../context";
 
 
 
-const SignIn = props => {
+const SignIn = (props) => {
     const { signIn } = React.useContext(AuthContext);
 
     // const [state, setState] = React.UseState({email: '',

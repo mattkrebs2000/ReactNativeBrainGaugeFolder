@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,59 +9,61 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const Home = () => {
-  const navigation = useNavigation();
+const Home = (props) => {
+  // const navigation = useNavigation();
 
   console.log("whaaaaa");
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Brain Gauge</Text>
+    <SafeAreaView style={styles.container2}>
+      <View style={styles.container}>
+        <Text style={styles.text}>Brain Gauge</Text>
 
-      <View style={styles.middle}>
-        <Image
-          source={{
-            uri:
-              "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
-          }}
-          style={styles.img}
-        />
-      </View>
-      <Text style={styles.text2}>
-        This is the App that measures your mental responsiveness and tells you
-        when you are at your best.
-      </Text>
-      <View style={styles.buttons}>
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => navigation.navigate("CreateAccount")}
-          // onPress={this.signUp}
-        >
-          <Text
-            accessibilityLabel="Sign In"
-            style={styles.text3}
-            onPress={() => {
-              navigation.navigate("SignIn");
+        <View style={styles.middle}>
+          <Image
+            source={{
+              uri:
+                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
             }}
+            style={styles.img}
+          />
+        </View>
+        <Text style={styles.text2}>
+          This is the App that measures your mental responsiveness and tells you
+          when you are at your best.
+        </Text>
+        <View style={styles.buttons}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => props.navigation.navigate("CreateAccount")}
+            // onPress={this.signUp}
           >
-            Sign In
-          </Text>
-        </TouchableOpacity>
+            <Text
+              accessibilityLabel="Sign In"
+              style={styles.text3}
+              onPress={() => {
+                props.navigation.navigate("SignIn");
+              }}
+            >
+              Sign In
+            </Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.btn}
+          <TouchableOpacity
+            style={styles.btn}
 
-          // onPress={this.signUp}
-        >
-          <Text
-            accessibilityLabel="Sign Up"
-            style={styles.text3}
-            onPress={() => {
-              navigation.navigate("CreateAccount");
-            }}
+            // onPress={this.signUp}
           >
-            Sign Up
-          </Text>
-        </TouchableOpacity>
+            <Text
+              accessibilityLabel="Sign Up"
+              style={styles.text3}
+              onPress={() => {
+                props.navigation.navigate("CreateAccount");
+              }}
+            >
+              Sign Up
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -121,5 +123,11 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flexDirection: "row",
+  },
+  container2: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "black",
   },
 });

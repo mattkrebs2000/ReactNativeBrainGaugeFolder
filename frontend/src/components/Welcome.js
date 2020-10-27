@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View, Text, Image, Linking, Button } from 're
 
 import { AuthContext } from "../context";
 
-const Welcome = props => {
+const Welcome = (props) => {
 const { signOut } = React.useContext(AuthContext);
 
         return (
