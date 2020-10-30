@@ -121,14 +121,10 @@ const SignIn = (props) => {
               {/* Sign Up Button */}
               <TouchableOpacity
                 style={styles.btn}
-
+                onPress={() => signIn()}
                 // onPress={this.signUp}
               >
-                <Text
-                  accessibilityLabel="Sign In"
-                  style={styles.text}
-                  onPress={() => signIn()}
-                >
+                <Text accessibilityLabel="Sign In" style={styles.text}>
                   Sign In
                 </Text>
               </TouchableOpacity>
@@ -154,80 +150,78 @@ const SignIn = (props) => {
 export default SignIn;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'black',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: "100%",
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        color: "white",
-    },
+  container: {
+    flex: 1,
+    backgroundColor: "black",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    color: "white",
+  },
 
-    divider_bar: {
-        width: 300,
-        backgroundColor: '#FAD9C5',
-        height: 1,
-        marginTop: 20,
-        marginBottom: 20,
-    },
-    form: {
+  divider_bar: {
+    width: 300,
+    backgroundColor: "#FAD9C5",
+    height: 1,
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  form: {
+    height: 150,
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white",
+  },
+  input: {
+    borderWidth: 2,
+    borderColor: "#004fff",
+    padding: 10,
+    width: 300,
+    marginBottom: 25,
+    borderRadius: 10,
+    shadowColor: "white",
+    shadowOffset: { width: 0.5, height: 0.5 },
+    shadowOpacity: 1,
+    shadowRadius: 0.5,
+    color: "white",
+    lineHeight: 24,
+    fontSize: 20,
+  },
+  btn: {
+    width: 300,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#004fff",
+    borderRadius: 10,
+    shadowColor: "white",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    color: "white",
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  middle: {
+    width: 150,
+    alignItems: "center",
+  },
 
-        height: 150,
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: "white",
-    },
-    input: {
-        borderWidth: 2,
-        borderColor: '#167bff',
-        padding: 10,
-        width: 300,
-        marginBottom: 25,
-        borderRadius: 10,
-        shadowColor: 'white',
-        shadowOffset: { width: 0.5, height: 0.5 },
-        shadowOpacity: 1,
-        shadowRadius: 0.5,
-        color: "white",
-        lineHeight: 24,
-        fontSize: 20,
-    },
-    btn: {
-        width: 300,
-        height: 45,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#167bff',
-        borderRadius: 10,
-        shadowColor: 'white',
-        shadowOffset: { width: 1, height: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 3,
-        color: "white"
-    },
-    text: {
-        color: "white",
-        fontSize: 20,
-        textAlign: 'center',
-    },
-    middle: {
-        width: 150,
-        alignItems: "center",
-    },
-
-    img: {
-        width: "100%",
-        height: 120,
-        borderRadius: 5,
-    },
-    text2: {
-        color: "white",
-        fontSize: 35,
-        textAlign: 'center',
-    },
-
+  img: {
+    width: "100%",
+    height: 120,
+    borderRadius: 5,
+  },
+  text2: {
+    color: "white",
+    fontSize: 35,
+    textAlign: "center",
+  },
 });
 
 

@@ -9,10 +9,9 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-class Sleep extends React.Component {
+class Appetite extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   state = {
@@ -28,19 +27,19 @@ class Sleep extends React.Component {
   text = () => {
     switch (this.state.value) {
       case 1:
-        text = "Very Tired";
+        text = "Very Hungry";
         break;
       case 2:
-        text = "Tired";
+        text = "Could Eat";
         break;
       case 0:
         text = "Not Included";
         break;
       case 3:
-        text = "Refreshed";
+        text = "Fed";
         break;
       case 4:
-        text = "Very Refreshed";
+        text = "Well Fed";
         break;
     }
     return this.setState({ text: text });
@@ -60,13 +59,13 @@ class Sleep extends React.Component {
             />
           </View>
           <Text> {"\n"} </Text>
-          <Text style={styles.text2}>Sleep</Text>
+          <Text style={styles.text2}>Appetite</Text>
           <View style={styles.divider_bar}></View>
 
           {/* Sign Up Form */}
           <View style={styles.form}>
             <Text style={styles.text3}>
-              How do you feel relative to the amount of sleep you've gotten
+              How do you feel relative to the amount of food you've eaten
               recently?
             </Text>
             <Text> {"\n"} </Text>
@@ -94,11 +93,11 @@ class Sleep extends React.Component {
             <TouchableOpacity
               style={styles.btn}
               onPress={() => {
-                this.props.navigation.navigate("Survey2");
+                this.props.navigation.navigate("Survey4");
               }}
               // onPress={this.signUp}
             >
-              <Text style={styles.text}> Submit</Text>
+              <Text style={styles.text}>Submit</Text>
             </TouchableOpacity>
 
             <View style={styles.divider_bar}></View>
@@ -110,7 +109,7 @@ class Sleep extends React.Component {
   }
 }
 
-export default Sleep;
+export default Appetite;
 
 const styles = StyleSheet.create({
   slider: {
@@ -198,77 +197,3 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
 });
-
-// import React, { useState } from "react";
-// import { Text, StyleSheet, View } from "react-native";
-// import Slider from "@react-native-community/slider";
-
-// const Sleep = () => {
-//   const [value, setValue] = useState(0);
-//   const [texts, setText] = useState(" ");
-
-//   handleChange = (e) => setValue(e.target.value);
-
-//   text = () => {
-//     switch (value) {
-//       case 1:
-//         text = "Very Tired";
-//         break;
-//       case 2:
-//         text = "Tired";
-//         break;
-//       case 3:
-//         text = "Not Tired but Not Refreshed";
-//         break;
-//       case 4:
-//         text = "Refreshed";
-//         break;
-//       case 5:
-//         text = "Very Refreshed";
-//         break;
-//     }
-//     return setText({ text });
-//   };
-
-//   return (
-//     <View>
-//       <Text>{value}Hello</Text>
-//       <Text>{texts}</Text>
-
-//       <Text style={styles.text}>{value && value}oh</Text>
-//       <Slider
-//         style={styles.slider}
-//         //   onValueChange={handleChange}
-
-//         onValueChange={function (event) {
-//           return setValue(event.target.value);
-//         }}
-//         style={{ width: 200, height: 40 }}
-//         minimumValue={0}
-//         maximumValue={4}
-//         minimumTrackTintColor="red"
-//         step="1"
-//         maximumTrackTintColor="blue"
-//         value="2"
-//       />
-//       <Text>{texts}</Text>
-//     </View>
-//   );
-// };
-
-// export default Sleep;
-
-// const styles = StyleSheet.create({
-//   slider: {
-//     width: 300,
-//     opacity: 1,
-//     height: 50,
-//     marginTop: 50,
-//   },
-//   text: {
-//     fontSize: 14,
-//     textAlign: "center",
-//     fontWeight: "500",
-//     margin: 10,
-//   },
-// });

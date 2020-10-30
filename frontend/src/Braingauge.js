@@ -15,6 +15,11 @@ import Search2 from "./components/Home";
 import Profile from "./components/Welcome";
 import Splash from"./components/Home";
 import Survey from "./components/Survey";
+import Survey2 from "./components/Survey2";
+import Survey3 from "./components/Survey3";
+import Survey4 from "./components/Survey4";
+import Review from "./components/Review";
+
 
 const headerStyle = {
   backgroundColor: "black",
@@ -99,6 +104,42 @@ const ProfileStackScreen = () => (
       component={Survey}
       options={{
         title: "Survey",
+        headerStyle,
+        headerTitleStyle,
+      }}
+    />
+    <ProfileStack.Screen
+      name="Survey2"
+      component={Survey2}
+      options={{
+        title: "Survey2",
+        headerStyle,
+        headerTitleStyle,
+      }}
+    />
+    <ProfileStack.Screen
+      name="Survey3"
+      component={Survey3}
+      options={{
+        title: "Survey3",
+        headerStyle,
+        headerTitleStyle,
+      }}
+    />
+    <ProfileStack.Screen
+      name="Survey4"
+      component={Survey4}
+      options={{
+        title: "Survey4",
+        headerStyle,
+        headerTitleStyle,
+      }}
+    />
+    <ProfileStack.Screen
+      name="Review"
+      component={Review}
+      options={{
+        title: "Review",
         headerStyle,
         headerTitleStyle,
       }}
