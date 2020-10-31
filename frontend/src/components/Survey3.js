@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -9,105 +9,98 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-class Appetite extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Appetite = (props) => {
+  const [value, setValue] = useState(0);
+  const [texts, setText] = useState("Not Included");
 
-  state = {
-    value: 0,
-    text: "Not Included",
-  };
+  useEffect(() => {
+    texting();
+  }, [value]);
 
-  handleChange = (value) =>
-    this.setState({ value: value }, () => {
-      this.text();
-    });
-
-  text = () => {
-    switch (this.state.value) {
+  texting = () => {
+    switch (value) {
+      case 0:
+        setText("Not Included");
+        break;
       case 1:
-        text = "Very Hungry";
+        setText("Hungry");
         break;
       case 2:
-        text = "Could Eat";
-        break;
-      case 0:
-        text = "Not Included";
+        setText("Could Eat");
         break;
       case 3:
-        text = "Fed";
+        setText("Fed");
         break;
       case 4:
-        text = "Well Fed";
+        setText("Well Fed");
         break;
     }
-    return this.setState({ text: text });
   };
 
-  render() {
-    return (
-      <View style={styles.container} behavior="padding">
-        <SafeAreaView style={styles.container} behavior="padding">
-          <View style={styles.middle}>
-            <Image
-              source={{
-                uri:
-                  "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
-              }}
-              style={styles.img}
-            />
-          </View>
+  return (
+    <View style={styles.container} behavior="padding">
+      <SafeAreaView style={styles.container} behavior="padding">
+        <View style={styles.middle}>
+          <Image
+            source={{
+              uri:
+                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+            }}
+            style={styles.img}
+          />
+        </View>
+        <Text> {"\n"} </Text>
+        <Text style={styles.text2}>Appetite</Text>
+        <View style={styles.divider_bar}></View>
+
+        {/* Sign Up Form */}
+        <View style={styles.form}>
+          <Text style={styles.text3}>
+            How do you feel relative to the amount of food you've eaten
+            recently?
+          </Text>
           <Text> {"\n"} </Text>
-          <Text style={styles.text2}>Appetite</Text>
-          <View style={styles.divider_bar}></View>
-
-          {/* Sign Up Form */}
-          <View style={styles.form}>
-            <Text style={styles.text3}>
-              How do you feel relative to the amount of food you've eaten
-              recently?
+          <Slider
+            style={styles.slider}
+            onValueChange={function (event) {
+              return setValue(event);
+            }}
+            Not
+            Included
+            style={{ width: 300, height: 40 }}
+            minimumValue={0}
+            maximumValue={4}
+            minimumTrackTintColor="#004fff"
+            step="1"
+            maximumTrackTintColor="red"
+            value="2"
+          />
+          <View>
+            <Text style={styles.text}>
+              {value && value} : {texts}
             </Text>
-            <Text> {"\n"} </Text>
-            <Slider
-              style={styles.slider}
-              {...this.props}
-              onValueChange={this.handleChange}
-              style={{ width: 200, height: 40 }}
-              minimumValue={0}
-              maximumValue={4}
-              minimumTrackTintColor="blue"
-              step="1"
-              maximumTrackTintColor="red"
-              value="2"
-            />
-            <View>
-              <Text style={styles.text}>
-                {this.state.value && this.state.value} : {this.state.text}
-              </Text>
-            </View>
           </View>
+        </View>
 
-          {/* Sign Up Button */}
-          <View style={styles.lower}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => {
-                this.props.navigation.navigate("Survey4");
-              }}
-              // onPress={this.signUp}
-            >
-              <Text style={styles.text}>Submit</Text>
-            </TouchableOpacity>
+        {/* Sign Up Button */}
+        <View style={styles.lower}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => {
+              props.navigation.navigate("Survey4");
+            }}
+            // onPress={this.signUp}
+          >
+            <Text style={styles.text}>Submit</Text>
+          </TouchableOpacity>
 
-            <View style={styles.divider_bar}></View>
-          </View>
-          {/* Log In */}
-        </SafeAreaView>
-      </View>
-    );
-  }
-}
+          <View style={styles.divider_bar}></View>
+        </View>
+        {/* Log In */}
+      </SafeAreaView>
+    </View>
+  );
+};
 
 export default Appetite;
 

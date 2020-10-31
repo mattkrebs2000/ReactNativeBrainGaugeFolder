@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -9,43 +9,33 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-class Exercise extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Exercise = (props) => {
+ const [value, setValue] = useState(0);
+  const [texts, setText] = useState("Not Included");
 
-  state = {
-    value: 0,
-    text: "Not Included",
-  };
+  useEffect(() => {
+    texting();
+  }, [value]);
 
-  handleChange = (value) =>
-    this.setState({ value: value }, () => {
-      this.text();
-    });
-
-  text = () => {
-    switch (this.state.value) {
-      case 1:
-        text = "Sedentary";
+  texting = () => {
+    switch (value) {
+      case 0:
+        setText("Not Included");
+        break;
+        case 1:
+        setText("Not Active");
         break;
       case 2:
-        text = "Somewhat Active";
-        break;
-      case 0:
-        text = "Not Included";
+        setText("Somewhat Active");
         break;
       case 3:
-        text = "Active";
+        setText("Active");
         break;
       case 4:
-        text = "Very Physically Active";
+        setText("Very Active");
         break;
     }
-    return this.setState({ text: text });
   };
-
-  render() {
     return (
       <View style={styles.container} behavior="padding">
         <SafeAreaView style={styles.container} behavior="padding">
@@ -71,19 +61,22 @@ class Exercise extends React.Component {
             <Text> {"\n"} </Text>
             <Slider
               style={styles.slider}
-              {...this.props}
-              onValueChange={this.handleChange}
-              style={{ width: 200, height: 40 }}
+            onValueChange={function (event) {
+              return setValue(event);
+            }}
+              Not
+              Included
+              style={{ width: 300, height: 40 }}
               minimumValue={0}
               maximumValue={4}
-              minimumTrackTintColor="blue"
+              minimumTrackTintColor="#004fff"
               step="1"
               maximumTrackTintColor="red"
               value="2"
             />
             <View>
               <Text style={styles.text}>
-                {this.state.value && this.state.value} : {this.state.text}
+                {value && value} : {texts}
               </Text>
             </View>
           </View>
@@ -93,7 +86,7 @@ class Exercise extends React.Component {
             <TouchableOpacity
               style={styles.btn}
               onPress={() => {
-                this.props.navigation.navigate("Review");
+                props.navigation.navigate("Review");
               }}
             >
               <Text style={styles.text}>Submit</Text>
@@ -106,7 +99,7 @@ class Exercise extends React.Component {
       </View>
     );
   }
-}
+
 
 export default Exercise;
 
