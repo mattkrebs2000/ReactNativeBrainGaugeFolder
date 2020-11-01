@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
 
 import { AuthContext } from "./context";
 import Home from "./components/Home";
@@ -13,12 +13,13 @@ import Details from "./components/Home";
 import Search from "./components/Mood";
 import Search2 from "./components/Home";
 import Profile from "./components/Welcome";
-import Splash from"./components/Home";
+import Splash from "./components/Home";
 import Survey from "./components/Survey";
 import Survey2 from "./components/Survey2";
 import Survey3 from "./components/Survey3";
 import Survey4 from "./components/Survey4";
 import Review from "./components/Review";
+
 
 
 const headerStyle = {
@@ -87,6 +88,18 @@ const SearchStackScreen = () => (
   </SearchStack.Navigator>
 );
 
+function nestedSurvey() {
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen name="Survey" component={Survey} />
+      <ProfileStack.Screen name="Survey2" component={Survey2} />
+      <ProfileStack.Screen name="Survey3" component={Survey3} />
+      <ProfileStack.Screen name="Survey4" component={Survey4} />
+      <ProfileStack.Screen name="Review" component={Review} />
+    </ProfileStack.Navigator>
+  );
+}
+
 const ProfileStack = createStackNavigator();
 const ProfileStackScreen = () => (
   <ProfileStack.Navigator>
@@ -100,46 +113,10 @@ const ProfileStackScreen = () => (
       }}
     />
     <ProfileStack.Screen
-      name="Survey"
-      component={Survey}
+      name="nestedSurvey"
+      component={nestedSurvey}
       options={{
         title: "Survey",
-        headerStyle,
-        headerTitleStyle,
-      }}
-    />
-    <ProfileStack.Screen
-      name="Survey2"
-      component={Survey2}
-      options={{
-        title: "Survey2",
-        headerStyle,
-        headerTitleStyle,
-      }}
-    />
-    <ProfileStack.Screen
-      name="Survey3"
-      component={Survey3}
-      options={{
-        title: "Survey3",
-        headerStyle,
-        headerTitleStyle,
-      }}
-    />
-    <ProfileStack.Screen
-      name="Survey4"
-      component={Survey4}
-      options={{
-        title: "Survey4",
-        headerStyle,
-        headerTitleStyle,
-      }}
-    />
-    <ProfileStack.Screen
-      name="Review"
-      component={Review}
-      options={{
-        title: "Review",
         headerStyle,
         headerTitleStyle,
       }}
@@ -188,6 +165,33 @@ const RootStackScreen = ({ userToken }) => (
 export const Braingauge = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState(null);
+    
+//   const [value1, setValue1] = useState(0);
+//     const [texts1, setText1] = useState("Not Included");
+
+//     useEffect(() => {
+//       texting1();
+//     }, [value1]);
+
+//     texting1 = () => {
+//       switch (value1) {
+//         case 0:
+//           setText1("Not Included");
+//           break;
+//         case 1:
+//           setText1("Very Tired");
+//           break;
+//         case 2:
+//           setText1("Tired");
+//           break;
+//         case 3:
+//           setText1("Refreshed");
+//           break;
+//         case 4:
+//           setText1("Very Refreshed");
+//           break;
+//       }
+//     };
 
   const authContext = React.useMemo(() => {
     return {
@@ -228,13 +232,3 @@ export const Braingauge = () => {
     </AuthContext.Provider>
   );
 };
-
-
-
-
-
-
-
-
-
-

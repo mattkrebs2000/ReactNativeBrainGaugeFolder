@@ -13,7 +13,7 @@ const { signOut } = React.useContext(AuthContext);
               <Text style={styles.text}>Welcome ___</Text>
               <Text
                 style={styles.text2}
-                onPress={() => props.navigation.navigate("Survey")}
+                onPress={() => props.navigation.navigate("nestedSurvey")}
               >
                 Play Game
               </Text>
