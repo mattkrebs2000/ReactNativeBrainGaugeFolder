@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+
 import { AuthContext } from "./context";
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
@@ -27,13 +29,37 @@ const headerTitleStyle = {
 };
 
 export const Braingauge = () => {
-  //state
+
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState(null);
   const [value1, setValue1] = useState(0);
   const [texts1, setText1] = useState("Not Included");
 
-  //functions
+  useEffect(() => {
+   texting();
+  }, [value1]); 
+
+texting = () => {
+  switch (value1) {
+    case 0:
+      setText1("Not Included");
+      break;
+    case 1:
+      setText1("Very Tired");
+      break;
+    case 2:
+      setText1("Tired");
+      break;
+    case 3:
+      setText1("Refreshed");
+      break;
+    case 4:
+      setText1("Very Refreshed");
+      break;
+  }
+  console.log("YYYYY", texts1, "YYYYYY");
+};
+
   const AuthStack = createStackNavigator();
   const AuthStackScreen = () => (
     <AuthStack.Navigator>
@@ -99,7 +125,7 @@ export const Braingauge = () => {
   function nestedSurvey() {
     return (
       <ProfileStack.Navigator>
-        <ProfileStack.Screen name="Survey" >
+        <ProfileStack.Screen name="Survey">
           {(props) => (
             <Survey
               {...props}
@@ -113,7 +139,15 @@ export const Braingauge = () => {
         <ProfileStack.Screen name="Survey2" component={Survey2} />
         <ProfileStack.Screen name="Survey3" component={Survey3} />
         <ProfileStack.Screen name="Survey4" component={Survey4} />
-        <ProfileStack.Screen name="Review" component={Review} />
+        <ProfileStack.Screen name="Review">
+          {(props) => (
+            <Review
+              {...props}
+              value1={value1}
+              texts1={texts1}
+            />
+          )}
+        </ProfileStack.Screen>
       </ProfileStack.Navigator>
     );
   }
@@ -153,9 +187,7 @@ export const Braingauge = () => {
   const DrawerScreen = () => (
     <Drawer.Navigator initialRouteName="Profile">
       <Drawer.Screen name="Banannnnnnnnnna" component={TabsScreen} />
-
       <Drawer.Screen name="Profile" component={ProfileStackScreen} />
-
     </Drawer.Navigator>
   );
 

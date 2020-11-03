@@ -11,13 +11,9 @@ import { AuthContext } from "../context";
 
 
 
-class Review extends React.Component {
-  constructor(props) {
-    super(props);
-   
-  }
+const Review = ({value1, texts1}) => {
+  console.log(value1, texts1)
 
-  render() {
 
     return (
       <View style={styles.container} behavior="padding">
@@ -38,7 +34,7 @@ class Review extends React.Component {
             <Text style={styles.text3}>
               <Text>Exercise: Not Included</Text>
               <Text> {"\n"} </Text>
-              <Text>Sleep: Not Included</Text>
+              <Text>Sleep: {value1}={texts1}</Text>
               <Text> {"\n"} </Text>
               <Text>Appetite: Not Included</Text>
               <Text> {"\n"} </Text>
@@ -62,7 +58,7 @@ class Review extends React.Component {
         </SafeAreaView>
       </View>
     );
-  }
+  
 }
 
 export default Review;

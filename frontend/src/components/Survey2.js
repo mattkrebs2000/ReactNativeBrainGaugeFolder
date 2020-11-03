@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Slider from "@react-native-community/slider";
+import Review from "./Review.js"
 
 const Mood = (props) => {
   const [value, setValue] = useState(0);
@@ -96,6 +97,7 @@ const Mood = (props) => {
           <View style={styles.divider_bar}></View>
         </View>
         {/* Log In */}
+      
       </SafeAreaView>
     </View>
   );

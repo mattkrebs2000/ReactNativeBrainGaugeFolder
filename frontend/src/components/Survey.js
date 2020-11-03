@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Text,
   StyleSheet,
@@ -9,37 +9,8 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const Sleep = ({ navigation ,value1, texts1, setValue1, setText1 }) => {
-  useEffect(() => {
-    texting();
-  }, []);
-
-  texting = () => {
-
-    debugger
-
-    console.log("you're in", value1);
-    switch (value1) {
-      case 0:
-        setText1("Not Included");
-        break;
-      case 1:
-        setText1("Very Tired");
-        break;
-      case 2:
-        setText1("Tired");
-        break;
-      case 3:
-        setText1("Refreshed");
-        break;
-      case 4:
-        setText1("Very Refreshed");
-        break;
-    }
-   
-    console.log("You", texts1)
-  };
-
+const Sleep = ({navigation, setValue1, texts1, value1}) => {
+  console.log(navigation, setValue1, texts1, value1)
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">
@@ -65,10 +36,10 @@ const Sleep = ({ navigation ,value1, texts1, setValue1, setText1 }) => {
           <Text> {"\n"} </Text>
           <Slider
             style={styles.slider}
+            value={value1}
             onValueChange={(event) => {
-
-                console.log("HHHH", event)
-                return setValue1(event);
+                 setValue1(event);
+                 texting();
             }}
            
             style={{ width: 300, height: 40 }}
@@ -77,7 +48,7 @@ const Sleep = ({ navigation ,value1, texts1, setValue1, setText1 }) => {
             minimumTrackTintColor="#004fff"
             step="1"
             maximumTrackTintColor="red"
-            value="2"
+            
           />
           <View>
             <Text style={styles.text}>
