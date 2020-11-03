@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -9,33 +9,35 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const Sleep = (props) => {
-  const [value, setValue] = useState(0);
-  const [texts, setText] = useState("Not Included");
-
+const Sleep = ({ navigation ,value1, texts1, setValue1, setText1 }) => {
   useEffect(() => {
     texting();
-  }, [value]);
+  }, []);
 
   texting = () => {
-    console.log("you're in", value);
-    switch (value) {
+
+    debugger
+
+    console.log("you're in", value1);
+    switch (value1) {
       case 0:
-        setText("Not Included");
+        setText1("Not Included");
         break;
       case 1:
-        setText("Very Tired");
+        setText1("Very Tired");
         break;
       case 2:
-        setText("Tired");
+        setText1("Tired");
         break;
       case 3:
-        setText("Refreshed");
+        setText1("Refreshed");
         break;
       case 4:
-        setText("Very Refreshed");
+        setText1("Very Refreshed");
         break;
     }
+   
+    console.log("You", texts1)
   };
 
   return (
@@ -63,11 +65,12 @@ const Sleep = (props) => {
           <Text> {"\n"} </Text>
           <Slider
             style={styles.slider}
-            onValueChange={function (event) {
-              return setValue(event);
+            onValueChange={(event) => {
+
+                console.log("HHHH", event)
+                return setValue1(event);
             }}
-            Not
-            Included
+           
             style={{ width: 300, height: 40 }}
             minimumValue={0}
             maximumValue={4}
@@ -78,7 +81,7 @@ const Sleep = (props) => {
           />
           <View>
             <Text style={styles.text}>
-              {value && value} : {texts}
+              {value1 && value1} : {texts1}
             </Text>
           </View>
         </View>
@@ -88,7 +91,7 @@ const Sleep = (props) => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
-              props.navigation.navigate("Survey2");
+              navigation.navigate("Survey2");
             }}
             // onPress={this.signUp}
           >
@@ -197,13 +200,13 @@ const styles = StyleSheet.create({
 // import Slider from "@react-native-community/slider";
 
 // const Sleep = () => {
-//   const [value, setValue] = useState(0);
-//   const [texts, setText] = useState(" ");
+//   const [value1, setValue] = useState(0);
+//   const [texts1, setText] = useState(" ");
 
-//   handleChange = (e) => setValue(e.target.value);
+//   handleChange = (e) => setValue(e.target.value1);
 
 //   text = () => {
-//     switch (value) {
+//     switch (value1) {
 //       case 1:
 //         text = "Very Tired";
 //         break;
@@ -225,16 +228,16 @@ const styles = StyleSheet.create({
 
 //   return (
 //     <View>
-//       <Text>{value}Hello</Text>
-//       <Text>{texts}</Text>
+//       <Text>{value1}Hello</Text>
+//       <Text>{texts1}</Text>
 
-//       <Text style={styles.text}>{value && value}oh</Text>
+//       <Text style={styles.text}>{value1 && value1}oh</Text>
 //       <Slider
 //         style={styles.slider}
 //         //   onValueChange={handleChange}
 
 //         onValueChange={function (event) {
-//           return setValue(event.target.value);
+//           return setValue(event.target.value1);
 //         }}
 //        Not Included style={{ width: 300, height: 40 }}
 //         minimumValue={0}
@@ -242,9 +245,9 @@ const styles = StyleSheet.create({
 //         minimumTrackTintColor="red"
 //         step="1"
 //         maximumTrackTintColor="#004fff"
-//         value="2"
+//         value1="2"
 //       />
-//       <Text>{texts}</Text>
+//       <Text>{texts1}</Text>
 //     </View>
 //   );
 // };
