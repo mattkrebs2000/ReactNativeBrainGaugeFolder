@@ -1,9 +1,9 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View, Text, Image, Linking, Button } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text, Image, Linking, Button, TouchableOpacity} from 'react-native';
 
 import { AuthContext } from "../context";
 
-const Welcome = (props) => {
+const Welcome = ({navigation}) => {
 const { signOut } = React.useContext(AuthContext);
 
         return (
@@ -13,11 +13,14 @@ const { signOut } = React.useContext(AuthContext);
               <Text style={styles.text}>Welcome ___</Text>
               <Text
                 style={styles.text2}
-                onPress={() => props.navigation.navigate("nestedSurvey")}
+                onPress={() => navigation.navigate("nestedSurvey")}
               >
                 Play Game
               </Text>
-              <View style={styles.containerofimage}>
+              <TouchableOpacity
+                style={styles.containerofimage}
+                onPress={() => navigation.navigate("nestedSurvey")}
+              >
                 <Image
                   source={{
                     uri:
@@ -25,7 +28,7 @@ const { signOut } = React.useContext(AuthContext);
                   }}
                   style={styles.image}
                 ></Image>
-              </View>
+              </TouchableOpacity>
               <Text style={styles.text2}>See Results</Text>
               <View style={styles.containerofimage}>
                 <Image
