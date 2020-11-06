@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Text,
   StyleSheet,
@@ -8,35 +8,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Slider from "@react-native-community/slider";
-import Review from "./Review.js"
 
-const Mood = (props) => {
-  const [value, setValue] = useState(0);
-  const [texts, setText] = useState("Not Included");
 
-  useEffect(() => {
-    texting();
-  }, [value]);
-
-  texting = () => {
-    switch (value) {
-      case 0:
-        setText("Not Included");
-        break;
-      case 1:
-        setText("Upset");
-        break;
-      case 2:
-        setText("Mildly Upset");
-        break;
-      case 3:
-        setText("Content");
-        break;
-      case 4:
-        setText("Happy");
-        break;
-    }
-  };
+const Mood = ({ setPage, setValue2, texts2, value2 }) => {
+ 
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">
@@ -62,11 +37,9 @@ const Mood = (props) => {
           <Text> {"\n"} </Text>
           <Slider
             style={styles.slider}
-            onValueChange={function (event) {
-              return setValue(event);
+            onValueChange = {(event) => {
+                 setValue2(event);
             }}
-            Not
-            Included
             style={{ width: 300, height: 40 }}
             minimumValue={0}
             maximumValue={4}
@@ -77,7 +50,7 @@ const Mood = (props) => {
           />
           <View>
             <Text style={styles.text}>
-              {value && value} : {texts}
+              {value2 && value2} : {texts2}
             </Text>
           </View>
         </View>
@@ -87,9 +60,8 @@ const Mood = (props) => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
-              props.navigation.navigate("Survey3");
+              setPage(3);
             }}
-            // onPress={this.signUp}
           >
             <Text style={styles.text}>Submit</Text>
           </TouchableOpacity>
@@ -97,7 +69,6 @@ const Mood = (props) => {
           <View style={styles.divider_bar}></View>
         </View>
         {/* Log In */}
-      
       </SafeAreaView>
     </View>
   );

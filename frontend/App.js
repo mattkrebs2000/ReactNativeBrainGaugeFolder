@@ -1,9 +1,9 @@
 import React from "react";
-import { Braingauge } from "./src/Braingauge";
+import { Navigators } from "./src/Navigators";
 
 const App = () => {
   return (
-      <Braingauge />
+      <Navigators />
   );
 
 }

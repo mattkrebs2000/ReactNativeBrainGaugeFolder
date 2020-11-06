@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Text,
   StyleSheet,
@@ -9,96 +9,69 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const Exercise = (props) => {
- const [value, setValue] = useState(0);
-  const [texts, setText] = useState("Not Included");
+const Exercise = ({setPage, setValue4, texts4, value4}) => {
 
-  useEffect(() => {
-    texting();
-  }, [value]);
-
-  texting = () => {
-    switch (value) {
-      case 0:
-        setText("Not Included");
-        break;
-        case 1:
-        setText("Not Active");
-        break;
-      case 2:
-        setText("Somewhat Active");
-        break;
-      case 3:
-        setText("Active");
-        break;
-      case 4:
-        setText("Very Active");
-        break;
-    }
-  };
-    return (
-      <View style={styles.container} behavior="padding">
-        <SafeAreaView style={styles.container} behavior="padding">
-          <View style={styles.middle}>
-            <Image
-              source={{
-                uri:
-                  "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
-              }}
-              style={styles.img}
-            />
-          </View>
-          <Text> {"\n"} </Text>
-          <Text style={styles.text2}>Exercise</Text>
-          <View style={styles.divider_bar}></View>
-
-          {/* Sign Up Form */}
-          <View style={styles.form}>
-            <Text style={styles.text3}>
-              How do you feel relative to the amount of exercise you've gotten
-              recently?
-            </Text>
-            <Text> {"\n"} </Text>
-            <Slider
-              style={styles.slider}
-            onValueChange={function (event) {
-              return setValue(event);
+  return (
+    <View style={styles.container} behavior="padding">
+      <SafeAreaView style={styles.container} behavior="padding">
+        <View style={styles.middle}>
+          <Image
+            source={{
+              uri:
+                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
             }}
-              Not
-              Included
-              style={{ width: 300, height: 40 }}
-              minimumValue={0}
-              maximumValue={4}
-              minimumTrackTintColor="#004fff"
-              step="1"
-              maximumTrackTintColor="red"
-              value="2"
-            />
-            <View>
-              <Text style={styles.text}>
-                {value && value} : {texts}
-              </Text>
-            </View>
-          </View>
+            style={styles.img}
+          />
+        </View>
+        <Text> {"\n"} </Text>
+        <Text style={styles.text2}>Exercise</Text>
+        <View style={styles.divider_bar}></View>
 
-          {/* Sign Up Button */}
-          <View style={styles.lower}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => {
-                props.navigation.navigate("Review");
-              }}
-            >
-              <Text style={styles.text}>Submit</Text>
-            </TouchableOpacity>
-
-            <View style={styles.divider_bar}></View>
+        {/* Sign Up Form */}
+        <View style={styles.form}>
+          <Text style={styles.text3}>
+            How do you feel relative to the amount of exercise you've gotten
+            recently?
+          </Text>
+          <Text> {"\n"} </Text>
+          <Slider
+            style={styles.slider}
+            onValueChange={(event) => {
+              setValue4(event);
+            }}
+            style={{ width: 300, height: 40 }}
+            minimumValue={0}
+            maximumValue={4}
+            minimumTrackTintColor="#004fff"
+            step="1"
+            maximumTrackTintColor="red"
+            value="2"
+          />
+          <View>
+            <Text style={styles.text}>
+              {value4 && value4} : {texts4}
+            </Text>
           </View>
-          {/* Log In */}
-        </SafeAreaView>
-      </View>
-    );
-  }
+        </View>
+
+        {/* Sign Up Button */}
+        <View style={styles.lower}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => {
+              setPage(5);
+            }}
+          >
+            <Text style={styles.text}>Submit</Text>
+          </TouchableOpacity>
+
+          <View style={styles.divider_bar}></View>
+        </View>
+        {/* Log In */}
+      </SafeAreaView>
+    </View>
+  );
+};
 
 
 export default Exercise;

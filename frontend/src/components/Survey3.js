@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Text,
   StyleSheet,
@@ -9,34 +9,8 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const Appetite = (props) => {
-  const [value, setValue] = useState(0);
-  const [texts, setText] = useState("Not Included");
-
-  useEffect(() => {
-    texting();
-  }, [value]);
-
-  texting = () => {
-    switch (value) {
-      case 0:
-        setText("Not Included");
-        break;
-      case 1:
-        setText("Hungry");
-        break;
-      case 2:
-        setText("Could Eat");
-        break;
-      case 3:
-        setText("Fed");
-        break;
-      case 4:
-        setText("Well Fed");
-        break;
-    }
-  };
-
+const Appetite = ({ setPage, setValue3, texts3, value3 }) => {
+  
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">
@@ -62,11 +36,9 @@ const Appetite = (props) => {
           <Text> {"\n"} </Text>
           <Slider
             style={styles.slider}
-            onValueChange={function (event) {
-              return setValue(event);
+            onValueChange={(event) => {
+              setValue3(event);
             }}
-            Not
-            Included
             style={{ width: 300, height: 40 }}
             minimumValue={0}
             maximumValue={4}
@@ -77,7 +49,7 @@ const Appetite = (props) => {
           />
           <View>
             <Text style={styles.text}>
-              {value && value} : {texts}
+              {value3 && value3} : {texts3}
             </Text>
           </View>
         </View>
@@ -87,7 +59,7 @@ const Appetite = (props) => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
-              props.navigation.navigate("Survey4");
+             setPage(4);
             }}
             // onPress={this.signUp}
           >

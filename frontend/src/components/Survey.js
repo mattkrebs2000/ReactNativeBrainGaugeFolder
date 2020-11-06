@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const Sleep = ({navigation, setValue1, texts1, value1}) => {
-  console.log(navigation, setValue1, texts1, value1)
+const Sleep = ({ setPage, setValue1, texts1, value1}) => {
+  
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">
@@ -36,10 +36,9 @@ const Sleep = ({navigation, setValue1, texts1, value1}) => {
           <Text> {"\n"} </Text>
           <Slider
             style={styles.slider}
-            value={value1}
+            value = "2"
             onValueChange={(event) => {
                  setValue1(event);
-                 texting();
             }}
            
             style={{ width: 300, height: 40 }}
@@ -62,7 +61,7 @@ const Sleep = ({navigation, setValue1, texts1, value1}) => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
-              navigation.navigate("Survey2");
+              setPage(2);
             }}
             // onPress={this.signUp}
           >

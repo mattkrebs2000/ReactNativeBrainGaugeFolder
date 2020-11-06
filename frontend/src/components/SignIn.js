@@ -24,7 +24,7 @@ import { AuthContext } from "../context";
 
 
 
-const SignIn = (props) => {
+const SignIn = ({ navigation, Auth }) => {
     const { signIn } = React.useContext(AuthContext);
 
     // const [state, setState] = React.UseState({email: '',
@@ -136,7 +136,7 @@ const SignIn = (props) => {
                 accessibilityLabel="Link to Sign In page"
                 style={{ color: "#167bff" }}
                 onPress={() => {
-                  props.navigation.navigate("CreateAccount");
+                  navigation.navigate("CreateAccount");
                 }}
               >
                 Don't have an Account? Sign Up

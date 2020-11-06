@@ -11,10 +11,7 @@ import { AuthContext } from "../context";
 
 
 
-const Review = ({value1, texts1}) => {
-  console.log(value1, texts1)
-
-
+const Review = ({texts1, texts2, texts3, texts4, value1, value2, value3, value4}) => {
     return (
       <View style={styles.container} behavior="padding">
         <SafeAreaView style={styles.container} behavior="padding">
@@ -32,13 +29,15 @@ const Review = ({value1, texts1}) => {
           <View style={styles.divider_bar}></View>
           <View style={styles.mid}>
             <Text style={styles.text3}>
-              <Text>Exercise: Not Included</Text>
-              <Text> {"\n"} </Text>
-              <Text>Sleep: {value1}={texts1}</Text>
-              <Text> {"\n"} </Text>
-              <Text>Appetite: Not Included</Text>
-              <Text> {"\n"} </Text>
-              <Text>Mood: Not Included</Text>
+              {"\n"}
+              Sleep: ({value1}) = {texts1}
+              {"\n"}
+              Mood: ({value2}) = {texts2}
+              {"\n"}
+              Appetite: ({value3}) = {texts3}
+              {"\n"}
+              Exercise: ({value4}) = {texts4}
+             {"\n"}
             </Text>
           </View>
 
@@ -46,8 +45,6 @@ const Review = ({value1, texts1}) => {
           <View style={styles.lower}>
             <TouchableOpacity
               style={styles.btn}
-
-              // onPress={this.signUp}
             >
               <Text style={styles.text}>Submit</Text>
             </TouchableOpacity>
@@ -57,8 +54,7 @@ const Review = ({value1, texts1}) => {
           {/* Log In */}
         </SafeAreaView>
       </View>
-    );
-  
+    );  
 }
 
 export default Review;
