@@ -103,14 +103,22 @@ export const Navigators = ({navigation}) => {
     );
   }
 
-
-  const GameStack = createStackNavigator();
-  const GameStackScreen = () => (
-      <GameStack.Navigator>
-        <GameStack.Screen name="Instructions" component={Instructions} />
-        <GameStack.Screen name="Game" component={Game} />
-      </GameStack.Navigator>
-    );
+    function Game() {
+      return (
+        <ProfileStack.Navigator>
+          <ProfileStack.Screen
+            name="Instructions"
+            component={Instructions}
+            navigation={navigation}
+          />
+          <ProfileStack.Screen
+            name="Game"
+            component={Game}
+            navigation={navigation}
+          />
+        </ProfileStack.Navigator>
+      );
+    }
  
   const ProfileStack = createStackNavigator();
   const ProfileStackScreen = () => (
@@ -134,10 +142,10 @@ export const Navigators = ({navigation}) => {
         }}
       />
       <ProfileStack.Screen
-        name="Instructions"
-        component={Instructions}
+        name="Game"
+        component={Game}
         options={{
-          title: "Instructions",
+          title: "Game",
           headerStyle,
           headerTitleStyle,
         }}
@@ -157,7 +165,7 @@ export const Navigators = ({navigation}) => {
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
     <Drawer.Navigator initialRouteName="Profile">
-      <Drawer.Screen name="Banannnnnnnnnna" component={GameStackScreen} />
+      <Drawer.Screen name="Banannnnnnnnnna" component={Game} />
       <Drawer.Screen name="Profile" component={ProfileStackScreen} />
     </Drawer.Navigator>
   );

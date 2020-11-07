@@ -1,133 +1,140 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import {
-  SafeAreaView,
+  Text,
   StyleSheet,
   View,
-  Text,
+  SafeAreaView,
   Image,
   TouchableOpacity,
 } from "react-native";
+import { AuthContext } from "../context";
 
-const Instructions = () => {
-//   const navigation = useNavigation();
+const Review = ({
+  texts1,
+  texts2,
+  texts3,
+  texts4,
+  value1,
+  value2,
+  value3,
+  value4,
+  navigation,
+}) => {
+  const { signIn } = React.useContext(AuthContext);
+  console.log("HEEEE", navigation);
 
-  console.log("whaaaaa");
   return (
-    <SafeAreaView style={styles.container2}>
-      <View style={styles.container}>
-        <Text style={styles.text}>Brain Gauge</Text>
+    <View style={styles.container} behavior="padding">
+      <SafeAreaView style={styles.container} behavior="padding">
+        <Text> {"\n"} </Text>
+        <Text style={styles.text2}>Instructions</Text>
+        <View style={styles.divider_bar}></View>
+        <View style={styles.mid}>
+          <Text style={styles.text3}>
+            This game is designed to test your reaction speed by measuring the
+            time it takes you to touch the boxes that appear on the page.
+            {"\n"}
+            {"\n"}
+            After you click the "Begin" button below you will be taken to a new
+            screen on which the square boxes will appear one after another. As you touch each one your reaction time will be recorded and a new round will begin until the end of the game. When you are ready to begin press the button below. 
+          </Text>
+        </View>
 
-        <View style={styles.middle}>
-          <Image
-            source={{
-              uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+        {/* Sign Up Button */}
+        <View style={styles.lower}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => {
+              navigation.navigate("Instructions");
             }}
-            style={styles.img}
-          />
-        </View>
-        <Text style={styles.text2}>
-          This is the App that measures your mental responsiveness and tells you
-          when you are at your best.
-        </Text>
-        <View style={styles.buttons}>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => navigation.navigate("CreateAccount")}
-            // onPress={this.signUp}
           >
-            <Text
-              accessibilityLabel="Sign In"
-              style={styles.text3}
-              onPress={() => {
-                navigation.navigate("SignIn");
-              }}
-            >
-              Sign In
-            </Text>
+            <Text style={styles.text}>Begin</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.btn}
-
-            // onPress={this.signUp}
-          >
-            <Text
-              accessibilityLabel="Sign Up"
-              style={styles.text3}
-              onPress={() => {
-                navigation.navigate("CreateAccount");
-              }}
-            >
-              Sign Up
-            </Text>
-          </TouchableOpacity>
+          <View style={styles.divider_bar}></View>
         </View>
-      </View>
-    </SafeAreaView>
+        {/* Log In */}
+      </SafeAreaView>
+    </View>
   );
 };
 
-export default Instructions;
+export default Review;
 
 const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-    backgroundColor: "black",
-    color: "white",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   text: {
-    color: "white",
-    fontSize: 40,
-    marginBottom: 30,
-  },
-  img: {
-    width: "100%",
-    height: 150,
-    borderRadius: 5,
-  },
-  text2: {
-    color: "white",
-    margin: "12%",
+    fontSize: 14,
     textAlign: "center",
-    justifyContent: "flex-start",
+    fontWeight: "500",
+    margin: 10,
+  },
 
-    fontSize: 15,
-  },
-  middle: {
-    width: 200,
-  },
-  btn: {
-    borderColor: "#167bff",
-    borderWidth: 1,
-    width: 100,
-    height: 45,
+  container: {
+    flex: 1,
+    backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "black",
-    borderRadius: 10,
-    shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 3,
+    width: "100%",
+    marginLeft: "auto",
+    marginRight: "auto",
     color: "white",
-    margin: 5,
+    flexDirection: "column",
+  },
+
+  divider_bar: {
+    width: 300,
+    backgroundColor: "#FAD9C5",
+    height: 1,
+    marginTop: 20,
   },
   text3: {
     color: "white",
     fontSize: 20,
     textAlign: "center",
   },
-  buttons: {
-    flexDirection: "row",
-  },
-  container2: {
-    flex: 1,
-    justifyContent: "center",
+  mid: {
+    flex: 1.1,
     alignItems: "center",
-    backgroundColor: "black",
+    justifyContent: "center",
+    width: 300,
+  },
+  btn: {
+    width: 300,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#004fff",
+    borderRadius: 10,
+    shadowColor: "white",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    color: "white",
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  middle: {
+    width: 150,
+    alignItems: "center",
+    flex: 0.6,
+    justifyContent: "flex-end",
+  },
+
+  img: {
+    width: "100%",
+    height: 120,
+    borderRadius: 5,
+  },
+  text2: {
+    color: "white",
+    fontSize: 35,
+    textAlign: "center",
+  },
+  lower: {
+    flex: 0.6,
+    justifyContent: "flex-start",
   },
 });

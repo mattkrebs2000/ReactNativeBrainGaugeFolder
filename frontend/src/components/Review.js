@@ -49,7 +49,7 @@ console.log("HEEEE", navigation )
             <TouchableOpacity
               style={styles.btn}
               onPress={() => {
-                navigation.navigate("Instructions");
+                navigation.navigate("Game");
               }}
             >
               <Text style={styles.text}>Submit</Text>
