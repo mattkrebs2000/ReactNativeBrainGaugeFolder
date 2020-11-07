@@ -20,6 +20,8 @@ import Survey3 from "./components/Survey3";
 import Survey4 from "./components/Survey4";
 import Review from "./components/Review";
 import Braingauge from "./Braingauge";
+import Instructions from "./components/Instructions"
+import Game from "./components/Game"
 
 const headerStyle = {
   backgroundColor: "black",
@@ -30,7 +32,7 @@ const headerTitleStyle = {
 };
 
 
-export const Navigators = () => {
+export const Navigators = ({navigation}) => {
  const [isLoading, setIsLoading] = React.useState(true);
  const [userToken, setUserToken] = React.useState(null);
 
@@ -96,18 +98,20 @@ export const Navigators = () => {
   function nestedSurvey() {
     return (
       <ProfileStack.Navigator>
-        <ProfileStack.Screen name="Braingauge" component={Braingauge} />
-        <ProfileStack.Screen name="Survey" component=
-        {Survey}/>
-        <ProfileStack.Screen name="Survey2" component={Survey2} />
-        <ProfileStack.Screen name="Survey3" component={Survey3} />
-        <ProfileStack.Screen name="Survey4" component={Survey4} />
-        <ProfileStack.Screen name="Review" component={Profile}>
-        </ProfileStack.Screen>
+        <ProfileStack.Screen name="Braingauge" component={Braingauge} navigation={navigation}/>
       </ProfileStack.Navigator>
     );
   }
 
+
+  const GameStack = createStackNavigator();
+  const GameStackScreen = () => (
+      <GameStack.Navigator>
+        <GameStack.Screen name="Instructions" component={Instructions} />
+        <GameStack.Screen name="Game" component={Game} />
+      </GameStack.Navigator>
+    );
+ 
   const ProfileStack = createStackNavigator();
   const ProfileStackScreen = () => (
     <ProfileStack.Navigator>
@@ -129,20 +133,31 @@ export const Navigators = () => {
           headerTitleStyle,
         }}
       />
+      <ProfileStack.Screen
+        name="Instructions"
+        component={Instructions}
+        options={{
+          title: "Instructions",
+          headerStyle,
+          headerTitleStyle,
+        }}
+      />
     </ProfileStack.Navigator>
   );
 
-  const TabsScreen = () => (
+  function TabsScreen() {
+  return (
     <Tabs.Navigator>
       <Tabs.Screen name="Welcome" component={HomeStackScreen} />
       <Tabs.Screen name="Search" component={SearchStackScreen} />
     </Tabs.Navigator>
   );
+}
 
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
     <Drawer.Navigator initialRouteName="Profile">
-      <Drawer.Screen name="Banannnnnnnnnna" component={TabsScreen} />
+      <Drawer.Screen name="Banannnnnnnnnna" component={GameStackScreen} />
       <Drawer.Screen name="Profile" component={ProfileStackScreen} />
     </Drawer.Navigator>
   );

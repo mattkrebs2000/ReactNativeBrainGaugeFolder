@@ -5,8 +5,9 @@ import Survey2 from "./components/Survey2";
 import Survey3 from "./components/Survey3";
 import Survey4 from "./components/Survey4";
 import Review from "./components/Review";
+import Instructions from "./components/Instructions";
 
-export default Braingauge = () => {
+export default Braingauge = ({navigation}) => {
   const [value1, setValue1] = useState(0);
   const [texts1, setText1] = useState("Not Included");
   const [value2, setValue2] = useState(0);
@@ -69,7 +70,6 @@ export default Braingauge = () => {
     }
   };
 
-
   useEffect(() => {
     texting3();
   }, [value3]);
@@ -94,11 +94,9 @@ export default Braingauge = () => {
     }
   };
 
-
   useEffect(() => {
     texting4();
   }, [value4]);
-
 
   texting4 = () => {
     switch (value4) {
@@ -119,10 +117,6 @@ export default Braingauge = () => {
         break;
     }
   };
-
-
-
-
 
   componentsFinder = () => {
     switch (page) {
@@ -177,6 +171,14 @@ export default Braingauge = () => {
             texts3={texts3}
             value4={value4}
             texts4={texts4}
+            setPage={setPage}
+            navigation ={navigation}
+          />
+        );
+      case 6:
+        return (
+          <Instructions
+          setPage={setPage}
           />
         );
     }

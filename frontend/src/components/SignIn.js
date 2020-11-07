@@ -13,16 +13,6 @@ import {
 
 import { AuthContext } from "../context";
 
-// import { Font } from 'expo';
-// import axios from 'axios';
-
-
-//change to functional component
-//export const SignIn{
-//const { signIn } = React.useContext(AuthContext);
-//onPress={() => signIn()}
-
-
 
 const SignIn = ({ navigation, Auth }) => {
     const { signIn } = React.useContext(AuthContext);

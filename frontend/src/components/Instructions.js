@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const Home = () => {
+const Instructions = () => {
 //   const navigation = useNavigation();
 
   console.log("whaaaaa");
@@ -69,7 +69,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Instructions;
 
 const styles = StyleSheet.create({
   container: {

@@ -11,7 +11,10 @@ import { AuthContext } from "../context";
 
 
 
-const Review = ({texts1, texts2, texts3, texts4, value1, value2, value3, value4}) => {
+const Review = ({texts1, texts2, texts3, texts4, value1, value2, value3, value4, navigation}) => {
+  const { signIn } = React.useContext(AuthContext);
+console.log("HEEEE", navigation )
+
     return (
       <View style={styles.container} behavior="padding">
         <SafeAreaView style={styles.container} behavior="padding">
@@ -37,7 +40,7 @@ const Review = ({texts1, texts2, texts3, texts4, value1, value2, value3, value4}
               Appetite: ({value3}) = {texts3}
               {"\n"}
               Exercise: ({value4}) = {texts4}
-             {"\n"}
+              {"\n"}
             </Text>
           </View>
 
@@ -45,6 +48,9 @@ const Review = ({texts1, texts2, texts3, texts4, value1, value2, value3, value4}
           <View style={styles.lower}>
             <TouchableOpacity
               style={styles.btn}
+              onPress={() => {
+                navigation.navigate("Instructions");
+              }}
             >
               <Text style={styles.text}>Submit</Text>
             </TouchableOpacity>
