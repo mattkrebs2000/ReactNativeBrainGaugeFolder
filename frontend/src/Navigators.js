@@ -103,7 +103,7 @@ export const Navigators = ({navigation}) => {
     );
   }
 
-    function Game() {
+    function GameSection() {
       return (
         <ProfileStack.Navigator>
           <ProfileStack.Screen
@@ -112,7 +112,7 @@ export const Navigators = ({navigation}) => {
             navigation={navigation}
           />
           <ProfileStack.Screen
-            name="Game"
+            name="Game2"
             component={Game}
             navigation={navigation}
           />
@@ -143,7 +143,7 @@ export const Navigators = ({navigation}) => {
       />
       <ProfileStack.Screen
         name="Game"
-        component={Game}
+        component={GameSection}
         options={{
           title: "Game",
           headerStyle,

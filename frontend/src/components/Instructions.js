@@ -9,19 +9,9 @@ import {
 } from "react-native";
 import { AuthContext } from "../context";
 
-const Review = ({
-  texts1,
-  texts2,
-  texts3,
-  texts4,
-  value1,
-  value2,
-  value3,
-  value4,
-  navigation,
+const Instructions = ({
+ navigation
 }) => {
-  const { signIn } = React.useContext(AuthContext);
-  console.log("HEEEE", navigation);
 
   return (
     <View style={styles.container} behavior="padding">
@@ -45,7 +35,7 @@ const Review = ({
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
-              navigation.navigate("Instructions");
+             navigation.navigate("Game2")
             }}
           >
             <Text style={styles.text}>Begin</Text>
@@ -59,7 +49,7 @@ const Review = ({
   );
 };
 
-export default Review;
+export default Instructions;
 
 const styles = StyleSheet.create({
   text: {

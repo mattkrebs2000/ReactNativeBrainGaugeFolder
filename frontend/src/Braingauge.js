@@ -6,6 +6,7 @@ import Survey3 from "./components/Survey3";
 import Survey4 from "./components/Survey4";
 import Review from "./components/Review";
 import Instructions from "./components/Instructions";
+import Game from "./components/Game";
 
 export default Braingauge = ({navigation}) => {
   const [value1, setValue1] = useState(0);
@@ -16,7 +17,6 @@ export default Braingauge = ({navigation}) => {
    const [texts3, setText3] = useState("Not Included");
   const [value4, setValue4] = useState(0);
   const [texts4, setText4] = useState("Not Included");
-
 
   const [page, setPage] = useState(1);
 
@@ -181,6 +181,11 @@ export default Braingauge = ({navigation}) => {
           setPage={setPage}
           />
         );
+        case 7:
+          return (
+            <Game />
+
+          )
     }
     console.log("YYYYY", texts1, "YYYYYY");
   };
