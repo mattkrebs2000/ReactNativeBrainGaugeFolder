@@ -45,7 +45,7 @@ const { signOut } = React.useContext(AuthContext);
               <View style={styles.bottombuttons}>
                 <Button
                   title="Results Categories"
-                  onPress={() => props.navigation.toggleDrawer()}
+                  onPress={() => navigation.toggleDrawer()}
                 />
                 <Button title="Sign Out" onPress={() => signOut()} />
               </View>

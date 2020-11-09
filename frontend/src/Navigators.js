@@ -10,7 +10,10 @@ import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import CreateAccount from "./components/SignUp";
 import Details from "./components/Home";
-import Search from "./components/Mood";
+import Mood from "./components/Mood";
+import Appetite from "./components/Hunger"
+import Sleep from "./components/Sleep"
+import Exercise from "./components/Exercise"
 import Search2 from "./components/Home";
 import Profile from "./components/Welcome";
 import Splash from "./components/Home";
@@ -150,14 +153,26 @@ export const Navigators = ({navigation}) => {
           headerTitleStyle,
         }}
       />
+
+      <ProfileStack.Screen
+        name="Results"
+        component={TabsScreen}
+        options={{
+          title: "Results",
+          headerStyle,
+          headerTitleStyle,
+        }}
+      />
     </ProfileStack.Navigator>
   );
 
   function TabsScreen() {
   return (
     <Tabs.Navigator>
-      <Tabs.Screen name="Welcome" component={HomeStackScreen} />
-      <Tabs.Screen name="Search" component={SearchStackScreen} />
+      <Tabs.Screen name="Appetite" component={Appetite} />
+      <Tabs.Screen name="Mood" component={Mood} />
+      <Tabs.Screen name="Exercise" component={Exercise} />
+      <Tabs.Screen name="Sleep" component={Sleep} />
     </Tabs.Navigator>
   );
 }
@@ -165,7 +180,7 @@ export const Navigators = ({navigation}) => {
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
     <Drawer.Navigator initialRouteName="Profile">
-      <Drawer.Screen name="Banannnnnnnnnna" component={Game} />
+      <Drawer.Screen name="Banannnnnnnnnna" component={TabsScreen} />
       <Drawer.Screen name="Profile" component={ProfileStackScreen} />
     </Drawer.Navigator>
   );
