@@ -206,13 +206,15 @@ export const Navigators = ({navigation}) => {
 
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Back to Profile" component={Profile} />
-      <Drawer.Screen name="Mood" component={Mood} />
-      <Drawer.Screen name="Appetite" component={Appetite} />
-      <Drawer.Screen name="Exercise" component={Exercise} />
-      <Drawer.Screen name="Sleep" component={Sleep} />
-    </Drawer.Navigator>
+   
+      <Drawer.Navigator>
+        <Drawer.Screen name="Back to Profile" component={Profile} />
+        <Drawer.Screen name="Mood" component={Mood} />
+        <Drawer.Screen name="Appetite" component={Appetite} />
+        <Drawer.Screen name="Exercise" component={Exercise} />
+        <Drawer.Screen name="Sleep" component={Sleep} />
+      </Drawer.Navigator>
+    
   );
 
   const RootStack = createStackNavigator();
@@ -271,6 +273,7 @@ export const Navigators = ({navigation}) => {
   }
 
   return (
+    
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
         <RootStackScreen userToken={userToken} />

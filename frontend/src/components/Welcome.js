@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { SafeAreaView, StyleSheet, View, Text, Image, Linking, Button, TouchableOpacity} from 'react-native';
+import { DrawerActions } from "@react-navigation/native";
+
 
 import { AuthContext } from "../context";
 
 const Welcome = ({navigation}) => {
 const { signOut } = React.useContext(AuthContext);
+
+
+useEffect(() => {
+
+  console.log("LLL", navigation);
+navigation.dispatch(DrawerActions.toggleDrawer());
+}, []);
 
         return (
           <SafeAreaView style={styles.container}>
