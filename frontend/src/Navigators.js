@@ -123,12 +123,38 @@ export const Navigators = ({navigation}) => {
       );
     }
  
+  function WelcomeBottomTab() {
+    return (
+      <Tabs.Navigator>
+        <Tabs.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            title: "Welcome",
+            headerStyle,
+            headerTitleStyle,
+          }}
+        />
+        <Tabs.Screen
+          name="DrawerScreen"
+          component={DrawerScreen}
+          options={{
+            title: "Results",
+            headerStyle,
+            headerTitleStyle,
+          }}
+        />
+      </Tabs.Navigator>
+    );
+  }
+
+
   const ProfileStack = createStackNavigator();
   const ProfileStackScreen = () => (
     <ProfileStack.Navigator>
       <ProfileStack.Screen
         name="Profile"
-        component={Profile}
+        component={WelcomeBottomTab}
         options={{
           title: "Welcome",
           headerStyle,
@@ -169,6 +195,7 @@ export const Navigators = ({navigation}) => {
   function TabsScreen() {
   return (
     <Tabs.Navigator>
+      
       <Tabs.Screen name="Appetite" component={Appetite} />
       <Tabs.Screen name="Mood" component={Mood} />
       <Tabs.Screen name="Exercise" component={Exercise} />
@@ -179,9 +206,12 @@ export const Navigators = ({navigation}) => {
 
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
-    <Drawer.Navigator initialRouteName="Profile">
-      <Drawer.Screen name="Banannnnnnnnnna" component={TabsScreen} />
-      <Drawer.Screen name="Profile" component={ProfileStackScreen} />
+    <Drawer.Navigator>
+      <Drawer.Screen name="Back to Profile" component={Profile} />
+      <Drawer.Screen name="Mood" component={Mood} />
+      <Drawer.Screen name="Appetite" component={Appetite} />
+      <Drawer.Screen name="Exercise" component={Exercise} />
+      <Drawer.Screen name="Sleep" component={Sleep} />
     </Drawer.Navigator>
   );
 
@@ -191,7 +221,8 @@ export const Navigators = ({navigation}) => {
       {userToken ? (
         <RootStack.Screen
           name="App"
-          component={DrawerScreen}
+          component={ProfileStackScreen}
+        
           options={{
             animationEnabled: false,
           }}

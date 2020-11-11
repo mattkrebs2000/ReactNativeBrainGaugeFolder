@@ -12,7 +12,7 @@ import {
 const Game = () => {
   const navigation = useNavigation();
 
-  console.log("whaaaaa");
+  console.log("Game");
   return (
     <SafeAreaView style={styles.container2}>
       <View style={styles.container}>

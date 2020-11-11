@@ -12,7 +12,7 @@ import {
 const Home = () => {
 //   const navigation = useNavigation();
 
-  console.log("whaaaaa");
+  console.log("Mood");
   return (
     <SafeAreaView style={styles.container2}>
       <View style={styles.container}>

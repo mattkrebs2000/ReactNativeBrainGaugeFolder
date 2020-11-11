@@ -9,10 +9,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const Home = () => {
+const Hunger = () => {
 //   const navigation = useNavigation();
 
-  console.log("whaaaaa");
+  console.log("Hunger")
   return (
     <SafeAreaView style={styles.container2}>
       <View style={styles.container}>
@@ -69,7 +69,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Hunger;
 
 const styles = StyleSheet.create({
   container: {

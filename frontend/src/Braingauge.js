@@ -118,6 +118,9 @@ export default Braingauge = ({navigation}) => {
     }
   };
 
+
+  
+
   componentsFinder = () => {
     switch (page) {
       case 1:

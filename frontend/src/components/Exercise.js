@@ -12,7 +12,7 @@ import {
 export const Exercise = () => {
 //   const navigation = useNavigation();
 
-  console.log("whaaaaa");
+  console.log("Exercise");
   return (
     <SafeAreaView style={styles.container2}>
       <View style={styles.container}>
