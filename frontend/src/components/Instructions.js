@@ -9,8 +9,7 @@ import {
 } from "react-native";
 import { AuthContext } from "../context";
 
-const Instructions = ({
- navigation
+const Instructions = ({setPage
 }) => {
 
   return (
@@ -35,7 +34,7 @@ const Instructions = ({
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
-             navigation.navigate("Game2")
+             setPage(7)
             }}
           >
             <Text style={styles.text}>Begin</Text>

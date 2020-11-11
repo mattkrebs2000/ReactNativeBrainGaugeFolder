@@ -35,10 +35,20 @@ const headerTitleStyle = {
 };
 
 
-export const Navigators = ({navigation}) => {
- const [isLoading, setIsLoading] = React.useState(true);
- const [userToken, setUserToken] = React.useState(null);
-
+export const Navigators = ({
+  navigation,
+  x,
+  y,
+  hidden,
+  startTime,
+  score,
+  userResult,
+  click,
+  setClick,
+  setPage,
+}) => {
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [userToken, setUserToken] = React.useState(null);
 
   const AuthStack = createStackNavigator();
   const AuthStackScreen = () => (
@@ -101,28 +111,60 @@ export const Navigators = ({navigation}) => {
   function nestedSurvey() {
     return (
       <ProfileStack.Navigator>
-        <ProfileStack.Screen name="Braingauge" component={Braingauge} navigation={navigation}/>
+        <ProfileStack.Screen
+          name="Braingauge"
+          component={Braingauge}
+          navigation={navigation}
+        />
       </ProfileStack.Navigator>
     );
   }
 
-    function GameSection() {
-      return (
-        <ProfileStack.Navigator>
-          <ProfileStack.Screen
-            name="Instructions"
-            component={Instructions}
-            navigation={navigation}
-          />
-          <ProfileStack.Screen
-            name="Game2"
-            component={Game}
-            navigation={navigation}
-          />
-        </ProfileStack.Navigator>
-      );
-    }
- 
+
+  function gameSection2() {
+    return (
+      <ProfileStack.Navigator>
+        <ProfileStack.Screen
+          name="Braingauge2"
+          component={Braingauge}
+          navigation={navigation}
+        />
+      </ProfileStack.Navigator>
+    );
+  }
+
+
+
+
+
+
+
+  function GameSection() {
+    return (
+      <ProfileStack.Navigator>
+        <ProfileStack.Screen
+          name="Instructions"
+          component={Instructions}
+          navigation={navigation}
+        />
+        <ProfileStack.Screen
+          name="Game2"
+          component={Game}
+          navigation={navigation}
+          x={x}
+          y={y}
+          hidden={hidden}
+          startTime={startTime}
+          score={score}
+          userResult={userResult}
+          click={click}
+          setClick={setClick}
+          setPage={setPage}
+        />
+      </ProfileStack.Navigator>
+    );
+  }
+
   function WelcomeBottomTab() {
     return (
       <Tabs.Navigator>
@@ -148,7 +190,6 @@ export const Navigators = ({navigation}) => {
     );
   }
 
-
   const ProfileStack = createStackNavigator();
   const ProfileStackScreen = () => (
     <ProfileStack.Navigator>
@@ -171,8 +212,8 @@ export const Navigators = ({navigation}) => {
         }}
       />
       <ProfileStack.Screen
-        name="Game"
-        component={GameSection}
+        name="gameSection2"
+        component={gameSection2}
         options={{
           title: "Game",
           headerStyle,
@@ -193,28 +234,25 @@ export const Navigators = ({navigation}) => {
   );
 
   function TabsScreen() {
-  return (
-    <Tabs.Navigator>
-      
-      <Tabs.Screen name="Appetite" component={Appetite} />
-      <Tabs.Screen name="Mood" component={Mood} />
-      <Tabs.Screen name="Exercise" component={Exercise} />
-      <Tabs.Screen name="Sleep" component={Sleep} />
-    </Tabs.Navigator>
-  );
-}
+    return (
+      <Tabs.Navigator>
+        <Tabs.Screen name="Appetite" component={Appetite} />
+        <Tabs.Screen name="Mood" component={Mood} />
+        <Tabs.Screen name="Exercise" component={Exercise} />
+        <Tabs.Screen name="Sleep" component={Sleep} />
+      </Tabs.Navigator>
+    );
+  }
 
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
-   
-      <Drawer.Navigator>
-        <Drawer.Screen name="Back to Profile" component={Profile} />
-        <Drawer.Screen name="Mood" component={Mood} />
-        <Drawer.Screen name="Appetite" component={Appetite} />
-        <Drawer.Screen name="Exercise" component={Exercise} />
-        <Drawer.Screen name="Sleep" component={Sleep} />
-      </Drawer.Navigator>
-    
+    <Drawer.Navigator>
+      <Drawer.Screen name="Back to Profile" component={Profile} />
+      <Drawer.Screen name="Mood" component={Mood} />
+      <Drawer.Screen name="Appetite" component={Appetite} />
+      <Drawer.Screen name="Exercise" component={Exercise} />
+      <Drawer.Screen name="Sleep" component={Sleep} />
+    </Drawer.Navigator>
   );
 
   const RootStack = createStackNavigator();
@@ -224,7 +262,6 @@ export const Navigators = ({navigation}) => {
         <RootStack.Screen
           name="App"
           component={ProfileStackScreen}
-        
           options={{
             animationEnabled: false,
           }}
@@ -273,7 +310,6 @@ export const Navigators = ({navigation}) => {
   }
 
   return (
-    
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
         <RootStackScreen userToken={userToken} />

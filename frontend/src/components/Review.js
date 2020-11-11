@@ -11,9 +11,9 @@ import { AuthContext } from "../context";
 
 
 
-const Review = ({texts1, texts2, texts3, texts4, value1, value2, value3, value4, navigation}) => {
+const Review = ({texts1, texts2, texts3, texts4, value1, value2, value3, value4, navigation, setPage, page}) => {
   const { signIn } = React.useContext(AuthContext);
-console.log("HEEEE", navigation )
+console.log("HEEEE", setPage, page)
 
     return (
       <View style={styles.container} behavior="padding">
@@ -49,9 +49,11 @@ console.log("HEEEE", navigation )
             <TouchableOpacity
               style={styles.btn}
               onPress={() => {
-                navigation.navigate("Game")
+              navigation.navigate("gameSection2");
+              console.log(page)
               }}
-            >
+              >
+             
               <Text style={styles.text}>Submit</Text>
             </TouchableOpacity>
 

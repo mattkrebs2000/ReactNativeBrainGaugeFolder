@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const Appetite = ({ setPage, setValue3, texts3, value3 }) => {
+const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
   
   return (
     <View style={styles.container} behavior="padding">
@@ -59,7 +59,9 @@ const Appetite = ({ setPage, setValue3, texts3, value3 }) => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
+               console.log("1", page);
              setPage(4);
+              console.log("1", page);
             }}
             // onPress={this.signUp}
           >

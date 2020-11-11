@@ -8,21 +8,76 @@ import Review from "./components/Review";
 import Instructions from "./components/Instructions";
 import Game from "./components/Game";
 
-export default Braingauge = ({navigation}) => {
+export default Braingauge = ({ navigation }) => {
   const [value1, setValue1] = useState(0);
   const [texts1, setText1] = useState("Not Included");
   const [value2, setValue2] = useState(0);
   const [texts2, setText2] = useState("Not Included");
-   const [value3, setValue3] = useState(0);
-   const [texts3, setText3] = useState("Not Included");
+  const [value3, setValue3] = useState(0);
+  const [texts3, setText3] = useState("Not Included");
   const [value4, setValue4] = useState(0);
   const [texts4, setText4] = useState("Not Included");
-
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const [hidden, setHidden] = useState(false);
+  const [startTime, setStartTime] = useState(0);
+  const [score, setScore] = useState(0);
+  const [userResult, setUserResult] = useState([]);
+  const [click, setClick] = useState(0);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     texting();
   }, [value1]);
+
+  rando = () => {
+    return Math.floor(Math.random() * 60) + 20;
+  };
+
+  randoInterval = () => {
+    return Math.floor(Math.random() * 4000) + 500;
+  };
+
+  getRandomColor = () => {
+    var letters = "0123456789ABCDEF".split("");
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.round(Math.random() * 15)];
+    } //ends for loop
+    return color;
+  };
+
+  move = () => {
+    const temparray = userResult;
+    temparray.push((Date.now() - startTime) / 1000);
+    setClick(click + 1);
+    setX(()=> rando() + "%");
+    setY(() => rando() + "%");
+    setUserResult(temparray);
+    setHidden(true);
+    setScore(score + trackScore);
+
+    const timeout = setTimeout(() => {
+        setHidden(false);
+        setStartTime(Date.now());
+    }, randoInterval());
+
+    var num = score / 8;
+    var SuperNumber = num.toFixed(2);
+    console.log("Your score", SuperNumber);
+
+    if (click === 8) {
+      clearTimeout(timeout);
+      console.log(SuperNumber, userResult)
+        .then(function (response) {
+          alert(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    const trackScore = (Date.now() - startTime) / 1000;
+  };
 
   texting = () => {
     switch (value1) {
@@ -44,7 +99,6 @@ export default Braingauge = ({navigation}) => {
     }
     console.log("YYYYY", texts1, "YYYYYY");
   };
-
 
   useEffect(() => {
     texting2();
@@ -118,9 +172,6 @@ export default Braingauge = ({navigation}) => {
     }
   };
 
-
-  
-
   componentsFinder = () => {
     switch (page) {
       case 1:
@@ -151,6 +202,7 @@ export default Braingauge = ({navigation}) => {
             setPage={setPage}
             value3={value3}
             texts3={texts3}
+            page={page}
           />
         );
       case 4:
@@ -175,22 +227,32 @@ export default Braingauge = ({navigation}) => {
             value4={value4}
             texts4={texts4}
             setPage={setPage}
-            navigation ={navigation}
+            navigation={navigation}
+            page={page}
           />
         );
       case 6:
         return (
-          <Instructions
-          setPage={setPage}
+        <Instructions 
+        setPage={setPage} />
+        );
+      case 7:
+        return (
+          <Game
+            setPage={setPage}
+            x={x}
+            y={y}
+            hidden={hidden}
+            startTime={startTime}
+            score={score}
+            userResult={userResult}
+            click={click}
+            setClick={setClick}
+            setPage={setPage}
           />
         );
-        case 7:
-          return (
-            <Game />
-
-          )
     }
-    console.log("YYYYY", texts1, "YYYYYY");
+    
   };
 
   return componentsFinder();

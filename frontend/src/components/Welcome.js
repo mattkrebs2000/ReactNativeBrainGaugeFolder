@@ -54,7 +54,9 @@ navigation.dispatch(DrawerActions.toggleDrawer());
               <View style={styles.bottombuttons}>
                 <Button
                   title="Results Categories"
+
                   onPress={() => navigation.toggleDrawer()}
+
                 />
                 <Button title="Sign Out" onPress={() => signOut()} />
               </View>

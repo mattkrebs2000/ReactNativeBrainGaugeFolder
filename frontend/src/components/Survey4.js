@@ -60,6 +60,7 @@ const Exercise = ({setPage, setValue4, texts4, value4}) => {
             style={styles.btn}
             onPress={() => {
               setPage(5);
+              
             }}
           >
             <Text style={styles.text}>Submit</Text>
