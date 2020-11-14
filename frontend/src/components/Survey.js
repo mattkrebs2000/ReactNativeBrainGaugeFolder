@@ -6,26 +6,25 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  Button
 } from "react-native";
 import Slider from "@react-native-community/slider";
-import { HeaderBackButton } from "@react-navigation/stack";
 
 const Sleep = ({ navigation, setPage, setValue1, texts1, value1}) => {
   
 useEffect(() => {
   navigation.setOptions({
     title: "Survey",
-    headerBackTitle: "Yo",
-
     headerLeft: () => (
-      <HeaderBackButton
+      <Button
         onPress={() => {
          navigation.navigate("Profile")
         }}
+         title= "< Welcome"
       />
     ),
   });
-}, ["Hello", navigation]);
+}, []);
 
 
   return (

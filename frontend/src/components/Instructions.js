@@ -8,9 +8,6 @@ import {
   TouchableOpacity,
   Button
 } from "react-native";
-import {
-  HeaderBackButton, headerBackTitle
-} from "@react-navigation/stack";
 import { AuthContext } from "../context";
 
 const Instructions = ({navigation, setPage
@@ -24,14 +21,15 @@ useEffect(() => {
     headerBackTitle: "Yo",
 
     headerLeft: () => (
-      <HeaderBackButton
+      <Button
         onPress={() => {
           setPage(1);
         }}
+        title="< Survey"
       />
     ),
   });
-}, ["Hello", navigation]);
+}, []);
 
 // useEffect(() => {
 //   navigation.setOptions({
