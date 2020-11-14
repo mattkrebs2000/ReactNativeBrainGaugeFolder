@@ -45,7 +45,7 @@ export default Braingauge = ({ navigation }) => {
     for (var i = 0; i < 6; i++) {
       color += letters[Math.round(Math.random() * 15)];
     } //ends for loop
-    return color;
+    return console.log("color = ", color), color;
   };
 
   move = () => {
@@ -253,6 +253,8 @@ export default Braingauge = ({ navigation }) => {
             click={click}
             setClick={setClick}
             setPage={setPage}
+            getRandomColor={getRandomColor()}
+            move = {move()}
           />
         );
     }

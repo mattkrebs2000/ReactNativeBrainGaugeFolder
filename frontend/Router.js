@@ -3,36 +3,33 @@ import { createRootNavigator } from "./router";
 import { isSignedIn } from "./auth";
 
 export default class App extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            signedIn: false,
-            checkedSignIn: false
-        };
+    this.state = {
+      signedIn: false,
+      checkedSignIn: false,
+    };
+  }
+
+  componentDidMount() {
+    isSignedIn()
+      .then((res) => this.setState({ signedIn: res, checkedSignIn: true }))
+      .catch((err) => alert("An error occurred"));
+  }
+
+  render() {
+    const { checkedSignIn, signedIn } = this.state;
+
+    // If we haven't checked AsyncStorage yet, don't render anything (better ways to do this)
+    if (!checkedSignIn) {
+      return null;
     }
 
-    componentDidMount() {
-        isSignedIn()
-            .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
-            .catch(err => alert("An error occurred"));
-    }
-
-    render() {
-        const { checkedSignIn, signedIn } = this.state;
-
-        // If we haven't checked AsyncStorage yet, don't render anything (better ways to do this)
-        if (!checkedSignIn) {
-            return null;
-        }
-
-        const Layout = createRootNavigator(signedIn);
-        return <Layout />;
-    }
+    const Layout = createRootNavigator(signedIn);
+    return <Layout />;
+  }
 }
-
-
-
 
 // import React from 'react';
 
@@ -42,7 +39,6 @@ export default class App extends React.Component {
 // import SignUp from "../src/components/SignUp.js";
 // import Welcome from "../src/components/Welcome.js";
 
-
 // const headerStyle = {
 //     backgroundColor: "black"
 // };
@@ -50,14 +46,11 @@ export default class App extends React.Component {
 //     color: "white",
 // }
 
-
-
-
 // export const SignedOut = createStackNavigator({
 //     Home: {
 //         screen: Home,
 //         navigationOptions: {
-//             title: "Home",
+//             title: ,
 //             headerStyle,
 //             headerTitleStyle,
 
@@ -82,8 +75,6 @@ export default class App extends React.Component {
 //         }
 //     }
 // })
-
-
 
 // export const SignedIn = createStackNavigator({
 
@@ -115,5 +106,3 @@ export default class App extends React.Component {
 //         }
 //     );
 // };
-
-

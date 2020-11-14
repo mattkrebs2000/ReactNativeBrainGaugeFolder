@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const Game = ({x,y,hidden, startTime,score, userResult,click, setClick, setPage}) => {
+const Game = ({x,y,hidden, move, startTime,score, userResult,click, setClick, setPage, getRandomColor}) => {
   const navigation = useNavigation();
 
   console.log("Game");
@@ -22,9 +22,10 @@ const Game = ({x,y,hidden, startTime,score, userResult,click, setClick, setPage}
               marginTop: 200,
               top: y,
               right: x,
+              backgroundColor: getRandomColor,
             }}
             onTouch={() => {
-              move();
+              move;
             }}
           ></View>
         </TouchableOpacity>
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
-    maxWidth: 300,
+    maxWidth: "100%",
     margin: "auto",
     padding: 10,
     position: "relative",
@@ -60,6 +61,6 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 50,
-    // backgroundColor: getRandomColor(),
+    
   },
 });

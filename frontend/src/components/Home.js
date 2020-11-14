@@ -1,5 +1,5 @@
 import React from "react";
-// import { useNavigation } from "@react-navigation/native";
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 const Home = ({navigation}) => {
-  // const navigation = useNavigation();
+
 
   console.log("Home");
   return (

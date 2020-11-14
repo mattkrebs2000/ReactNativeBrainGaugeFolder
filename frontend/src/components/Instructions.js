@@ -51,7 +51,7 @@ useEffect(() => {
             {"\n"}
             {"\n"}
             After you click the "Begin" button below you will be taken to a new
-            screen on which the square boxes will appear one after another. As you touch each one your reaction time will be recorded and a new round will begin until the end of the game. When you are ready to begin press the button below. 
+            screen on which colored squares will appear one after another. You should try to touch each square as quickly as you can. As you touch each one your reaction time will be recorded and a new round will begin until the end of the game. When you are ready to begin press the button below. 
           </Text>
         </View>
 

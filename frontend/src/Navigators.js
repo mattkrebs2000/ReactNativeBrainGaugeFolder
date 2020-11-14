@@ -81,7 +81,7 @@ export const Navigators = () => {
           itemStyle: { marginVertical: 30 },
         }}
       >
-        <Drawer.Screen name="Back to Profile" component={Profile} />
+        <Drawer.Screen name="Go Back" component={Profile} />
         <Drawer.Screen name="Mood" component={Mood} />
         <Drawer.Screen name="Appetite" component={Appetite} />
         <Drawer.Screen name="Exercise" component={Exercise} />
