@@ -9,22 +9,15 @@ import { AuthContext } from "./context";
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import CreateAccount from "./components/SignUp";
-import Details from "./components/Home";
 import Mood from "./components/Mood";
 import Appetite from "./components/Hunger"
 import Sleep from "./components/Sleep"
 import Exercise from "./components/Exercise"
-import Search2 from "./components/Home";
 import Profile from "./components/Welcome";
 import Splash from "./components/Home";
-import Survey from "./components/Survey";
-import Survey2 from "./components/Survey2";
-import Survey3 from "./components/Survey3";
-import Survey4 from "./components/Survey4";
-import Review from "./components/Review";
 import Braingauge from "./Braingauge";
-import Instructions from "./components/Instructions"
-import Game from "./components/Game"
+import { withTheme } from "react-native-elements";
+
 
 const headerStyle = {
   backgroundColor: "black",
@@ -35,18 +28,7 @@ const headerTitleStyle = {
 };
 
 
-export const Navigators = ({
-  navigation,
-  x,
-  y,
-  hidden,
-  startTime,
-  score,
-  userResult,
-  click,
-  setClick,
-  setPage,
-}) => {
+export const Navigators = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState(null);
 
@@ -85,89 +67,35 @@ export const Navigators = ({
   );
 
   const Tabs = createBottomTabNavigator();
-  const HomeStack = createStackNavigator();
-  const SearchStack = createStackNavigator();
 
-  const HomeStackScreen = () => (
-    <HomeStack.Navigator>
-      <HomeStack.Screen name="Welcome" component={Profile} />
-      <HomeStack.Screen
-        name="Details"
-        component={Details}
-        options={({ route }) => ({
-          title: route.params.name,
-        })}
-      />
-    </HomeStack.Navigator>
-  );
-
-  const SearchStackScreen = () => (
-    <SearchStack.Navigator>
-      <SearchStack.Screen name="Search" component={Search} />
-      <SearchStack.Screen name="Search2" component={Search2} />
-    </SearchStack.Navigator>
-  );
-
-
-
-  function gameSection2() {
-    return (
-        <ProfileStack.Screen
-          name="Braingauge2"
-          component={Braingauge}
-          navigation={navigation}
-        />
-   
-    );
-  }
-
-
-  function GameSection() {
-    return (
-      <ProfileStack.Screen
-        name="Game"
-        component={Instructions}
-        navigation={navigation}
-        options={{
-          title: "Game",
-          headerStyle,
-          headerTitleStyle,
+    const Drawer = createDrawerNavigator();
+    const DrawerScreen = () => (
+      <Drawer.Navigator
+        drawerStyle={{
+          backgroundColor: "black",
+          width: 240,
         }}
-      />
+        drawerContentOptions={{
+          inactiveTintColor: "white",
+          activeTintColor: "#167bff",
+          itemStyle: { marginVertical: 30 },
+        }}
+      >
+        <Drawer.Screen name="Back to Profile" component={Profile} />
+        <Drawer.Screen name="Mood" component={Mood} />
+        <Drawer.Screen name="Appetite" component={Appetite} />
+        <Drawer.Screen name="Exercise" component={Exercise} />
+        <Drawer.Screen name="Sleep" component={Sleep} />
+      </Drawer.Navigator>
     );
-  }
 
-  function WelcomeBottomTab() {
-    return (
-      <Tabs.Navigator>
-        <Tabs.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            title: "Welcome",
-            headerStyle,
-            headerTitleStyle,
-          }}
-        />
-        <Tabs.Screen
-          name="DrawerScreen"
-          component={DrawerScreen}
-          options={{
-            title: "Results",
-            headerStyle,
-            headerTitleStyle,
-          }}
-        />
-      </Tabs.Navigator>
-    );
-  }
 
   const ProfileStack = createStackNavigator();
   const ProfileStackScreen = () => (
     <ProfileStack.Navigator>
       <ProfileStack.Screen
         name="Profile"
-        component={WelcomeBottomTab}
+        component={DrawerScreen}
         options={{
           title: "Welcome",
           headerStyle,
@@ -205,17 +133,6 @@ export const Navigators = ({
       </Tabs.Navigator>
     );
   }
-
-  const Drawer = createDrawerNavigator();
-  const DrawerScreen = () => (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Back to Profile" component={Profile} />
-      <Drawer.Screen name="Mood" component={Mood} />
-      <Drawer.Screen name="Appetite" component={Appetite} />
-      <Drawer.Screen name="Exercise" component={Exercise} />
-      <Drawer.Screen name="Sleep" component={Sleep} />
-    </Drawer.Navigator>
-  );
 
   const RootStack = createStackNavigator();
   const RootStackScreen = ({ userToken }) => (

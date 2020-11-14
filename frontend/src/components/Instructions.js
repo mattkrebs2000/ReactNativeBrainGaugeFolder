@@ -17,7 +17,7 @@ const Instructions = ({navigation, setPage
 
 useEffect(() => {
   navigation.setOptions({
-    title: "Hello",
+    title: "Game",
     headerBackTitle: "Yo",
 
     headerLeft: () => (
@@ -30,13 +30,6 @@ useEffect(() => {
     ),
   });
 }, []);
-
-// useEffect(() => {
-//   navigation.setOptions({
-//     title: "Hello",
-//     headerBackTitle: "Go",
-//   });
-// }, ["Hello", navigation]);
 
 
 

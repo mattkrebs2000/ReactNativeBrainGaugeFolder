@@ -38,8 +38,16 @@ const { signOut } = React.useContext(AuthContext);
                   style={styles.image}
                 ></Image>
               </TouchableOpacity>
-              <Text style={styles.text2}>See Results</Text>
-              <View style={styles.containerofimage}>
+              <Text
+                style={styles.text2}
+                onPress={() => navigation.toggleDrawer()}
+              >
+                See Results
+              </Text>
+              <TouchableOpacity
+                style={styles.containerofimage}
+                onPress={() => navigation.toggleDrawer()}
+              >
                 <Image
                   source={{
                     uri:
@@ -50,14 +58,8 @@ const { signOut } = React.useContext(AuthContext);
                     Linking.openURL(`mailto:${email}`);
                   }}
                 ></Image>
-              </View>
+              </TouchableOpacity>
               <View style={styles.bottombuttons}>
-                <Button
-                  title="Results Categories"
-
-                  onPress={() => navigation.toggleDrawer()}
-
-                />
                 <Button title="Sign Out" onPress={() => signOut()} />
               </View>
             </View>
