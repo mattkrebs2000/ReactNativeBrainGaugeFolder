@@ -9,11 +9,11 @@ const Welcome = ({navigation}) => {
 const { signOut } = React.useContext(AuthContext);
 
 
-useEffect(() => {
+// useEffect(() => {
 
-  console.log("LLL", navigation);
-navigation.dispatch(DrawerActions.toggleDrawer());
-}, []);
+//   console.log("LLL", navigation);
+// navigation.dispatch(DrawerActions.toggleDrawer());
+// }, []);
 
         return (
           <SafeAreaView style={styles.container}>
@@ -22,13 +22,13 @@ navigation.dispatch(DrawerActions.toggleDrawer());
               <Text style={styles.text}>Welcome ___</Text>
               <Text
                 style={styles.text2}
-                onPress={() => navigation.navigate("nestedSurvey")}
+                onPress={() => navigation.navigate("BrainGauge")}
               >
                 Play Game
               </Text>
               <TouchableOpacity
                 style={styles.containerofimage}
-                onPress={() => navigation.navigate("nestedSurvey")}
+                onPress={() => navigation.navigate("BrainGauge")}
               >
                 <Image
                   source={{

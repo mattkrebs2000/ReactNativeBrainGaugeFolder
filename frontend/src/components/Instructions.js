@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -6,11 +6,46 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  Button
 } from "react-native";
+import {
+  HeaderBackButton, headerBackTitle
+} from "@react-navigation/stack";
 import { AuthContext } from "../context";
 
-const Instructions = ({setPage
+const Instructions = ({navigation, setPage
 }) => {
+
+  console.log("Instructions", navigation.setOptions)
+
+useEffect(() => {
+  navigation.setOptions({
+    title: "Hello",
+    headerBackTitle: "Yo",
+
+    headerLeft: () => (
+      <HeaderBackButton
+        onPress={() => {
+          setPage(1);
+        }}
+      />
+    ),
+  });
+}, ["Hello", navigation]);
+
+// useEffect(() => {
+//   navigation.setOptions({
+//     title: "Hello",
+//     headerBackTitle: "Go",
+//   });
+// }, ["Hello", navigation]);
+
+
+
+
+
+
+
 
   return (
     <View style={styles.container} behavior="padding">

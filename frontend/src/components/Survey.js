@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   Text,
   StyleSheet,
@@ -8,9 +8,26 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Slider from "@react-native-community/slider";
+import { HeaderBackButton } from "@react-navigation/stack";
 
-const Sleep = ({ setPage, setValue1, texts1, value1}) => {
+const Sleep = ({ navigation, setPage, setValue1, texts1, value1}) => {
   
+useEffect(() => {
+  navigation.setOptions({
+    title: "Survey",
+    headerBackTitle: "Yo",
+
+    headerLeft: () => (
+      <HeaderBackButton
+        onPress={() => {
+         navigation.navigate("Profile")
+        }}
+      />
+    ),
+  });
+}, ["Hello", navigation]);
+
+
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">

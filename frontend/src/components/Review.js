@@ -49,7 +49,7 @@ console.log("HEEEE", setPage, page)
             <TouchableOpacity
               style={styles.btn}
               onPress={() => {
-              navigation.navigate("gameSection2");
+              setPage(6);
               console.log(page)
               }}
               >

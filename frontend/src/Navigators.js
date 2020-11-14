@@ -1,7 +1,7 @@
 import React from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, HeaderBackButton } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
@@ -108,60 +108,32 @@ export const Navigators = ({
     </SearchStack.Navigator>
   );
 
-  function nestedSurvey() {
-    return (
-      <ProfileStack.Navigator>
-        <ProfileStack.Screen
-          name="Braingauge"
-          component={Braingauge}
-          navigation={navigation}
-        />
-      </ProfileStack.Navigator>
-    );
-  }
 
 
   function gameSection2() {
     return (
-      <ProfileStack.Navigator>
         <ProfileStack.Screen
           name="Braingauge2"
           component={Braingauge}
           navigation={navigation}
         />
-      </ProfileStack.Navigator>
+   
     );
   }
 
 
-
-
-
-
-
   function GameSection() {
     return (
-      <ProfileStack.Navigator>
-        <ProfileStack.Screen
-          name="Instructions"
-          component={Instructions}
-          navigation={navigation}
-        />
-        <ProfileStack.Screen
-          name="Game2"
-          component={Game}
-          navigation={navigation}
-          x={x}
-          y={y}
-          hidden={hidden}
-          startTime={startTime}
-          score={score}
-          userResult={userResult}
-          click={click}
-          setClick={setClick}
-          setPage={setPage}
-        />
-      </ProfileStack.Navigator>
+      <ProfileStack.Screen
+        name="Game"
+        component={Instructions}
+        navigation={navigation}
+        options={{
+          title: "Game",
+          headerStyle,
+          headerTitleStyle,
+        }}
+      />
     );
   }
 
@@ -203,24 +175,14 @@ export const Navigators = ({
         }}
       />
       <ProfileStack.Screen
-        name="nestedSurvey"
-        component={nestedSurvey}
+        name="BrainGauge"
+        component={Braingauge}
         options={{
           title: "Survey",
           headerStyle,
           headerTitleStyle,
         }}
       />
-      <ProfileStack.Screen
-        name="gameSection2"
-        component={gameSection2}
-        options={{
-          title: "Game",
-          headerStyle,
-          headerTitleStyle,
-        }}
-      />
-
       <ProfileStack.Screen
         name="Results"
         component={TabsScreen}

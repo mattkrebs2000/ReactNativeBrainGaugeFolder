@@ -8,6 +8,7 @@ import Review from "./components/Review";
 import Instructions from "./components/Instructions";
 import Game from "./components/Game";
 
+
 export default Braingauge = ({ navigation }) => {
   const [value1, setValue1] = useState(0);
   const [texts1, setText1] = useState("Not Included");
@@ -182,6 +183,7 @@ export default Braingauge = ({ navigation }) => {
             setPage={setPage}
             value1={value1}
             texts1={texts1}
+            navigation={navigation}
           />
         );
       case 2:
@@ -233,8 +235,10 @@ export default Braingauge = ({ navigation }) => {
         );
       case 6:
         return (
-        <Instructions 
-        setPage={setPage} />
+          <Instructions 
+          setPage={setPage} 
+          navigation={navigation} 
+          />
         );
       case 7:
         return (
