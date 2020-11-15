@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+const moment = require("moment");  
 import Survey from "./components/Survey";
 import Survey2 from "./components/Survey2";
 import Survey3 from "./components/Survey3";
@@ -25,6 +26,7 @@ export default Braingauge = ({ navigation }) => {
   const [userResult, setUserResult] = useState([]);
   const [click, setClick] = useState(0);
   const [page, setPage] = useState(1);
+  const [color, setColor] = useState("")
 
   useEffect(() => {
     texting();
@@ -40,16 +42,20 @@ export default Braingauge = ({ navigation }) => {
 
   getRandomColor = () => {
     var letters = "0123456789ABCDEF".split("");
-    var color = "#";
+    var colorNumbers = "#";
     for (var i = 0; i < 6; i++) {
-      color += letters[Math.round(Math.random() * 15)];
+      colorNumbers += letters[Math.round(Math.random() * 15)];
     } //ends for loop
+    setColor(colorNumbers)
     return console.log("color = ", color), color;
   };
 
   move = () => {
+
+     const trackScore = (moment().millisecond());
+     console.log("trackScore =", trackScore);
     const temparray = userResult;
-    temparray.push((Date.now() - startTime) / 1000);
+    temparray.push((trackScore - startTime));
     setClick(click + 1);
     setX(() => rando() + "%");
     setY(() => rando() + "%");
@@ -59,7 +65,7 @@ export default Braingauge = ({ navigation }) => {
 
     const timeout = setTimeout(() => {
       setHidden(false);
-      setStartTime(Date.now());
+      setStartTime((moment().millisecond()));
     }, randoInterval());
 
     var num = score / 8;
@@ -67,17 +73,9 @@ export default Braingauge = ({ navigation }) => {
     console.log("Your score", SuperNumber);
 
     if (click === 8) {
-      clearTimeout(timeout);
-      console
-        .log(SuperNumber, userResult)
-        .then(function (response) {
-          alert(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      clearTimeout(timeout)
     }
-    const trackScore = (Date.now() - startTime) / 1000;
+   
   };
 
   texting = () => {
@@ -250,6 +248,7 @@ export default Braingauge = ({ navigation }) => {
             setPage={setPage}
             getRandomColor={getRandomColor()}
             move={move()}
+            color={color}
           />
         );
     }

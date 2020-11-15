@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const Game = ({x,y,hidden, move, startTime,score, userResult,click, setClick, setPage, getRandomColor}) => {
+const Game = ({x,y,hidden, move, color, startTime,score, userResult,click, setClick, setPage, getRandomColor}) => {
   const navigation = useNavigation();
 
   console.log("Game");
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 50,
+    backgroundColor:"orange",
     
   },
 });
