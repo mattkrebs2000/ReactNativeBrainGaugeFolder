@@ -9,8 +9,7 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const Exercise = ({setPage, setValue4, texts4, value4}) => {
-
+const Exercise = ({ setPage, setValue4, texts4, value4 }) => {
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">
@@ -41,11 +40,11 @@ const Exercise = ({setPage, setValue4, texts4, value4}) => {
             }}
             style={{ width: 300, height: 40 }}
             minimumValue={0}
-            maximumValue={4}
+            maximumValue={100}
             minimumTrackTintColor="#004fff"
             step="1"
             maximumTrackTintColor="red"
-            value="2"
+            value="50"
           />
           <View>
             <Text style={styles.text}>
@@ -60,7 +59,6 @@ const Exercise = ({setPage, setValue4, texts4, value4}) => {
             style={styles.btn}
             onPress={() => {
               setPage(5);
-              
             }}
           >
             <Text style={styles.text}>Submit</Text>
@@ -73,7 +71,6 @@ const Exercise = ({setPage, setValue4, texts4, value4}) => {
     </View>
   );
 };
-
 
 export default Exercise;
 

@@ -9,9 +9,7 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-
 const Mood = ({ setPage, setValue2, texts2, value2 }) => {
- 
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">
@@ -37,16 +35,16 @@ const Mood = ({ setPage, setValue2, texts2, value2 }) => {
           <Text> {"\n"} </Text>
           <Slider
             style={styles.slider}
-            onValueChange = {(event) => {
-                 setValue2(event);
+            onValueChange={(event) => {
+              setValue2(event);
             }}
             style={{ width: 300, height: 40 }}
             minimumValue={0}
-            maximumValue={4}
+            maximumValue={100}
             minimumTrackTintColor="#004fff"
             step="1"
             maximumTrackTintColor="red"
-            value="2"
+            value="50"
           />
           <View>
             <Text style={styles.text}>

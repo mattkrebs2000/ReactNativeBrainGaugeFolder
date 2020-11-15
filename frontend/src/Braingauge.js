@@ -8,7 +8,6 @@ import Review from "./components/Review";
 import Instructions from "./components/Instructions";
 import Game from "./components/Game";
 
-
 export default Braingauge = ({ navigation }) => {
   const [value1, setValue1] = useState(0);
   const [texts1, setText1] = useState("Not Included");
@@ -52,15 +51,15 @@ export default Braingauge = ({ navigation }) => {
     const temparray = userResult;
     temparray.push((Date.now() - startTime) / 1000);
     setClick(click + 1);
-    setX(()=> rando() + "%");
+    setX(() => rando() + "%");
     setY(() => rando() + "%");
     setUserResult(temparray);
     setHidden(true);
     setScore(score + trackScore);
 
     const timeout = setTimeout(() => {
-        setHidden(false);
-        setStartTime(Date.now());
+      setHidden(false);
+      setStartTime(Date.now());
     }, randoInterval());
 
     var num = score / 8;
@@ -69,7 +68,8 @@ export default Braingauge = ({ navigation }) => {
 
     if (click === 8) {
       clearTimeout(timeout);
-      console.log(SuperNumber, userResult)
+      console
+        .log(SuperNumber, userResult)
         .then(function (response) {
           alert(response);
         })
@@ -81,20 +81,20 @@ export default Braingauge = ({ navigation }) => {
   };
 
   texting = () => {
-    switch (value1) {
-      case 0:
+    switch (true) {
+      case value1 === 0:
         setText1("Not Included");
         break;
-      case 1:
+      case 0 < value1 && value1 < 25:
         setText1("Very Tired");
         break;
-      case 2:
+      case 25 < value1 && value1 < 50:
         setText1("Tired");
         break;
-      case 3:
+      case 50 < value1 && value1 < 75:
         setText1("Refreshed");
         break;
-      case 4:
+      case 75 < value1 && value1 <= 100:
         setText1("Very Refreshed");
         break;
     }
@@ -106,20 +106,20 @@ export default Braingauge = ({ navigation }) => {
   }, [value2]);
 
   texting2 = () => {
-    switch (value2) {
-      case 0:
+    switch (true) {
+      case value2 === 0:
         setText2("Not Included");
         break;
-      case 1:
+      case 0 < value2 && value2 < 25:
         setText2("Upset");
         break;
-      case 2:
+      case 25 < value2 && value2 < 50:
         setText2("Mildly Upset");
         break;
-      case 3:
+      case 50 < value2 && value2 < 75:
         setText2("Content");
         break;
-      case 4:
+      case 75 < value2 && value2 <= 100:
         setText2("Happy");
         break;
     }
@@ -130,20 +130,20 @@ export default Braingauge = ({ navigation }) => {
   }, [value3]);
 
   texting3 = () => {
-    switch (value3) {
-      case 0:
+    switch (true) {
+      case value3 === 0:
         setText3("Not Included");
         break;
-      case 1:
+      case 0 < value3 && value3 < 25:
         setText3("Very Hungry");
         break;
-      case 2:
+      case 25 < value3 && value3 < 50:
         setText3("Little Bit Hungry");
         break;
-      case 3:
+      case 50 < value3 && value3 < 75:
         setText3("Fed");
         break;
-      case 4:
+      case 75 < value3 && value3 <= 100:
         setText3("Stuffed");
         break;
     }
@@ -154,20 +154,20 @@ export default Braingauge = ({ navigation }) => {
   }, [value4]);
 
   texting4 = () => {
-    switch (value4) {
-      case 0:
+    switch (true) {
+      case value4 === 0:
         setText4("Not Included");
         break;
-      case 1:
+      case 0 < value4 && value4 < 25:
         setText4("Not Active");
         break;
-      case 2:
+      case 25 < value4 && value4 < 50:
         setText4("Somewhat Active");
         break;
-      case 3:
+      case 50 < value4 && value4 < 75:
         setText4("Active");
         break;
-      case 4:
+      case 75 < value4 && value4 <= 100:
         setText4("Very Active");
         break;
     }
@@ -234,12 +234,7 @@ export default Braingauge = ({ navigation }) => {
           />
         );
       case 6:
-        return (
-          <Instructions 
-          setPage={setPage} 
-          navigation={navigation} 
-          />
-        );
+        return <Instructions setPage={setPage} navigation={navigation} />;
       case 7:
         return (
           <Game
@@ -254,11 +249,10 @@ export default Braingauge = ({ navigation }) => {
             setClick={setClick}
             setPage={setPage}
             getRandomColor={getRandomColor()}
-            move = {move()}
+            move={move()}
           />
         );
     }
-    
   };
 
   return componentsFinder();

@@ -10,7 +10,6 @@ import {
 import Slider from "@react-native-community/slider";
 
 const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
-  
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">
@@ -41,11 +40,11 @@ const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
             }}
             style={{ width: 300, height: 40 }}
             minimumValue={0}
-            maximumValue={4}
+            maximumValue={100}
             minimumTrackTintColor="#004fff"
             step="1"
             maximumTrackTintColor="red"
-            value="2"
+            value="50"
           />
           <View>
             <Text style={styles.text}>
@@ -59,8 +58,8 @@ const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
-               console.log("1", page);
-             setPage(4);
+              console.log("1", page);
+              setPage(4);
               console.log("1", page);
             }}
             // onPress={this.signUp}

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -6,26 +6,24 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  Button
+  Button,
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const Sleep = ({ navigation, setPage, setValue1, texts1, value1}) => {
-  
-useEffect(() => {
-  navigation.setOptions({
-    title: "Survey",
-    headerLeft: () => (
-      <Button
-        onPress={() => {
-         navigation.navigate("Profile")
-        }}
-         title= "< Welcome"
-      />
-    ),
-  });
-}, []);
-
+const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
+  useEffect(() => {
+    navigation.setOptions({
+      title: "Survey",
+      headerLeft: () => (
+        <Button
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+          title="< Welcome"
+        />
+      ),
+    });
+  }, []);
 
   return (
     <View style={styles.container} behavior="padding">
@@ -52,18 +50,16 @@ useEffect(() => {
           <Text> {"\n"} </Text>
           <Slider
             style={styles.slider}
-            value = "2"
+            value="50"
             onValueChange={(event) => {
-                 setValue1(event);
+              setValue1(event);
             }}
-           
             style={{ width: 300, height: 40 }}
             minimumValue={0}
-            maximumValue={4}
+            maximumValue={100}
             minimumTrackTintColor="#004fff"
             step="1"
             maximumTrackTintColor="red"
-            
           />
           <View>
             <Text style={styles.text}>
@@ -227,7 +223,7 @@ const styles = StyleSheet.create({
 //         }}
 //        Not Included style={{ width: 300, height: 40 }}
 //         minimumValue={0}
-//         maximumValue={4}
+//         maximumValue={100}
 //         minimumTrackTintColor="red"
 //         step="1"
 //         maximumTrackTintColor="#004fff"
