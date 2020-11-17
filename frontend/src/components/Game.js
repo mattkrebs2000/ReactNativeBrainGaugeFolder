@@ -66,27 +66,24 @@ const Game = ({score,setScore}) => {
       clearTimeout(timeout);
     }
   };
-
-
-
-
-  console.log("Game")
+  console.log("Game", hidden)
 
 useEffect(() => {
   setColor(getRandomColor);
   console.log("this is the color", color)
 }, []);
 
-  
-  
-
-
-  const navigation = useNavigation();
-
   return (
+  
     <SafeAreaView style={styles.contatiner2}>
-      <Text style={{color: "white", backgroundColor: "black"}}>
-        {score}
+      <Text style={{ color: "white", backgroundColor: "black" }}>
+        score={score}
+      </Text>
+      <Text style={{ color: "white", backgroundColor: "black" }}>
+        startTime={startTime}
+      </Text>
+      <Text style={{ color: "white", backgroundColor: "black" }}>
+        hidden={hidden}
       </Text>
       <View style={styles.container}>
         <TouchableOpacity
@@ -97,11 +94,11 @@ useEffect(() => {
         >
           <View
             style={{
-              visibility: hidden ? "hidden" : "visible",
+              opacity: hidden ? "0%" : "100%",
               marginTop: 30,
               marginTop: y,
               marginLeft: x,
-              height: 100,
+              height: hidden ? 0 : 100,
               width: 100,
               backgroundColor: color,
             }}
