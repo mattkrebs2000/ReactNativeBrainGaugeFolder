@@ -1,31 +1,115 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   SafeAreaView,
   StyleSheet,
   View,
   TouchableOpacity,
+  Text
 } from "react-native";
+const moment = require("moment");  
 
-const Game = ({x,y,hidden, move, color, startTime,score, userResult,click, setClick, setPage, getRandomColor}) => {
+
+
+const Game = ({score,setScore}) => {
+
+
+
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const [hidden, setHidden] = useState(false);
+  const [startTime, setStartTime] = useState(0);
+
+  const [click, setClick] = useState(0);
+
+  const [color, setColor] = useState("");
+  const [userResult, setUserResult] = useState([]);
+
+  const rando = () => {
+    return Math.floor(Math.random() * 60) + 20;
+  };
+
+  const randoInterval = () => {
+    return Math.floor(Math.random() * 4000) + 500;
+  };
+
+  const getRandomColor = () => {
+    var letters = "0123456789ABCDEF".split("");
+    var colorNumbers = "#";
+    for (var i = 0; i < 6; i++) {
+      colorNumbers += letters[Math.round(Math.random() * 15)];
+    } //ends for loop
+
+    return (
+      colorNumbers, console.log("YO", colorNumbers), setColor(colorNumbers)
+    );
+  };
+
+  const move = () => {
+    const trackScore = moment().millisecond();
+    console.log("trackScore =", trackScore);
+    const temparray = userResult;
+    temparray.push(trackScore - startTime);
+    setClick(click + 1);
+    setX(() => rando() + "%");
+    setY(() => rando() + "%");
+    setUserResult(temparray);
+    setHidden(true);
+    setScore(score + trackScore);
+
+    const timeout = setTimeout(() => {
+      setHidden(false);
+      setStartTime(moment().millisecond());
+    }, randoInterval());
+
+    var num = score / 8;
+    var SuperNumber = num.toFixed(2);
+    console.log("Your score", SuperNumber);
+
+    if (click === 8) {
+      clearTimeout(timeout);
+    }
+  };
+
+
+
+
+  console.log("Game")
+
+useEffect(() => {
+  setColor(getRandomColor);
+  console.log("this is the color", color)
+}, []);
+
+  
+  
+
+
   const navigation = useNavigation();
 
-  console.log("Game");
   return (
-    <SafeAreaView style={styles.container2}>
+    <SafeAreaView style={(styles.contatiner2, { backgroundColor: "black" })}>
+      <Text style={{color: "white"}}>
+        {score}
+      </Text>
       <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            console.log("ITCLICKED");
+            move();
+          }}
+        >
           <View
-            style={styles.box}
             style={{
               visibility: hidden ? "hidden" : "visible",
               marginTop: 200,
               top: y,
               right: x,
-              backgroundColor: getRandomColor,
-            }}
-            onTouch={() => {
-              move;
+              // backgroundColor: { color },
+              height: 100,
+              width: 100,
+              borderRadius: 50,
+              backgroundColor: color,
             }}
           ></View>
         </TouchableOpacity>
@@ -39,7 +123,7 @@ export default Game;
 const styles = StyleSheet.create({
   container: {
     height: "100%",
-    backgroundColor: "black",
+    // backgroundColor: "black",
     color: "white",
     alignItems: "center",
     justifyContent: "center",
@@ -56,12 +140,5 @@ const styles = StyleSheet.create({
     position: "relative",
     height: "80%",
   },
-  box: {
-   
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    backgroundColor:"orange",
-    
-  },
+ 
 });

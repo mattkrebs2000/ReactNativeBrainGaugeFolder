@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const moment = require("moment");  
+
 import Survey from "./components/Survey";
 import Survey2 from "./components/Survey2";
 import Survey3 from "./components/Survey3";
@@ -18,67 +18,17 @@ export default Braingauge = ({ navigation }) => {
   const [texts3, setText3] = useState("Not Included");
   const [value4, setValue4] = useState(0);
   const [texts4, setText4] = useState("Not Included");
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
-  const [hidden, setHidden] = useState(false);
-  const [startTime, setStartTime] = useState(0);
-  const [score, setScore] = useState(0);
-  const [userResult, setUserResult] = useState([]);
-  const [click, setClick] = useState(0);
-  const [page, setPage] = useState(1);
-  const [color, setColor] = useState("")
+ const [page, setPage] = useState(1);
+   const [score, setScore] = useState(0);
+  
+
 
   useEffect(() => {
     texting();
   }, [value1]);
 
-  rando = () => {
-    return Math.floor(Math.random() * 60) + 20;
-  };
 
-  randoInterval = () => {
-    return Math.floor(Math.random() * 4000) + 500;
-  };
-
-  getRandomColor = () => {
-    var letters = "0123456789ABCDEF".split("");
-    var colorNumbers = "#";
-    for (var i = 0; i < 6; i++) {
-      colorNumbers += letters[Math.round(Math.random() * 15)];
-    } //ends for loop
-    setColor(colorNumbers)
-    return console.log("color = ", color), color;
-  };
-
-  move = () => {
-
-     const trackScore = (moment().millisecond());
-     console.log("trackScore =", trackScore);
-    const temparray = userResult;
-    temparray.push((trackScore - startTime));
-    setClick(click + 1);
-    setX(() => rando() + "%");
-    setY(() => rando() + "%");
-    setUserResult(temparray);
-    setHidden(true);
-    setScore(score + trackScore);
-
-    const timeout = setTimeout(() => {
-      setHidden(false);
-      setStartTime((moment().millisecond()));
-    }, randoInterval());
-
-    var num = score / 8;
-    var SuperNumber = num.toFixed(2);
-    console.log("Your score", SuperNumber);
-
-    if (click === 8) {
-      clearTimeout(timeout)
-    }
-   
-  };
-
-  texting = () => {
+  const texting = () => {
     switch (true) {
       case value1 === 0:
         setText1("Not Included");
@@ -103,7 +53,7 @@ export default Braingauge = ({ navigation }) => {
     texting2();
   }, [value2]);
 
-  texting2 = () => {
+  const texting2 = () => {
     switch (true) {
       case value2 === 0:
         setText2("Not Included");
@@ -127,7 +77,7 @@ export default Braingauge = ({ navigation }) => {
     texting3();
   }, [value3]);
 
-  texting3 = () => {
+  const texting3 = () => {
     switch (true) {
       case value3 === 0:
         setText3("Not Included");
@@ -151,7 +101,7 @@ export default Braingauge = ({ navigation }) => {
     texting4();
   }, [value4]);
 
-  texting4 = () => {
+  const texting4 = () => {
     switch (true) {
       case value4 === 0:
         setText4("Not Included");
@@ -171,7 +121,7 @@ export default Braingauge = ({ navigation }) => {
     }
   };
 
-  componentsFinder = () => {
+  const componentsFinder = () => {
     switch (page) {
       case 1:
         return (
@@ -237,18 +187,9 @@ export default Braingauge = ({ navigation }) => {
         return (
           <Game
             setPage={setPage}
-            x={x}
-            y={y}
-            hidden={hidden}
-            startTime={startTime}
             score={score}
-            userResult={userResult}
-            click={click}
-            setClick={setClick}
-            setPage={setPage}
-            getRandomColor={getRandomColor()}
-            move={move()}
-            color={color}
+            setScore={setScore}
+
           />
         );
     }
