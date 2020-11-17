@@ -9,11 +9,7 @@ import {
 } from "react-native";
 const moment = require("moment");  
 
-
-
 const Game = ({score,setScore}) => {
-
-
 
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
@@ -26,7 +22,7 @@ const Game = ({score,setScore}) => {
   const [userResult, setUserResult] = useState([]);
 
   const rando = () => {
-    return Math.floor(Math.random() * 60) + 20;
+    return Math.floor(Math.random() * 60) + 10;
   };
 
   const randoInterval = () => {
@@ -88,8 +84,8 @@ useEffect(() => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={(styles.contatiner2, { backgroundColor: "black" })}>
-      <Text style={{color: "white"}}>
+    <SafeAreaView style={styles.contatiner2}>
+      <Text style={{color: "white", backgroundColor: "black"}}>
         {score}
       </Text>
       <View style={styles.container}>
@@ -102,13 +98,11 @@ useEffect(() => {
           <View
             style={{
               visibility: hidden ? "hidden" : "visible",
-              marginTop: 200,
-              top: y,
-              right: x,
-              // backgroundColor: { color },
+              marginTop: 30,
+              marginTop: y,
+              marginLeft: x,
               height: 100,
               width: 100,
-              borderRadius: 50,
               backgroundColor: color,
             }}
           ></View>
@@ -123,10 +117,7 @@ export default Game;
 const styles = StyleSheet.create({
   container: {
     height: "100%",
-    // backgroundColor: "black",
-    color: "white",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "black",
   },
 
   container2: {
