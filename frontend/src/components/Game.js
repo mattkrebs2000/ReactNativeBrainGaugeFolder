@@ -1,33 +1,54 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   SafeAreaView,
   StyleSheet,
   View,
   TouchableOpacity,
-  Text
+  Text,
 } from "react-native";
-const moment = require("moment");  
 
-const Game = ({score,setScore}) => {
 
-  const [x, setX] = useState(0);
+const Game = ({ score, setScore }) => {
+  const [x, setX] = useState(157);
   const [y, setY] = useState(0);
   const [hidden, setHidden] = useState(false);
   const [startTime, setStartTime] = useState(0);
-
   const [click, setClick] = useState(0);
-
   const [color, setColor] = useState("");
   const [userResult, setUserResult] = useState([]);
 
+useEffect(() => {
+randoInterval()
+}, []);
+
+  const randoInterval = () => {
+    const randomNumber = Math.floor(Math.random() * 4000) + 500;
+    setTimeout(ReRun, randomNumber);
+  };
+
+  const ReRun = () => {
+    setHidden(false);
+    startedMotion = setInterval(frame, 10);
+  };
+
+  const frame = () => {
+    setStartTime(startTime++);
+  };
+
+  //This function helps to control placement of the square
   const rando = () => {
     return Math.floor(Math.random() * 60) + 10;
   };
 
-  const randoInterval = () => {
-    return Math.floor(Math.random() * 4000) + 500;
+
+
+//This function helps to control placement of the square
+  const rando = () => {
+    return Math.floor(Math.random() * 60) + 10;
   };
+
+  //This function creates unique colors Ex: #234432; 
 
   const getRandomColor = () => {
     var letters = "0123456789ABCDEF".split("");
@@ -36,27 +57,30 @@ const Game = ({score,setScore}) => {
       colorNumbers += letters[Math.round(Math.random() * 15)];
     } //ends for loop
 
-    return (
-      colorNumbers, console.log("YO", colorNumbers), setColor(colorNumbers)
-    );
+    return colorNumbers;
   };
 
+//This function is the OnClick function. What happens when the square appearing is clicked. 
+
   const move = () => {
-    const trackScore = moment().millisecond();
-    console.log("trackScore =", trackScore);
+    clearInterval(startedMotion);
+    const trackScore = startTime;
     const temparray = userResult;
-    temparray.push(trackScore - startTime);
+    temparray.push(trackScore);
     setClick(click + 1);
     setX(() => rando() + "%");
     setY(() => rando() + "%");
     setUserResult(temparray);
+    setStartTime(0)
     setHidden(true);
     setScore(score + trackScore);
 
-    const timeout = setTimeout(() => {
-      setHidden(false);
-      setStartTime(moment().millisecond());
-    }, randoInterval());
+    randoInterval();
+
+    // const timeout = setTimeout(() => {
+    //   setHidden(false);
+    //   setStartTime(moment().millisecond());
+    // }, randoInterval());
 
     var num = score / 8;
     var SuperNumber = num.toFixed(2);
@@ -65,16 +89,16 @@ const Game = ({score,setScore}) => {
     if (click === 8) {
       clearTimeout(timeout);
     }
+    console.log(temparray, "tempArray")
   };
-  console.log("Game", hidden)
+  console.log("Game", hidden);
 
-useEffect(() => {
-  setColor(getRandomColor);
-  console.log("this is the color", color)
-}, []);
+  useEffect(() => {
+    setColor(getRandomColor);
+    console.log("this is the color", color);
+  }, []);
 
   return (
-  
     <SafeAreaView style={styles.contatiner2}>
       <Text style={{ color: "white", backgroundColor: "black" }}>
         score={score}
@@ -83,8 +107,16 @@ useEffect(() => {
         startTime={startTime}
       </Text>
       <Text style={{ color: "white", backgroundColor: "black" }}>
-        hidden={hidden}
+        click={click}
       </Text>
+      <Text style={{ color: "white", backgroundColor: "black" }}>
+        Your reaction speed:{" "}
+        {!!userResult[userResult.length - 1]
+          ? userResult[userResult.length - 1].toFixed(2)
+          : null}{" "}
+        seconds{" "}
+      </Text>
+
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => {
@@ -100,7 +132,7 @@ useEffect(() => {
               marginLeft: x,
               height: hidden ? 0 : 100,
               width: 100,
-              backgroundColor: color,
+              backgroundColor: getRandomColor(),
             }}
           ></View>
         </TouchableOpacity>
@@ -128,5 +160,4 @@ const styles = StyleSheet.create({
     position: "relative",
     height: "80%",
   },
- 
 });
