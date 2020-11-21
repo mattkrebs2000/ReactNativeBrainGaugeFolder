@@ -19,7 +19,7 @@ export default Braingauge = ({ navigation }) => {
   const [value4, setValue4] = useState(0);
   const [texts4, setText4] = useState("Not Included");
  const [page, setPage] = useState(1);
-   const [score, setScore] = useState(0);
+   const [average, setAverage] = useState(0);
   
 
 
@@ -187,9 +187,8 @@ export default Braingauge = ({ navigation }) => {
         return (
           <Game
             setPage={setPage}
-            score={score}
-            setScore={setScore}
-
+            average={average}
+            setAverage={setAverage}
           />
         );
     }
