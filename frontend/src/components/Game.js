@@ -104,28 +104,19 @@ const Game = ({ average, setAverage }) => {
 
   return (
     <SafeAreaView style={styles.contatiner2}>
-      <Text style={{ color: "white", backgroundColor: "black" }}>
-        session={session}
-      </Text>
-      <Text style={{ color: "white", backgroundColor: "black" }}>
-        seconds={seconds}
-      </Text>
-      <Text style={{ color: "white", backgroundColor: "black" }}>
-        average={average}
-      </Text>
-      <Text style={{ color: "white", backgroundColor: "black" }}>
-        color={color}
-      </Text>
-      <Text style={{ color: "white", backgroundColor: "black" }}>
-        total={total}
-      </Text>
-      <Text style={{ color: "white", backgroundColor: "black" }}>
-        New Array of Scores:
+      <Text style={styles.text}>Your Reaction Time:</Text>
+      <Text style={styles.text}>{seconds}</Text>
+
+      <Text style={styles.text}>Average:</Text>
+      <Text style={styles.text}>{average > 2 ? average : " "}</Text>
+      <Text style={styles.text}>Total Time:</Text>
+      <Text style={styles.text}>{total}</Text>
+      <Text style={styles.text}>Completed {session-1}/8: </Text>
+      <Text style={styles.text}>
         {arrayOfScores.map((num) => (
-          <Text> {num} </Text>
+          <Text style={styles.text}> {num} </Text>
         ))}
       </Text>
-     
 
       {session < 9 ? (
         <View style={styles.container}>
@@ -160,6 +151,7 @@ const styles = StyleSheet.create({
 
   container2: {
     flex: 1,
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
@@ -168,6 +160,13 @@ const styles = StyleSheet.create({
     padding: 10,
     position: "relative",
     height: "80%",
+  },
+  text: {
+    textAlign: "center",
+    alignItems: "center",
+    fontSize: 17,
+    color: "white",
+    backgroundColor: "black",
   },
 });
 
