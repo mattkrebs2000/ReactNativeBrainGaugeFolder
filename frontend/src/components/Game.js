@@ -11,18 +11,12 @@ const Game = ({ average, setAverage }) => {
   const [x, setX] = useState(157);
   const [y, setY] = useState(0);
   const [hidden, setHidden] = useState(false);
-  const [click, setClick] = useState(1);
+  const [session, setSession] = useState(1);
   const [seconds, setSeconds] = useState(0);
    const [color, setColor] = useState("");
-
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setPos(+1);
-  //   }, 1000);
-  //   return () => Clearthis(interval);
-  // }, []);
-
+   const [total, setTotal] = useState(0);
+   const [currentscore, setCurrentscore] = useState (0);
+   
   //function establishes the time that it takes for the real timer to begin.
 
   function timingUsed() {
@@ -39,42 +33,32 @@ const Game = ({ average, setAverage }) => {
   const startCounter = () =>
     (interval.current = setInterval(() => {
       setSeconds((prevState) => prevState + 1)
+      
     }, 10));
 
   const stopCounter = () => clearInterval(interval.current);
 
-  //startCounter on load;
+  //startCounter on load - because hidden is set to false and on changes to "hidden";
 
   useEffect(() => {
-    if (hidden) {
-      
+    if (hidden) {      
       stopCounter();
+      setCurrentscore(seconds-total);
+      setTotal((session-1)*average);
     } else {
       startCounter();
       setColor(getRandomColor());
     }
   }, [hidden]);
 
-  //This function stops the "startedMotion"
-
-  //
-
-  // useEffect(() => {
-  //   timingUsed();
-  // }, []);
-
-  // const randoInterval = () => {
-  //   const randomNumber = Math.floor(Math.random() * 4000) + 500;
-  //   setTimeout(() => {
-  //     setHidden(false);
-  //     startedMotion = setInterval(frame, 10);
-  //   }, randomNumber);
-  // };
-
   //This function helps to control placement of the square
   const rando = () => {
-    return Math.floor(Math.random() * 60) + 10;
+    return Math.floor(Math.random() * 60) + 30;
   };
+
+   const rando2 = () => {
+     return Math.floor(Math.random() * 60) + 10;
+   };
 
   //This function creates unique colors Ex: #234432;
 
@@ -87,15 +71,17 @@ const Game = ({ average, setAverage }) => {
 return colorNumbers
   };
 
-  //This function is the OnClick function. What happens when the square appearing is clicked.
+  //This function is the onPress function. What happens when the square appearing is clicked.
 
   const move = () => {
+   setTotal((session-1) * average);
     setHidden(true);
-    setClick(click + 1);
-    setX(() => rando() + "%");
+  
+    setSession(session + 1);
+    setX(() => rando2() + "%");
     setY(() => rando() + "%");
-    setAverage(seconds / click);
-    if (click < 8) {
+    setAverage(seconds / session);
+    if (session < 8) {
       timingUsed();
     }
   };
@@ -104,7 +90,7 @@ return colorNumbers
   return (
     <SafeAreaView style={styles.contatiner2}>
       <Text style={{ color: "white", backgroundColor: "black" }}>
-        click={click}
+        session={session}
       </Text>
       <Text style={{ color: "white", backgroundColor: "black" }}>
         seconds={seconds}
@@ -112,24 +98,31 @@ return colorNumbers
       <Text style={{ color: "white", backgroundColor: "black" }}>
         average={average}
       </Text>
-      <Text style={{ color: "white", backgroundColor: "black" }}>color={color}</Text>
+      <Text style={{ color: "white", backgroundColor: "black" }}>
+        color={color}
+      </Text>
+      <Text style={{ color: "white", backgroundColor: "black" }}>
+        total={total}
+      </Text>
+      <Text style={{ color: "white", backgroundColor: "black" }}>
+        current={currentscore}
+      </Text>
 
-      {click < 9 ? (
+      {session < 9 ? (
         <View style={styles.container}>
-            <TouchableOpacity
-              onPress={() => {
-                move();
-              }}
-              style={{
-                opacity: hidden ? "0%" : "100%",
-                marginTop: 30,
-                marginTop: y,
-                marginLeft: x,
-                height: hidden ? 0 : 100,
-                width: 100,
-                backgroundColor: color,
-              }}
-            ></TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              move();
+            }}
+            style={{
+              opacity: hidden ? "0%" : "100%",
+              marginTop: y,
+              marginLeft: x,
+              height: hidden ? 0 : 100,
+              width: 100,
+              backgroundColor: color,
+            }}
+          ></TouchableOpacity>
         </View>
       ) : (
         <View style={styles.container}></View>
