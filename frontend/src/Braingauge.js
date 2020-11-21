@@ -27,7 +27,6 @@ export default Braingauge = ({ navigation }) => {
     texting();
   }, [value1]);
 
-
   const texting = () => {
     switch (true) {
       case value1 === 0:

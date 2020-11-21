@@ -13,12 +13,11 @@ const Game = ({ average, setAverage }) => {
   const [hidden, setHidden] = useState(false);
   const [session, setSession] = useState(1);
   const [seconds, setSeconds] = useState(0);
-   const [color, setColor] = useState("");
-   const [total, setTotal] = useState(0);
-   const [currentscore, setCurrentscore] = useState (0);
-   
-  //function establishes the time that it takes for the real timer to begin.
+  const [color, setColor] = useState("");
+  const [total, setTotal] = useState(0);
+  const [arrayOfScores, setArrayOfScores] = useState([]);
 
+  //function establishes the time that it takes for the real timer to begin.
   function timingUsed() {
     var randomNumber = Math.floor(Math.random() * 4000) + 500;
     setTimeout(Ready, randomNumber);
@@ -32,20 +31,38 @@ const Game = ({ average, setAverage }) => {
 
   const startCounter = () =>
     (interval.current = setInterval(() => {
-      setSeconds((prevState) => prevState + 1)
-      
+      setSeconds((prevState) => prevState + 1);
     }, 10));
+
+  // holds onto each score;
+  const myScores = () => {
+
+  let newState = [...arrayOfScores, seconds];
+  setArrayOfScores(newState);
+
+   setSession(session + 1);
+  } 
+  
 
   const stopCounter = () => clearInterval(interval.current);
 
   //startCounter on load - because hidden is set to false and on changes to "hidden";
 
+
+
   useEffect(() => {
-    if (hidden) {      
+    setAverage(((total / (session - 1)).toFixed(2)));
+  }, [total]);
+
+  
+
+  useEffect(() => {
+    if (hidden) {
       stopCounter();
-      setCurrentscore(seconds-total);
-      setTotal((session-1)*average);
+      setTotal(total+seconds); 
+      myScores();
     } else {
+      setSeconds(0)
       startCounter();
       setColor(getRandomColor());
     }
@@ -56,36 +73,34 @@ const Game = ({ average, setAverage }) => {
     return Math.floor(Math.random() * 60) + 30;
   };
 
-   const rando2 = () => {
-     return Math.floor(Math.random() * 60) + 10;
-   };
+  const rando2 = () => {
+    return Math.floor(Math.random() * 60) + 10;
+  };
 
   //This function creates unique colors Ex: #234432;
-
+ 
   const getRandomColor = () => {
     var letters = "0123456789ABCDEF".split("");
     var colorNumbers = "#";
     for (var i = 0; i < 6; i++) {
       colorNumbers += letters[Math.round(Math.random() * 15)];
     } //ends for loop
-return colorNumbers
+    return colorNumbers;
   };
 
   //This function is the onPress function. What happens when the square appearing is clicked.
 
   const move = () => {
-   setTotal((session-1) * average);
     setHidden(true);
-  
-    setSession(session + 1);
+    
     setX(() => rando2() + "%");
     setY(() => rando() + "%");
-    setAverage(seconds / session);
+
+   
     if (session < 8) {
       timingUsed();
     }
   };
- 
 
   return (
     <SafeAreaView style={styles.contatiner2}>
@@ -104,8 +119,11 @@ return colorNumbers
       <Text style={{ color: "white", backgroundColor: "black" }}>
         total={total}
       </Text>
-      <Text style={{ color: "white", backgroundColor: "black" }}>
-        current={currentscore}
+
+      <Text style={{ color: "white", backgroundColor: "black" }}>Array of Scores: 
+        {arrayOfScores[0]}, {arrayOfScores[1]}, {arrayOfScores[2]},
+        {arrayOfScores[3]}, {arrayOfScores[4]}, {arrayOfScores[5]},
+        {arrayOfScores[6]}, {arrayOfScores[7]}
       </Text>
 
       {session < 9 ? (
