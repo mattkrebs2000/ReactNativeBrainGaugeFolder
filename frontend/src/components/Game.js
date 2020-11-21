@@ -119,12 +119,13 @@ const Game = ({ average, setAverage }) => {
       <Text style={{ color: "white", backgroundColor: "black" }}>
         total={total}
       </Text>
-
-      <Text style={{ color: "white", backgroundColor: "black" }}>Array of Scores: 
-        {arrayOfScores[0]}, {arrayOfScores[1]}, {arrayOfScores[2]},
-        {arrayOfScores[3]}, {arrayOfScores[4]}, {arrayOfScores[5]},
-        {arrayOfScores[6]}, {arrayOfScores[7]}
+      <Text style={{ color: "white", backgroundColor: "black" }}>
+        New Array of Scores:
+        {arrayOfScores.map((num) => (
+          <Text> {num} </Text>
+        ))}
       </Text>
+     
 
       {session < 9 ? (
         <View style={styles.container}>
