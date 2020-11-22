@@ -5,9 +5,14 @@ import {
   View,
   TouchableOpacity,
   Text,
+  Image,
 } from "react-native";
+import { AuthContext } from "../context";
 
-const Game = ({ average, setAverage }) => {
+const Game = ({ average, setAverage, navigation }) => {
+
+const { signOut } = React.useContext(AuthContext);
+
   const [x, setX] = useState(157);
   const [y, setY] = useState(0);
   const [hidden, setHidden] = useState(false);
@@ -36,33 +41,28 @@ const Game = ({ average, setAverage }) => {
 
   // holds onto each score;
   const myScores = () => {
-
-  let newState = [...arrayOfScores, seconds];
-  setArrayOfScores(newState);
-
-   setSession(session + 1);
-  } 
-  
+    if (session < 9) {
+      let newState = [...arrayOfScores, seconds];
+      setArrayOfScores(newState);
+      setSession(session + 1);
+    }
+  };
 
   const stopCounter = () => clearInterval(interval.current);
 
   //startCounter on load - because hidden is set to false and on changes to "hidden";
 
-
-
   useEffect(() => {
-    setAverage(((total / (session - 1)).toFixed(2)));
+    setAverage((total / (session - 1)).toFixed(2));
   }, [total]);
-
-  
 
   useEffect(() => {
     if (hidden) {
       stopCounter();
-      setTotal(total+seconds); 
+      setTotal(total + seconds);
       myScores();
     } else {
-      setSeconds(0)
+      setSeconds(0);
       startCounter();
       setColor(getRandomColor());
     }
@@ -78,7 +78,7 @@ const Game = ({ average, setAverage }) => {
   };
 
   //This function creates unique colors Ex: #234432;
- 
+
   const getRandomColor = () => {
     var letters = "0123456789ABCDEF".split("");
     var colorNumbers = "#";
@@ -92,11 +92,10 @@ const Game = ({ average, setAverage }) => {
 
   const move = () => {
     setHidden(true);
-    
+
     setX(() => rando2() + "%");
     setY(() => rando() + "%");
 
-   
     if (session < 8) {
       timingUsed();
     }
@@ -104,17 +103,20 @@ const Game = ({ average, setAverage }) => {
 
   return (
     <SafeAreaView style={styles.contatiner2}>
-      <Text style={styles.text}>Your Reaction Time:</Text>
+      <Text style={styles.top}>Your Reaction Time:</Text>
       <Text style={styles.text}>{seconds}</Text>
 
       <Text style={styles.text}>Average:</Text>
       <Text style={styles.text}>{average > 2 ? average : " "}</Text>
       <Text style={styles.text}>Total Time:</Text>
       <Text style={styles.text}>{total}</Text>
-      <Text style={styles.text}>Completed {session-1}/8: </Text>
+      <Text style={styles.text}>Completed {session - 1}/8: </Text>
       <Text style={styles.text}>
-        {arrayOfScores.map((num) => (
-          <Text style={styles.text}> {num} </Text>
+        {arrayOfScores.map((num, i) => (
+          <Text key={i} style={styles.text}>
+            {" "}
+            {num}{" "}
+          </Text>
         ))}
       </Text>
 
@@ -135,7 +137,32 @@ const Game = ({ average, setAverage }) => {
           ></TouchableOpacity>
         </View>
       ) : (
-        <View style={styles.container}></View>
+        <View style={styles.container3}>
+          <View style={styles.container4}>
+            <Text style={styles.text2}>
+              {" "}
+              Click Red Button to log this entry and see how these results
+              compare with your previous entries.{" "}
+            </Text>
+            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+              <Image
+                id="resultspage"
+                source={{
+                  uri:
+                    "https://www.freepnglogos.com/uploads/button-png/red-button-circle-image-pixabay-20.png",
+                }}
+                alt="description of image"
+                style={styles.image}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => signOut()}>
+              <Text style={styles.text3}>
+                Click Here if you do not want to include these results and To
+                Log Out.
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       )}
     </SafeAreaView>
   );
@@ -167,6 +194,45 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: "white",
     backgroundColor: "black",
+  },
+  text2: {
+    textAlign: "center",
+    alignItems: "center",
+    fontSize: 17,
+    color: "white",
+    backgroundColor: "black",
+    paddingTop: 50,
+    padding: 20,
+  },
+  text3: {
+    textAlign: "center",
+    alignItems: "center",
+    fontSize: 17,
+    color: "white",
+    backgroundColor: "black",
+    paddingTop: 20,
+    padding: 40,
+  },
+  top: {
+    textAlign: "center",
+    alignItems: "center",
+    fontSize: 17,
+    color: "white",
+    backgroundColor: "black",
+    paddingTop: 10,
+  },
+  image: {
+    width: 200,
+    height: 200,
+  },
+
+  container3: {
+    height: "100%",
+    backgroundColor: "black",
+    alignItems: "center",
+  },
+  container4: {
+    alignItems: "center",
   },
 });
 

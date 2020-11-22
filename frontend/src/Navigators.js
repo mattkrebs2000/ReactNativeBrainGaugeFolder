@@ -16,7 +16,10 @@ import Exercise from "./components/Exercise"
 import Profile from "./components/Welcome";
 import Splash from "./components/Home";
 import Braingauge from "./Braingauge";
+
+
 import { withTheme } from "react-native-elements";
+
 
 
 const headerStyle = {

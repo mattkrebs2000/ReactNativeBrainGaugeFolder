@@ -188,6 +188,7 @@ export default Braingauge = ({ navigation }) => {
             setPage={setPage}
             average={average}
             setAverage={setAverage}
+            navigation={navigation}
           />
         );
     }
