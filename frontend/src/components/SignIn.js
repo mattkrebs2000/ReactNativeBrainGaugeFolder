@@ -11,11 +11,19 @@ import {
     SafeAreaView,
 } from 'react-native';
 
+import { firebase } from "../firebase/config.js";
+
+
 import { AuthContext } from "../context";
 
 
 const SignIn = ({ navigation, Auth }) => {
     const { signIn } = React.useContext(AuthContext);
+
+    //  const [email, setEmail] = useState("");
+    //  const [password, setPassword] = useState("");
+
+
 
     // const [state, setState] = React.UseState({email: '',
     //     username: '',
