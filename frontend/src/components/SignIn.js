@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
@@ -18,10 +18,45 @@ import { AuthContext } from "../context";
 
 
 const SignIn = ({ navigation, Auth }) => {
-    const { signIn } = React.useContext(AuthContext);
+      const [email, setEmail] = useState("");
+      const [password, setPassword] = useState("");
+  
+
+
+    const onLoginPress = () => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((response) => {
+          const uid = response.user.uid;
+          const usersRef = firebase.firestore().collection("users");
+          usersRef
+            .doc(uid)
+            .get()
+            .then((firestoreDocument) => {
+              if (!firestoreDocument.exists) {
+                alert("User does not exist anymore.");
+                return;
+              }
+              const user = firestoreDocument.data();
+              signIn({ user: user });
+            })
+            .catch((error) => {
+              alert(error);
+            });
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    };
+
+  
+  const { signIn } = React.useContext(AuthContext);
 
     //  const [email, setEmail] = useState("");
     //  const [password, setPassword] = useState("");
+
+ 
 
 
 
@@ -98,6 +133,8 @@ const SignIn = ({ navigation, Auth }) => {
               {/* Sign Up Form */}
               <View style={styles.form}>
                 <TextInput
+                  onChangeText={(text) => setEmail(text)}
+                  value={email}
                   placeholder="Email"
                   // value={this.state.email}
 
@@ -108,6 +145,8 @@ const SignIn = ({ navigation, Auth }) => {
 
                 <TextInput
                   placeholder="Password"
+                  onChangeText={(text) => setPassword(text)}
+                  value={password}
                   // value={this.state.password}
 
                   // onChangeText={password => this.setState({ password })}
@@ -119,7 +158,7 @@ const SignIn = ({ navigation, Auth }) => {
               {/* Sign Up Button */}
               <TouchableOpacity
                 style={styles.btn}
-                onPress={() => signIn()}
+                onPress={() => onLoginPress()}
                 // onPress={this.signUp}
               >
                 <Text accessibilityLabel="Sign In" style={styles.text}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { firebase } from "../firebase/config.js";
+import CryptoES from "crypto-es";
 
 // import { Font } from 'expo';
 // import axios from 'axios';
@@ -22,6 +23,18 @@ const SignUp = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [encrypt, setEncrypt] = useState("");
+
+
+  // const onRegisterPress = () => {
+  //   if (password !== confirmPassword) {
+  //     alert("Passwords don't match.");
+  //     return;
+  //   }
+
+useEffect(() => {
+setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
+}, [password]);
 
 
   const onRegisterPress = () => {
@@ -35,10 +48,12 @@ const SignUp = ({navigation}) => {
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
         const uid = response.user.uid;
+      
         const data = {
           id: uid,
           email,
           userName,
+          password: encrypt,
         };
         const usersRef = firebase.firestore().collection("users");
         usersRef
