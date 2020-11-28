@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState }from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
+import emailContext from "./emailContext";
 import { AuthContext } from "./context";
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
@@ -32,8 +33,14 @@ const headerTitleStyle = {
 
 
 export const Navigators = ({ navigation }) => {
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [userToken, setUserToken] = React.useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [userToken, setUserToken] = useState(null);
+  const [email, setEmail] = useState("mo@email.com"); 
+
+  
+  const setEmailFunction = () => setEmail(email === 'mo@email.com' ? 'nomo@email.com' : 'mo@email.com');
+  
+
 
   const AuthStack = createStackNavigator();
   const AuthStackScreen = () => (
@@ -192,10 +199,15 @@ export const Navigators = ({ navigation }) => {
   }
 
   return (
+    <emailContext.Provider value={{
+          email,
+          setEmailFunction,
+        }}>
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
         <RootStackScreen userToken={userToken} />
       </NavigationContainer>
     </AuthContext.Provider>
+    </emailContext.Provider>
   );
 };

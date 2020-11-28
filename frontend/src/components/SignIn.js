@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import emailContext from "../emailContext.js"
+import { AuthContext } from "../context";
+
 import {
     View,
     Text,
@@ -14,11 +17,14 @@ import {
 import { firebase } from "../firebase/config.js";
 
 
-import { AuthContext } from "../context";
+
 
 
 const SignIn = ({ navigation, Auth }) => {
-      const [email, setEmail] = useState("");
+      // const [email, setEmail] = useState("");
+
+       const { email, setEmailFunction } = useContext(emailContext);
+
       const [password, setPassword] = useState("");
   
 
@@ -117,7 +123,10 @@ const SignIn = ({ navigation, Auth }) => {
             {/* App Header */}
 
             <SafeAreaView style={styles.container} behavior="padding">
-              <View style={styles.middle}>
+              <TouchableOpacity
+                style={styles.middle}
+                onPress={setEmailFunction}
+              >
                 <Image
                   source={{
                     uri:
@@ -125,7 +134,8 @@ const SignIn = ({ navigation, Auth }) => {
                   }}
                   style={styles.img}
                 />
-              </View>
+                <Text style={styles.text2}>{email}</Text>
+              </TouchableOpacity>
               <Text> {"\n"} </Text>
               <Text style={styles.text2}>Sign In</Text>
               <View style={styles.divider_bar}></View>
@@ -133,7 +143,9 @@ const SignIn = ({ navigation, Auth }) => {
               {/* Sign Up Form */}
               <View style={styles.form}>
                 <TextInput
-                  onChangeText={(text) => setEmail(text)}
+
+                  // onChangeText={(text) => setEmail(text)}
+
                   value={email}
                   placeholder="Email"
                   // value={this.state.email}
