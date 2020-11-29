@@ -38,7 +38,7 @@ export const Navigators = ({ navigation }) => {
   const [email, setEmail] = useState("mo@email.com"); 
 
   
-  const setEmailFunction = () => setEmail(email === 'mo@email.com' ? 'nomo@email.com' : 'mo@email.com');
+  const setEmailFunction = (text) =>  setEmail(text);
   
 
 

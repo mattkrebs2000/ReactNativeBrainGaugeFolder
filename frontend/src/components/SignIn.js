@@ -144,7 +144,7 @@ const SignIn = ({ navigation, Auth }) => {
               <View style={styles.form}>
                 <TextInput
 
-                  // onChangeText={(text) => setEmail(text)}
+                  onChangeText={setEmailFunction}
 
                   value={email}
                   placeholder="Email"
