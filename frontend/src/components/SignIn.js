@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import emailContext from "../emailContext.js"
 import { AuthContext } from "../context";
 
@@ -21,9 +21,9 @@ import { firebase } from "../firebase/config.js";
 
 
 const SignIn = ({ navigation, Auth }) => {
-      // const [email, setEmail] = useState("");
+      const [email, setEmail] = useState("");
 
-       const { email, setEmailFunction } = useContext(emailContext);
+       const { emailGlobal, setEmailGlobal } = useContext(emailContext);
 
       const [password, setPassword] = useState("");
   
@@ -46,6 +46,8 @@ const SignIn = ({ navigation, Auth }) => {
               }
               const user = firestoreDocument.data();
               signIn({ user: user });
+              setEmailGlobal(email);
+              
             })
             .catch((error) => {
               alert(error);
@@ -61,8 +63,6 @@ const SignIn = ({ navigation, Auth }) => {
 
     //  const [email, setEmail] = useState("");
     //  const [password, setPassword] = useState("");
-
- 
 
 
 
@@ -125,7 +125,7 @@ const SignIn = ({ navigation, Auth }) => {
             <SafeAreaView style={styles.container} behavior="padding">
               <TouchableOpacity
                 style={styles.middle}
-                onPress={setEmailFunction}
+               
               >
                 <Image
                   source={{
@@ -144,7 +144,7 @@ const SignIn = ({ navigation, Auth }) => {
               <View style={styles.form}>
                 <TextInput
 
-                  onChangeText={setEmailFunction}
+                  onChangeText={(text) => setEmail(text)}
 
                   value={email}
                   placeholder="Email"

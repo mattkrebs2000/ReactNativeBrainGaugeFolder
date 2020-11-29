@@ -35,10 +35,10 @@ const headerTitleStyle = {
 export const Navigators = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userToken, setUserToken] = useState(null);
-  const [email, setEmail] = useState("mo@email.com"); 
+  const [emailGlobal, setEmailGlobal] = useState("mm"); 
 
   
-  const setEmailFunction = (text) =>  setEmail(text);
+  const setEmailFunction = (email) =>  setEmailGlobal(email);
   
 
 
@@ -172,6 +172,7 @@ export const Navigators = ({ navigation }) => {
       signIn: () => {
         setIsLoading(false);
         setUserToken("asdf");
+     
       },
       signUp: () => {
         setIsLoading(false);
@@ -199,15 +200,17 @@ export const Navigators = ({ navigation }) => {
   }
 
   return (
-    <emailContext.Provider value={{
-          email,
-          setEmailFunction,
-        }}>
     <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
-        <RootStackScreen userToken={userToken} />
-      </NavigationContainer>
+      <emailContext.Provider
+        value={{
+          emailGlobal,
+          setEmailGlobal,
+        }}
+      >
+        <NavigationContainer>
+          <RootStackScreen userToken={userToken} />
+        </NavigationContainer>
+      </emailContext.Provider>
     </AuthContext.Provider>
-    </emailContext.Provider>
   );
 };

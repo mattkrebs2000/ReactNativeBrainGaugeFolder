@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { SafeAreaView, StyleSheet, View, Text, Image, Linking, Button, TouchableOpacity} from 'react-native';
 import { DrawerActions } from "@react-navigation/native";
+import emailContext from "../emailContext.js";
 
 
 import { AuthContext } from "../context";
 
 const Welcome = ({navigation}) => {
 const { signOut } = React.useContext(AuthContext);
+const { emailGlobal } = useContext(emailContext);
 
 
 // useEffect(() => {
@@ -24,7 +26,7 @@ const { signOut } = React.useContext(AuthContext);
                 style={styles.text2}
                 onPress={() => navigation.navigate("BrainGauge")}
               >
-                Play Game
+                Play Game{emailGlobal}
               </Text>
               <TouchableOpacity
                 style={styles.containerofimage}
