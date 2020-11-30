@@ -28,7 +28,6 @@ const SignIn = ({ navigation, Auth }) => {
       const [password, setPassword] = useState("");
   
 
-
     const onLoginPress = () => {
       firebase
         .auth()
@@ -47,6 +46,7 @@ const SignIn = ({ navigation, Auth }) => {
               const user = firestoreDocument.data();
               signIn({ user: user });
               setEmailGlobal(email);
+              // AsyncStorage.setItem("passwordGlobal", password);
               
             })
             .catch((error) => {

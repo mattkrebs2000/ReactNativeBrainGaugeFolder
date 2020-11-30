@@ -11,6 +11,9 @@ const { signOut } = React.useContext(AuthContext);
 const { emailGlobal } = useContext(emailContext);
 
 
+
+
+
 // useEffect(() => {
 
 //   console.log("LLL", navigation);
@@ -21,12 +24,13 @@ const { emailGlobal } = useContext(emailContext);
           <SafeAreaView style={styles.container}>
             <View style={styles.container2}>
               <Text> {"\n"} </Text>
-              <Text style={styles.text}>Welcome ___</Text>
+              <Text style={styles.text}>You are logged in as:</Text>
+              <Text style={styles.text2}>{emailGlobal}</Text>
               <Text
                 style={styles.text2}
                 onPress={() => navigation.navigate("BrainGauge")}
               >
-                Play Game{emailGlobal}
+                Play Game
               </Text>
               <TouchableOpacity
                 style={styles.containerofimage}
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
   container2: {
 
 flexDirection: "column",
-
+alignItems: "center",
 
 
   },

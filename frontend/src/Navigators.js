@@ -172,7 +172,6 @@ export const Navigators = ({ navigation }) => {
       signIn: () => {
         setIsLoading(false);
         setUserToken("asdf");
-     
       },
       signUp: () => {
         setIsLoading(false);
