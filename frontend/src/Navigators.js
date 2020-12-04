@@ -1,5 +1,7 @@
 import React, { useState }from "react";
 
+import { Button } from "react-native";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -37,9 +39,13 @@ export const Navigators = ({ navigation }) => {
   const [userToken, setUserToken] = useState(null);
   const [emailGlobal, setEmailGlobal] = useState("mm"); 
 
+
+
+
   
   const setEmailFunction = (email) =>  setEmailGlobal(email);
   
+
 
 
   const AuthStack = createStackNavigator();
@@ -91,8 +97,12 @@ export const Navigators = ({ navigation }) => {
           itemStyle: { marginVertical: 30 },
         }}
       >
-        <Drawer.Screen name="Go Back" component={Profile} />
-        <Drawer.Screen name="Mood" component={Mood} />
+        <Drawer.Screen name="Go Back" component={Profile}/>
+        <Drawer.Screen
+          name="Mood"
+          component={Mood}
+         navigation={navigation}
+        />
         <Drawer.Screen name="Appetite" component={Appetite} />
         <Drawer.Screen name="Exercise" component={Exercise} />
         <Drawer.Screen name="Sleep" component={Sleep} />
@@ -101,7 +111,7 @@ export const Navigators = ({ navigation }) => {
 
 
   const ProfileStack = createStackNavigator();
-  const ProfileStackScreen = () => (
+  const ProfileStackScreen = ({navigation}) => (
     <ProfileStack.Navigator>
       <ProfileStack.Screen
         name="Profile"
@@ -110,6 +120,15 @@ export const Navigators = ({ navigation }) => {
           title: "Welcome",
           headerStyle,
           headerTitleStyle,
+          headerLeft: () => ( (1 > 2) ?
+            <Button
+              onPress={() => {
+                navigation.navigate("BrainGauge");
+              }}
+              title="< GoTo Survey"
+            /> :
+            <Button title="<GoTo" />
+          ),
         }}
       />
       <ProfileStack.Screen
@@ -137,7 +156,7 @@ export const Navigators = ({ navigation }) => {
     return (
       <Tabs.Navigator>
         <Tabs.Screen name="Appetite" component={Appetite} />
-        <Tabs.Screen name="Mood" component={Mood} />
+        <Tabs.Screen name="Mood" component={Mood}/>
         <Tabs.Screen name="Exercise" component={Exercise} />
         <Tabs.Screen name="Sleep" component={Sleep} />
       </Tabs.Navigator>

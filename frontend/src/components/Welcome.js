@@ -7,6 +7,9 @@ import emailContext from "../emailContext.js";
 import { AuthContext } from "../context";
 
 const Welcome = ({navigation}) => {
+
+  console.log("navigation", navigation)
+
 const { signOut } = React.useContext(AuthContext);
 const { emailGlobal } = useContext(emailContext);
 
