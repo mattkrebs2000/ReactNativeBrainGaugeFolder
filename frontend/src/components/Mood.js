@@ -1,5 +1,6 @@
 import React from "react";
 
+
 import { useNavigation } from "@react-navigation/native";
 import {
   SafeAreaView,
@@ -9,7 +10,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { VictoryChart, VictoryScatter, VictoryTheme } from "victory-native";
+import { VictoryContainer, VictoryChart, VictoryScatter, VictoryTheme, VictoryAxis, VictoryLegend } from "victory-native";
 
 const Mood = () => {
 
@@ -137,35 +138,66 @@ const Mood = () => {
   return (
     <SafeAreaView style={styles.container2}>
       <View style={styles.container}>
-        <Text style={styles.text}>Brain Gauge</Text>
-
-<VictoryChart
-  theme={VictoryTheme.material}
-  domain={{ x: [0, 5], y: [0, 7] }}
->
-  <VictoryScatter
-    style={{ data: { fill: "#c43a31" } }}
-    size={7}
-    data={[
-      { x: 1, y: 2 },
-      { x: 2, y: 3 },
-      { x: 3, y: 5 },
-      { x: 4, y: 4 },
-      { x: 5, y: 7 }
-    ]}
-  />
-  </VictoryChart>
-       
+        <Text style={styles.text}>Mood</Text>
 
         <View style={styles.middle}>
-          <Image
-            source={{
-              uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
-            }}
-            style={styles.img}
-          />
+        
+
+            <VictoryChart
+              width={350}
+              theme={VictoryTheme.material}
+              domain={{ x: [0, 100], y: [0, 7] }}
+            >
+              <VictoryAxis
+                orientation="bottom"
+                label="more upset -------- not upset"
+                offsetY={50}
+                scale="time"
+                standalone={false}
+                style={{
+                  axisLabel: {
+                    fill: "#004fff",
+                    fontSize: 18,
+                    padding: 30,
+                    margin: 20,
+                  },
+                  tickLabels: {
+                    fill: "#004fff",
+                    fontSize: 18,
+                  },
+                }}
+              />
+
+              <VictoryAxis
+                dependentAxis
+                offsetX={55}
+                label="Reaction Time"
+                standalone={false}
+                style={{
+                  axisLabel: { fill: "#004fff", fontSize: 18, padding: 40 },
+                  tickLabels: {
+                    fill: "#004fff",
+                    fontSize: 18,
+                  },
+                }}
+               
+              />
+
+              <VictoryScatter
+                style={{ data: { fill: "red" } }}
+                size={7}
+                data={[
+                  { x: 90, y: 2 },
+                  { x: 36, y: 3 },
+                  { x: 32, y: 5 },
+                  { x: 48, y: 4 },
+                  { x: 89, y: 7 },
+                ]}
+              />
+            </VictoryChart>
+    
         </View>
+
         <Text style={styles.text2}>
           This is the App that measures your mental responsiveness and tells you
           when you are at your best.
@@ -237,7 +269,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   middle: {
-    width: 200,
+  
+  width: 350,
+  padding:10,
   },
   btn: {
     borderColor: "#167bff",
