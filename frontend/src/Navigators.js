@@ -111,46 +111,77 @@ export const Navigators = ({ navigation }) => {
 
 
   const ProfileStack = createStackNavigator();
-  const ProfileStackScreen = ({navigation}) => (
-    <ProfileStack.Navigator>
-      <ProfileStack.Screen
-        name="Profile"
-        component={DrawerScreen}
-        options={{
-          title: "Welcome",
-          headerStyle,
-          headerTitleStyle,
-          headerLeft: () => ( (1 > 2) ?
-            <Button
-              onPress={() => {
-                navigation.navigate("BrainGauge");
-              }}
-              title="< GoTo Survey"
-            /> :
-            <Button title="<GoTo" />
-          ),
-        }}
-      />
-      <ProfileStack.Screen
-        name="BrainGauge"
-        component={Braingauge}
-        options={{
-          title: "Survey",
-          headerStyle,
-          headerTitleStyle,
-        }}
-      />
-      <ProfileStack.Screen
-        name="Results"
-        component={TabsScreen}
-        options={{
-          title: "Results",
-          headerStyle,
-          headerTitleStyle,
-        }}
-      />
-    </ProfileStack.Navigator>
-  );
+  const ProfileStackScreen = ({ navigation }) =>
+    3 > 2 ? (
+      <ProfileStack.Navigator>
+        <ProfileStack.Screen
+          name="Profile"
+          component={DrawerScreen}
+          options={{
+            title: "Welcome",
+            headerStyle,
+            headerTitleStyle,
+            headerLeft: () => (
+              <Button
+                onPress={() => {
+                  navigation.navigate("BrainGauge");
+                }}
+                title="< GoTo Survey"
+              />
+            ),
+          }}
+        />
+        <ProfileStack.Screen
+          name="BrainGauge"
+          component={Braingauge}
+          options={{
+            title: "Survey",
+            headerStyle,
+            headerTitleStyle,
+          }}
+        />
+        <ProfileStack.Screen
+          name="Results"
+          component={TabsScreen}
+          options={{
+            title: "Results",
+            headerStyle,
+            headerTitleStyle,
+          }}
+        />
+      </ProfileStack.Navigator>
+    ) : (
+      <ProfileStack.Navigator>
+        <ProfileStack.Screen
+          name="Profile"
+          component={DrawerScreen}
+          options={{
+            title: "Welcome",
+            headerStyle,
+            headerTitleStyle,
+           
+          }}
+        />
+        <ProfileStack.Screen
+          name="BrainGauge"
+          component={Braingauge}
+          options={{
+            title: "Survey",
+            headerStyle,
+            headerTitleStyle,
+          }}
+        />
+        <ProfileStack.Screen
+          name="Results"
+          component={TabsScreen}
+          options={{
+            title: "Results",
+            headerStyle,
+            headerTitleStyle,
+          }}
+        />
+      </ProfileStack.Navigator>
+    );
 
   function TabsScreen() {
     return (
