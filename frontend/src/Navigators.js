@@ -1,8 +1,8 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 
 import { Button } from "react-native";
 
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -20,6 +20,8 @@ import Profile from "./components/Welcome";
 import Splash from "./components/Home";
 import Braingauge from "./Braingauge";
 
+import Icon from "react-native-vector-icons/Ionicons";
+
 
 import { withTheme } from "react-native-elements";
 
@@ -34,14 +36,11 @@ const headerTitleStyle = {
 };
 
 
+
 export const Navigators = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userToken, setUserToken] = useState(null);
   const [emailGlobal, setEmailGlobal] = useState("mm"); 
-
-
-
-
   
   const setEmailFunction = (email) =>  setEmailGlobal(email);
   
@@ -86,10 +85,14 @@ export const Navigators = ({ navigation }) => {
 
     const Drawer = createDrawerNavigator();
     const DrawerScreen = () => (
+
+     
+
       <Drawer.Navigator
         drawerStyle={{
           backgroundColor: "black",
           width: 240,
+          opacity: .95,
         }}
         drawerContentOptions={{
           inactiveTintColor: "white",
@@ -97,11 +100,10 @@ export const Navigators = ({ navigation }) => {
           itemStyle: { marginVertical: 30 },
         }}
       >
-        <Drawer.Screen name="Go Back" component={Profile}/>
+        <Drawer.Screen name="Return" component={Profile}/>
         <Drawer.Screen
           name="Mood"
           component={Mood}
-         navigation={navigation}
         />
         <Drawer.Screen name="Appetite" component={Appetite} />
         <Drawer.Screen name="Exercise" component={Exercise} />
@@ -111,77 +113,45 @@ export const Navigators = ({ navigation }) => {
 
 
   const ProfileStack = createStackNavigator();
-  const ProfileStackScreen = ({ navigation }) =>
-    3 > 2 ? (
-      <ProfileStack.Navigator>
-        <ProfileStack.Screen
-          name="Profile"
-          component={DrawerScreen}
-          options={{
-            title: "Welcome",
-            headerStyle,
-            headerTitleStyle,
-            headerLeft: () => (
+  const ProfileStackScreen = ({ navigation }) => (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen
+        name="Profile"
+        component={DrawerScreen}
+        options={{
+          title: "Welcome",
+          headerStyle,
+          headerTitleStyle,
+          headerLeft: () =>
               <Button
-                onPress={() => {
-                  navigation.navigate("BrainGauge");
-                }}
-                title="< GoTo Survey"
+                onPress={() =>
+                  navigation.dispatch(DrawerActions.toggleDrawer())
+                }
+                title="Results Drawer"
               />
-            ),
-          }}
-        />
-        <ProfileStack.Screen
-          name="BrainGauge"
-          component={Braingauge}
-          options={{
-            title: "Survey",
-            headerStyle,
-            headerTitleStyle,
-          }}
-        />
-        <ProfileStack.Screen
-          name="Results"
-          component={TabsScreen}
-          options={{
-            title: "Results",
-            headerStyle,
-            headerTitleStyle,
-          }}
-        />
-      </ProfileStack.Navigator>
-    ) : (
-      <ProfileStack.Navigator>
-        <ProfileStack.Screen
-          name="Profile"
-          component={DrawerScreen}
-          options={{
-            title: "Welcome",
-            headerStyle,
-            headerTitleStyle,
-           
-          }}
-        />
-        <ProfileStack.Screen
-          name="BrainGauge"
-          component={Braingauge}
-          options={{
-            title: "Survey",
-            headerStyle,
-            headerTitleStyle,
-          }}
-        />
-        <ProfileStack.Screen
-          name="Results"
-          component={TabsScreen}
-          options={{
-            title: "Results",
-            headerStyle,
-            headerTitleStyle,
-          }}
-        />
-      </ProfileStack.Navigator>
-    );
+        }}
+      />
+      <ProfileStack.Screen
+        name="BrainGauge"
+        component={Braingauge}
+        options={{
+          title: "Survey",
+          headerStyle,
+          headerTitleStyle,
+        }}
+      />
+      <ProfileStack.Screen
+        name="Results"
+        component={TabsScreen}
+        options={{
+          title: "Results",
+          headerStyle,
+          headerTitleStyle,
+        }}
+      />
+    </ProfileStack.Navigator>
+  );
+    ;
 
   function TabsScreen() {
     return (
@@ -256,9 +226,9 @@ export const Navigators = ({ navigation }) => {
           setEmailGlobal,
         }}
       >
-        <NavigationContainer>
-          <RootStackScreen userToken={userToken} />
-        </NavigationContainer>
+          <NavigationContainer>
+            <RootStackScreen userToken={userToken} />
+          </NavigationContainer>
       </emailContext.Provider>
     </AuthContext.Provider>
   );

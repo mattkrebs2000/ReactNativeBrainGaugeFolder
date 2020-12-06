@@ -1,5 +1,4 @@
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,16 +7,19 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import {
+  VictoryChart,
+  VictoryScatter,
+  VictoryTheme,
+  VictoryAxis,
+  VictoryTooltip
+} from "victory-native";
 
 const Hunger = () => {
-//   const navigation = useNavigation();
-
-  console.log("Hunger")
+  console.log("Hunger");
   return (
     <SafeAreaView style={styles.container2}>
       <View style={styles.container}>
-        <Text style={styles.text}>Brain Gauge</Text>
-
         <View style={styles.middle}>
           <Image
             source={{
@@ -26,43 +28,78 @@ const Hunger = () => {
             }}
             style={styles.img}
           />
+
+          <Text> {"\n"} </Text>
+          <Text style={styles.text2}>Appetite</Text>
+
+          <View style={styles.divider_bar}></View>
         </View>
-        <Text style={styles.text2}>
-          This is the App that measures your mental responsiveness and tells you
-          when you are at your best.
-        </Text>
-        <View style={styles.buttons}>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => navigation.navigate("CreateAccount")}
-            // onPress={this.signUp}
+        <View style={styles.chart}>
+          <VictoryChart
+            width={350}
+            theme={VictoryTheme.material}
+            domain={{ x: [0, 100], y: [0, 7] }}
           >
-            <Text
-              accessibilityLabel="Sign In"
-              style={styles.text3}
-              onPress={() => {
-                navigation.navigate("SignIn");
+            <VictoryAxis
+              orientation="bottom"
+              offsetY={50}
+              scale="time"
+              standalone={false}
+              style={{
+                axisLabel: {
+                  fill: "#004fff",
+                  fontSize: 18,
+                  padding: 30,
+                  margin: 20,
+                },
+                tickLabels: {
+                  fill: "#004fff",
+                  fontSize: 15,
+                },
               }}
-            >
-              Sign In
-            </Text>
-          </TouchableOpacity>
+              tickValues={[2, 25, 50, 75, 100]}
+              tickFormat={["Very Hungry", "", "", "", "Stuffed"]}
+            />
 
-          <TouchableOpacity
-            style={styles.btn}
-
-            // onPress={this.signUp}
-          >
-            <Text
-              accessibilityLabel="Sign Up"
-              style={styles.text3}
-              onPress={() => {
-                navigation.navigate("CreateAccount");
+            <VictoryAxis
+              dependentAxis
+              offsetX={55}
+              label="Reaction Time"
+              standalone={false}
+              style={{
+                axisLabel: { fill: "#004fff", fontSize: 18, padding: 40 },
+                tickLabels: {
+                  fill: "#004fff",
+                  fontSize: 18,
+                },
               }}
-            >
-              Sign Up
-            </Text>
-          </TouchableOpacity>
+            />
+
+            <VictoryScatter
+              style={{ data: { fill: "red" } }}
+              size={7}
+              data={[
+                { x: 90, y: 2 },
+                { x: 36, y: 3 },
+                { x: 32, y: 5 },
+                { x: 48, y: 4 },
+                { x: 89, y: 7 },
+              ]}
+              labels={({ datum }) =>
+                `Self Rating: ${datum.x}, Speed: ${datum.y}`
+              }
+              labelComponent={
+                <VictoryTooltip
+                  style={{
+                    fontSize: 20,
+                  }}
+                  constrainToVisibleArea
+                  dy={0}
+                  centerOffset={{ y: -80 }}
+                />
+              }
+            />
+          </VictoryChart>
         </View>
       </View>
     </SafeAreaView>
@@ -73,61 +110,42 @@ export default Hunger;
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
-    backgroundColor: "black",
-    color: "white",
     alignItems: "center",
-    justifyContent: "center",
   },
-  text: {
-    color: "white",
-    fontSize: 40,
-    marginBottom: 30,
+
+  divider_bar: {
+    marginRight: 200,
+    width: "100%",
+    backgroundColor: "#FAD9C5",
+    height: 1,
+    marginTop: 20,
   },
+
   img: {
     width: "100%",
-    height: 150,
+    height: 120,
     borderRadius: 5,
   },
   text2: {
     color: "white",
-    margin: "12%",
+    fontSize: 35,
     textAlign: "center",
-    justifyContent: "flex-start",
-
-    fontSize: 15,
   },
   middle: {
     width: 200,
+    padding: 10,
+    flex: 1,
+    marginTop: 40,
   },
-  btn: {
-    borderColor: "#167bff",
-    borderWidth: 1,
-    width: 100,
-    height: 45,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "black",
-    borderRadius: 10,
-    shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 3,
-    color: "white",
-    margin: 5,
-  },
-  text3: {
-    color: "white",
-    fontSize: 20,
-    textAlign: "center",
-  },
-  buttons: {
-    flexDirection: "row",
+  chart: {
+    width: 330,
+    padding: 10,
+    flex: 2,
   },
   container2: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
+    flexDirection: "column",
   },
 });

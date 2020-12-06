@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Text,
   StyleSheet,
@@ -8,10 +8,62 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { AuthContext } from "../context";
+import emailContext from "../emailContext.js";
+import { firebase } from "../firebase/config.js";
 
 
 
 const Review = ({texts1, texts2, texts3, texts4, value1, value2, value3, value4, navigation, setPage, page}) => {
+
+   const { emailGlobal } = useContext(emailContext);
+
+    const Submit = () => {
+
+firebase.then(() => {
+const uid = response.performance.uid;
+
+  const data = {
+    email: emailGlobal,
+      text1: value1,
+      text2: value2,
+      text3: value3,
+      text4: value4,
+  };
+
+  const usersRef = firebase.firestore().collection("Performance");
+  usersRef
+    .doc(uid)
+    .set(data)
+    .then(() => {
+      setPage(6, { performance: data });
+    })
+    .catch((error) => {
+      alert(error);
+    });
+
+  // const data = {
+  //   email: emailGlobal,
+  //   text1: value1,
+  //   text2: value2,
+  //   text3: value3,
+  //   text4: value4,
+  // };
+  // const usersRef = firebase.firestore().collection("performance");
+  // usersRef
+  //   .set(data)
+  //   .then(() => {
+  //     setPage(6, { performance: data });
+  //   })
+  //   .catch((error) => {
+  //     alert(error);
+  //   });
+});
+    };
+
+
+
+
+
   const { signIn } = React.useContext(AuthContext);
 console.log("HEEEE", setPage, page)
 
@@ -49,12 +101,13 @@ console.log("HEEEE", setPage, page)
             <TouchableOpacity
               style={styles.btn}
               onPress={() => {
+              Submit(); 
               setPage(6);
               console.log(page)
               }}
               >
              
-              <Text style={styles.text}>Submit</Text>
+              <Text style={styles.text} >Submit</Text>
             </TouchableOpacity>
 
             <View style={styles.divider_bar}></View>
