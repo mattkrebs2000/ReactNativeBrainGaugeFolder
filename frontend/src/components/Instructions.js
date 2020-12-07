@@ -13,7 +13,7 @@ import { AuthContext } from "../context";
 const Instructions = ({navigation, setPage
 }) => {
 
-  console.log("Instructions", navigation.setOptions)
+  console.log("Instructions")
 
 useEffect(() => {
   navigation.setOptions({

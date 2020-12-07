@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-
 import Survey from "./components/Survey";
 import Survey2 from "./components/Survey2";
 import Survey3 from "./components/Survey3";
@@ -18,10 +17,8 @@ export default Braingauge = ({ navigation }) => {
   const [texts3, setText3] = useState("Not Included");
   const [value4, setValue4] = useState(0);
   const [texts4, setText4] = useState("Not Included");
- const [page, setPage] = useState(1);
-   const [average, setAverage] = useState(0);
-  
-
+  const [page, setPage] = useState(1);
+  const [average, setAverage] = useState(0);
 
   useEffect(() => {
     texting();
@@ -189,6 +186,10 @@ export default Braingauge = ({ navigation }) => {
             average={average}
             setAverage={setAverage}
             navigation={navigation}
+            value1={value1}
+            value2={value2}
+            value3={value3}
+            value4={value4}
           />
         );
     }

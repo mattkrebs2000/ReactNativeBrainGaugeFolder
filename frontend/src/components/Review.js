@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   Text,
   StyleSheet,
@@ -8,115 +8,95 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { AuthContext } from "../context";
-import emailContext from "../emailContext.js";
-import { firebase } from "../firebase/config.js";
 
 
+const Review = ({
+  texts1,
+  texts2,
+  texts3,
+  texts4,
+  value1,
+  value2,
+  value3,
+  value4,
+  navigation,
+  setPage,
+  page,
+}) => {
+ 
 
-const Review = ({texts1, texts2, texts3, texts4, value1, value2, value3, value4, navigation, setPage, page}) => {
+  // const Submit = () => {
+  //   const data = {
+  //     email: emailGlobal,
+  //     text1: value1,
+  //     text2: value2,
+  //     text3: value3,
+  //     text4: value4,
+  //   };
 
-   const { emailGlobal } = useContext(emailContext);
-
-    const Submit = () => {
-
-firebase.then(() => {
-const uid = response.performance.uid;
-
-  const data = {
-    email: emailGlobal,
-      text1: value1,
-      text2: value2,
-      text3: value3,
-      text4: value4,
-  };
-
-  const usersRef = firebase.firestore().collection("Performance");
-  usersRef
-    .doc(uid)
-    .set(data)
-    .then(() => {
-      setPage(6, { performance: data });
-    })
-    .catch((error) => {
-      alert(error);
-    });
-
-  // const data = {
-  //   email: emailGlobal,
-  //   text1: value1,
-  //   text2: value2,
-  //   text3: value3,
-  //   text4: value4,
+  //   return firebase
+  //     .firestore()
+  //     .collection("Performance")
+  //     .add({ data })
+  //     .then(() => {
+  //       setPage(6, { performance: data });
+  //     })
+  //     .catch((error) => {
+  //       alert(error);
+  //     });
   // };
-  // const usersRef = firebase.firestore().collection("performance");
-  // usersRef
-  //   .set(data)
-  //   .then(() => {
-  //     setPage(6, { performance: data });
-  //   })
-  //   .catch((error) => {
-  //     alert(error);
-  //   });
-});
-    };
-
-
-
-
 
   const { signIn } = React.useContext(AuthContext);
-console.log("HEEEE", setPage, page)
+  console.log("HEEEE", setPage, page);
 
-    return (
-      <View style={styles.container} behavior="padding">
-        <SafeAreaView style={styles.container} behavior="padding">
-          <View style={styles.middle}>
-            <Image
-              source={{
-                uri:
-                  "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
-              }}
-              style={styles.img}
-            />
-          </View>
-          <Text> {"\n"} </Text>
-          <Text style={styles.text2}>Review</Text>
-          <View style={styles.divider_bar}></View>
-          <View style={styles.mid}>
-            <Text style={styles.text3}>
-              {"\n"}
-              Sleep: ({value1}) = {texts1}
-              {"\n"}
-              Mood: ({value2}) = {texts2}
-              {"\n"}
-              Appetite: ({value3}) = {texts3}
-              {"\n"}
-              Exercise: ({value4}) = {texts4}
-              {"\n"}
-            </Text>
-          </View>
+  return (
+    <View style={styles.container} behavior="padding">
+      <SafeAreaView style={styles.container} behavior="padding">
+        <View style={styles.middle}>
+          <Image
+            source={{
+              uri:
+                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+            }}
+            style={styles.img}
+          />
+        </View>
+        <Text> {"\n"} </Text>
+        <Text style={styles.text2}>Review</Text>
+        <View style={styles.divider_bar}></View>
+        <View style={styles.mid}>
+          <Text style={styles.text3}>
+            {"\n"}
+            Sleep: ({value1}) = {texts1}
+            {"\n"}
+            Mood: ({value2}) = {texts2}
+            {"\n"}
+            Appetite: ({value3}) = {texts3}
+            {"\n"}
+            Exercise: ({value4}) = {texts4}
+            {"\n"}
+          </Text>
+        </View>
 
-          {/* Sign Up Button */}
-          <View style={styles.lower}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => {
-              Submit(); 
+        {/* Sign Up Button */}
+        <View style={styles.lower}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => {
               setPage(6);
-              console.log(page)
-              }}
-              >
-             
-              <Text style={styles.text} >Submit</Text>
-            </TouchableOpacity>
+              console.log(page);
+            }}
+          >
+            <Text style={styles.text}>Submit</Text>
+          </TouchableOpacity>
 
-            <View style={styles.divider_bar}></View>
-          </View>
-          {/* Log In */}
-        </SafeAreaView>
-      </View>
-    );  
-}
+          <View style={styles.divider_bar}></View>
+        </View>
+        {/* Log In */}
+      </SafeAreaView>
+    </View>
+  );
+};
 
 export default Review;
 
@@ -145,18 +125,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#FAD9C5",
     height: 1,
     marginTop: 20,
-    
   },
   text3: {
     color: "white",
-    fontSize: 20, 
-    textAlign: "center"
+    fontSize: 20,
+    textAlign: "center",
   },
   mid: {
-flex: .4,
-alignItems:"center",
-justifyContent:"center"
-
+    flex: 0.4,
+    alignItems: "center",
+    justifyContent: "center",
   },
   btn: {
     width: 300,

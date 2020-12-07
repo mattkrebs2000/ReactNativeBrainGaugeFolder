@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,10 +8,17 @@ import {
   Image,
 } from "react-native";
 import { AuthContext } from "../context";
+import emailContext from "../emailContext.js";
+import { firebase } from "../firebase/config.js";
 
-const Game = ({ average, setAverage, navigation }) => {
+const Game = ({ average, setAverage, navigation, value1,
+  value2,
+  value3,
+  value4,}) => {
 
 const { signOut } = React.useContext(AuthContext);
+
+ const { emailGlobal } = useContext(emailContext);
 
   const [x, setX] = useState(157);
   const [y, setY] = useState(0);
@@ -101,6 +108,29 @@ const { signOut } = React.useContext(AuthContext);
     }
   };
 
+    const Submit = () => {
+    const data = {
+      email: emailGlobal,
+      speed: average,
+      text1: value1,
+      text2: value2,
+      text3: value3,
+      text4: value4,
+    };
+
+    return firebase
+      .firestore()
+      .collection("Performance")
+      .add({ data })
+      .then(() => {
+        navigation.navigate("Profile");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
+
   return (
     <SafeAreaView style={styles.contatiner2}>
       <Text style={styles.top}>Your Reaction Time:</Text>
@@ -144,7 +174,8 @@ const { signOut } = React.useContext(AuthContext);
               Click Red Button to log this entry and see how these results
               compare with your previous entries.{" "}
             </Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <TouchableOpacity onPress={() => 
+              Submit() }>
               <Image
                 id="resultspage"
                 source={{
