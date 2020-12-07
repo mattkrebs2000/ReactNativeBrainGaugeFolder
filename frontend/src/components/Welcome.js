@@ -1,5 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 
+import { firebase } from "../firebase/config.js";
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -22,13 +24,27 @@ const Welcome = ({ navigation }) => {
   const { signOut } = React.useContext(AuthContext);
   const { emailGlobal } = useContext(emailContext);
 
- 
+    const populate = () => {
+    return firebase.firestore()
+         .collection("Performance")
+         .where("data.email", "==", "Mm@gmail.com")
+         .get()
+         .then(function (querySnapshot) {
+           querySnapshot.forEach(function (doc) {
+             // doc.data() is never undefined for query doc snapshots
+             console.log(doc.data());
+    
+    })
+  }
+    )
+  }
 
-  // useEffect(() => {
 
-  //   console.log("LLL", navigation);
-  // navigation.dispatch(DrawerActions.toggleDrawer());
-  // }, []);
+  useEffect(() => {
+
+    console.log("Howdy!"),
+    populate()
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -44,8 +60,7 @@ const Welcome = ({ navigation }) => {
         </Text>
         <TouchableOpacity
           style={styles.containerofimage}
-          onPress={() => navigation.navigate("BrainGauge")
-        }
+          onPress={() => navigation.navigate("BrainGauge")}
         >
           <Image
             source={{
@@ -54,14 +69,12 @@ const Welcome = ({ navigation }) => {
             style={styles.image}
           ></Image>
         </TouchableOpacity>
-        <Text style={styles.text2} onPress={() => navigation.toggleDrawer()
-        }>
+        <Text style={styles.text2} onPress={() => navigation.toggleDrawer()}>
           See Results
         </Text>
         <TouchableOpacity
           style={styles.containerofimage}
-          onPress={() => navigation.toggleDrawer()
-          }
+          onPress={() => navigation.toggleDrawer()}
         >
           <Image
             source={{
