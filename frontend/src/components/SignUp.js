@@ -16,9 +16,11 @@ import CryptoES from "crypto-es";
 // import { Font } from 'expo';
 // import axios from 'axios';
 
-import { AuthContext } from "../context";
 
 const SignUp = ({navigation}) => {
+
+    console.log("SignUp");
+
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

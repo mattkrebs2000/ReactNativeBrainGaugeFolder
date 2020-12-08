@@ -10,6 +10,9 @@ import {
 import Slider from "@react-native-community/slider";
 
 const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
+
+  console.log("Appetite");
+
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">

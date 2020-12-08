@@ -10,6 +10,9 @@ import {
 import Slider from "@react-native-community/slider";
 
 const Mood = ({ setPage, setValue2, texts2, value2 }) => {
+
+    console.log("Mood");
+
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">

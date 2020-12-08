@@ -10,6 +10,9 @@ import {
 import Slider from "@react-native-community/slider";
 
 const Exercise = ({ setPage, setValue4, texts4, value4 }) => {
+
+    console.log("Welcome");
+
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">

@@ -8,24 +8,21 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import emailContext from "./emailContext";
-import { AuthContext } from "./context";
+// import { AuthContext } from "./context";
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import CreateAccount from "./components/SignUp";
 import Mood from "./components/Mood";
-import Appetite from "./components/Hunger"
-import Sleep from "./components/Sleep"
-import Exercise from "./components/Exercise"
+import Appetite from "./components/Hunger";
+import Sleep from "./components/Sleep";
+import Exercise from "./components/Exercise";
 import Profile from "./components/Welcome";
 import Splash from "./components/Home";
 import Braingauge from "./Braingauge";
 
 import Icon from "react-native-vector-icons/Ionicons";
 
-
 import { withTheme } from "react-native-elements";
-
-
 
 const headerStyle = {
   backgroundColor: "black",
@@ -35,20 +32,15 @@ const headerTitleStyle = {
   color: "white",
 };
 
-
-
 export const Navigators = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [userToken, setUserToken] = useState(null);
-  const [emailGlobal, setEmailGlobal] = useState("mm"); 
-  
-  const setEmailFunction = (email) =>  setEmailGlobal(email);
-  
+  // const [userToken, setUserToken] = useState(null);
+  const [emailGlobal, setEmailGlobal] = useState("");
 
-
+  const setEmailFunction = (email) => setEmailGlobal(email);
 
   const AuthStack = createStackNavigator();
-  const AuthStackScreen = () => (
+  const AuthStackScreen = ({navigation}) => (
     <AuthStack.Navigator>
       <AuthStack.Screen
         name="Home"
@@ -78,39 +70,56 @@ export const Navigators = ({ navigation }) => {
           headerTitleStyle,
         }}
       />
+      <AuthStack.Screen
+        name="Profile"
+        component={DrawerScreen}
+        options={{
+          title: "Welcome",
+          headerStyle,
+          headerTitleStyle,
+          headerLeft: () => (
+            <Button
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+              title="Results Drawer"
+            />
+          ),
+        }}
+      />
+      <AuthStack.Screen
+        name="BrainGauge"
+        component={Braingauge}
+        options={{
+          title: "Survey",
+          headerStyle,
+          headerTitleStyle,
+        }}
+      />
     </AuthStack.Navigator>
   );
 
   const Tabs = createBottomTabNavigator();
 
-    const Drawer = createDrawerNavigator();
-    const DrawerScreen = () => (
-
-     
-
-      <Drawer.Navigator
-        drawerStyle={{
-          backgroundColor: "black",
-          width: 240,
-          opacity: .95,
-        }}
-        drawerContentOptions={{
-          inactiveTintColor: "white",
-          activeTintColor: "#167bff",
-          itemStyle: { marginVertical: 30 },
-        }}
-      >
-        <Drawer.Screen name="Return" component={Profile}/>
-        <Drawer.Screen
-          name="Mood"
-          component={Mood}
-        />
-        <Drawer.Screen name="Appetite" component={Appetite} />
-        <Drawer.Screen name="Exercise" component={Exercise} />
-        <Drawer.Screen name="Sleep" component={Sleep} />
-      </Drawer.Navigator>
-    );
-
+  const Drawer = createDrawerNavigator();
+  const DrawerScreen = () => (
+    <Drawer.Navigator
+      drawerStyle={{
+        backgroundColor: "black",
+        width: 240,
+        opacity: 0.95,
+      }}
+      drawerContentOptions={{
+        inactiveTintColor: "white",
+        activeTintColor: "#167bff",
+        itemStyle: { marginVertical: 30 },
+      }}
+    >
+      <Drawer.Screen name="Return" component={Profile} />
+      <Drawer.Screen name="Mood" component={Mood} />
+      <Drawer.Screen name="Appetite" component={Appetite} />
+      <Drawer.Screen name="Exercise" component={Exercise} />
+      <Drawer.Screen name="Sleep" component={Sleep} />
+    </Drawer.Navigator>
+  );
 
   const ProfileStack = createStackNavigator();
   const ProfileStackScreen = ({ navigation }) => (
@@ -122,13 +131,12 @@ export const Navigators = ({ navigation }) => {
           title: "Welcome",
           headerStyle,
           headerTitleStyle,
-          headerLeft: () =>
-              <Button
-                onPress={() =>
-                  navigation.dispatch(DrawerActions.toggleDrawer())
-                }
-                title="Results Drawer"
-              />
+          headerLeft: () => (
+            <Button
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+              title="Results Drawer"
+            />
+          ),
         }}
       />
       <ProfileStack.Screen
@@ -151,13 +159,11 @@ export const Navigators = ({ navigation }) => {
       />
     </ProfileStack.Navigator>
   );
-    ;
-
   function TabsScreen() {
     return (
       <Tabs.Navigator>
         <Tabs.Screen name="Appetite" component={Appetite} />
-        <Tabs.Screen name="Mood" component={Mood}/>
+        <Tabs.Screen name="Mood" component={Mood} />
         <Tabs.Screen name="Exercise" component={Exercise} />
         <Tabs.Screen name="Sleep" component={Sleep} />
       </Tabs.Navigator>
@@ -165,17 +171,9 @@ export const Navigators = ({ navigation }) => {
   }
 
   const RootStack = createStackNavigator();
-  const RootStackScreen = ({ userToken }) => (
+  const RootStackScreen = ({ emailGlobal }) => (
     <RootStack.Navigator headerMode="none">
-      {userToken ? (
-        <RootStack.Screen
-          name="App"
-          component={ProfileStackScreen}
-          options={{
-            animationEnabled: false,
-          }}
-        />
-      ) : (
+      
         <RootStack.Screen
           name="Auth"
           component={AuthStackScreen}
@@ -183,30 +181,30 @@ export const Navigators = ({ navigation }) => {
             animationEnabled: false,
           }}
         />
-      )}
+      
     </RootStack.Navigator>
   );
 
-  const authContext = React.useMemo(() => {
-    return {
-      signIn: () => {
-        setIsLoading(false);
-        setUserToken("asdf");
-      },
-      signUp: () => {
-        setIsLoading(false);
-        setUserToken("asdf");
-      },
-      signOut: () => {
-        setIsLoading(false);
-        setUserToken(null);
-      },
-      home: () => {
-        setIsLoading(false);
-        setUserToken(null);
-      },
-    };
-  }, []);
+  // const authContext = React.useMemo(() => {
+  //   return {
+  //     signIn: () => {
+  //       setIsLoading(false);
+  //       setUserToken("asdf");
+  //     },
+  //     signUp: () => {
+  //       setIsLoading(false);
+  //       setUserToken("asdf");
+  //     },
+  //     signOut: () => {
+  //       setIsLoading(false);
+  //       setUserToken(null);
+  //     },
+  //     home: () => {
+  //       setIsLoading(false);
+  //       setUserToken(null);
+  //     },
+  //   };
+  // }, []);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -219,17 +217,17 @@ export const Navigators = ({ navigation }) => {
   }
 
   return (
-    <AuthContext.Provider value={authContext}>
-      <emailContext.Provider
-        value={{
-          emailGlobal,
-          setEmailGlobal,
-        }}
-      >
-          <NavigationContainer>
-            <RootStackScreen userToken={userToken} />
-          </NavigationContainer>
-      </emailContext.Provider>
-    </AuthContext.Provider>
+    // <AuthContext.Provider value={authContext}>
+    <emailContext.Provider
+      value={{
+        emailGlobal,
+        setEmailGlobal,
+      }}
+    >
+      <NavigationContainer>
+        <RootStackScreen emailGlobal={emailGlobal}/>
+      </NavigationContainer>
+    </emailContext.Provider>
+    // </AuthContext.Provider>
   );
 };

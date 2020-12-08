@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import emailContext from "../emailContext.js"
-import { AuthContext } from "../context";
+
 
 import {
     View,
@@ -20,13 +20,14 @@ import { firebase } from "../firebase/config.js";
 
 
 
-const SignIn = ({ navigation, Auth }) => {
+const SignIn = ({ navigation }) => {
       const [email, setEmail] = useState("");
 
        const { emailGlobal, setEmailGlobal } = useContext(emailContext);
 
       const [password, setPassword] = useState("");
   
+  console.log("Login");
 
     const onLoginPress = () => {
       firebase
@@ -44,8 +45,11 @@ const SignIn = ({ navigation, Auth }) => {
                 return;
               }
               const user = firestoreDocument.data();
-              signIn({ user: user });
-              setEmailGlobal(email);
+              // signIn({ user: user });
+              
+              setEmailGlobal(email),
+              console.log(emailGlobal)
+              navigation.navigate("Profile");
               // AsyncStorage.setItem("passwordGlobal", password);
               
             })
@@ -59,7 +63,7 @@ const SignIn = ({ navigation, Auth }) => {
     };
 
   
-  const { signIn } = React.useContext(AuthContext);
+ 
 
     //  const [email, setEmail] = useState("");
     //  const [password, setPassword] = useState("");

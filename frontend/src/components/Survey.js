@@ -11,6 +11,10 @@ import {
 import Slider from "@react-native-community/slider";
 
 const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
+
+    console.log("Sleep");
+
+
   useEffect(() => {
     navigation.setOptions({
       title: "Survey",

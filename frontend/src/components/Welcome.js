@@ -14,15 +14,13 @@ import {
 } from "react-native";
 import { DrawerActions } from "@react-navigation/native";
 import emailContext from "../emailContext.js";
-import { AuthContext } from "../context";
+
 
 import Icon from "react-native-vector-icons/Ionicons";
 
 const Welcome = ({ navigation }) => {
-  console.log("navigation", navigation);
-
-  const { signOut } = React.useContext(AuthContext);
-  const { emailGlobal } = useContext(emailContext);
+  console.log("Welcome");
+  const { emailGlobal, setEmailGlobal } = useContext(emailContext);
 
     const populate = () => {
     return firebase.firestore()
@@ -32,19 +30,20 @@ const Welcome = ({ navigation }) => {
          .then(function (querySnapshot) {
            querySnapshot.forEach(function (doc) {
              // doc.data() is never undefined for query doc snapshots
-             console.log(doc.data());
+             console.log(doc.data().data.speed);
     
     })
   }
     )
-  }
+}
+
+ useEffect(() => {
+  populate()
+ }, []);
 
 
-  useEffect(() => {
 
-    console.log("Howdy!"),
-    populate()
-  }, []);
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -69,12 +68,16 @@ const Welcome = ({ navigation }) => {
             style={styles.image}
           ></Image>
         </TouchableOpacity>
-        <Text style={styles.text2} onPress={() => navigation.toggleDrawer()}>
+        <Text style={styles.text2} onPress={() => 
+         
+          navigation.toggleDrawer()}>
           See Results
         </Text>
         <TouchableOpacity
           style={styles.containerofimage}
-          onPress={() => navigation.toggleDrawer()}
+          onPress={() =>
+           
+            navigation.toggleDrawer()}
         >
           <Image
             source={{
@@ -88,7 +91,8 @@ const Welcome = ({ navigation }) => {
           ></Image>
         </TouchableOpacity>
         <View style={styles.bottombuttons}>
-          <Button title="Sign Out" onPress={() => signOut()} />
+          <Button title="Sign Out" onPress={() => 
+            navigation.navigate("Home")}/>
         </View>
       </View>
     </SafeAreaView>
