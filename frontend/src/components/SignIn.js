@@ -49,7 +49,7 @@ const SignIn = ({ navigation }) => {
               
               setEmailGlobal(email),
               console.log(emailGlobal)
-              navigation.navigate("Profile");
+            
               // AsyncStorage.setItem("passwordGlobal", password);
               
             })
@@ -60,6 +60,7 @@ const SignIn = ({ navigation }) => {
         .catch((error) => {
           alert(error);
         });
+          navigation.navigate("Profile");
     };
 
   

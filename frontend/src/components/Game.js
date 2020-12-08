@@ -7,7 +7,6 @@ import {
   Text,
   Image,
 } from "react-native";
-import { AuthContext } from "../context";
 import emailContext from "../emailContext.js";
 import { firebase } from "../firebase/config.js";
 
@@ -16,7 +15,7 @@ const Game = ({ average, setAverage, navigation, value1,
   value3,
   value4,}) => {
 
-const { signOut } = React.useContext(AuthContext);
+
 
  const { emailGlobal } = useContext(emailContext);
 
