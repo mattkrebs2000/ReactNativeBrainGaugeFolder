@@ -51,13 +51,13 @@ const Mood = ({navigation}) => {
               standalone={false}
               style={{
                 axisLabel: {
-                  fill: "#004fff",
+                  fill: "white",
                   fontSize: 18,
                   padding: 30,
                   margin: 20,
                 },
                 tickLabels: {
-                  fill: "#004fff",
+                  fill: "white",
                   fontSize: 15,
                 },
               }}
@@ -71,16 +71,16 @@ const Mood = ({navigation}) => {
               label="Reaction Time"
               standalone={false}
               style={{
-                axisLabel: { fill: "#004fff", fontSize: 18, padding: 40 },
+                axisLabel: { fill: "white", fontSize: 18, padding: 40 },
                 tickLabels: {
-                  fill: "#004fff",
+                  fill: "white",
                   fontSize: 18,
                 },
               }}
             />
 
             <VictoryScatter
-              style={{ data: { fill: "red" } }}
+              style={{ data: { fill: "#004fff" } }}
               size={7}
               data={[
                 { x: 90, y: 2 },
