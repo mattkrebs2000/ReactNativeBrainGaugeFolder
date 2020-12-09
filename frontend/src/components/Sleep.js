@@ -15,7 +15,7 @@ import {
   VictoryTooltip
 } from "victory-native";
 
-const Sleep = () => {
+const Sleep = ({navigation}) => {
   console.log("Sleep");
   return (
     <SafeAreaView style={styles.container2}>
@@ -100,6 +100,20 @@ const Sleep = () => {
               }
             />
           </VictoryChart>
+          <TouchableOpacity
+            style={styles.container}
+            onPress={() => navigation.toggleDrawer()}
+          >
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => navigation.toggleDrawer()}
+              // onPress={this.signUp}
+            >
+              <Text accessibilityLabel="Sign In" style={styles.text}>
+                Other Results
+              </Text>
+            </TouchableOpacity>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
@@ -147,5 +161,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "black",
     flexDirection: "column",
+  },
+  btn: {
+    borderColor: "#167bff",
+    borderWidth: 1,
+    width: 150,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "black",
+    borderRadius: 10,
+    shadowColor: "white",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    color: "white",
+    margin: 5,
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+    textAlign: "center",
   },
 });

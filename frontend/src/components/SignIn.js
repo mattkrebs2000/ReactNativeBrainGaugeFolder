@@ -139,7 +139,7 @@ const SignIn = ({ navigation }) => {
                   }}
                   style={styles.img}
                 />
-                <Text style={styles.text2}>{email}</Text>
+                <Text style={styles.text2}></Text>
               </TouchableOpacity>
               <Text> {"\n"} </Text>
               <Text style={styles.text2}>Sign In</Text>

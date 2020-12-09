@@ -15,12 +15,15 @@ import {
   VictoryTooltip
 } from "victory-native";
 
-const Hunger = () => {
+const Hunger = ({navigation}) => {
   console.log("Hunger");
   return (
     <SafeAreaView style={styles.container2}>
       <View style={styles.container}>
-        <View style={styles.middle}>
+        <TouchableOpacity
+          style={styles.middle}
+          onPress={() => navigation.toggleDrawer()}
+        >
           <Image
             source={{
               uri:
@@ -33,7 +36,7 @@ const Hunger = () => {
           <Text style={styles.text2}>Appetite</Text>
 
           <View style={styles.divider_bar}></View>
-        </View>
+        </TouchableOpacity>
         <View style={styles.chart}>
           <VictoryChart
             width={350}
@@ -100,6 +103,17 @@ const Hunger = () => {
               }
             />
           </VictoryChart>
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => navigation.toggleDrawer()}
+              // onPress={this.signUp}
+            >
+              <Text accessibilityLabel="Sign In" style={styles.text}>
+                Other Results
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -147,5 +161,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "black",
     flexDirection: "column",
+  },
+  btn: {
+    borderColor: "#167bff",
+    borderWidth: 1,
+    width: 150,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "black",
+    borderRadius: 10,
+    shadowColor: "white",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    color: "white",
+    margin: 5,
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+    textAlign: "center",
   },
 });

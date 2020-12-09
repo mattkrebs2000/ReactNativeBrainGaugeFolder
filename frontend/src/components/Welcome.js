@@ -1,7 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-
 import { firebase } from "../firebase/config.js";
-
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,38 +10,30 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import { DrawerActions } from "@react-navigation/native";
 import emailContext from "../emailContext.js";
-
-
-import Icon from "react-native-vector-icons/Ionicons";
 
 const Welcome = ({ navigation }) => {
   console.log("Welcome");
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
 
-    const populate = () => {
-    return firebase.firestore()
-         .collection("Performance")
-         .where("data.email", "==", "Mm@gmail.com")
-         .get()
-         .then(function (querySnapshot) {
-           querySnapshot.forEach(function (doc) {
-             // doc.data() is never undefined for query doc snapshots
-             console.log(doc.data().data.speed);
-    
-    })
-  }
-    )
-}
 
- useEffect(() => {
-  populate()
- }, []);
+  const populate = () => {
+    return firebase
+      .firestore()
+      .collection("Performance")
+      .where("data.email", "==", emailGlobal)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.data().data.speed);
+        });
+      });
+  };
 
-
-
-  
+  useEffect(() => {
+    populate();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -68,16 +58,12 @@ const Welcome = ({ navigation }) => {
             style={styles.image}
           ></Image>
         </TouchableOpacity>
-        <Text style={styles.text2} onPress={() => 
-         
-          navigation.toggleDrawer()}>
+        <Text style={styles.text2} onPress={() => navigation.toggleDrawer()}>
           See Results
         </Text>
         <TouchableOpacity
           style={styles.containerofimage}
-          onPress={() =>
-           
-            navigation.toggleDrawer()}
+          onPress={() => navigation.toggleDrawer()}
         >
           <Image
             source={{
@@ -91,8 +77,10 @@ const Welcome = ({ navigation }) => {
           ></Image>
         </TouchableOpacity>
         <View style={styles.bottombuttons}>
-          <Button title="Sign Out" onPress={() => 
-            navigation.navigate("Home")}/>
+          <Button
+            title="Sign Out"
+            onPress={() => navigation.navigate("Home")}
+          />
         </View>
       </View>
     </SafeAreaView>
