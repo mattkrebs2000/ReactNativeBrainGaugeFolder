@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import emailContext from "../emailContext.js"
-
+import emailContext from "../emailContext.js";
 
 import {
     View,
@@ -27,7 +26,7 @@ const SignIn = ({ navigation }) => {
 
       const [password, setPassword] = useState("");
   
-  console.log("Login");
+  
 
     const onLoginPress = () => {
       firebase

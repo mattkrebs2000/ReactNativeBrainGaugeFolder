@@ -86,10 +86,10 @@ const Game = ({ average, setAverage, navigation, value1,
   //This function creates unique colors Ex: #234432;
 
   const getRandomColor = () => {
-    var letters = "0123456789ABCDEF".split("");
+    var letters = "3456789AB".split("");
     var colorNumbers = "#";
     for (var i = 0; i < 6; i++) {
-      colorNumbers += letters[Math.round(Math.random() * 15)];
+      colorNumbers += letters[Math.round(Math.random() * 8)];
     } //ends for loop
     return colorNumbers;
   };
@@ -110,7 +110,7 @@ const Game = ({ average, setAverage, navigation, value1,
     const Submit = () => {
     const data = {
       email: emailGlobal,
-      speed: average,
+      speed: Number(average),
       text1: value1,
       text2: value2,
       text3: value3,

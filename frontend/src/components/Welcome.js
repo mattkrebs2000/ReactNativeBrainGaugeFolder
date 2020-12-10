@@ -11,13 +11,20 @@ import {
   TouchableOpacity,
 } from "react-native";
 import emailContext from "../emailContext.js";
+import dataContext from "../dataContext.js";
 
 const Welcome = ({ navigation }) => {
   console.log("Welcome");
-  const { emailGlobal, setEmailGlobal } = useContext(emailContext);
+  const { emailGlobal } = useContext(emailContext);
+  const {yourData, setYourData} = useContext(dataContext);
+  
+
+
+
 
 
   const populate = () => {
+    let newArray = [];
     return firebase
       .firestore()
       .collection("Performance")
@@ -25,10 +32,21 @@ const Welcome = ({ navigation }) => {
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.data().data.speed);
+        let newData = doc.data().data;
+        
+
+// setYourData([...yourData,{newData}])
+
+
+          setYourData(yourData.push({newData}))
+          newArray.push(newData.speed)
+          
         });
+        let max = Math.max(...newArray)
+         console.log("here is the data", yourData, newArray, max);
+
       });
+      
   };
 
   useEffect(() => {
