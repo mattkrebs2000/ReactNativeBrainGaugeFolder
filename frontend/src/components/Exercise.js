@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,8 +14,11 @@ import {
   VictoryAxis,
   VictoryTooltip
 } from "victory-native";
+import maxContext from "../maxOfYAxisContext.js";
+
 
 const Exercise = ({navigation}) => {
+   const { maxOfYAxis} = useContext(maxContext);
   console.log("Exercise");
   return (
     <SafeAreaView style={styles.container2}>
@@ -41,7 +44,7 @@ const Exercise = ({navigation}) => {
           <VictoryChart
             width={350}
             theme={VictoryTheme.material}
-            domain={{ x: [0, 100], y: [0, 7] }}
+            domain={{ x: [0, 100], y: [0, maxOfYAxis] }}
           >
             <VictoryAxis
               orientation="bottom"

@@ -12,11 +12,13 @@ import {
 } from "react-native";
 import emailContext from "../emailContext.js";
 import dataContext from "../dataContext.js";
+import maxContext from "../maxOfYAxisContext.js";
 
 const Welcome = ({ navigation }) => {
   console.log("Welcome");
   const { emailGlobal } = useContext(emailContext);
   const {yourData, setYourData} = useContext(dataContext);
+  const {maxOfYAxis, setMaxOfYAxis} = useContext(maxContext);
   
 
 
@@ -25,6 +27,7 @@ const Welcome = ({ navigation }) => {
 
   const populate = () => {
     let newArray = [];
+
     return firebase
       .firestore()
       .collection("Performance")
@@ -44,6 +47,8 @@ const Welcome = ({ navigation }) => {
         });
         let max = Math.max(...newArray)
          console.log("here is the data", yourData, newArray, max);
+         setMaxOfYAxis(max);
+         
 
       });
       

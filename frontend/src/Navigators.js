@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Button } from "react-native";
+import { Button, Text } from "react-native";
 import { useNavigation, NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import dataContext from "./dataContext";
 import emailContext from "./emailContext";
+import maxContext from "./maxOfYAxisContext"
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import CreateAccount from "./components/SignUp";
@@ -26,6 +27,8 @@ const headerTitleStyle = {
 export const Navigators = ({navigation}) => {
   const [emailGlobal, setEmailGlobal] = useState("");
    const [yourData, setYourData] = useState([]);
+   const [maxOfYAxis, setMaxOfYAxis] = useState(0)
+
 
   const AuthStack = createStackNavigator();
   const AuthStackScreen = () => (
@@ -65,9 +68,7 @@ export const Navigators = ({navigation}) => {
           title: "Welcome",
           headerStyle,
           headerTitleStyle,
-          headerLeft: () => (
-            console.log("Hi") 
-          ),
+          headerLeft: () => console.log("Hi"),
         }}
       />
       <AuthStack.Screen
@@ -85,6 +86,7 @@ export const Navigators = ({navigation}) => {
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
     <Drawer.Navigator
+    
       drawerStyle={{
         backgroundColor: "black",
         width: 240,
@@ -96,15 +98,24 @@ export const Navigators = ({navigation}) => {
         itemStyle: { marginVertical: 30 },
       }}
     >
+
       <Drawer.Screen name="Return" component={Profile} />
       <Drawer.Screen name="Mood" component={Mood} />
-      <Drawer.Screen name="Appetite" component={Appetite} />
+     
+      <Drawer.Screen name="Appetite" component={Appetite}/>
       <Drawer.Screen name="Exercise" component={Exercise} />
       <Drawer.Screen name="Sleep" component={Sleep} />
+     
     </Drawer.Navigator>
   );
 
   return (
+<maxContext.Provider value={{
+        maxOfYAxis,
+        setMaxOfYAxis,
+      }}
+    >
+
 
 <emailContext.Provider value={{
         emailGlobal,
@@ -121,5 +132,6 @@ export const Navigators = ({navigation}) => {
       </NavigationContainer>
       </dataContext.Provider>
     </emailContext.Provider>
+    </maxContext.Provider> 
   );
 };
