@@ -45,17 +45,23 @@ const Exercise = ({ navigation }) => {
             let newObject = {};
             newObject.x = newData.speed;
             newObject.y = newData.text4;
-            orderedPairsArray.push(newObject);
+            setOrderedPairArray(
+              orderedPairArray.push( newObject)
+            );
           }
+
+
+
         });
-        
+
         let max = Math.max(...maximumArray);
 
-        console.log("Exercies", yourData, maximumArray, max, orderedPairsArray);
+        console.log("Exercies", yourData, maximumArray, max, "yo", orderedPairsArray, "2", orderedPairArray);
         setMaxOfYAxis(max);
-        setOrderedPairArray(...orderedPairsArray);
-        console.log("HEREEEE", orderedPairArray)
+
+        // setOrderedPairArray([...orderedPairArray,...orderedPairsArray]);
       });
+      
   };
 
   useEffect(() => {
@@ -127,7 +133,11 @@ const Exercise = ({ navigation }) => {
               style={{ data: { fill: "#004fff" } }}
               size={7}
               data={[
-                orderedPairArray
+                { x: 90, y: 2 },
+                { x: 36, y: 3 },
+                { x: 32, y: 5 },
+                { x: 48, y: 4 },
+                { x: 89, y: 7 },
               ]}
               labels={({ datum }) =>
                 `Self Rating: ${datum.x}, Speed: ${datum.y}`
