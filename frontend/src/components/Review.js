@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { AuthContext } from "../context";
 
-
 const Review = ({
   texts1,
   texts2,
@@ -23,8 +22,6 @@ const Review = ({
   setPage,
   page,
 }) => {
- 
-
   // const Submit = () => {
   //   const data = {
   //     email: emailGlobal,
@@ -42,11 +39,10 @@ const Review = ({
   //       setPage(6, { performance: data });
   //     })
   //     .catch((error) => {
-  //       alert(error);
+  //       tColor="#004fff"(error);
   //     });
   // };
 
-  
   console.log("HEEEE", setPage, page);
 
   return (

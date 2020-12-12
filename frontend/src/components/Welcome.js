@@ -16,47 +16,47 @@ import maxContext from "../maxOfYAxisContext.js";
 
 const Welcome = ({ navigation }) => {
   console.log("Welcome");
+
+
   const { emailGlobal } = useContext(emailContext);
-  const {yourData, setYourData} = useContext(dataContext);
-  const {maxOfYAxis, setMaxOfYAxis} = useContext(maxContext);
-  
+ 
 
 
 
 
 
-  const populate = () => {
-    let newArray = [];
+//   const populate = () => {
+//     let newArray = [];
 
-    return firebase
-      .firestore()
-      .collection("Performance")
-      .where("data.email", "==", emailGlobal)
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-        let newData = doc.data().data;
+//     return firebase
+//       .firestore()
+//       .collection("Performance")
+//       .where("data.email", "==", emailGlobal)
+//       .get()
+//       .then(function (querySnapshot) {
+//         querySnapshot.forEach(function (doc) {
+//         let newData = doc.data().data;
         
 
-// setYourData([...yourData,{newData}])
+// // setYourData([...yourData,{newData}])
 
 
-          setYourData(yourData.push({newData}))
-          newArray.push(newData.speed)
+//           setYourData(yourData.push({newData}))
+//           newArray.push(newData.speed)
           
-        });
-        let max = Math.max(...newArray)
-         console.log("here is the data", yourData, newArray, max);
-         setMaxOfYAxis(max);
+//         });
+//         let max = Math.max(...newArray)
+//          console.log("here is the data",yourData, newArray, max);
+//          setMaxOfYAxis(max);
          
 
-      });
+//       });
       
-  };
+//   };
 
-  useEffect(() => {
-    populate();
-  }, []);
+  // useEffect(() => {
+  //   populate();
+  // }, []);
 
   return (
     <SafeAreaView style={styles.container}>

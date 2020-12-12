@@ -1,4 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
+
+import { firebase } from "../firebase/config.js";
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,12 +17,54 @@ import {
   VictoryAxis,
   VictoryTooltip
 } from "victory-native";
-import maxContext from "../maxOfYAxisContext.js";
+import emailContext from "../emailContext.js";
 
 
 const Exercise = ({navigation}) => {
-   const { maxOfYAxis} = useContext(maxContext);
-  console.log("Exercise");
+  
+    const { emailGlobal } = useContext(emailContext);
+    const [yourData, setYourData] = useState([]);
+    const [maxOfYAxis, setMaxOfYAxis] = useState(0);
+
+  const populate = () => {
+    let maximumArray = [];
+    let orderedPairArray = []
+
+    return firebase
+      .firestore()
+      .collection("Performance")
+      .where("data.email", "==", emailGlobal)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          let newData = doc.data().data;
+
+          if (newData.text4 > 0){
+          setYourData(yourData.push({ newData }));
+          maximumArray.push(newData.speed);
+
+          }
+
+        });
+        let max = Math.max(...maximumArray);
+
+        console.log("Exercies" , yourData, maximumArray, max);
+        setMaxOfYAxis(max);
+        
+      });
+  };
+
+  useEffect(() => {
+    populate();
+  }, []);
+
+
+
+
+
+
+
+
   return (
     <SafeAreaView style={styles.container2}>
       <View style={styles.container}>
@@ -44,7 +89,7 @@ const Exercise = ({navigation}) => {
           <VictoryChart
             width={350}
             theme={VictoryTheme.material}
-            domain={{ x: [0, 100], y: [0, maxOfYAxis] }}
+            domain={{ x: [0, 100], y: [0, 20] }}
           >
             <VictoryAxis
               orientation="bottom"

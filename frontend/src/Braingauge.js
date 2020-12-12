@@ -8,6 +8,7 @@ import Review from "./components/Review";
 import Instructions from "./components/Instructions";
 import Game from "./components/Game";
 
+
 export default Braingauge = ({ navigation }) => {
   const [value1, setValue1] = useState(0);
   const [texts1, setText1] = useState("Not Included");
