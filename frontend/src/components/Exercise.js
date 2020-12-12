@@ -15,20 +15,19 @@ import {
   VictoryScatter,
   VictoryTheme,
   VictoryAxis,
-  VictoryTooltip
+  VictoryTooltip,
 } from "victory-native";
 import emailContext from "../emailContext.js";
 
-
-const Exercise = ({navigation}) => {
-  
-    const { emailGlobal } = useContext(emailContext);
-    const [yourData, setYourData] = useState([]);
-    const [maxOfYAxis, setMaxOfYAxis] = useState(0);
+const Exercise = ({ navigation }) => {
+  const { emailGlobal } = useContext(emailContext);
+  const [yourData, setYourData] = useState([]);
+  const [maxOfYAxis, setMaxOfYAxis] = useState(0);
+  const [orderedPairArray, setOrderedPairArray] = useState([]);
 
   const populate = () => {
     let maximumArray = [];
-    let orderedPairArray = []
+    let orderedPairsArray = [];
 
     return firebase
       .firestore()
@@ -39,31 +38,29 @@ const Exercise = ({navigation}) => {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
 
-          if (newData.text4 > 0){
-          setYourData(yourData.push({ newData }));
-          maximumArray.push(newData.speed);
+          if (newData.text4 > 0) {
+            setYourData(yourData.push({ newData }));
+            maximumArray.push(newData.speed);
 
+            let newObject = {};
+            newObject.x = newData.speed;
+            newObject.y = newData.text4;
+            orderedPairsArray.push(newObject);
           }
-
         });
+        
         let max = Math.max(...maximumArray);
 
-        console.log("Exercies" , yourData, maximumArray, max);
+        console.log("Exercies", yourData, maximumArray, max, orderedPairsArray);
         setMaxOfYAxis(max);
-        
+        setOrderedPairArray(...orderedPairsArray);
+        console.log("HEREEEE", orderedPairArray)
       });
   };
 
   useEffect(() => {
     populate();
   }, []);
-
-
-
-
-
-
-
 
   return (
     <SafeAreaView style={styles.container2}>
@@ -89,7 +86,7 @@ const Exercise = ({navigation}) => {
           <VictoryChart
             width={350}
             theme={VictoryTheme.material}
-            domain={{ x: [0, 100], y: [0, 20] }}
+            domain={{ x: [0, 100], y: [0, 100] }}
           >
             <VictoryAxis
               orientation="bottom"
@@ -130,11 +127,7 @@ const Exercise = ({navigation}) => {
               style={{ data: { fill: "#004fff" } }}
               size={7}
               data={[
-                { x: 90, y: 2 },
-                { x: 36, y: 3 },
-                { x: 32, y: 5 },
-                { x: 48, y: 4 },
-                { x: 89, y: 7 },
+                orderedPairArray
               ]}
               labels={({ datum }) =>
                 `Self Rating: ${datum.x}, Speed: ${datum.y}`
