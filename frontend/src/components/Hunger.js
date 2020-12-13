@@ -71,6 +71,12 @@ const Hunger = ({navigation}) => {
               offsetX={55}
               label="Reaction Time"
               standalone={false}
+              tickValues={[
+                maxOfYAxis,
+                maxOfYAxis * 2,
+                maxOfYAxis * 3,
+                maxOfYAxis * 4,
+              ]}
               style={{
                 axisLabel: { fill: "white", fontSize: 18, padding: 40 },
                 tickLabels: {
@@ -149,13 +155,12 @@ const styles = StyleSheet.create({
   },
   middle: {
     width: 200,
-    padding: 10,
     flex: 1,
     marginTop: 40,
   },
   chart: {
     width: 330,
-    padding: 10,
+  
     flex: 2,
   },
   container2: {

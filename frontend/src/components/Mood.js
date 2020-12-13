@@ -150,13 +150,12 @@ const styles = StyleSheet.create({
   },
   middle: {
     width: 200,
-    padding: 10,
     flex: 1,
     marginTop: 40,
   },
   chart: {
     width: 330,
-    padding: 10,
+ 
     flex: 2,
   },
   container2: {

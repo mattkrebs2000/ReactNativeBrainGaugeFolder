@@ -1,7 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-
 import { firebase } from "../firebase/config.js";
-
 import {
   SafeAreaView,
   StyleSheet,
@@ -27,8 +25,6 @@ const Exercise = ({ navigation }) => {
 
   const populate = () => {
     let maximumArray = [];
-    let orderedPairsArray = [];
-
     return firebase
       .firestore()
       .collection("Performance")
@@ -36,38 +32,35 @@ const Exercise = ({ navigation }) => {
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
+        
           let newData = doc.data().data;
 
           if (newData.text4 > 0) {
-            setYourData(yourData.push({ newData }));
+              setYourData((arr) => {
+                return [...arr, newData];
+              });
             maximumArray.push(newData.speed);
-
             let newObject = {};
-            newObject.x = newData.speed;
-            newObject.y = newData.text4;
-            setOrderedPairArray(
-              orderedPairArray.push( newObject)
-            );
+            newObject.x = newData.text4;
+            newObject.y = newData.speed;
+
+            setOrderedPairArray((arr) => {
+              return [...arr, newObject];
+            });
           }
-
-
-
         });
 
-        let max = Math.max(...maximumArray);
-
-        console.log("Exercies", yourData, maximumArray, max, "yo", orderedPairsArray, "2", orderedPairArray);
-        setMaxOfYAxis(max);
-
-        // setOrderedPairArray([...orderedPairArray,...orderedPairsArray]);
-      });
-      
+        let maxi = Math.max(...maximumArray)/4;
+        let adjustedMax = Math.ceil((maxi+(maxi*(.1)))/10)*(10);
+        setMaxOfYAxis(adjustedMax);
+      })
+      .catch((e) => console.log(e));
   };
 
   useEffect(() => {
     populate();
   }, []);
-
+  console.log("ordered ", maxOfYAxis);
   return (
     <SafeAreaView style={styles.container2}>
       <View style={styles.container}>
@@ -90,9 +83,11 @@ const Exercise = ({ navigation }) => {
         </TouchableOpacity>
         <View style={styles.chart}>
           <VictoryChart
+            padding={{ left: 70, top:10, right: 50, bottom: 50 }}
             width={350}
+            height={250}
             theme={VictoryTheme.material}
-            domain={{ x: [0, 100], y: [0, 100] }}
+            domain={{ x: [0, 100], y: [0, maxOfYAxis * 4] }}
           >
             <VictoryAxis
               orientation="bottom"
@@ -117,11 +112,17 @@ const Exercise = ({ navigation }) => {
 
             <VictoryAxis
               dependentAxis
-              offsetX={55}
+              offsetX={75}
               label="Reaction Time"
               standalone={false}
+              tickValues={[
+                maxOfYAxis,
+                maxOfYAxis * 2,
+                maxOfYAxis * 3,
+                maxOfYAxis * 4,
+              ]}
               style={{
-                axisLabel: { fill: "white", fontSize: 18, padding: 40 },
+                axisLabel: { fill: "white", fontSize: 18, padding: 55 },
                 tickLabels: {
                   fill: "white",
                   fontSize: 18,
@@ -132,13 +133,7 @@ const Exercise = ({ navigation }) => {
             <VictoryScatter
               style={{ data: { fill: "#004fff" } }}
               size={7}
-              data={[
-                { x: 90, y: 2 },
-                { x: 36, y: 3 },
-                { x: 32, y: 5 },
-                { x: 48, y: 4 },
-                { x: 89, y: 7 },
-              ]}
+              data={orderedPairArray}
               labels={({ datum }) =>
                 `Self Rating: ${datum.x}, Speed: ${datum.y}`
               }
@@ -154,7 +149,7 @@ const Exercise = ({ navigation }) => {
               }
             />
           </VictoryChart>
-          <View style={styles.container}>
+          <View style={styles.container3}>
             <TouchableOpacity
               style={styles.btn}
               onPress={() => navigation.toggleDrawer()}
@@ -177,6 +172,10 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
   },
+  container3: {
+    alignItems: "center",
+    backgroundColor: "red"
+  },
 
   divider_bar: {
     marginRight: 200,
@@ -198,13 +197,10 @@ const styles = StyleSheet.create({
   },
   middle: {
     width: 200,
-    padding: 10,
     flex: 1,
     marginTop: 40,
   },
   chart: {
-    width: 330,
-    padding: 10,
     flex: 2,
   },
   container2: {
