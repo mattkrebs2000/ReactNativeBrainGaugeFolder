@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import { useIsFocused } from "@react-navigation/native";
 import { firebase } from "../firebase/config.js";
 import {
   SafeAreaView,
@@ -25,6 +26,8 @@ const Exercise = ({ navigation }) => {
   const [yForTwo, setYForTwo] = useState(0);
   const [yForHundred, setYForHundred] = useState(0);
   const [explanation, setExplanation] = useState("");
+
+  const isFocused = useIsFocused();
 
   const populate = () => {
     let maximumArray = [];
@@ -156,9 +159,8 @@ const Exercise = ({ navigation }) => {
   useEffect(() => {
     console.log("UseEffect");
     populate();
+  }, [isFocused]);
 
-  }, []);
-  
   return (
     <SafeAreaView style={styles.container2}>
       <View style={styles.center}>
