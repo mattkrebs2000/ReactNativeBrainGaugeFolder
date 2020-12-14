@@ -5,7 +5,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Image,
   TouchableOpacity,
 } from "react-native";
 import {
@@ -14,6 +13,7 @@ import {
   VictoryTheme,
   VictoryAxis,
   VictoryTooltip,
+  VictoryLine,
 } from "victory-native";
 import emailContext from "../emailContext.js";
 
@@ -22,9 +22,13 @@ const Exercise = ({ navigation }) => {
   const [yourData, setYourData] = useState([]);
   const [maxOfYAxis, setMaxOfYAxis] = useState(0);
   const [orderedPairArray, setOrderedPairArray] = useState([]);
+  const [yForTwo, setYForTwo] = useState(0);
+  const [yForHundred, setYForHundred] = useState(0);
+  const [explanation, setExplanation] = useState("");
 
   const populate = () => {
     let maximumArray = [];
+    let selfAssessArray = [];
     return firebase
       .firestore()
       .collection("Performance")
@@ -32,14 +36,14 @@ const Exercise = ({ navigation }) => {
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-        
           let newData = doc.data().data;
 
           if (newData.text4 > 0) {
-              setYourData((arr) => {
-                return [...arr, newData];
-              });
+            setYourData((arr) => {
+              return [...arr, newData];
+            });
             maximumArray.push(newData.speed);
+            selfAssessArray.push(newData.text4);
             let newObject = {};
             newObject.x = newData.text4;
             newObject.y = newData.speed;
@@ -49,46 +53,142 @@ const Exercise = ({ navigation }) => {
             });
           }
         });
+        let totalSpeed = maximumArray.length;
+        let totalAssess = selfAssessArray.length;
+        let sumSpeed = maximumArray.reduce((a, b) => a + b);
+        let sumSelfAssess = selfAssessArray.reduce((a, b) => a + b);
+        let aveSpeed = sumSpeed / totalSpeed;
+        let aveSelfAssess = sumSelfAssess / totalAssess;
+        let sumOfXDiff = [];
+        let sumOfYDiff = [];
+        let sumOfProducts = [];
+        let sumOfSquares = [];
 
-        let maxi = Math.max(...maximumArray)/4;
-        let adjustedMax = Math.ceil((maxi+(maxi*(.1)))/10)*(10);
+        maximumArray.forEach((pieceofdata) => {
+          let yData = pieceofdata - aveSpeed;
+          sumOfYDiff.push(yData);
+        });
+        selfAssessArray.forEach((pieceofdata) => {
+          let xData = pieceofdata - aveSelfAssess;
+          sumOfXDiff.push(xData);
+        });
+
+        for (i = 0; i < maximumArray.length; i++) {
+          let products = sumOfYDiff[i] * sumOfXDiff[i];
+          sumOfProducts.push(products);
+          let squares = sumOfXDiff[i] * sumOfXDiff[i];
+          sumOfSquares.push(squares);
+        }
+        let ySum = sumOfSquares.reduce((a, b) => a + b);
+        let xSum = sumOfProducts.reduce((a, b) => a + b);
+        let slope = xSum / ySum;
+        let slopeRound = Math.round(slope * 1000) / 1000;
+        let Yint = aveSpeed - slope * aveSelfAssess;
+        setYForTwo(slope * 2 + Yint);
+        setYForHundred(slope * 100 + Yint);
+
+        let maxi = Math.max(...maximumArray) / 4;
+        let adjustedMax = Math.ceil((maxi + maxi * 0.1) / 10) * 10;
         setMaxOfYAxis(adjustedMax);
+
+        console.log(
+          "MaximumArray",
+          maximumArray,
+          "SelfAssessArray",
+          selfAssessArray,
+          "TotalSpeed",
+          totalSpeed,
+          "TotalAssess",
+          totalAssess,
+          "SumSpeed",
+          sumSpeed,
+          "sumSelfAssess",
+          sumSelfAssess,
+          "aveSpeed",
+          aveSpeed,
+          "aveSelfAssess",
+          aveSelfAssess,
+          "sumOfXDiff",
+          sumOfXDiff,
+          "sumOfYDiff",
+          sumOfYDiff,
+          "ySum",
+          ySum,
+          "xSum",
+          xSum,
+          "Slope",
+          slope,
+          "yint",
+          Yint,
+          "yForTwo",
+          yForTwo,
+          "yFor100",
+          yForHundred
+        );
+
+        if (slopeRound > 0) {
+          setExplanation(
+            "Because the Blue Line has a positive slope (" +
+              slopeRound +
+              ") the data could be suggesting a positive correlation between the time it takes you to react and how active you've been."
+          );
+        } else if (slopeRound < 0) {
+          setExplanation(
+            "Because the Blue Line has a negative slope (" +
+              slopeRound +
+              ") the data could be suggesting a negative correlation between the time it takes you to react and how active you've been."
+          );
+        } else if (slopeRound < 0) {
+          setExplanation(
+            "Because the Blue Line has a zero slope (" +
+              slopeRound +
+              ") the data could be suggesting that there is no correlation between the time it takes you to react and how active you've been."
+          );
+        } else {
+          setExplanation(
+            "To this point you have not provided enough data for us to see if we can conclude connections between the given factors and Reaction Time. Click on 'Play Game' to begin the process."
+          );
+        }
       })
       .catch((e) => console.log(e));
   };
 
   useEffect(() => {
+    console.log("UseEffect");
     populate();
+
   }, []);
-  console.log("ordered ", maxOfYAxis);
+  
   return (
     <SafeAreaView style={styles.container2}>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.middle}
-          onPress={() => navigation.toggleDrawer()}
-        >
-          <Image
-            source={{
-              uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
-            }}
-            style={styles.img}
-          />
-
-          <Text> {"\n"} </Text>
+      <View style={styles.center}>
+        <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Exercise</Text>
-
-          <View style={styles.divider_bar}></View>
+          <Text style={styles.text5}>_________________________</Text>
+          <Text style={styles.text4}>{explanation}</Text>
         </TouchableOpacity>
         <View style={styles.chart}>
           <VictoryChart
-            padding={{ left: 70, top:10, right: 50, bottom: 50 }}
+            padding={{ left: 70, top: 10, right: 50, bottom: 50 }}
             width={350}
             height={250}
             theme={VictoryTheme.material}
             domain={{ x: [0, 100], y: [0, maxOfYAxis * 4] }}
           >
+            {yourData.length > 1 ? (
+              <VictoryLine
+                width={400}
+                style={{
+                  data: { stroke: "#004fff", strokeWidth: 8 },
+                  parent: { border: "2px solid #ccc" },
+                  labels: { fontSize: 22, fill: "#004fff" },
+                }}
+                data={[
+                  { x: 2, y: yForTwo },
+                  { x: 100, y: yForHundred },
+                ]}
+              />
+            ) : null}
             <VictoryAxis
               orientation="bottom"
               offsetY={50}
@@ -149,17 +249,16 @@ const Exercise = ({ navigation }) => {
               }
             />
           </VictoryChart>
-          <View style={styles.container3}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => navigation.toggleDrawer()}
-              // onPress={this.signUp}
-            >
-              <Text accessibilityLabel="Sign In" style={styles.text}>
-                Other Results
-              </Text>
-            </TouchableOpacity>
-          </View>
+        </View>
+        <View style={styles.container3}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => navigation.toggleDrawer()}
+          >
+            <Text accessibilityLabel="Sign In" style={styles.text}>
+              Other Results
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
@@ -169,39 +268,26 @@ const Exercise = ({ navigation }) => {
 export default Exercise;
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-  },
   container3: {
     alignItems: "center",
-    backgroundColor: "red"
+    backgroundColor: "black",
+    flex: 1,
   },
 
-  divider_bar: {
-    marginRight: 200,
-    width: "100%",
-    backgroundColor: "#FAD9C5",
-    height: 1,
-    marginTop: 20,
-  },
-
-  img: {
-    width: "100%",
-    height: 120,
-    borderRadius: 5,
-  },
   text2: {
     color: "white",
     fontSize: 35,
     textAlign: "center",
   },
   middle: {
-    width: 200,
-    flex: 1,
+    width: "90%",
+    flex: 0.8,
     marginTop: 40,
   },
   chart: {
-    flex: 2,
+    backgroundColor: "black",
+    flex: 1,
+    alignItems: "center",
   },
   container2: {
     justifyContent: "center",
@@ -229,5 +315,16 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     textAlign: "center",
+  },
+  text4: {
+    color: "white",
+    fontSize: 18,
+    textAlign: "center",
+  },
+  text5: {
+    color: "white",
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 20,
   },
 });
