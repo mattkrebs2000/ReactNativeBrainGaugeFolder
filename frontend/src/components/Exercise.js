@@ -21,7 +21,7 @@ import emailContext from "../emailContext.js";
 const Exercise = ({ navigation }) => {
   const { emailGlobal } = useContext(emailContext);
   const [yourData, setYourData] = useState([]);
-  const [maxOfYAxis, setMaxOfYAxis] = useState(0);
+  const [maxOfYAxis, setMaxOfYAxis] = useState(25);
   const [orderedPairArray, setOrderedPairArray] = useState([]);
   const [yForTwo, setYForTwo] = useState(0);
   const [yForHundred, setYForHundred] = useState(0);
@@ -76,7 +76,7 @@ const Exercise = ({ navigation }) => {
           sumOfXDiff.push(xData);
         });
 
-        for (i = 0; i < maximumArray.length; i++) {
+        for (var i = 0; i < maximumArray.length; i++) {
           let products = sumOfYDiff[i] * sumOfXDiff[i];
           sumOfProducts.push(products);
           let squares = sumOfXDiff[i] * sumOfXDiff[i];
@@ -141,17 +141,13 @@ const Exercise = ({ navigation }) => {
               slopeRound +
               ") the data could be suggesting a negative correlation between the time it takes you to react and how active you've been."
           );
-        } else if (slopeRound < 0) {
+        } else {
           setExplanation(
             "Because the Blue Line has a zero slope (" +
               slopeRound +
               ") the data could be suggesting that there is no correlation between the time it takes you to react and how active you've been."
           );
-        } else {
-          setExplanation(
-            "To this point you have not provided enough data for us to see if we can conclude connections between the given factors and Reaction Time. Click on 'Play Game' to begin the process."
-          );
-        }
+        } 
       })
       .catch((e) => console.log(e));
   };
@@ -167,7 +163,7 @@ const Exercise = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Exercise</Text>
           <Text style={styles.text5}>_________________________</Text>
-          <Text style={styles.text4}>{explanation}</Text>
+         {yourData.length > 1 ? ( <Text style={styles.text4}>{explanation}</Text>):(<Text style={styles.text4}> "To this point you have not provided enough data for us to see if we can conclude connections between the given factors and Reaction Time. Click 'Other Results', 'Return', and 'Play Game' to begin the process."</Text>)}
         </TouchableOpacity>
         <View style={styles.chart}>
           <VictoryChart
@@ -181,7 +177,7 @@ const Exercise = ({ navigation }) => {
               <VictoryLine
                 width={400}
                 style={{
-                  data: { stroke: "#004fff", strokeWidth: 8 },
+                  data: { stroke: "#004fff", strokeWidth: 5 },
                   parent: { border: "2px solid #ccc" },
                   labels: { fontSize: 22, fill: "#004fff" },
                 }}
@@ -190,7 +186,7 @@ const Exercise = ({ navigation }) => {
                   { x: 100, y: yForHundred },
                 ]}
               />
-            ) : null}
+            ) : (null)}
             <VictoryAxis
               orientation="bottom"
               offsetY={50}
@@ -277,14 +273,21 @@ const styles = StyleSheet.create({
   },
 
   text2: {
+   
     color: "white",
     fontSize: 35,
     textAlign: "center",
+    marginRight: 0,
+    marginLeft: 0,
+    backgroundColor: "black",
   },
   middle: {
-    width: "90%",
+    alignItems: "center",
     flex: 0.8,
     marginTop: 40,
+    backgroundColor: "black",
+    marginLeft:20,
+    marginRight: 20,
   },
   chart: {
     backgroundColor: "black",
