@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import DatePicker from "react-native-datepicker";
 import {
   View,
   Text,
@@ -13,8 +14,6 @@ import {
 import { firebase } from "../firebase/config.js";
 import CryptoES from "crypto-es";
 
-// import { Font } from 'expo';
-// import axios from 'axios';
 
 
 const SignUp = ({navigation}) => {
@@ -26,13 +25,7 @@ const SignUp = ({navigation}) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [encrypt, setEncrypt] = useState("");
-
-
-  // const onRegisterPress = () => {
-  //   if (password !== confirmPassword) {
-  //     alert("Passwords don't match.");
-  //     return;
-  //   }
+  const [birthdate, setBirthdate] = useState('09-10-1950');
 
 useEffect(() => {
 setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
@@ -56,6 +49,7 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
           email,
           userName,
           password: encrypt,
+          birthdate,
         };
         const usersRef = firebase.firestore().collection("users");
         usersRef
@@ -73,55 +67,7 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
       });
   };
 
-  // const [state, setState] = React.UseState({email: '',
-  //     username: '',
-  //     password: '',
-  //     rePassword: '',
-  //     fontLoaded: false})
 
-  // Make sure the font loaded before using
-  // componentDidMount = async () => {
-  //     await Font.loadAsync({
-  //         'Pacifico-Reg': require('../../../assets/fonts/Pacifico-Regular.ttf'),
-  //     });
-
-  //     this.setState({ fontLoaded: true });
-  // }
-
-  // signUp = () => {
-  //     if (!this.state.email || !this.state.password || !this.state.rePassword) {
-  //         alert('All fields are required');
-  //         return;
-  //     }
-
-  //     if (this.state.password !== this.state.rePassword) {
-  //         alert('Passwords do not match. Please try again');
-  //     } else {
-  //         const user = {
-  //             email: this.state.email,
-  //             username: this.state.username,
-  //             password: this.state.password,
-  //         };
-
-  //         axios
-  //             .post('http://192.168.0.107:5000/signup', user)
-  //             .then(result => {
-  //                 this.navigateToSignin();
-  //             })
-  //             .catch(err => {
-  //                 alert('Failed to sign you up! If you already have an account, log in directly!');
-  //                 console.log(err);
-  //             });
-  //     }
-  // }
-
-  // navigateToSignin = () => {
-  //     this.props.navigation.navigate('SignIn');
-  // }
-
-  // const pressHandler = () => {
-  //     this.navigation.navigate("SignIn")
-  // };
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -137,9 +83,6 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
             style={styles.img}
           />
         </View>
-        <Text> {"\n"} </Text>
-        <Text style={styles.text2}>Create Account</Text>
-        <View style={styles.divider_bar}></View>
 
         {/* Sign Up Form */}
         <View style={styles.form}>
@@ -170,21 +113,48 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
             value={confirmPassword}
             style={styles.input}
           />
+
+          <DatePicker
+            style={styles.input}
+            date={birthdate} // Initial date from state
+            mode="date" // The enum of date, datetime and time
+            placeholder="select date"
+            format="DD-MM-YYYY"
+            minDate="01-01-1916"
+            maxDate="01-01-2020"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={{
+              dateIcon: {
+                //display: 'none',
+                position: "absolute",
+                left: 0,
+                top: 4,
+                marginLeft: 0,
+              },
+              dateInput: {
+                marginLeft: 36,
+                color: "red",
+                
+              },
+            }}
+            onChangeText={(date) => {
+              setBirthdate(date);
+            }}
+          />
         </View>
 
         {/* Sign Up Button */}
         <TouchableOpacity style={styles.btn} onPress={() => onRegisterPress()}>
           <Text accessibilityLabel="Sign up" style={styles.text}>
-          Sign Up
+            Sign Up
           </Text>
         </TouchableOpacity>
-
-        <View style={styles.divider_bar}></View>
 
         {/* Log In */}
         <Text
           accessibilityLabel="Link to Sign In page"
-          style={{ color: "#167bff" }}
+          style={{ color: "#167bff", padding: 20 }}
           onPress={() => {
             navigation.navigate("SignIn");
           }}
@@ -209,16 +179,8 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     color: "white",
   },
-
-  divider_bar: {
-    width: 300,
-    backgroundColor: "#FAD9C5",
-    height: 1,
-    marginTop: 20,
-    marginBottom: 20,
-  },
   form: {
-    height: 280,
+    height: "54%",
     alignItems: "center",
     justifyContent: "center",
     color: "white",
@@ -226,7 +188,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 2,
     borderColor: "#004fff",
-    padding: 10,
+    padding: 7,
     width: 300,
     marginBottom: 25,
     borderRadius: 10,
@@ -259,12 +221,15 @@ const styles = StyleSheet.create({
   middle: {
     width: 150,
     alignItems: "center",
+    paddingBottom: 40, 
+ 
   },
 
   img: {
     width: "100%",
-    height: 120,
+    height: 90,
     borderRadius: 5,
+    
   },
   text2: {
     color: "white",

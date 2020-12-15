@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Button, Text } from "react-native";
-import { useNavigation, NavigationContainer, DrawerActions } from "@react-navigation/native";
+import {
+  useNavigation,
+  NavigationContainer,
+  DrawerActions,
+} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
+import birthdateContext from "./birthdateContext";
 import dataContext from "./dataContext";
 import emailContext from "./emailContext";
-import maxContext from "./maxOfYAxisContext"
+import maxContext from "./maxOfYAxisContext";
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import CreateAccount from "./components/SignUp";
@@ -24,11 +29,11 @@ const headerTitleStyle = {
   color: "white",
 };
 
-export const Navigators = ({navigation}) => {
+export const Navigators = ({ navigation }) => {
   const [emailGlobal, setEmailGlobal] = useState("");
-   const [yourData, setYourData] = useState([]);
-   const [maxOfYAxis, setMaxOfYAxis] = useState(0)
-
+  const [birthdateGlobal, setBirthdateGlobal] = useState("");
+  const [yourData, setYourData] = useState([]);
+  const [maxOfYAxis, setMaxOfYAxis] = useState(0);
 
   const AuthStack = createStackNavigator();
   const AuthStackScreen = () => (
@@ -86,7 +91,6 @@ export const Navigators = ({navigation}) => {
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
     <Drawer.Navigator
-    
       drawerStyle={{
         backgroundColor: "black",
         width: 240,
@@ -98,40 +102,46 @@ export const Navigators = ({navigation}) => {
         itemStyle: { marginVertical: 30 },
       }}
     >
-
       <Drawer.Screen name="Return" component={Profile} />
       <Drawer.Screen name="Mood" component={Mood} />
-     
-      <Drawer.Screen name="Appetite" component={Appetite}/>
+
+      <Drawer.Screen name="Appetite" component={Appetite} />
       <Drawer.Screen name="Exercise" component={Exercise} />
       <Drawer.Screen name="Sleep" component={Sleep} />
-     
     </Drawer.Navigator>
   );
 
   return (
-<maxContext.Provider value={{
-        maxOfYAxis,
-        setMaxOfYAxis,
-      }}
-    >
-
-
-<emailContext.Provider value={{
-        emailGlobal,
-        setEmailGlobal,
-      }}
-    >
-    <dataContext.Provider
+    <birthdateContext.Provider
       value={{
-       yourData, setYourData
+        birthdateGlobal,
+        setBirthdateGlobal,
       }}
     >
-      <NavigationContainer>
-        <AuthStackScreen emailGlobal={emailGlobal}/>
-      </NavigationContainer>
-      </dataContext.Provider>
-    </emailContext.Provider>
-    </maxContext.Provider> 
+      <maxContext.Provider
+        value={{
+          maxOfYAxis,
+          setMaxOfYAxis,
+        }}
+      >
+        <emailContext.Provider
+          value={{
+            emailGlobal,
+            setEmailGlobal,
+          }}
+        >
+          <dataContext.Provider
+            value={{
+              yourData,
+              setYourData,
+            }}
+          >
+            <NavigationContainer>
+              <AuthStackScreen emailGlobal={emailGlobal} />
+            </NavigationContainer>
+          </dataContext.Provider>
+        </emailContext.Provider>
+      </maxContext.Provider>
+    </birthdateContext.Provider>
   );
 };

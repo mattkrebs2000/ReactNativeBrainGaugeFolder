@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
   container3: {
     alignItems: "center",
     backgroundColor: "black",
-    flex: 1,
+    flex: .27,
   },
 
   text2: {

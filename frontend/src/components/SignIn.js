@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import emailContext from "../emailContext.js";
+import birthdateContext from "../birthdateContext.js"
 
 import {
     View,
@@ -23,6 +24,7 @@ const SignIn = ({ navigation }) => {
       const [email, setEmail] = useState("");
 
        const { emailGlobal, setEmailGlobal } = useContext(emailContext);
+       const { birthdateGlobal, setBirthdateGlobal } = useContext(birthdateContext);
 
       const [password, setPassword] = useState("");
   
@@ -46,8 +48,9 @@ const SignIn = ({ navigation }) => {
               const user = firestoreDocument.data();
               // signIn({ user: user });
               
-              setEmailGlobal(email),
-              console.log(emailGlobal)
+              setEmailGlobal(user.email),
+              setBirthdateGlobal(user.birthdate),
+              alert(user.birthdate);
             
               // AsyncStorage.setItem("passwordGlobal", password);
               

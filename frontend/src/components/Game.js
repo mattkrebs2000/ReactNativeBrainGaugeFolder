@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import emailContext from "../emailContext.js";
+import birthdateContext from "../birthdateContext.js"
 import { firebase } from "../firebase/config.js";
 
 const Game = ({ average, setAverage, navigation, value1,
@@ -18,6 +19,7 @@ const Game = ({ average, setAverage, navigation, value1,
 
 
  const { emailGlobal } = useContext(emailContext);
+ const { birthdateGlobal } = useContext(birthdateContext);
 
   const [x, setX] = useState(157);
   const [y, setY] = useState(0);
@@ -109,6 +111,7 @@ const Game = ({ average, setAverage, navigation, value1,
 
     const Submit = () => {
     const data = {
+      birthdate: birthdateGlobal, 
       email: emailGlobal,
       speed: Number(average),
       text1: value1,
@@ -185,7 +188,7 @@ const Game = ({ average, setAverage, navigation, value1,
                 style={styles.image}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => signOut()}>
+            <TouchableOpacity onPress={() => navigataion.navigate("Home")}>
               <Text style={styles.text3}>
                 Click Here if you do not want to include these results and To
                 Log Out.

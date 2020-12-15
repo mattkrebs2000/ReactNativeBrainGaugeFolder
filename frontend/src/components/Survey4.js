@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   form: {
-    flex: 1,
+    flex: 1.5,
     alignItems: "center",
     justifyContent: "center",
     color: "white",

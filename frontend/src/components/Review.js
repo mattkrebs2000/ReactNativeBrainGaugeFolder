@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   lower: {
-    flex: 0.6,
+    flex: 0.38,
     justifyContent: "flex-start",
   },
 });

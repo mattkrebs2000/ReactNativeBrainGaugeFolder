@@ -16,48 +16,8 @@ import maxContext from "../maxOfYAxisContext.js";
 
 const Welcome = ({ navigation }) => {
   console.log("Welcome");
-
-
   const { emailGlobal } = useContext(emailContext);
  
-
-
-
-
-
-//   const populate = () => {
-//     let newArray = [];
-
-//     return firebase
-//       .firestore()
-//       .collection("Performance")
-//       .where("data.email", "==", emailGlobal)
-//       .get()
-//       .then(function (querySnapshot) {
-//         querySnapshot.forEach(function (doc) {
-//         let newData = doc.data().data;
-        
-
-// // setYourData([...yourData,{newData}])
-
-
-//           setYourData(yourData.push({newData}))
-//           newArray.push(newData.speed)
-          
-//         });
-//         let max = Math.max(...newArray)
-//          console.log("here is the data",yourData, newArray, max);
-//          setMaxOfYAxis(max);
-         
-
-//       });
-      
-//   };
-
-  // useEffect(() => {
-  //   populate();
-  // }, []);
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container2}>
@@ -131,19 +91,20 @@ const styles = StyleSheet.create({
   },
 
   text2: {
-    flex: 0.5,
+    flex: .5,
     color: "white",
     textAlign: "center",
     justifyContent: "center",
     fontSize: 20,
   },
   image: {
-    width: 180,
-    height: 200,
+   width: "90%",
+   height: "100%",
+    
     borderRadius: 5,
   },
   containerofimage: {
-    flex: 2,
+    flex:2,
     width: 200,
     flexDirection: "column",
     alignItems: "center",
@@ -151,7 +112,7 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
   },
   bottombuttons: {
-    flex: 2,
+    flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
   },

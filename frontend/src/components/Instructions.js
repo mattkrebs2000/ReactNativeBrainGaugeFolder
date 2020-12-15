@@ -39,7 +39,7 @@ useEffect(() => {
 
 
   return (
-    <View style={styles.container} behavior="padding">
+    <View style={styles.container2} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">
         <Text> {"\n"} </Text>
         <Text style={styles.text2}>Instructions</Text>
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   mid: {
-    flex: 1.1,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     width: 300,
@@ -149,7 +149,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   lower: {
-    flex: 0.6,
+    flex: 0.2,
+    justifyContent: "flex-start",
+  },
+ container2: {
+    flexDirection: "column",
+    flex: 1,
     justifyContent: "flex-start",
   },
 });
