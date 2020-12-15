@@ -119,7 +119,7 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
             date={birthdate} // Initial date from state
             mode="date" // The enum of date, datetime and time
             placeholder="select date"
-            format="DD-MM-YYYY"
+            format="DD/MM/YYYY"
             minDate="01-01-1916"
             maxDate="01-01-2020"
             confirmBtnText="Confirm"
@@ -138,7 +138,7 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
                 
               },
             }}
-            onChangeText={(date) => {
+            onDateChange={(date) => {
               setBirthdate(date);
             }}
           />

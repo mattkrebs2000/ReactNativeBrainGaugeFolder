@@ -109,8 +109,24 @@ const Game = ({ average, setAverage, navigation, value1,
     }
   };
 
+const ageOfGame = () => {
+
+const birth = new Date(birthdateGlobal);
+const check = new Date();
+
+const milliDay = 1000 * 60 * 60 * 24; // a day in milliseconds;
+const ageInDays = (check - birth) / milliDay;
+const age = Math.round((ageInDays / 365) * 100) / 100;
+
+alert("Age is ", age);
+return age; 
+}
+
+
+
     const Submit = () => {
     const data = {
+      currentAge: ageOfGame(),
       birthdate: birthdateGlobal, 
       email: emailGlobal,
       speed: Number(average),
