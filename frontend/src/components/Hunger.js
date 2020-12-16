@@ -133,19 +133,19 @@ const Appetite = ({ navigation }) => {
           setExplanation(
             "Because the Blue Line has a positive slope (" +
               slopeRound +
-              ") the data could be suggesting a positive correlation between the time it takes you to react and how active you've been."
+              ") the data could be suggesting a positive correlation between the time it takes you to react and how hungry you've been."
           );
         } else if (slopeRound < 0) {
           setExplanation(
             "Because the Blue Line has a negative slope (" +
               slopeRound +
-              ") the data could be suggesting a negative correlation between the time it takes you to react and how active you've been."
+              ") the data could be suggesting a negative correlation between the time it takes you to react and how hungry you've been."
           );
         } else {
           setExplanation(
             "Because the Blue Line has a zero slope (" +
               slopeRound +
-              ") the data could be suggesting that there is no correlation between the time it takes you to react and how active you've been."
+              ") the data could be suggesting that there is no correlation between the time it takes you to react and how hungry you've been."
           );
         }
       })
@@ -163,7 +163,7 @@ const Appetite = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Appetite</Text>
           <Text style={styles.text5}>_________________________</Text>
-          {yourData.length > 1 ? (
+          {yourData.length > 1 && yForHundred ? (
             <Text style={styles.text4}>{explanation}</Text>
           ) : (
             <Text style={styles.text4}>
@@ -183,7 +183,7 @@ const Appetite = ({ navigation }) => {
             theme={VictoryTheme.material}
             domain={{ x: [0, 100], y: [0, maxOfYAxis * 4] }}
           >
-            {yourData.length > 1 ? (
+            {yourData.length > 1 && yForHundred ? (
               <VictoryLine
                 width={400}
                 style={{
@@ -215,7 +215,7 @@ const Appetite = ({ navigation }) => {
                 },
               }}
               tickValues={[2, 25, 50, 75, 100]}
-              tickFormat={["Not Active", "", "", "", "Very Active"]}
+              tickFormat={["Very Hungry", "", "", "", "Stuffed"]}
             />
 
             <VictoryAxis

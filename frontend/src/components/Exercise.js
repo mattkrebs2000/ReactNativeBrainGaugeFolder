@@ -163,7 +163,17 @@ const Exercise = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Exercise</Text>
           <Text style={styles.text5}>_________________________</Text>
-         {yourData.length > 1 ? ( <Text style={styles.text4}>{explanation}</Text>):(<Text style={styles.text4}> "To this point you have not provided enough data for us to see if we can conclude connections between the given factors and Reaction Time. Click 'Other Results', 'Return', and 'Play Game' to begin the process."</Text>)}
+          {yourData.length > 1 && yForHundred ? (
+            <Text style={styles.text4}>{explanation}</Text>
+          ) : (
+            <Text style={styles.text4}>
+              {" "}
+              "To this point you have not provided enough data for us to see if
+              we can conclude connections between the given factors and Reaction
+              Time. Click 'Other Results', 'Return', and 'Play Game' to begin
+              the process."
+            </Text>
+          )}
         </TouchableOpacity>
         <View style={styles.chart}>
           <VictoryChart
@@ -173,7 +183,7 @@ const Exercise = ({ navigation }) => {
             theme={VictoryTheme.material}
             domain={{ x: [0, 100], y: [0, maxOfYAxis * 4] }}
           >
-            {yourData.length > 1 ? (
+            {yourData.length > 1 && yForHundred ? (
               <VictoryLine
                 width={400}
                 style={{
@@ -186,7 +196,7 @@ const Exercise = ({ navigation }) => {
                   { x: 100, y: yForHundred },
                 ]}
               />
-            ) : (null)}
+            ) : null}
             <VictoryAxis
               orientation="bottom"
               offsetY={50}

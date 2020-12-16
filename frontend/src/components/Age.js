@@ -18,7 +18,8 @@ import {
 } from "victory-native";
 import emailContext from "../emailContext.js";
 
-const Sleep = ({ navigation }) => {
+
+const Age = ({ navigation }) => {
   const { emailGlobal } = useContext(emailContext);
   const [yourData, setYourData] = useState([]);
   const [maxOfYAxis, setMaxOfYAxis] = useState(25);
@@ -26,6 +27,7 @@ const Sleep = ({ navigation }) => {
   const [yForTwo, setYForTwo] = useState(0);
   const [yForHundred, setYForHundred] = useState(0);
   const [explanation, setExplanation] = useState("");
+  const [minSelfAssess, setMinSelfAssess] = useState(0);
 
   const isFocused = useIsFocused();
 
@@ -41,14 +43,14 @@ const Sleep = ({ navigation }) => {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
 
-          if (newData.text1 > 0) {
+          if (newData.currentAge) {
             setYourData((arr) => {
               return [...arr, newData];
             });
             maximumArray.push(newData.speed);
-            selfAssessArray.push(newData.text1);
+            selfAssessArray.push(newData.currentAge);
             let newObject = {};
-            newObject.x = newData.text1;
+            newObject.x = newData.currentAge;
             newObject.y = newData.speed;
 
             setOrderedPairArray((arr) => {
@@ -56,6 +58,9 @@ const Sleep = ({ navigation }) => {
             });
           }
         });
+
+        setMinSelfAssess(Math.min(selfAssessArray));
+
         let totalSpeed = maximumArray.length;
         let totalAssess = selfAssessArray.length;
         let sumSpeed = maximumArray.reduce((a, b) => a + b);
@@ -133,23 +138,23 @@ const Sleep = ({ navigation }) => {
           setExplanation(
             "Because the Blue Line has a positive slope (" +
               slopeRound +
-              ") the data could be suggesting a positive correlation between the time it takes you to react and how tired you've been.."
+              ") the data could be suggesting a positive correlation between the time it takes you to react and your age."
           );
         } else if (slopeRound < 0) {
           setExplanation(
             "Because the Blue Line has a negative slope (" +
               slopeRound +
-              ") the data could be suggesting a negative correlation between the time it takes you to react and how tired you've been."
+              ") the data could be suggesting a negative correlation between the time it takes you to react and your age."
           );
         } else if (slopeRound == 0) {
           setExplanation(
             "Because the Blue Line has a zero slope (" +
               slopeRound +
-              ") the data could be suggesting that there is no correlation between the time it takes you to react and how tired you've been."
+              ") the data could be suggesting that there is no correlation between the time it takes you to react and your age."
           );
         } else {
           setExplanation(
-            "You have not yet logged enough data to say whether there is a correlation between the time it takes you to react and how tired you've been."
+            "You have not yet logged enough data to say whether there is a correlation between the time it takes you to react and your age."
           );
         }
       })
@@ -165,7 +170,7 @@ const Sleep = ({ navigation }) => {
     <SafeAreaView style={styles.container2}>
       <View style={styles.center}>
         <TouchableOpacity style={styles.middle}>
-          <Text style={styles.text2}>Sleep</Text>
+          <Text style={styles.text2}>Age</Text>
           <Text style={styles.text5}>_________________________</Text>
           {yourData.length > 1 && yForHundred ? (
             <Text style={styles.text4}>{explanation}</Text>
@@ -196,8 +201,10 @@ const Sleep = ({ navigation }) => {
                   labels: { fontSize: 22, fill: "#004fff" },
                 }}
                 data={[
-                  { x: 2, y: yForTwo },
-                  { x: 100, y: yForHundred },
+                  //   { x: 2, y: yForTwo },
+                  { x: 2, y: 20 },
+                  //   { x: 100, y: yForHundred },
+                  { x: 100, y: 70 },
                 ]}
               />
             ) : null}
@@ -219,7 +226,7 @@ const Sleep = ({ navigation }) => {
                 },
               }}
               tickValues={[2, 25, 50, 75, 100]}
-              tickFormat={["Not Tired", "", "", "", "Refreshed"]}
+              tickFormat={["Age 0", "", "Age 50", "", "Age 100"]}
             />
 
             <VictoryAxis
@@ -246,9 +253,7 @@ const Sleep = ({ navigation }) => {
               style={{ data: { fill: "#004fff" } }}
               size={7}
               data={orderedPairArray}
-              labels={({ datum }) =>
-                `Self Rating: ${datum.x}, Speed: ${datum.y}`
-              }
+              labels={({ datum }) => `Age: ${datum.x}, Speed: ${datum.y}`}
               labelComponent={
                 <VictoryTooltip
                   style={{
@@ -277,7 +282,7 @@ const Sleep = ({ navigation }) => {
   );
 };
 
-export default Sleep;
+export default Age;
 
 const styles = StyleSheet.create({
   container3: {

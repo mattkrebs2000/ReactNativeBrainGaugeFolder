@@ -18,6 +18,7 @@ import CreateAccount from "./components/SignUp";
 import Mood from "./components/Mood";
 import Appetite from "./components/Hunger";
 import Sleep from "./components/Sleep";
+import Age from "./components/Age";
 import Exercise from "./components/Exercise";
 import Profile from "./components/Welcome";
 import Braingauge from "./Braingauge";
@@ -99,12 +100,12 @@ export const Navigators = ({ navigation }) => {
       drawerContentOptions={{
         inactiveTintColor: "white",
         activeTintColor: "#167bff",
-        itemStyle: { marginVertical: 30 },
+        itemStyle: { marginVertical: 20 },
       }}
     >
       <Drawer.Screen name="Return" component={Profile} />
+      <Drawer.Screen name="Age" component={Age} />
       <Drawer.Screen name="Mood" component={Mood} />
-
       <Drawer.Screen name="Appetite" component={Appetite} />
       <Drawer.Screen name="Exercise" component={Exercise} />
       <Drawer.Screen name="Sleep" component={Sleep} />
