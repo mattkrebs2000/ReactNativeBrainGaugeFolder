@@ -25,9 +25,12 @@ const Age = ({ navigation }) => {
   const [maxOfYAxis, setMaxOfYAxis] = useState(25);
   const [orderedPairArray, setOrderedPairArray] = useState([]);
   const [yForTwo, setYForTwo] = useState(0);
+  const [yForTwoMore, setYForTwoMore] = useState(0);
   const [yForHundred, setYForHundred] = useState(0);
+  const [yForHundredMore, setYForHundredMore] = useState(0);
   const [explanation, setExplanation] = useState("");
   const [minSelfAssess, setMinSelfAssess] = useState(0);
+  const [maxSelfAssess, setMaxSelfAssess] = useState(0);
 
   const isFocused = useIsFocused();
 
@@ -59,7 +62,8 @@ const Age = ({ navigation }) => {
           }
         });
 
-        setMinSelfAssess(Math.min(selfAssessArray));
+        setMinSelfAssess(Math.min(...selfAssessArray));
+        setMaxSelfAssess(Math.max(...selfAssessArray));
 
         let totalSpeed = maximumArray.length;
         let totalAssess = selfAssessArray.length;
@@ -93,7 +97,9 @@ const Age = ({ navigation }) => {
         let slopeRound = Math.round(slope * 1000) / 1000;
         let Yint = aveSpeed - slope * aveSelfAssess;
         setYForTwo(slope * 2 + Yint);
+        setYForTwoMore(slope * minSelfAssess + Yint);
         setYForHundred(slope * 100 + Yint);
+        setYForHundredMore(slope * maxSelfAssess + Yint);
 
         let maxi = Math.max(...maximumArray) / 4;
         let adjustedMax = Math.ceil((maxi + maxi * 0.1) / 10) * 10;
@@ -128,10 +134,15 @@ const Age = ({ navigation }) => {
           slope,
           "yint",
           Yint,
-          "yForTwo",
-          yForTwo,
-          "yFor100",
-          yForHundred
+          "yForSmallMore",
+          yForTwoMore,
+          "yForBigMore",
+          yForHundredMore,
+          "difference",
+         
+          minSelfAssess,
+          maxSelfAssess,
+          selfAssessArray,
         );
 
         if (slopeRound > 0) {
@@ -185,87 +196,156 @@ const Age = ({ navigation }) => {
           )}
         </TouchableOpacity>
         <View style={styles.chart}>
-          <VictoryChart
-            padding={{ left: 70, top: 10, right: 50, bottom: 50 }}
-            width={350}
-            height={250}
-            theme={VictoryTheme.material}
-            domain={{ x: [0, 100], y: [0, maxOfYAxis * 4] }}
-          >
-            {yourData.length > 1 && yForHundred ? (
-              <VictoryLine
-                width={400}
-                style={{
-                  data: { stroke: "#004fff", strokeWidth: 5 },
-                  parent: { border: "2px solid #ccc" },
-                  labels: { fontSize: 22, fill: "#004fff" },
-                }}
-                data={[
-                  //   { x: 2, y: yForTwo },
-                  { x: 2, y: 20 },
-                  //   { x: 100, y: yForHundred },
-                  { x: 100, y: 70 },
-                ]}
-              />
-            ) : null}
-            <VictoryAxis
-              orientation="bottom"
-              offsetY={50}
-              scale="time"
-              standalone={false}
-              style={{
-                axisLabel: {
-                  fill: "white",
-                  fontSize: 18,
-                  padding: 30,
-                  margin: 20,
-                },
-                tickLabels: {
-                  fill: "white",
-                  fontSize: 15,
-                },
+          {yourData.length > 1 && maxSelfAssess > minSelfAssess ? (
+            <VictoryChart
+              padding={{ left: 70, top: 10, right: 50, bottom: 50 }}
+              width={350}
+              height={250}
+              theme={VictoryTheme.material}
+              domain={{
+                x: [minSelfAssess, maxSelfAssess],
+                y: [0, maxOfYAxis * 4],
               }}
-              tickValues={[2, 25, 50, 75, 100]}
-              tickFormat={["Age 0", "", "Age 50", "", "Age 100"]}
-            />
-
-            <VictoryAxis
-              dependentAxis
-              offsetX={75}
-              label="Reaction Time"
-              standalone={false}
-              tickValues={[
-                maxOfYAxis,
-                maxOfYAxis * 2,
-                maxOfYAxis * 3,
-                maxOfYAxis * 4,
-              ]}
-              style={{
-                axisLabel: { fill: "white", fontSize: 18, padding: 55 },
-                tickLabels: {
-                  fill: "white",
-                  fontSize: 18,
-                },
-              }}
-            />
-
-            <VictoryScatter
-              style={{ data: { fill: "#004fff" } }}
-              size={7}
-              data={orderedPairArray}
-              labels={({ datum }) => `Age: ${datum.x}, Speed: ${datum.y}`}
-              labelComponent={
-                <VictoryTooltip
+            >
+                <VictoryLine
+                  width={400}
                   style={{
-                    fontSize: 20,
+                    data: { stroke: "#004fff", strokeWidth: 5 },
+                    parent: { border: "2px solid #ccc" },
+                    labels: { fontSize: 22, fill: "#004fff" },
                   }}
-                  constrainToVisibleArea
-                  dy={0}
-                  centerOffset={{ y: -80 }}
+                  data={[
+                    { x: minSelfAssess, y: yForTwoMore },
+                    { x: maxSelfAssess, y: yForHundredMore },
+                  ]}
                 />
-              }
-            />
-          </VictoryChart>
+                <VictoryAxis
+                  orientation="bottom"
+                  offsetY={50}
+                  scale="time"
+                  standalone={false}
+                  style={{
+                    axisLabel: {
+                      fill: "white",
+                      fontSize: 18,
+                      padding: 30,
+                      margin: 20,
+                    },
+                    tickLabels: {
+                      fill: "white",
+                      fontSize: 15,
+                    },
+                  }}
+                  tickValues={[minSelfAssess, maxSelfAssess]}
+                  tickFormat={["First Entry", "Latest Entry"]}
+                />
+              
+              <VictoryAxis
+                dependentAxis
+                offsetX={71}
+                label="Reaction Time"
+                standalone={false}
+                tickValues={[
+                  maxOfYAxis,
+                  maxOfYAxis * 2,
+                  maxOfYAxis * 3,
+                  maxOfYAxis * 4,
+                ]}
+                style={{
+                  axisLabel: { fill: "white", fontSize: 18, padding: 55 },
+                  tickLabels: {
+                    fill: "white",
+                    fontSize: 18,
+                  },
+                }}
+              />
+              <VictoryScatter
+                style={{ data: { fill: "#004fff" } }}
+                size={7}
+                data={orderedPairArray}
+                labels={({ datum }) => `Age: ${datum.x}, Speed: ${datum.y}`}
+                labelComponent={
+                  <VictoryTooltip
+                    style={{
+                      fontSize: 20,
+                    }}
+                    constrainToVisibleArea
+                    dy={0}
+                    centerOffset={{ y: -80 }}
+                  />
+                }
+              />
+            </VictoryChart>
+          ) : (
+            <VictoryChart
+              padding={{ left: 70, top: 10, right: 50, bottom: 50 }}
+              width={350}
+              height={250}
+              theme={VictoryTheme.material}
+              domain={{
+                x: [0, 100],
+                y: [0, maxOfYAxis * 4],
+              }}
+            >
+                <VictoryAxis
+                  orientation="bottom"
+                  offsetY={50}
+                  scale="time"
+                  standalone={false}
+                  style={{
+                    axisLabel: {
+                      fill: "white",
+                      fontSize: 18,
+                      padding: 30,
+                      margin: 20,
+                    },
+                    tickLabels: {
+                      fill: "white",
+                      fontSize: 15,
+                    },
+                  }}
+                  tickValues={[2, 25, 50, 75, 100]}
+                  tickFormat={["Age 0", "", "Age 50", "", "Age 100"]}
+                />
+             
+
+              <VictoryAxis
+                dependentAxis
+                offsetX={75}
+                label="Reaction Time"
+                standalone={false}
+                tickValues={[
+                  maxOfYAxis,
+                  maxOfYAxis * 2,
+                  maxOfYAxis * 3,
+                  maxOfYAxis * 4,
+                ]}
+                style={{
+                  axisLabel: { fill: "white", fontSize: 18, padding: 55 },
+                  tickLabels: {
+                    fill: "white",
+                    fontSize: 18,
+                  },
+                }}
+              />
+              <VictoryScatter
+                style={{ data: { fill: "#004fff" } }}
+                size={7}
+                data={orderedPairArray}
+                labels={({ datum }) => `Age: ${datum.x}, Speed: ${datum.y}`}
+                labelComponent={
+                  <VictoryTooltip
+                    style={{
+                      fontSize: 20,
+                    }}
+                    constrainToVisibleArea
+                    dy={0}
+                    centerOffset={{ y: -80 }}
+                  />
+                }
+              />
+            </VictoryChart>
+          )}
         </View>
         <View style={styles.container3}>
           <TouchableOpacity
