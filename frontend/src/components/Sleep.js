@@ -133,7 +133,7 @@ const Sleep = ({ navigation }) => {
           setExplanation(
             "Because the Blue Line has a positive slope (" +
               slopeRound +
-              ") the data could be suggesting a positive correlation between the time it takes you to react and how tired you've been.."
+              ") the data could be suggesting a positive correlation between the time it takes you to react and how tired you've been."
           );
         } else if (slopeRound < 0) {
           setExplanation(
