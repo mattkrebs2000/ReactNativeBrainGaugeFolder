@@ -16,10 +16,6 @@ import {
 
 import { firebase } from "../firebase/config.js";
 
-
-
-
-
 const SignIn = ({ navigation }) => {
       const [email, setEmail] = useState("");
 
@@ -27,8 +23,7 @@ const SignIn = ({ navigation }) => {
        const { birthdateGlobal, setBirthdateGlobal } = useContext(birthdateContext);
 
       const [password, setPassword] = useState("");
-  
-  
+
 
     const onLoginPress = () => {
       firebase
@@ -46,11 +41,10 @@ const SignIn = ({ navigation }) => {
                 return;
               }
               const user = firestoreDocument.data();
-              // signIn({ user: user });
-              
+            
               setEmailGlobal(user.email),
-              setBirthdateGlobal(user.birthdate),
-              alert(user.birthdate);
+              setBirthdateGlobal(user.birthdate)
+              
             
               // AsyncStorage.setItem("passwordGlobal", password);
               

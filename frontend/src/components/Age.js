@@ -207,39 +207,39 @@ const Age = ({ navigation }) => {
                 y: [0, maxOfYAxis * 4],
               }}
             >
-                <VictoryLine
-                  width={400}
-                  style={{
-                    data: { stroke: "#004fff", strokeWidth: 5 },
-                    parent: { border: "2px solid #ccc" },
-                    labels: { fontSize: 22, fill: "#004fff" },
-                  }}
-                  data={[
-                    { x: minSelfAssess, y: yForTwoMore },
-                    { x: maxSelfAssess, y: yForHundredMore },
-                  ]}
-                />
-                <VictoryAxis
-                  orientation="bottom"
-                  offsetY={50}
-                  scale="time"
-                  standalone={false}
-                  style={{
-                    axisLabel: {
-                      fill: "white",
-                      fontSize: 18,
-                      padding: 30,
-                      margin: 20,
-                    },
-                    tickLabels: {
-                      fill: "white",
-                      fontSize: 15,
-                    },
-                  }}
-                  tickValues={[minSelfAssess, maxSelfAssess]}
-                  tickFormat={["First Entry", "Latest Entry"]}
-                />
-              
+              <VictoryLine
+                width={400}
+                style={{
+                  data: { stroke: "#004fff", strokeWidth: 5 },
+                  parent: { border: "2px solid #ccc" },
+                  labels: { fontSize: 22, fill: "#004fff" },
+                }}
+                data={[
+                  { x: minSelfAssess, y: yForTwoMore },
+                  { x: maxSelfAssess, y: yForHundredMore },
+                ]}
+              />
+              <VictoryAxis
+                orientation="bottom"
+                offsetY={50}
+                scale="time"
+                standalone={false}
+                style={{
+                  axisLabel: {
+                    fill: "white",
+                    fontSize: 18,
+                    padding: 30,
+                    margin: 20,
+                  },
+                  tickLabels: {
+                    fill: "white",
+                    fontSize: 15,
+                  },
+                }}
+                tickValues={[minSelfAssess, maxSelfAssess]}
+                tickFormat={["First Entry", "Latest Entry"]}
+              />
+
               <VictoryAxis
                 dependentAxis
                 offsetX={71}
@@ -266,6 +266,7 @@ const Age = ({ navigation }) => {
                 labels={({ datum }) => `Age: ${datum.x}, Speed: ${datum.y}`}
                 labelComponent={
                   <VictoryTooltip
+                    renderInPortal={false}
                     style={{
                       fontSize: 20,
                     }}
@@ -287,27 +288,26 @@ const Age = ({ navigation }) => {
                 y: [0, maxOfYAxis * 4],
               }}
             >
-                <VictoryAxis
-                  orientation="bottom"
-                  offsetY={50}
-                  scale="time"
-                  standalone={false}
-                  style={{
-                    axisLabel: {
-                      fill: "white",
-                      fontSize: 18,
-                      padding: 30,
-                      margin: 20,
-                    },
-                    tickLabels: {
-                      fill: "white",
-                      fontSize: 15,
-                    },
-                  }}
-                  tickValues={[2, 25, 50, 75, 100]}
-                  tickFormat={["Age 0", "", "Age 50", "", "Age 100"]}
-                />
-             
+              <VictoryAxis
+                orientation="bottom"
+                offsetY={50}
+                scale="time"
+                standalone={false}
+                style={{
+                  axisLabel: {
+                    fill: "white",
+                    fontSize: 18,
+                    padding: 30,
+                    margin: 20,
+                  },
+                  tickLabels: {
+                    fill: "white",
+                    fontSize: 15,
+                  },
+                }}
+                tickValues={[2, 25, 50, 75, 100]}
+                tickFormat={["Age 0", "", "Age 50", "", "Age 100"]}
+              />
 
               <VictoryAxis
                 dependentAxis
@@ -341,6 +341,7 @@ const Age = ({ navigation }) => {
                     constrainToVisibleArea
                     dy={0}
                     centerOffset={{ y: -80 }}
+                    renderInPortal={false}
                   />
                 }
               />

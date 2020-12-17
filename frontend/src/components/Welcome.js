@@ -16,7 +16,7 @@ import maxContext from "../maxOfYAxisContext.js";
 
 const Welcome = ({ navigation }) => {
   console.log("Welcome");
-  const { emailGlobal } = useContext(emailContext);
+  const { emailGlobal, setEmailGlobal } = useContext(emailContext);
  
   return (
     <SafeAreaView style={styles.container}>
@@ -54,9 +54,7 @@ const Welcome = ({ navigation }) => {
                 "https://i.pinimg.com/originals/c9/91/72/c99172c17b83d3c620b997858351b2a5.gif",
             }}
             style={styles.image}
-            onPress={() => {
-              Linking.openURL(`mailto:${email}`);
-            }}
+            
           ></Image>
         </TouchableOpacity>
         <View style={styles.bottombuttons}>

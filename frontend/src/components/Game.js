@@ -18,7 +18,7 @@ const Game = ({ average, setAverage, navigation, value1,
 
 
 
- const { emailGlobal } = useContext(emailContext);
+ const { emailGlobal, setEmailGlobal } = useContext(emailContext);
  const { birthdateGlobal } = useContext(birthdateContext);
 
   const [x, setX] = useState(157);
@@ -204,7 +204,7 @@ return age;
                 style={styles.image}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigataion.navigate("Home")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Home")}>
               <Text style={styles.text3}>
                 Click Here if you do not want to include these results and To
                 Log Out.

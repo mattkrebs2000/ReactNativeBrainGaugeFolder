@@ -253,6 +253,7 @@ const Exercise = ({ navigation }) => {
                   constrainToVisibleArea
                   dy={0}
                   centerOffset={{ y: -80 }}
+                  renderInPortal={false}
                 />
               }
             />
