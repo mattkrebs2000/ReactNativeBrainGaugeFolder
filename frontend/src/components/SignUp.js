@@ -15,23 +15,19 @@ import {
 import { firebase } from "../firebase/config.js";
 import CryptoES from "crypto-es";
 
-
-
-const SignUp = ({navigation}) => {
-
-    console.log("SignUp");
+const SignUp = ({ navigation }) => {
+  console.log("SignUp");
 
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [encrypt, setEncrypt] = useState("");
-  const [birthdate, setBirthdate] = useState('09-10-1950');
+  const [birthdate, setBirthdate] = useState(19500915);
 
-useEffect(() => {
-setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
-}, [password]);
-
+  useEffect(() => {
+    setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
+  }, [password]);
 
   const onRegisterPress = () => {
     if (password !== confirmPassword) {
@@ -44,7 +40,7 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
         const uid = response.user.uid;
-      
+
         const data = {
           id: uid,
           email,
@@ -67,8 +63,6 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
         alert(error);
       });
   };
-
-
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -114,35 +108,45 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
             value={confirmPassword}
             style={styles.input}
           />
-
-          <DatePicker
-            style={styles.input}
-            date={birthdate} // Initial date from state
-            mode="date" // The enum of date, datetime and time
-            placeholder="select date"
-            format="DD/MM/YYYY"
-            minDate="01-01-1916"
-            maxDate="01-01-2020"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            customStyles={{
-              dateIcon: {
-                //display: 'none',
-                position: "absolute",
-                left: 0,
-                top: 4,
-                marginLeft: 0,
-              },
-              dateInput: {
-                marginLeft: 36,
-                color: "red",
-                
-              },
-            }}
-            onDateChange={(date) => {
-              setBirthdate(date);
-            }}
-          />
+          <View>
+            <Text style={styles.inputdate}>
+              <Text>B-Day: </Text>
+              <DateTimePicker
+                textColor="white"
+                style={{
+                  backgroundColor: "black",
+                  width: 245,
+                  height: 43,
+                }}
+                value={birthdate} // Initial date from state
+                mode={"date"}
+                is24Hour={true}
+                display="default" // The enum of date, datetime and time
+                placeholder="birthdate"
+                format="DD/MM/YYYY"
+                minDate="01-01-1916"
+                maxDate="01-01-2020"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    //display: 'none',
+                    position: "absolute",
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0,
+                  },
+                  dateInput: {
+                    marginLeft: 36,
+                    color: "red",
+                  },
+                }}
+                onDateChange={(date) => {
+                  setBirthdate(date);
+                }}
+              />
+            </Text>
+          </View>
         </View>
 
         {/* Sign Up Button */}
@@ -201,6 +205,22 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontSize: 20,
   },
+  inputdate: {
+    borderWidth: 2,
+    borderColor: "#004fff",
+    padding: 7,
+    width: 300,
+    height: 50,
+    marginBottom: 25,
+    borderRadius: 10,
+    shadowColor: "white",
+    shadowOffset: { width: 0.5, height: 0.5 },
+    shadowOpacity: 1,
+    shadowRadius: 0.5,
+    color: "gray",
+    lineHeight: 40,
+  },
+
   btn: {
     width: 300,
     height: 45,
@@ -222,15 +242,13 @@ const styles = StyleSheet.create({
   middle: {
     width: 150,
     alignItems: "center",
-    paddingBottom: 40, 
- 
+    paddingBottom: 40,
   },
 
   img: {
     width: "100%",
     height: 90,
     borderRadius: 5,
-    
   },
   text2: {
     color: "white",
