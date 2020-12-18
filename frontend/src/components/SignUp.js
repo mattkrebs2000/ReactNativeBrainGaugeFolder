@@ -5,7 +5,7 @@ import DateTimeModal from "react-native-modal-datetime-picker";
 import {
   View,
   Text,
-  Button, 
+  Button,
   StyleSheet,
   TextInput,
   ActivityIndicator,
@@ -25,16 +25,11 @@ const SignUp = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [encrypt, setEncrypt] = useState("");
-  const [birthyear, setBirthyear] = useState('YYYY');
-   const [birthdate, setBirthdate] = useState("DD");
-    const [birthmonth, setBirthmonth] = useState("MM");
+  const [birthyear, setBirthyear] = useState("YYYY");
+  const [birthdate, setBirthdate] = useState("DD");
+  const [birthmonth, setBirthmonth] = useState("MM");
   const [visibility, setVisibility] = useState(false);
   const [age, setAge] = useState(0);
-
-useEffect(() => {
-setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
-}, [password]);
-  const [birthdate, setBirthdate] = useState(19500915);
 
   useEffect(() => {
     setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
@@ -121,14 +116,13 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
           />
           <View style={styles.input2}>
             <Text style={styles.input3}>
-            
               <Text
                 title="BirthDate: "
                 onPress={() => {
                   setVisibility(true);
                 }}
               >
-                Your Birthdate: 
+                Your Birthdate:
                 {birthmonth}/{birthdate}/{birthyear}
               </Text>
             </Text>
@@ -214,17 +208,16 @@ const styles = StyleSheet.create({
     width: 300,
     marginBottom: 25,
     borderRadius: 10,
-   
-    
+
     shadowOpacity: 1,
     shadowRadius: 0.5,
     color: "white",
     height: 43,
   },
   input3: {
-  fontSize: 20,
-  color: "gray",
-  opacity: .4,
+    fontSize: 20,
+    color: "gray",
+    opacity: 0.4,
   },
   btn: {
     width: 300,
