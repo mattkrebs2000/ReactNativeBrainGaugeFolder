@@ -17,11 +17,8 @@ import {
 import { firebase } from "../firebase/config.js";
 import CryptoES from "crypto-es";
 
-
-
-const SignUp = ({navigation}) => {
-
-    console.log("SignUp");
+const SignUp = ({ navigation }) => {
+  console.log("SignUp");
 
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -37,7 +34,11 @@ const SignUp = ({navigation}) => {
 useEffect(() => {
 setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
 }, [password]);
+  const [birthdate, setBirthdate] = useState(19500915);
 
+  useEffect(() => {
+    setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
+  }, [password]);
 
   const onRegisterPress = () => {
     if (password !== confirmPassword) {
@@ -50,7 +51,7 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
         const uid = response.user.uid;
-      
+
         const data = {
           id: uid,
           email,
@@ -73,8 +74,6 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
         alert(error);
       });
   };
-
-
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
