@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-native-datepicker";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimeModal from "react-native-modal-datetime-picker";
+
 import {
   View,
   Text,
+  Button, 
   StyleSheet,
   TextInput,
   ActivityIndicator,
@@ -26,7 +28,11 @@ const SignUp = ({navigation}) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [encrypt, setEncrypt] = useState("");
-  const [birthdate, setBirthdate] = useState('09-10-1950');
+  const [birthyear, setBirthyear] = useState('YYYY');
+   const [birthdate, setBirthdate] = useState("DD");
+    const [birthmonth, setBirthmonth] = useState("MM");
+  const [visibility, setVisibility] = useState(false);
+  const [age, setAge] = useState(0);
 
 useEffect(() => {
 setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
@@ -114,35 +120,36 @@ setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString())
             value={confirmPassword}
             style={styles.input}
           />
+          <View style={styles.input2}>
+            <Text style={styles.input3}>
+            
+              <Text
+                title="BirthDate: "
+                onPress={() => {
+                  setVisibility(true);
+                }}
+              >
+                Your Birthdate: 
+                {birthmonth}/{birthdate}/{birthyear}
+              </Text>
+            </Text>
 
-          <DatePicker
-            style={styles.input}
-            date={birthdate} // Initial date from state
-            mode="date" // The enum of date, datetime and time
-            placeholder="select date"
-            format="DD/MM/YYYY"
-            minDate="01-01-1916"
-            maxDate="01-01-2020"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            customStyles={{
-              dateIcon: {
-                //display: 'none',
-                position: "absolute",
-                left: 0,
-                top: 4,
-                marginLeft: 0,
-              },
-              dateInput: {
-                marginLeft: 36,
-                color: "red",
-                
-              },
-            }}
-            onDateChange={(date) => {
-              setBirthdate(date);
-            }}
-          />
+            <DateTimeModal
+              isVisible={visibility}
+              format="DD/MM/YYYY"
+              onConfirm={(date) => {
+                setBirthyear(date.getYear() + 1900);
+                setBirthdate(date.getDate());
+                setBirthmonth(date.getMonth() + 1);
+
+                alert(birthdate + "/" + birthmonth + "/" + birthyear);
+              }}
+              onCancel={() => {
+                setVisibility(false);
+              }}
+              mode="date"
+            />
+          </View>
         </View>
 
         {/* Sign Up Button */}
@@ -201,6 +208,25 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontSize: 20,
   },
+  input2: {
+    borderWidth: 2,
+    borderColor: "#004fff",
+    padding: 7,
+    width: 300,
+    marginBottom: 25,
+    borderRadius: 10,
+   
+    
+    shadowOpacity: 1,
+    shadowRadius: 0.5,
+    color: "white",
+    height: 43,
+  },
+  input3: {
+  fontSize: 20,
+  color: "gray",
+  opacity: .4,
+  },
   btn: {
     width: 300,
     height: 45,
@@ -222,19 +248,24 @@ const styles = StyleSheet.create({
   middle: {
     width: 150,
     alignItems: "center",
-    paddingBottom: 40, 
- 
+    paddingBottom: 40,
   },
 
   img: {
     width: "100%",
     height: 90,
     borderRadius: 5,
-    
   },
   text2: {
     color: "white",
+    textAlign: "center",
+  },
+
+  modal: {
+    color: "white",
     fontSize: 35,
     textAlign: "center",
+    backgroundColor: "red",
+    width: 20,
   },
 });
