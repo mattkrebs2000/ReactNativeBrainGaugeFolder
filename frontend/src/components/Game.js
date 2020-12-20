@@ -110,23 +110,33 @@ const Game = ({ average, setAverage, navigation, value1,
   };
 
 const ageOfGame = () => {
-
+const object = new Object();
 const birth = new Date(birthdateGlobal);
 const check = new Date();
+const day = check.getDate();
+const month = check.getMonth();
+const year = check.getFullYear();
+const hours = check.getHours();
+const minutes = check.getMinutes();
+object.Time = hours+":"+minutes;
+object.Today = month+"/"+day+"/"+year;
 
 const milliDay = 1000 * 60 * 60 * 24; // a day in milliseconds;
 const ageInDays = (check - birth) / milliDay;
-const age = Math.round((ageInDays / 365) * 1000) / 1000;
+object.age = Math.round((ageInDays / 365) * 1000) / 1000;
 
-alert("Age is ", age);
-return age; 
+alert("Age is ", object.age);
+return object; 
 }
 
 
 
     const Submit = () => {
     const data = {
-      currentAge: ageOfGame(),
+      currentTime: ageOfGame().Time,
+      currentDate: ageOfGame().Today,
+      currentAge: ageOfGame().age,
+      ageshown: true,
       birthdate: birthdateGlobal, 
       email: emailGlobal,
       speed: Number(average),

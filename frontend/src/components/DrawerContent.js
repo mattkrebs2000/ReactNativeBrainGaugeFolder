@@ -65,8 +65,11 @@ export function DrawerContent(props) {
                   <Icon name="database-edit" color="#167bff" size={45} />
                 </TouchableOpacity>
               )}
-              label="Appetite"
+              label="Manage Food"
               labelStyle={{ color: "white", marginLeft: 30 }}
+              onPress={() => {
+                props.navigation.navigate("Appetitemanage");
+              }}
             />
             <DrawerItem
               icon={() => (
