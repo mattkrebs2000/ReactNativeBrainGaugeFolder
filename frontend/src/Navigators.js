@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Button, Text } from "react-native";
 import {
+
   useNavigation,
   NavigationContainer,
   DrawerActions,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+} from "@react-navigation/drawer";
 
 import birthdateContext from "./birthdateContext";
 import dataContext from "./dataContext";
@@ -17,11 +22,13 @@ import SignIn from "./components/SignIn";
 import CreateAccount from "./components/SignUp";
 import Mood from "./components/Mood";
 import Appetite from "./components/Hunger";
+import Appetitemanage from "./components/Hungermanage";
 import Sleep from "./components/Sleep";
 import Age from "./components/Age";
 import Exercise from "./components/Exercise";
 import Profile from "./components/Welcome";
 import Braingauge from "./Braingauge";
+import { DrawerContent } from "./components/DrawerContent";
 
 const headerStyle = {
   backgroundColor: "black",
@@ -29,6 +36,13 @@ const headerStyle = {
 const headerTitleStyle = {
   color: "white",
 };
+
+const IconBar = () => {
+  
+  <View style={{ backgroundColor: "red"}}>
+    <Icon name="add" />
+  </View>
+}
 
 export const Navigators = ({ navigation }) => {
   const [emailGlobal, setEmailGlobal] = useState("");
@@ -90,6 +104,7 @@ export const Navigators = ({ navigation }) => {
   );
 
   const Drawer = createDrawerNavigator();
+
   const DrawerScreen = () => (
     <Drawer.Navigator
       drawerStyle={{
@@ -102,15 +117,48 @@ export const Navigators = ({ navigation }) => {
         activeTintColor: "#167bff",
         itemStyle: { marginVertical: 20 },
       }}
+      drawerContent={(props) => <DrawerContent {...props} />}
     >
       <Drawer.Screen name="Return" component={Profile} />
       <Drawer.Screen name="Age" component={Age} />
       <Drawer.Screen name="Mood" component={Mood} />
       <Drawer.Screen name="Appetite" component={Appetite} />
+      <Drawer.Screen name="Appetitemanage" component={Appetitemanage} />
+
       <Drawer.Screen name="Exercise" component={Exercise} />
       <Drawer.Screen name="Sleep" component={Sleep} />
     </Drawer.Navigator>
   );
+
+
+
+
+
+  // const DrawerScreen = () => (
+  //   <Drawer.Navigator
+  //     drawerStyle={{
+  //       backgroundColor: "black",
+  //       width: 240,
+  //       opacity: 0.95,
+  //     }}
+  //     drawerContentOptions={{
+  //       inactiveTintColor: "white",
+  //       activeTintColor: "#167bff",
+  //       itemStyle: { marginVertical: 20 },
+  //     }}
+  //   >
+  //     <Drawer.Screen name="Return" component={Profile} 
+    
+  //     />
+  //     <Drawer.Screen name="Age" component={Age} />
+  //     <Drawer.Screen name="Mood" component={Mood} />
+  //     <Drawer.Screen name="Appetite" component={Appetite}/>
+      
+
+  //     <Drawer.Screen name="Exercise" component={Exercise} />
+  //     <Drawer.Screen name="Sleep" component={Sleep} />
+  //   </Drawer.Navigator>
+  // );
 
   return (
     <birthdateContext.Provider
