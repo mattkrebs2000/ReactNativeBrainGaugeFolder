@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import { ListItem } from "react-native-elements";
 import { useIsFocused } from "@react-navigation/native";
 import { firebase } from "../firebase/config.js";
 import {
@@ -8,6 +9,7 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 
 import emailContext from "../emailContext.js";
@@ -19,7 +21,10 @@ const Appetitemanage = ({ navigation }) => {
 
   const isFocused = useIsFocused();
 
+
+
   const populate = () => {
+    
     let maximumArray = [];
     let selfAssessArray = [];
     return firebase
@@ -30,6 +35,7 @@ const Appetitemanage = ({ navigation }) => {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
+
 
           if (newData.text3 > 0) {
             setYourData((arr) => {
@@ -43,7 +49,9 @@ const Appetitemanage = ({ navigation }) => {
 
            
           }
-        });
+        
+        }
+        );
         let totalSpeed = maximumArray.length;
         let totalAssess = selfAssessArray.length;
         let sumSpeed = maximumArray.reduce((a, b) => a + b);
@@ -70,6 +78,8 @@ const Appetitemanage = ({ navigation }) => {
           aveSpeed,
           "aveSelfAssess",
           aveSelfAssess,
+         yourData.length,
+        
         );
 
       })
@@ -77,30 +87,46 @@ const Appetitemanage = ({ navigation }) => {
   };
 
   useEffect(() => {
-    console.log("UseEffect");
+   if (yourData.length < 1 ){
     populate();
-  }, [isFocused]);
+    setYourData([]);
+    console.log("HIIIII", yourData);
+   } else {
+     console.log("already filled")
+   }
+  }, []);
+
+
+  
+
   console.log(yourData);
   return (
     <SafeAreaView style={styles.container2}>
-      <View style={styles.center}>
+      <View>
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Appetite Manage</Text>
           <Text style={styles.text5}>_________________________</Text>
 
           <Text style={styles.text4}>"HEELLO</Text>
+          <View>
+            <Text style={styles.text4}>Number Speed </Text>
+          </View>
         </TouchableOpacity>
+
         <View style={styles.chart}>
-        
-         <Text>
+          <ScrollView>
             {yourData.map((info, i) => (
-            
-              <Text key={i} style={styles.text4}>
-              <Text> Hello</Text>
-              <Text>{info.text3}</Text>
-            </Text>
+              <ListItem key={i} style={styles.text6}>
+                <Text>{i + 1}</Text>
+                <Text>
+                  Rating: {info.text3} Speed:{info.speed} 
+                </Text>
+                <View style={styles.new2}>
+                  <Text style={styles.new} id= {i} >Delete</Text>
+                </View>
+              </ListItem>
             ))}
-          </Text>
+          </ScrollView>
         </View>
         <View style={styles.container3}>
           <TouchableOpacity
@@ -123,7 +149,19 @@ const styles = StyleSheet.create({
   container3: {
     alignItems: "center",
     backgroundColor: "black",
-    flex: 0.27,
+    flex: 0.45,
+    justifyContent: "center",
+  },
+  new: {
+    color: "red",
+   
+    textAlign:"right"
+  },
+  new2: {
+    justifyContent: "flex-end",
+    width:100,
+    flex: 5,
+   
   },
 
   text2: {
@@ -136,7 +174,7 @@ const styles = StyleSheet.create({
   },
   middle: {
     alignItems: "center",
-    flex: 0.8,
+    flex: 0.33,
     marginTop: 40,
     backgroundColor: "black",
     marginLeft: 20,
@@ -144,14 +182,15 @@ const styles = StyleSheet.create({
   },
   chart: {
     backgroundColor: "red",
-    flex: 1,
-    alignItems: "center",
+    flex: 2,
+    flexDirection: "row",
+    padding: 10,
   },
   container2: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
-    flexDirection: "column",
+   
   },
   btn: {
     borderColor: "#167bff",
@@ -178,11 +217,18 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     textAlign: "center",
+    backgroundColor: "green",
   },
   text5: {
     color: "white",
     fontSize: 18,
     textAlign: "center",
+    marginBottom: 20,
+  },
+  text6: {
+    color: "white",
+    fontSize: 18,
+flex: 1,
     marginBottom: 20,
   },
 });

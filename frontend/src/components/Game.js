@@ -137,20 +137,22 @@ return object;
       currentDate: ageOfGame().Today,
       currentAge: ageOfGame().age,
       ageshown: true,
-      birthdate: birthdateGlobal, 
+      birthdate: birthdateGlobal,
       email: emailGlobal,
       speed: Number(average),
       text1: value1,
       text2: value2,
       text3: value3,
       text4: value4,
+      id: firebase.firestore().collection("Performance").doc().id,
     };
 
     return firebase
       .firestore()
       .collection("Performance")
       .add({ data })
-      .then(() => {
+      .then((docRef) => {
+        console.log("Document written with Id: ", docRef.id);
         navigation.navigate("Profile");
       })
       .catch((error) => {
