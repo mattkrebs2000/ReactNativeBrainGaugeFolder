@@ -172,7 +172,6 @@ const SignIn = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.btn}
                 onPress={() => onLoginPress()}
-                // onPress={this.signUp}
               >
                 <Text accessibilityLabel="Sign In" style={styles.text}>
                   Sign In
