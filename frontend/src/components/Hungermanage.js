@@ -85,14 +85,23 @@ const Appetitemanage = ({ navigation }) => {
           <ScrollView>
             {yourData.map((info, i) => (
               <ListItem key={i} style={styles.text6}>
-                <Text style={{ fontSize: 16 }}>{i + 1}.</Text>
-                <Text style={{ fontSize: 16 }}>
-                  Rating: {info.text3} Speed:{info.speed}
-                </Text>
+                <TouchableOpacity
+                  onPress={() =>
+                    alert(
+                      "From " + info.currentTime + " on " + info.currentDate
+                    )
+                  }
+                  style={styles.divide}
+                >
+                  <Text style={{ fontSize: 17 }}>
+                    {i + 1}. Rating: {info.text3} Speed:{info.speed}
+                  </Text>
+                </TouchableOpacity>
 
                 <View style={styles.new2}>
                   <TouchableOpacity
                     style={styles.btn}
+                    id={info.id}
                     onPress={() => navigation.navigate("CreateAccount")}
                   >
                     <Text
@@ -137,12 +146,12 @@ const styles = StyleSheet.create({
   },
   new: {
     color: "red",
-
     textAlign: "right",
   },
   new2: {
-    justifyContent: "flex-end",
-    width: 100,
+    flex: 1.5,
+  },
+  divide: {
     flex: 5,
   },
 
