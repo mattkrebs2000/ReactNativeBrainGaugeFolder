@@ -15,9 +15,19 @@ import {
 
 import emailContext from "../emailContext.js";
 
+ handleClick = (event) => {
+   const id = event.target.id;
+   console.log(id);
+ };
+
 const Appetitemanage = ({ navigation }) => {
   const { emailGlobal } = useContext(emailContext);
   const [yourData, setYourData] = useState([]);
+  const [iddelete, setiddelete] = useState("")
+
+useEffect(() => {
+  console.log("WHAT", iddelete)
+}, [iddelete]);
 
 
   const populate = () => {
@@ -30,41 +40,28 @@ const Appetitemanage = ({ navigation }) => {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
 
-
           if (newData.text3 > 0) {
             setYourData((arr) => {
               return [...arr, newData];
             });
-           
-
-           
           }
-        
-        }
-        );
-       
- 
-
-        console.log(
-          
-         yourData.length,
-        
-        );
-
+        });
+        console.log(yourData.length);
       })
       .catch((e) => console.log(e));
   };
 
-  useEffect(() => {
-   if (yourData.length < 1 ){
-    populate();
-    setYourData([]);
-    console.log("HIIIII", yourData);
-   } else {
-     console.log("already filled")
-   }
-  }, []);
 
+  
+  useEffect(() => {
+    if (yourData.length < 1) {
+      populate();
+      setYourData([]);
+      console.log("HIIIII", yourData);
+    } else {
+      console.log("already filled");
+    }
+  }, []);
 
 
   console.log(yourData);
@@ -99,21 +96,14 @@ const Appetitemanage = ({ navigation }) => {
                 </TouchableOpacity>
 
                 <View style={styles.new2}>
-                  <TouchableOpacity
-                    style={styles.btn}
-                    id={info.id}
-                    onPress={() => navigation.navigate("CreateAccount")}
-                  >
-                    <Text
+                  <TouchableOpacity style={styles.btn} id={info.id}>
+                    <Button
                       id={info.id}
                       accessibilityLabel="Sign In"
                       style={styles.text11}
-                      onPress={() => {
-                        navigation.navigate("SignIn");
-                      }}
-                    >
-                      Delete
-                    </Text>
+                      title="Delete"
+                      onPress={() => setiddelete(info.id)}
+                    ></Button>
                   </TouchableOpacity>
                 </View>
               </ListItem>
@@ -186,10 +176,8 @@ const styles = StyleSheet.create({
   btn: {
     borderColor: "#167bff",
     borderWidth: 2,
-    width: 65,
-    height: 30,
-    alignItems: "center",
-    justifyContent: "center",
+    width: 75,
+    height: 40,
     backgroundColor: "black",
     borderRadius: 10,
     shadowColor: "white",
@@ -197,6 +185,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 3,
     color: "black",
+    
   },
   text: {
     color: "white",
@@ -205,7 +194,7 @@ const styles = StyleSheet.create({
   },
   text11: {
     color: "white",
-    fontSize: 16,
+    fontSize: 10,
     textAlign: "right",
   },
   text4: {
