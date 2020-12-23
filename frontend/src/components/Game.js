@@ -109,6 +109,18 @@ const Game = ({ average, setAverage, navigation, value1,
     }
   };
 
+
+const minutess = () => {
+  let check = new Date();
+
+  if (check.getMinutes() > 10) {
+    return check.getMinutes();
+  } else {
+    return "0" + check.getMinutes();
+  }
+};
+
+
 const ageOfGame = () => {
 const object = new Object();
 const birth = new Date(birthdateGlobal);
@@ -117,7 +129,7 @@ const day = check.getDate();
 const month = check.getMonth();
 const year = check.getFullYear();
 const hours = check.getHours();
-const minutes = check.getMinutes();
+const minutes = minutess();
 object.Time = hours+":"+minutes;
 object.Today = month+"/"+day+"/"+year;
 

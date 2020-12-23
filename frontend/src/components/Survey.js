@@ -26,7 +26,7 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
           title="< Welcome"
         />
       ),
-    });
+    })
   }, []);
 
   return (

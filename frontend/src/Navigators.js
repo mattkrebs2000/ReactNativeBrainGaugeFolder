@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Text } from "react-native";
 import {
 
@@ -49,6 +49,7 @@ export const Navigators = ({ navigation }) => {
   const [birthdateGlobal, setBirthdateGlobal] = useState("");
   const [yourData, setYourData] = useState([]);
   const [maxOfYAxis, setMaxOfYAxis] = useState(0);
+
 
   const AuthStack = createStackNavigator();
   const AuthStackScreen = () => (

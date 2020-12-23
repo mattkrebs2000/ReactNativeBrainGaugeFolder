@@ -15,41 +15,49 @@ import {
 
 import emailContext from "../emailContext.js";
 
-
 const Appetitemanage = ({ navigation }) => {
   const { emailGlobal } = useContext(emailContext);
   const [yourData, setYourData] = useState([]);
   const [iddelete, setiddelete] = useState("2");
-  
-const deleteItem = () => {
-firebase
-var washingtonRef = firebase
-  .firestore()
-  .collection("Performance")
-  .doc(iddelete);
 
-return washingtonRef
-  .update({
-    "data.text3": 0,
-  })
-  .then(function () {
-    console.log("Document successfully updated!");
- 
-  })
-  .catch(function (error) {
-    // The document probably doesn't exist.
-    console.error("Error updating document: ", error);
-  });
- 
-}
+ useEffect(() => {
+   populate();
+   console.log("3 HIIIII", yourData);
+ }, [emailGlobal]);
+
+
+  const deleteItem = () => {
+    if (firebase.firestore().collection("Performance").doc(iddelete)) {
+      setYourData([]);
+
+      var deleteitem = firebase
+        .firestore()
+        .collection("Performance")
+        .doc(iddelete);
+
+      return deleteitem
+        .update({
+          "data.text3": 0,
+        })
+        .then(function () {
+          populate();
+          console.log("Document successfully updated!");
+        })
+        .catch(function (error) {
+          // The document probably doesn't exist.
+          console.error("Error updating document: ", error);
+        });
+    } else {
+      null;
+    }
+  };
 
   useEffect(() => {
-if (iddelete.length>2) {
-deleteItem();
-}
-else {
-  null
-}
+    if (iddelete.length > 2) {
+      deleteItem();
+    } else {
+      null;
+    }
   }, [iddelete]);
 
   const populate = () => {
@@ -62,28 +70,28 @@ else {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
 
-          if (newData.text3 > 0) {
+          console.log("1 ", "length is " + yourData.length ,yourData.indexOf(newData.id) == -1);
+
+          if (newData.text3 > 0 && yourData.indexOf(newData.id) == -1) {
+
+              console.log("adding to array")
+
             setYourData((arr) => {
               return [...arr, newData];
+              
             });
+          } else {
+            console.log("duplicate found", yourData.length)
           }
         });
-        console.log(yourData.length);
+        console.log("2 YourData-Length", yourData.length);
       })
       .catch((e) => console.log(e));
   };
 
-  useEffect(() => {
-    if (yourData.length < 1) {
-      populate();
-      setYourData([]);
-      console.log("HIIIII", yourData);
-    } else {
-      console.log("already filled");
-    }
-  }, []);
+ 
 
-  console.log(yourData);
+  console.log("4 ", yourData);
   return (
     <SafeAreaView style={styles.container2}>
       <View>
@@ -110,7 +118,7 @@ else {
                   style={styles.divide}
                 >
                   <Text style={{ fontSize: 17 }}>
-                    {i + 1}. Rating: {info.text3} Speed:{info.speed}
+                    {i + 1}. Rating: {info.text3} Speed: {info.speed}
                   </Text>
                 </TouchableOpacity>
 
@@ -121,7 +129,7 @@ else {
                       accessibilityLabel="Sign In"
                       style={styles.text11}
                       title="Delete"
-                      onPress={(() => setiddelete(info.id))}
+                      onPress={() => setiddelete(info.id)}
                     ></Button>
                   </TouchableOpacity>
                 </View>
@@ -238,6 +246,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     width: 100,
+    borderRadius: 50,
   },
   btn9: {
     borderColor: "#167bff",
