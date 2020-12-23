@@ -15,20 +15,42 @@ import {
 
 import emailContext from "../emailContext.js";
 
- handleClick = (event) => {
-   const id = event.target.id;
-   console.log(id);
- };
 
 const Appetitemanage = ({ navigation }) => {
   const { emailGlobal } = useContext(emailContext);
   const [yourData, setYourData] = useState([]);
-  const [iddelete, setiddelete] = useState("")
+  const [iddelete, setiddelete] = useState("2");
+  
+const deleteItem = () => {
+firebase
+var washingtonRef = firebase
+  .firestore()
+  .collection("Performance")
+  .doc(iddelete);
 
-useEffect(() => {
-  console.log("WHAT", iddelete)
-}, [iddelete]);
+return washingtonRef
+  .update({
+    "data.text3": 0,
+  })
+  .then(function () {
+    console.log("Document successfully updated!");
+ 
+  })
+  .catch(function (error) {
+    // The document probably doesn't exist.
+    console.error("Error updating document: ", error);
+  });
+ 
+}
 
+  useEffect(() => {
+if (iddelete.length>2) {
+deleteItem();
+}
+else {
+  null
+}
+  }, [iddelete]);
 
   const populate = () => {
     return firebase
@@ -51,8 +73,6 @@ useEffect(() => {
       .catch((e) => console.log(e));
   };
 
-
-  
   useEffect(() => {
     if (yourData.length < 1) {
       populate();
@@ -62,7 +82,6 @@ useEffect(() => {
       console.log("already filled");
     }
   }, []);
-
 
   console.log(yourData);
   return (
@@ -102,7 +121,7 @@ useEffect(() => {
                       accessibilityLabel="Sign In"
                       style={styles.text11}
                       title="Delete"
-                      onPress={() => setiddelete(info.id)}
+                      onPress={(() => setiddelete(info.id))}
                     ></Button>
                   </TouchableOpacity>
                 </View>
@@ -185,7 +204,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 3,
     color: "black",
-    
   },
   text: {
     color: "white",

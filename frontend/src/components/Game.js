@@ -150,9 +150,10 @@ return object;
     return firebase
       .firestore()
       .collection("Performance")
-      .add({ data })
+      .doc(data.id)
+      .set({ data })
       .then((docRef) => {
-        console.log("Document written with Id: ", docRef.id);
+        // console.log("Document written with Id: ", docRef.id);
         navigation.navigate("Profile");
       })
       .catch((error) => {
