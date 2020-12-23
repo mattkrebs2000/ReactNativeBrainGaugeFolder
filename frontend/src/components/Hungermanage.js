@@ -19,11 +19,13 @@ const Appetitemanage = ({ navigation }) => {
   const { emailGlobal } = useContext(emailContext);
   const [yourData, setYourData] = useState([]);
   const [iddelete, setiddelete] = useState("2");
+   const isFocused = useIsFocused();
 
  useEffect(() => {
    populate();
+   setYourData([])
    console.log("3 HIIIII", yourData);
- }, [emailGlobal]);
+ }, [isFocused]);
 
 
   const deleteItem = () => {
