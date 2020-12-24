@@ -112,7 +112,7 @@ const Appetitemanage = ({ navigation }) => {
               <ListItem key={i} style={styles.text6}>
                 <TouchableOpacity
                   onPress={() =>
-                         alert(
+                    alert(
                       "This data was recorded on \r\n" +
                         info.currentDate +
                         " at " +
@@ -122,8 +122,9 @@ const Appetitemanage = ({ navigation }) => {
                   style={styles.divide}
                 >
                   <Text style={{ fontSize: 16 }}>
-                    {i + 1}. Age: {info.currentAge} Speed: {info.speed}
+                    {i + 1}. Age: {info.currentAge}
                   </Text>
+                 <Text style={{ fontSize: 16 }}> Speed Recorded: {info.speed}</Text>
                 </TouchableOpacity>
 
                 <View style={styles.new2}>

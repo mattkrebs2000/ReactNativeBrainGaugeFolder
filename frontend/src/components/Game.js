@@ -156,7 +156,7 @@ object.Today = month+"/"+day+"/"+year;
 
 const milliDay = 1000 * 60 * 60 * 24; // a day in milliseconds;
 const ageInDays = (check - birth) / milliDay;
-object.age = Math.round((ageInDays / 365) * 1000) / 1000;
+object.age = Math.round((ageInDays / 365) * 100000) / 100000;
 
 return object; 
 }

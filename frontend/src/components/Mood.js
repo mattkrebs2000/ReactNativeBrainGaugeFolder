@@ -102,19 +102,19 @@ const Mood = ({ navigation }) => {
           setExplanation(
             "Because the Blue Line has a positive slope (" +
               slopeRound +
-              ") the data could be suggesting a positive correlation between the time it takes you to react and how active you've been."
+              ") the data could be suggesting a positive correlation between the time it takes you to react and your mood."
           );
         } else if (slopeRound < 0) {
           setExplanation(
             "Because the Blue Line has a negative slope (" +
               slopeRound +
-              ") the data could be suggesting a negative correlation between the time it takes you to react and how active you've been."
+              ") the data could be suggesting a negative correlation between the time it takes you to react and your mood."
           );
         } else {
           setExplanation(
             "Because the Blue Line has a zero slope (" +
               slopeRound +
-              ") the data could be suggesting that there is no correlation between the time it takes you to react and how active you've been."
+              ") the data could be suggesting that there is no correlation between the time it takes you to react and your mood."
           );
         }
       })

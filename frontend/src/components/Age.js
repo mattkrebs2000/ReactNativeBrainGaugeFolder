@@ -141,6 +141,11 @@ const Age = ({ navigation }) => {
     populate();
   }, [isFocused]);
 
+    useEffect(() => {
+    populate();
+    }, [yForHundredMore]);
+
+
 
   return (
     <SafeAreaView style={styles.container2}>
@@ -172,7 +177,7 @@ const Age = ({ navigation }) => {
                 y: [0, maxOfYAxis * 4],
               }}
             >
-              <VictoryLine
+             {orderedPairArray.length > 1 && yForHundredMore ? (<VictoryLine
                 width={400}
                 style={{
                   data: { stroke: "#004fff", strokeWidth: 5 },
@@ -183,7 +188,7 @@ const Age = ({ navigation }) => {
                   { x: minSelfAssess, y: yForTwoMore },
                   { x: maxSelfAssess, y: yForHundredMore },
                 ]}
-              />
+              />) : null }
               <VictoryAxis
                 orientation="bottom"
                 offsetY={50}
