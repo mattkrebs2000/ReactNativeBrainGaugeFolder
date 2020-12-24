@@ -19,14 +19,13 @@ const Appetitemanage = ({ navigation }) => {
   const { emailGlobal } = useContext(emailContext);
   const [yourData, setYourData] = useState([]);
   const [iddelete, setiddelete] = useState("2");
-   const isFocused = useIsFocused();
+  const isFocused = useIsFocused();
 
- useEffect(() => {
-   populate();
-   setYourData([])
-   console.log("3 HIIIII", yourData);
- }, [isFocused]);
-
+  useEffect(() => {
+    populate();
+    setYourData([]);
+    console.log("3 HIIIII", yourData);
+  }, [isFocused]);
 
   const deleteItem = () => {
     if (firebase.firestore().collection("Performance").doc(iddelete)) {
@@ -72,18 +71,20 @@ const Appetitemanage = ({ navigation }) => {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
 
-          console.log("1 ", "length is " + yourData.length ,yourData.indexOf(newData.id) == -1);
+          console.log(
+            "1 ",
+            "length is " + yourData.length,
+            yourData.indexOf(newData.id) == -1
+          );
 
           if (newData.text3 > 0 && yourData.indexOf(newData.id) == -1) {
-
-              console.log("adding to array")
+            console.log("adding to array");
 
             setYourData((arr) => {
               return [...arr, newData];
-              
             });
           } else {
-            console.log("duplicate found", yourData.length)
+            console.log("duplicate found", yourData.length);
           }
         });
         console.log("2 YourData-Length", yourData.length);
@@ -91,14 +92,12 @@ const Appetitemanage = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
- 
-
   console.log("4 ", yourData);
   return (
     <SafeAreaView style={styles.container2}>
       <View>
         <TouchableOpacity style={styles.middle}>
-          <Text style={styles.text2}>Appetite Data</Text>
+          <Text style={styles.text2}>Sleep Data</Text>
           <Text style={styles.text5}>_________________________</Text>
 
           <Text style={styles.text4}>"HEELLO</Text>
@@ -114,7 +113,10 @@ const Appetitemanage = ({ navigation }) => {
                 <TouchableOpacity
                   onPress={() =>
                     alert(
-                      "This was recorded on " + info.currentDate + " at " + info.currentTime
+                      "This was recorded on " +
+                        info.currentDate +
+                        " at " +
+                        info.currentTime
                     )
                   }
                   style={styles.divide}

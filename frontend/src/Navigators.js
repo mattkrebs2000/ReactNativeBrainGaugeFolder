@@ -21,11 +21,15 @@ import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import CreateAccount from "./components/SignUp";
 import Mood from "./components/Mood";
+import Moodmanage from "./components/Moodmanage";
 import Appetite from "./components/Hunger";
 import Appetitemanage from "./components/Hungermanage";
 import Sleep from "./components/Sleep";
+import Sleepmanage from "./components/Sleepmanage";
 import Age from "./components/Age";
+import Agemanage from "./components/Agemanage";
 import Exercise from "./components/Exercise";
+import Exercisemanage from "./components/Exercisemanage";
 import Profile from "./components/Welcome";
 import Braingauge from "./Braingauge";
 import { DrawerContent } from "./components/DrawerContent";
@@ -110,8 +114,8 @@ export const Navigators = ({ navigation }) => {
     <Drawer.Navigator
       drawerStyle={{
         backgroundColor: "black",
-        width: 240,
-        opacity: 0.95,
+        width: 300,
+        opacity: 0.85,
       }}
       drawerContentOptions={{
         inactiveTintColor: "white",
@@ -122,12 +126,16 @@ export const Navigators = ({ navigation }) => {
     >
       <Drawer.Screen name="Return" component={Profile} />
       <Drawer.Screen name="Age" component={Age} />
+      <Drawer.Screen name="Agemanage" component={Agemanage} />
       <Drawer.Screen name="Mood" component={Mood} />
+      <Drawer.Screen name="Moodmanage" component={Moodmanage} />
       <Drawer.Screen name="Appetite" component={Appetite} />
       <Drawer.Screen name="Appetitemanage" component={Appetitemanage} />
 
       <Drawer.Screen name="Exercise" component={Exercise} />
+      <Drawer.Screen name="Exercisemanage" component={Exercisemanage} />
       <Drawer.Screen name="Sleep" component={Sleep} />
+      <Drawer.Screen name="Sleepmanage" component={Sleepmanage} />
     </Drawer.Navigator>
   );
 

@@ -137,7 +137,6 @@ const milliDay = 1000 * 60 * 60 * 24; // a day in milliseconds;
 const ageInDays = (check - birth) / milliDay;
 object.age = Math.round((ageInDays / 365) * 1000) / 1000;
 
-alert("Age is ", object.age);
 return object; 
 }
 

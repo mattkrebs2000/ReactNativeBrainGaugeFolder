@@ -20,39 +20,55 @@ export function DrawerContent(props) {
       <DrawerContentScrollView {...props}>
         <View>
           <Drawer.Section style={styles.drawerSection}>
-            <DrawerItem
-              icon={() => <Icon name="arrow-left" color="#167bff" size={45} />}
-              label="Return"
-              labelStyle={{ color: "white", marginLeft: 30 }}
-              onPress={() => {
-                props.navigation.navigate("Return");
-              }}
-            />
+
             <DrawerItem
               icon={() => (
-                <Icon
-                  name="database-edit"
-                  color="#167bff"
-                  size={45}
+                <TouchableOpacity
                   onPress={() => {
                     props.navigation.navigate("Age");
                   }}
-                />
+                >
+                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                </TouchableOpacity>
               )}
               label="Age"
-              labelStyle={{ color: "white", marginLeft: 30 }}
+              labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
               onPress={() => {
                 props.navigation.navigate("Age");
               }}
             />
+
             <DrawerItem
               icon={() => (
-                <Icon name="database-edit" color="#167bff" size={45} />
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("Agemanage");
+                  }}
+                >
+                  <Icon name="database-edit" color="#167bff" size={45} />
+                </TouchableOpacity>
               )}
-              label="Sleep"
-              labelStyle={{ color: "white", marginLeft: 30 }}
+              label="Manage Age Data"
+              labelStyle={{ color: "white" }}
               onPress={() => {
-                props.navigation.navigate("Sleep");
+                props.navigation.navigate("Agemanage");
+              }}
+            />
+
+            <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("Appetite");
+                  }}
+                >
+                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Appetite"
+              labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+              onPress={() => {
+                props.navigation.navigate("Appetite");
               }}
             />
             <DrawerItem
@@ -65,30 +81,113 @@ export function DrawerContent(props) {
                   <Icon name="database-edit" color="#167bff" size={45} />
                 </TouchableOpacity>
               )}
-              label="Manage Food"
-              labelStyle={{ color: "white", marginLeft: 30 }}
+              label="Manage Appetite Data"
+              labelStyle={{ color: "white" }}
               onPress={() => {
                 props.navigation.navigate("Appetitemanage");
               }}
             />
+
             <DrawerItem
               icon={() => (
-                <Icon name="database-edit" color="#167bff" size={45} />
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("Exercise");
+                  }}
+                >
+                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Exercise"
+              labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+              onPress={() => {
+                props.navigation.navigate("Exercise");
+              }}
+            />
+
+
+            <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("Exercisemanage");
+                  }}
+                >
+                  <Icon name="database-edit" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Manage Exercise Data"
+              labelStyle={{ color: "white" }}
+              onPress={() => {
+                props.navigation.navigate("Exercisemanage");
+              }}
+            />
+
+
+            <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("Mood");
+                  }}
+                >
+                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                </TouchableOpacity>
               )}
               label="Mood"
-              labelStyle={{ color: "white", marginLeft: 30 }}
+              labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
               onPress={() => {
                 props.navigation.navigate("Mood");
               }}
             />
             <DrawerItem
               icon={() => (
-                <Icon name="database-edit" color="#167bff" size={45} />
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("Moodmanage");
+                  }}
+                >
+                  <Icon name="database-edit" color="#167bff" size={45} />
+                </TouchableOpacity>
               )}
-              label="Exercise"
-              labelStyle={{ color: "white", marginLeft: 30 }}
+              label="Manage Mood Data"
+              labelStyle={{ color: "white" }}
               onPress={() => {
-                props.navigation.navigate("Exercise");
+                props.navigation.navigate("Moodmanage");
+              }}
+            />
+
+            <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("Sleep");
+                  }}
+                >
+                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Sleep"
+              labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+              onPress={() => {
+                props.navigation.navigate("Sleep");
+              }}
+            />
+
+            <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("Sleepmanage");
+                  }}
+                >
+                  <Icon name="database-edit" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Manage Sleep Data"
+              labelStyle={{ color: "white" }}
+              onPress={() => {
+                props.navigation.navigate("Sleepmanage");
               }}
             />
           </Drawer.Section>
