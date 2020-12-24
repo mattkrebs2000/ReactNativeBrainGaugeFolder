@@ -121,6 +121,26 @@ const minutess = () => {
 };
 
 
+const pmoram = () => {
+let check = new Date();
+  if (check.getHours() < 12) {
+    return "am";
+  } else {
+    return "pm";
+  }
+};
+
+const regTime = () => {
+  let check = new Date();
+  let newnumber = check.getHours();
+  if (check.getHours() < 13) {
+   return newnumber;
+  } else {
+    return newnumber - 12;
+  }
+};
+
+
 const ageOfGame = () => {
 const object = new Object();
 const birth = new Date(birthdateGlobal);
@@ -128,9 +148,10 @@ const check = new Date();
 const day = check.getDate();
 const month = check.getMonth();
 const year = check.getFullYear();
-const hours = check.getHours();
+const hours = regTime();
 const minutes = minutess();
-object.Time = hours+":"+minutes;
+const pmam = pmoram();
+object.Time = hours+":"+minutes+" "+pmam;
 object.Today = month+"/"+day+"/"+year;
 
 const milliDay = 1000 * 60 * 60 * 24; // a day in milliseconds;

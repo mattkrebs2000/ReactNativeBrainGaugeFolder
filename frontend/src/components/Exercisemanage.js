@@ -38,7 +38,7 @@ const Appetitemanage = ({ navigation }) => {
 
       return deleteitem
         .update({
-          "data.text3": 0,
+          "data.text4": 0,
         })
         .then(function () {
           populate();
@@ -77,7 +77,7 @@ const Appetitemanage = ({ navigation }) => {
             yourData.indexOf(newData.id) == -1
           );
 
-          if (newData.text3 > 0 && yourData.indexOf(newData.id) == -1) {
+          if (newData.text4 > 0 && yourData.indexOf(newData.id) == -1) {
             console.log("adding to array");
 
             setYourData((arr) => {
@@ -112,8 +112,8 @@ const Appetitemanage = ({ navigation }) => {
               <ListItem key={i} style={styles.text6}>
                 <TouchableOpacity
                   onPress={() =>
-                    alert(
-                      "This was recorded on " +
+                         alert(
+                      "This data was recorded on \r\n" +
                         info.currentDate +
                         " at " +
                         info.currentTime
@@ -122,7 +122,7 @@ const Appetitemanage = ({ navigation }) => {
                   style={styles.divide}
                 >
                   <Text style={{ fontSize: 17 }}>
-                    {i + 1}. Rating: {info.text3} Speed: {info.speed}
+                    {i + 1}. Rating: {info.text4} Speed: {info.speed}
                   </Text>
                 </TouchableOpacity>
 

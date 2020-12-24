@@ -35,6 +35,7 @@ const Age = ({ navigation }) => {
   const isFocused = useIsFocused();
 
   const populate = () => {
+     setOrderedPairArray([]);
     let maximumArray = [];
     let selfAssessArray = [];
     return firebase
@@ -61,6 +62,8 @@ const Age = ({ navigation }) => {
             });
           }
         });
+
+        setYourData([]);
 
         setMinSelfAssess(Math.min(...selfAssessArray));
         setMaxSelfAssess(Math.max(...selfAssessArray));
@@ -105,46 +108,7 @@ const Age = ({ navigation }) => {
         let adjustedMax = Math.ceil((maxi + maxi * 0.1) / 10) * 10;
         setMaxOfYAxis(adjustedMax);
 
-        console.log(
-          "MaximumArray",
-          maximumArray,
-          "SelfAssessArray",
-          selfAssessArray,
-          "TotalSpeed",
-          totalSpeed,
-          "TotalAssess",
-          totalAssess,
-          "SumSpeed",
-          sumSpeed,
-          "sumSelfAssess",
-          sumSelfAssess,
-          "aveSpeed",
-          aveSpeed,
-          "aveSelfAssess",
-          aveSelfAssess,
-          "sumOfXDiff",
-          sumOfXDiff,
-          "sumOfYDiff",
-          sumOfYDiff,
-          "ySum",
-          ySum,
-          "xSum",
-          xSum,
-          "Slope",
-          slope,
-          "yint",
-          Yint,
-          "yForSmallMore",
-          yForTwoMore,
-          "yForBigMore",
-          yForHundredMore,
-          "difference",
-         
-          minSelfAssess,
-          maxSelfAssess,
-          selfAssessArray,
-        );
-
+     
         if (slopeRound > 0) {
           setExplanation(
             "Because the Blue Line has a positive slope (" +
@@ -172,10 +136,11 @@ const Age = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
+  
   useEffect(() => {
-    console.log("UseEffect");
     populate();
   }, [isFocused]);
+
 
   return (
     <SafeAreaView style={styles.container2}>
@@ -183,7 +148,7 @@ const Age = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Age</Text>
           <Text style={styles.text5}>_________________________</Text>
-          {yourData.length > 1 && yForHundred ? (
+          {orderedPairArray.length > 1 && yForHundred ? (
             <Text style={styles.text4}>{explanation}</Text>
           ) : (
             <Text style={styles.text4}>
@@ -196,7 +161,7 @@ const Age = ({ navigation }) => {
           )}
         </TouchableOpacity>
         <View style={styles.chart}>
-          {yourData.length > 1 && maxSelfAssess > minSelfAssess ? (
+          {orderedPairArray.length > 1 && maxSelfAssess > minSelfAssess ? (
             <VictoryChart
               padding={{ left: 70, top: 10, right: 50, bottom: 50 }}
               width={350}

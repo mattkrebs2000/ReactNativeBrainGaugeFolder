@@ -90,7 +90,7 @@ export const Navigators = ({ navigation }) => {
         component={DrawerScreen}
         options={{
           animationEnabled: false,
-          title: "Welcome",
+          title: "Data",
           headerStyle,
           headerTitleStyle,
           headerLeft: () => console.log("Hi"),
@@ -142,32 +142,6 @@ export const Navigators = ({ navigation }) => {
 
 
 
-
-  // const DrawerScreen = () => (
-  //   <Drawer.Navigator
-  //     drawerStyle={{
-  //       backgroundColor: "black",
-  //       width: 240,
-  //       opacity: 0.95,
-  //     }}
-  //     drawerContentOptions={{
-  //       inactiveTintColor: "white",
-  //       activeTintColor: "#167bff",
-  //       itemStyle: { marginVertical: 20 },
-  //     }}
-  //   >
-  //     <Drawer.Screen name="Return" component={Profile} 
-    
-  //     />
-  //     <Drawer.Screen name="Age" component={Age} />
-  //     <Drawer.Screen name="Mood" component={Mood} />
-  //     <Drawer.Screen name="Appetite" component={Appetite}/>
-      
-
-  //     <Drawer.Screen name="Exercise" component={Exercise} />
-  //     <Drawer.Screen name="Sleep" component={Sleep} />
-  //   </Drawer.Navigator>
-  // );
 
   return (
     <birthdateContext.Provider

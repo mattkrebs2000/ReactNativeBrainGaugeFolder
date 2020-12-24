@@ -24,7 +24,7 @@ const Appetitemanage = ({ navigation }) => {
   useEffect(() => {
     populate();
     setYourData([]);
-    console.log("3 HIIIII", yourData);
+    console.log("This was run!");
   }, [isFocused]);
 
   const deleteItem = () => {
@@ -38,7 +38,7 @@ const Appetitemanage = ({ navigation }) => {
 
       return deleteitem
         .update({
-          "data.text3": 0,
+          "data.text2": 0,
         })
         .then(function () {
           populate();
@@ -71,14 +71,8 @@ const Appetitemanage = ({ navigation }) => {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
 
-          console.log(
-            "1 ",
-            "length is " + yourData.length,
-            yourData.indexOf(newData.id) == -1
-          );
-
-          if (newData.text3 > 0 && yourData.indexOf(newData.id) == -1) {
-            console.log("adding to array");
+          if (newData.text2 > 0 && yourData.indexOf(newData.id) == -1) {
+            
 
             setYourData((arr) => {
               return [...arr, newData];
@@ -92,7 +86,7 @@ const Appetitemanage = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
-  console.log("4 ", yourData);
+  
   return (
     <SafeAreaView style={styles.container2}>
       <View>
@@ -112,8 +106,8 @@ const Appetitemanage = ({ navigation }) => {
               <ListItem key={i} style={styles.text6}>
                 <TouchableOpacity
                   onPress={() =>
-                    alert(
-                      "This was recorded on " +
+                         alert(
+                      "This data was recorded on \r\n" +
                         info.currentDate +
                         " at " +
                         info.currentTime
@@ -122,7 +116,7 @@ const Appetitemanage = ({ navigation }) => {
                   style={styles.divide}
                 >
                   <Text style={{ fontSize: 17 }}>
-                    {i + 1}. Rating: {info.text3} Speed: {info.speed}
+                    {i + 1}. Rating: {info.text2} Speed: {info.speed}
                   </Text>
                 </TouchableOpacity>
 

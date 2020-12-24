@@ -23,7 +23,7 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
           onPress={() => {
             navigation.navigate("Profile");
           }}
-          title="< Welcome"
+          title="< Data"
         />
       ),
     })

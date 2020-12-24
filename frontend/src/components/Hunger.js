@@ -30,6 +30,7 @@ const Appetite = ({ navigation }) => {
   const isFocused = useIsFocused();
 
   const populate = () => {
+    setOrderedPairArray([]);
     let maximumArray = [];
     let selfAssessArray = [];
     return firebase
@@ -56,6 +57,9 @@ const Appetite = ({ navigation }) => {
             });
           }
         });
+
+        setYourData([]);
+
         let totalSpeed = maximumArray.length;
         let totalAssess = selfAssessArray.length;
         let sumSpeed = maximumArray.reduce((a, b) => a + b);
@@ -94,58 +98,23 @@ const Appetite = ({ navigation }) => {
         let adjustedMax = Math.ceil((maxi + maxi * 0.1) / 10) * 10;
         setMaxOfYAxis(adjustedMax);
 
-        console.log(
-          "MaximumArray",
-          maximumArray,
-          "SelfAssessArray",
-          selfAssessArray,
-          "TotalSpeed",
-          totalSpeed,
-          "TotalAssess",
-          totalAssess,
-          "SumSpeed",
-          sumSpeed,
-          "sumSelfAssess",
-          sumSelfAssess,
-          "aveSpeed",
-          aveSpeed,
-          "aveSelfAssess",
-          aveSelfAssess,
-          "sumOfXDiff",
-          sumOfXDiff,
-          "sumOfYDiff",
-          sumOfYDiff,
-          "ySum",
-          ySum,
-          "xSum",
-          xSum,
-          "Slope",
-          slope,
-          "yint",
-          Yint,
-          "yForTwo",
-          yForTwo,
-          "yFor100",
-          yForHundred
-        );
-
         if (slopeRound > 0) {
           setExplanation(
             "Because the Blue Line has a positive slope (" +
               slopeRound +
-              ") the data could be suggesting a positive correlation between the time it takes you to react and how hungry you've been."
+              ") the data could be suggesting a positive correlation between the time it takes you to react and how active you've been."
           );
         } else if (slopeRound < 0) {
           setExplanation(
             "Because the Blue Line has a negative slope (" +
               slopeRound +
-              ") the data could be suggesting a negative correlation between the time it takes you to react and how hungry you've been."
+              ") the data could be suggesting a negative correlation between the time it takes you to react and how active you've been."
           );
         } else {
           setExplanation(
             "Because the Blue Line has a zero slope (" +
               slopeRound +
-              ") the data could be suggesting that there is no correlation between the time it takes you to react and how hungry you've been."
+              ") the data could be suggesting that there is no correlation between the time it takes you to react and how active you've been."
           );
         }
       })
@@ -153,9 +122,9 @@ const Appetite = ({ navigation }) => {
   };
 
   useEffect(() => {
-    console.log("UseEffect");
     populate();
   }, [isFocused]);
+
 
   return (
     <SafeAreaView style={styles.container2}>
@@ -163,7 +132,7 @@ const Appetite = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Appetite</Text>
           <Text style={styles.text5}>_________________________</Text>
-          {yourData.length > 1 && yForHundred ? (
+          {orderedPairArray.length > 1 && yForHundred ? (
             <Text style={styles.text4}>{explanation}</Text>
           ) : (
             <Text style={styles.text4}>
@@ -183,7 +152,7 @@ const Appetite = ({ navigation }) => {
             theme={VictoryTheme.material}
             domain={{ x: [0, 100], y: [0, maxOfYAxis * 4] }}
           >
-            {yourData.length > 1 && yForHundred ? (
+            {orderedPairArray.length > 1 && yForHundred ? (
               <VictoryLine
                 width={400}
                 style={{
@@ -215,7 +184,7 @@ const Appetite = ({ navigation }) => {
                 },
               }}
               tickValues={[2, 25, 50, 75, 100]}
-              tickFormat={["Very Hungry", "", "", "", "Stuffed"]}
+              tickFormat={["Not Active", "", "", "", "Very Active"]}
             />
 
             <VictoryAxis

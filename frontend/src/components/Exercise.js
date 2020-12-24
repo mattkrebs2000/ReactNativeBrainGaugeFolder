@@ -30,6 +30,7 @@ const Exercise = ({ navigation }) => {
   const isFocused = useIsFocused();
 
   const populate = () => {
+    setOrderedPairArray([]);
     let maximumArray = [];
     let selfAssessArray = [];
     return firebase
@@ -56,6 +57,9 @@ const Exercise = ({ navigation }) => {
             });
           }
         });
+
+        setYourData([]);
+
         let totalSpeed = maximumArray.length;
         let totalAssess = selfAssessArray.length;
         let sumSpeed = maximumArray.reduce((a, b) => a + b);
@@ -94,41 +98,6 @@ const Exercise = ({ navigation }) => {
         let adjustedMax = Math.ceil((maxi + maxi * 0.1) / 10) * 10;
         setMaxOfYAxis(adjustedMax);
 
-        console.log(
-          "MaximumArray",
-          maximumArray,
-          "SelfAssessArray",
-          selfAssessArray,
-          "TotalSpeed",
-          totalSpeed,
-          "TotalAssess",
-          totalAssess,
-          "SumSpeed",
-          sumSpeed,
-          "sumSelfAssess",
-          sumSelfAssess,
-          "aveSpeed",
-          aveSpeed,
-          "aveSelfAssess",
-          aveSelfAssess,
-          "sumOfXDiff",
-          sumOfXDiff,
-          "sumOfYDiff",
-          sumOfYDiff,
-          "ySum",
-          ySum,
-          "xSum",
-          xSum,
-          "Slope",
-          slope,
-          "yint",
-          Yint,
-          "yForTwo",
-          yForTwo,
-          "yFor100",
-          yForHundred
-        );
-
         if (slopeRound > 0) {
           setExplanation(
             "Because the Blue Line has a positive slope (" +
@@ -147,13 +116,12 @@ const Exercise = ({ navigation }) => {
               slopeRound +
               ") the data could be suggesting that there is no correlation between the time it takes you to react and how active you've been."
           );
-        } 
+        }
       })
       .catch((e) => console.log(e));
   };
 
   useEffect(() => {
-    console.log("UseEffect");
     populate();
   }, [isFocused]);
 
@@ -163,7 +131,7 @@ const Exercise = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Exercise</Text>
           <Text style={styles.text5}>_________________________</Text>
-          {yourData.length > 1 && yForHundred ? (
+          {orderedPairArray.length > 1 && yForHundred ? (
             <Text style={styles.text4}>{explanation}</Text>
           ) : (
             <Text style={styles.text4}>
@@ -183,7 +151,7 @@ const Exercise = ({ navigation }) => {
             theme={VictoryTheme.material}
             domain={{ x: [0, 100], y: [0, maxOfYAxis * 4] }}
           >
-            {yourData.length > 1 && yForHundred ? (
+            {orderedPairArray.length > 1 && yForHundred ? (
               <VictoryLine
                 width={400}
                 style={{
@@ -280,11 +248,10 @@ const styles = StyleSheet.create({
   container3: {
     alignItems: "center",
     backgroundColor: "black",
-    flex: .27,
+    flex: 0.27,
   },
 
   text2: {
-   
     color: "white",
     fontSize: 35,
     textAlign: "center",
@@ -297,7 +264,7 @@ const styles = StyleSheet.create({
     flex: 0.8,
     marginTop: 40,
     backgroundColor: "black",
-    marginLeft:20,
+    marginLeft: 20,
     marginRight: 20,
   },
   chart: {

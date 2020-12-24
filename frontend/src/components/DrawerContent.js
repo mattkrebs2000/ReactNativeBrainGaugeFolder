@@ -17,10 +17,20 @@ export function DrawerContent(props) {
 
   return (
     <View style={{ flex: 1 }}>
+      <Drawer.Section style={styles.drawerSection2}>
+        <DrawerItem
+          icon={() => <Icon name="arrow-left" color="#167bff" size={45} />}
+          label="Return"
+          labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+          onPress={() => {
+            props.navigation.navigate("Return");
+          }}
+        />
+      </Drawer.Section>
+
       <DrawerContentScrollView {...props}>
         <View>
           <Drawer.Section style={styles.drawerSection}>
-
             <DrawerItem
               icon={() => (
                 <TouchableOpacity
@@ -105,7 +115,6 @@ export function DrawerContent(props) {
               }}
             />
 
-
             <DrawerItem
               icon={() => (
                 <TouchableOpacity
@@ -122,7 +131,6 @@ export function DrawerContent(props) {
                 props.navigation.navigate("Exercisemanage");
               }}
             />
-
 
             <DrawerItem
               icon={() => (
@@ -246,7 +254,7 @@ const styles = StyleSheet.create({
   },
   drawerSection: {
     marginTop: 15,
-    color: "#167bff",
+    color: "#167bff"
   },
   bottomDrawerSection: {
     marginBottom: 15,
@@ -261,4 +269,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     color: "#167bff",
   },
-});
+   drawerSection2: {
+    marginTop: 15,
+    color: "#167bff",
+    borderBottomColor: "#f4f4f4",
+    borderBottomWidth: 1,
+    color: "#167bff"
+   }
+}
+);
