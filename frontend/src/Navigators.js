@@ -24,6 +24,10 @@ import Mood from "./components/Mood";
 import Moodmanage from "./components/Moodmanage";
 import Appetite from "./components/Hunger";
 import Appetitemanage from "./components/Hungermanage";
+import TimeOfWeek from "./components/TimeOfWeek";
+import TimeOfWeekManage from "./components/TimeOfWeekManage";
+import TimeOfDay from "./components/TimeOfDay";
+import TimeOfDayManage from "./components/TimeOfDayManage";
 import Sleep from "./components/Sleep";
 import Sleepmanage from "./components/Sleepmanage";
 import Age from "./components/Age";
@@ -114,7 +118,7 @@ export const Navigators = ({ navigation }) => {
     <Drawer.Navigator
       drawerStyle={{
         backgroundColor: "black",
-        width: 300,
+        width: 320,
         opacity: 0.85,
       }}
       drawerContentOptions={{
@@ -136,6 +140,10 @@ export const Navigators = ({ navigation }) => {
       <Drawer.Screen name="Exercisemanage" component={Exercisemanage} />
       <Drawer.Screen name="Sleep" component={Sleep} />
       <Drawer.Screen name="Sleepmanage" component={Sleepmanage} />
+      <Drawer.Screen name="TimeOfDay" component={TimeOfDay} />
+      <Drawer.Screen name="TimeOfDayManage" component={TimeOfDayManage} />
+      <Drawer.Screen name="TimeOfWeek" component={TimeOfWeek} />
+      <Drawer.Screen name="TimeOfWeekManage" component={TimeOfWeekManage} />
     </Drawer.Navigator>
   );
 

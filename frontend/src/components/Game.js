@@ -8,18 +8,20 @@ import {
   Image,
 } from "react-native";
 import emailContext from "../emailContext.js";
-import birthdateContext from "../birthdateContext.js"
+import birthdateContext from "../birthdateContext.js";
 import { firebase } from "../firebase/config.js";
 
-const Game = ({ average, setAverage, navigation, value1,
+const Game = ({
+  average,
+  setAverage,
+  navigation,
+  value1,
   value2,
   value3,
-  value4,}) => {
-
-
-
- const { emailGlobal, setEmailGlobal } = useContext(emailContext);
- const { birthdateGlobal } = useContext(birthdateContext);
+  value4,
+}) => {
+  const { emailGlobal, setEmailGlobal } = useContext(emailContext);
+  const { birthdateGlobal } = useContext(birthdateContext);
 
   const [x, setX] = useState(157);
   const [y, setY] = useState(0);
@@ -109,66 +111,95 @@ const Game = ({ average, setAverage, navigation, value1,
     }
   };
 
+  const minutess = () => {
+    let check = new Date();
 
-const minutess = () => {
-  let check = new Date();
+    if (check.getMinutes() > 10) {
+      return check.getMinutes();
+    } else {
+      return "0" + check.getMinutes();
+    }
+  };
 
-  if (check.getMinutes() > 10) {
-    return check.getMinutes();
-  } else {
-    return "0" + check.getMinutes();
-  }
-};
+  const pmoram = () => {
+    let check = new Date();
+    if (check.getHours() < 12) {
+      return "am";
+    } else {
+      return "pm";
+    }
+  };
 
+  const regTime = () => {
+    let check = new Date();
+    let newnumber = check.getHours();
+    if (check.getHours() < 13) {
+      return newnumber;
+    } else {
+      return newnumber - 12;
+    }
+  };
 
-const pmoram = () => {
-let check = new Date();
-  if (check.getHours() < 12) {
-    return "am";
-  } else {
-    return "pm";
-  }
-};
+  const dayOfWeek = () => {
+    const check = new Date();
+    const dayInWeek = check.getDay();
 
-const regTime = () => {
-  let check = new Date();
-  let newnumber = check.getHours();
-  if (check.getHours() < 13) {
-   return newnumber;
-  } else {
-    return newnumber - 12;
-  }
-};
+    switch (true) {
+      case dayInWeek === 0:
+        return "Sunday";
+      case dayInWeek === 1:
+        return "Monday";
+      case dayInWeek === 2:
+        return "Tuesday";
+      case dayInWeek === 3:
+        return "Wednesday";
+      case dayInWeek === 4:
+        return "Thursday";
+      case dayInWeek === 5:
+        return "Friday";
+      case dayInWeek === 6:
+        return "Saturday";
+    }
+  };
 
+  const ageOfGame = () => {
+    const object = new Object();
+    const birth = new Date(birthdateGlobal);
+    const check = new Date();
+    const dayInWeek = check.getDay();
+    const day = check.getDate();
+    const month = check.getMonth();
+    const year = check.getFullYear();
+    const hours = regTime();
+    const minutes = minutess();
+    const pmam = pmoram();
+    object.Time = hours + ":" + minutes + " " + pmam;
+    object.Today = month + "/" + day + "/" + year;
 
-const ageOfGame = () => {
-const object = new Object();
-const birth = new Date(birthdateGlobal);
-const check = new Date();
-const day = check.getDate();
-const month = check.getMonth();
-const year = check.getFullYear();
-const hours = regTime();
-const minutes = minutess();
-const pmam = pmoram();
-object.Time = hours+":"+minutes+" "+pmam;
-object.Today = month+"/"+day+"/"+year;
+    const milliDay = 1000 * 60 * 60 * 24; // a day in milliseconds;
+    const ageInDays = (check - birth) / milliDay;
+    object.age = Math.round((ageInDays / 365) * 100000) / 100000;
+    object.Day =
+      ((check.getHours() * 60 + check.getMinutes()) * 60 + check.getSeconds()) /
+      86400;
+    object.Week =
+      (dayInWeek +
+        ((check.getHours() * 60 + check.getMinutes()) * 60 +
+          check.getSeconds()) /
+          86400) /
+      7;
 
-const milliDay = 1000 * 60 * 60 * 24; // a day in milliseconds;
-const ageInDays = (check - birth) / milliDay;
-object.age = Math.round((ageInDays / 365) * 100000) / 100000;
+    return object;
+  };
 
-return object; 
-}
-
-
-
-    const Submit = () => {
+  const Submit = () => {
     const data = {
       currentTime: ageOfGame().Time,
       currentDate: ageOfGame().Today,
       currentAge: ageOfGame().age,
-      ageshown: true,
+      timeElapsedInADay: ageOfGame().Day,
+      timeElapsedInAWeek: ageOfGame().Week,
+      DayOfWeek:dayOfWeek(),
       birthdate: birthdateGlobal,
       email: emailGlobal,
       speed: Number(average),
@@ -192,7 +223,6 @@ return object;
         alert(error);
       });
   };
-
 
   return (
     <SafeAreaView style={styles.contatiner2}>
@@ -237,8 +267,7 @@ return object;
               Click Red Button to log this entry and see how these results
               compare with your previous entries.{" "}
             </Text>
-            <TouchableOpacity onPress={() => 
-              Submit() }>
+            <TouchableOpacity onPress={() => Submit()}>
               <Image
                 id="resultspage"
                 source={{

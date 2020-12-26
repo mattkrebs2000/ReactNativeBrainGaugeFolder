@@ -198,6 +198,70 @@ export function DrawerContent(props) {
                 props.navigation.navigate("Sleepmanage");
               }}
             />
+            <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("TimeOfDay");
+                  }}
+                >
+                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Time-Day"
+              labelStyle={{ color: "white", fontSize: 30, marginLeft: 10 }}
+              onPress={() => {
+                props.navigation.navigate("TimeOfDay");
+              }}
+            />
+            <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("TimeOfDayManage");
+                  }}
+                >
+                  <Icon name="database-edit" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Manage Time-Day Data"
+              labelStyle={{ color: "white" }}
+              onPress={() => {
+                props.navigation.navigate("TimeOfDayManage");
+              }}
+            />
+            <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("TimeOfWeek");
+                  }}
+                >
+                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Time-Week"
+              labelStyle={{ color: "white", fontSize: 30, marginLeft: 10 }}
+              onPress={() => {
+                props.navigation.navigate("TimeOfWeek");
+              }}
+            />
+            <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("TimeOfWeekManage");
+                  }}
+                >
+                  <Icon name="database-edit" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Manage Time-Week Data"
+              labelStyle={{ color: "white" }}
+              onPress={() => {
+                props.navigation.navigate("TimeOfWeekManage");
+              }}
+            />
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
