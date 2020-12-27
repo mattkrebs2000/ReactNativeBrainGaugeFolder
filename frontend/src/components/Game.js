@@ -10,6 +10,7 @@ import {
 import emailContext from "../emailContext.js";
 import birthdateContext from "../birthdateContext.js";
 import { firebase } from "../firebase/config.js";
+const currentDayNumber = require("current-day-number");
 
 const Game = ({
   average,
@@ -162,6 +163,23 @@ const Game = ({
     }
   };
 
+getDaysInAYear = () => {
+  const check = new Date();
+  const dayInYear = check.getFullYear();
+  
+		if( (0 == dayInYear % 4) && (0 != dayInYear % 100) || (0 == dayInYear % 400) )
+		{
+		return 366;
+		}
+		else
+		{
+		return 365;
+		}
+	}
+
+
+
+
   const ageOfGame = () => {
     const object = new Object();
     const birth = new Date(birthdateGlobal);
@@ -180,14 +198,18 @@ const Game = ({
     const ageInDays = (check - birth) / milliDay;
     object.age = Math.round((ageInDays / 365) * 100000) / 100000;
     object.Day =
-      ((check.getHours() * 60 + check.getMinutes()) * 60 + check.getSeconds()) /
-      86400;
+      ((check.getHours() * 60 + check.getMinutes()) * 60 + check.getSeconds()) / 86400;
     object.Week =
       (dayInWeek +
         ((check.getHours() * 60 + check.getMinutes()) * 60 +
           check.getSeconds()) /
-          86400) /
-      7;
+          86400) / 7;
+
+           object.Year =
+        ((currentDayNumber() +
+          ((check.getHours() * 60 + check.getMinutes()) * 60 +
+            check.getSeconds()) /
+            86400) / getDaysInAYear());
 
     return object;
   };
@@ -199,6 +221,7 @@ const Game = ({
       currentAge: ageOfGame().age,
       timeElapsedInADay: ageOfGame().Day,
       timeElapsedInAWeek: ageOfGame().Week,
+       timeElapsedInAYear: ageOfGame().Year,
       DayOfWeek:dayOfWeek(),
       birthdate: birthdateGlobal,
       email: emailGlobal,

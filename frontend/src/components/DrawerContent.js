@@ -262,6 +262,39 @@ export function DrawerContent(props) {
                 props.navigation.navigate("TimeOfWeekManage");
               }}
             />
+  <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("TimeOfYear");
+                  }}
+                >
+                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Time-Year"
+              labelStyle={{ color: "white", fontSize: 30, marginLeft: 10 }}
+              onPress={() => {
+                props.navigation.navigate("TimeOfYear");
+              }}
+            />
+            <DrawerItem
+              icon={() => (
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("TimeOfYearManage");
+                  }}
+                >
+                  <Icon name="database-edit" color="#167bff" size={45} />
+                </TouchableOpacity>
+              )}
+              label="Manage Time-Year Data"
+              labelStyle={{ color: "white" }}
+              onPress={() => {
+                props.navigation.navigate("TimeOfYearManage");
+              }}
+            />
+
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>

@@ -26,6 +26,8 @@ import Appetite from "./components/Hunger";
 import Appetitemanage from "./components/Hungermanage";
 import TimeOfWeek from "./components/TimeOfWeek";
 import TimeOfWeekManage from "./components/TimeOfWeekManage";
+import TimeOfYear from "./components/TimeOfYear";
+import TimeOfYearManage from "./components/TimeOfYearManage";
 import TimeOfDay from "./components/TimeOfDay";
 import TimeOfDayManage from "./components/TimeOfDayManage";
 import Sleep from "./components/Sleep";
@@ -143,12 +145,11 @@ export const Navigators = ({ navigation }) => {
       <Drawer.Screen name="TimeOfDay" component={TimeOfDay} />
       <Drawer.Screen name="TimeOfDayManage" component={TimeOfDayManage} />
       <Drawer.Screen name="TimeOfWeek" component={TimeOfWeek} />
-      <Drawer.Screen name="TimeOfWeekManage" component={TimeOfWeekManage} />
+      <Drawer.Screen name="TimeOfWeekManage" component={TimeOfWeekManage}/>
+       <Drawer.Screen name="TimeOfYear" component={TimeOfYear} />
+      <Drawer.Screen name="TimeOfYearManage" component={TimeOfYearManage}/>
     </Drawer.Navigator>
   );
-
-
-
 
 
   return (
