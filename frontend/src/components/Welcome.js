@@ -15,59 +15,81 @@ import dataContext from "../dataContext.js";
 import maxContext from "../maxOfYAxisContext.js";
 
 const Welcome = ({ navigation }) => {
-  console.log("Welcome");
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
- 
+  const [change, setChange] = useState("");
+
+  useEffect(() => {
+    if (change.length > 3) {
+      setEmailGlobal("");
+      setTimeout(() => {
+        navigation.navigate("Home");
+      }, 100);
+    } else {
+      console.log("Do Nothing");
+    }
+  }, [change]);
+
+  console.log("Welcome", emailGlobal);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container2}>
-        <Text> {"\n"} </Text>
-        <Text style={styles.text}>You are logged in as:</Text>
-        <Text style={styles.text2}>{emailGlobal}</Text>
-        <Text
-          style={styles.text2}
-          onPress={() => navigation.navigate("BrainGauge")}
-        >
-          Play Game
-        </Text>
-        <TouchableOpacity
-          style={styles.containerofimage}
-          onPress={() => navigation.navigate("BrainGauge")}
-        >
-          <Image
-            source={{
-              uri: "https://media.giphy.com/media/35B3Val0pYgtpScqsz/giphy.gif",
-            }}
-            style={styles.image}
-          ></Image>
-        </TouchableOpacity>
-        <Text style={styles.text2} onPress={() => navigation.toggleDrawer()}>
-          See Results
-        </Text>
-        <TouchableOpacity
-          style={styles.containerofimage}
-          onPress={() => navigation.toggleDrawer()}
-        >
-          <Image
-            source={{
-              uri:
-                "https://i.pinimg.com/originals/c9/91/72/c99172c17b83d3c620b997858351b2a5.gif",
-            }}
-            style={styles.image}
-            
-          ></Image>
-        </TouchableOpacity>
-        <View style={styles.bottombuttons}>
-          <Button
-            title="Sign Out"
-            onPress={() => navigation.navigate("Home")}
-          />
+        <View style={styles.flex1}>
+          <Text style={styles.text}>You are logged in as:</Text>
+          <Text style={styles.text2}>{emailGlobal}</Text>
+        </View>
+        <View style={styles.flex2}>
+          <Text
+            style={styles.text2}
+            onPress={() => navigation.navigate("BrainGauge")}
+          >
+            Play Game
+          </Text>
+          <TouchableOpacity
+            style={styles.containerofimage}
+            onPress={() => navigation.navigate("BrainGauge")}
+          >
+            <Image
+              source={{
+                uri:
+                  "https://media.giphy.com/media/35B3Val0pYgtpScqsz/giphy.gif",
+              }}
+              style={styles.image}
+            ></Image>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.flex3}>
+          <Text style={styles.text2} onPress={() => navigation.toggleDrawer()}>
+            See Results
+          </Text>
+          <TouchableOpacity
+            style={styles.containerofimage}
+            onPress={() => navigation.toggleDrawer()}
+          >
+            <Image
+              source={{
+                uri:
+                  "https://i.pinimg.com/originals/c9/91/72/c99172c17b83d3c620b997858351b2a5.gif",
+              }}
+              style={styles.image}
+            ></Image>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.flex4}>
+          <TouchableOpacity style={styles.btn}>
+            <Text
+              accessibilityLabel="Sign Up"
+              style={styles.text3}
+              onPress={() => setChange("abcdef")}
+            >
+              Sign Out
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 };
-
 export default Welcome;
 
 const styles = StyleSheet.create({
@@ -89,20 +111,20 @@ const styles = StyleSheet.create({
   },
 
   text2: {
-    flex: .5,
+    flex: 0.5,
     color: "white",
     textAlign: "center",
     justifyContent: "center",
     fontSize: 20,
   },
   image: {
-   width: "90%",
-   height: "100%",
-    
+    width: "90%",
+    height: "100%",
+
     borderRadius: 5,
   },
   containerofimage: {
-    flex:2,
+    flex: 2,
     width: 200,
     flexDirection: "column",
     alignItems: "center",
@@ -113,5 +135,39 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
+  },
+  btn: {
+    borderColor: "#167bff",
+    borderWidth: 1,
+    width: 100,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "black",
+    borderRadius: 10,
+    shadowColor: "white",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    color: "white",
+    margin: 5,
+  },
+  text3: {
+    color: "white",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  flex1: {
+    flex: .4,
+    marginTop: 10,
+  },
+  flex2: {
+    flex: 1,
+  },
+  flex3: {
+    flex: 1,
+  },
+  flex4: {
+    flex: .5,
   },
 });

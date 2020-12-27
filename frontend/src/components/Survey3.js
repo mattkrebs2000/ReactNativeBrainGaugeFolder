@@ -61,11 +61,10 @@ const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
-              console.log("1", page);
+            
               setPage(4);
-              console.log("1", page);
             }}
-            // onPress={this.signUp}
+
           >
             <Text style={styles.text}>Submit</Text>
           </TouchableOpacity>

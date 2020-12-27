@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import {
   useTheme,
@@ -6,13 +6,11 @@ import {
 } from "react-native-paper";
 import { DrawerContentScrollView, DrawerItem, DrawerActions } from "@react-navigation/drawer";
 
+
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
-
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
-
 
 
   return (
@@ -262,7 +260,7 @@ export function DrawerContent(props) {
                 props.navigation.navigate("TimeOfWeekManage");
               }}
             />
-  <DrawerItem
+            <DrawerItem
               icon={() => (
                 <TouchableOpacity
                   onPress={() => {
@@ -294,17 +292,15 @@ export function DrawerContent(props) {
                 props.navigation.navigate("TimeOfYearManage");
               }}
             />
-
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
-          icon={() => <Icon name="exit-to-app" color="#167bff" size={45} />}
-          label="Sign Out"
-          labelStyle={{ color: "white", marginLeft: 30 }}
+          label=""
+          labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
           onPress={() => {
-            props.navigation.navigate("Home");
+            props.navigation.navigate("Return");
           }}
         />
       </Drawer.Section>

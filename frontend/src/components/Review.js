@@ -22,28 +22,6 @@ const Review = ({
   setPage,
   page,
 }) => {
-  // const Submit = () => {
-  //   const data = {
-  //     email: emailGlobal,
-  //     text1: value1,
-  //     text2: value2,
-  //     text3: value3,
-  //     text4: value4,
-  //   };
-
-  //   return firebase
-  //     .firestore()
-  //     .collection("Performance")
-  //     .add({ data })
-  //     .then(() => {
-  //       setPage(6, { performance: data });
-  //     })
-  //     .catch((error) => {
-  //       tColor="#004fff"(error);
-  //     });
-  // };
-
-  console.log("HEEEE", setPage, page);
 
   return (
     <View style={styles.container} behavior="padding">

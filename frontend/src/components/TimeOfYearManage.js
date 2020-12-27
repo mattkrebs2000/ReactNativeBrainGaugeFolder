@@ -43,7 +43,6 @@ const TimeInAYear = ({ navigation }) => {
         })
         .then(function () {
           populate();
-          console.log("Document successfully updated!");
         })
         .catch(function (error) {
           // The document probably doesn't exist.

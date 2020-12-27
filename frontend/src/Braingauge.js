@@ -43,7 +43,6 @@ export default Braingauge = ({ navigation }) => {
         setText1("Very Refreshed");
         break;
     }
-    console.log("YYYYY", texts1, "YYYYYY");
   };
 
   useEffect(() => {

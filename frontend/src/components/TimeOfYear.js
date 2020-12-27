@@ -183,7 +183,7 @@ const TimeOfYear = ({ navigation }) => {
                 },
               }}
               tickValues={[0.02, 0.25, 0.5, 0.75, 1]}
-              tickFormat={["Jan 1 12:00 am", " ", "", " ", "Dec 31, 11:59 pm"]}
+              tickFormat={["Jan 1 \r\n 12:00 am", " ", "", " ", "Dec 31 \r\n 11:59 pm"]}
             />
 
             <VictoryAxis

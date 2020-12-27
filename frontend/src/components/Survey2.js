@@ -32,8 +32,7 @@ const Mood = ({ setPage, setValue2, texts2, value2 }) => {
         {/* Sign Up Form */}
         <View style={styles.form}>
           <Text style={styles.text3}>
-            How do you feel relative to the amount of positive Or negative news
-            you've gotten recently?
+            How would you describe your mood lately?
           </Text>
           <Text> {"\n"} </Text>
           <Slider

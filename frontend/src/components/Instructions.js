@@ -18,8 +18,6 @@ const Instructions = ({navigation, setPage
 useEffect(() => {
   navigation.setOptions({
     title: "Game",
-    headerBackTitle: "Yo",
-
     headerLeft: () => (
       <Button
         onPress={() => {
@@ -28,6 +26,14 @@ useEffect(() => {
         title="< Survey"
       />
     ),
+    headerRight: () => (
+      <Button
+        onPress={() => {
+          setPage(1);
+        }}
+        title=""
+      />
+    )
   });
 }, []);
 

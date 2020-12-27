@@ -32,8 +32,7 @@ const Exercise = ({ setPage, setValue4, texts4, value4 }) => {
         {/* Sign Up Form */}
         <View style={styles.form}>
           <Text style={styles.text3}>
-            How do you feel relative to the amount of exercise you've gotten
-            recently?
+            How would you describe your recent levels of physical activity?
           </Text>
           <Text> {"\n"} </Text>
           <Slider

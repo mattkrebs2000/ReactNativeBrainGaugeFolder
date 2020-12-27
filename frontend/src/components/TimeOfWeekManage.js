@@ -24,7 +24,6 @@ const TimeInADay = ({ navigation }) => {
   useEffect(() => {
     populate();
     setYourData([]);
-    console.log("3 HIIIII", yourData);
   }, [isFocused]);
 
   const deleteItem = () => {
@@ -70,12 +69,6 @@ const TimeInADay = ({ navigation }) => {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
-
-          console.log(
-            "1 ",
-            "length is " + yourData.length,
-            yourData.indexOf(newData.id) == -1
-          );
 
           if (newData.timeElapsedInAWeek > 0 && yourData.indexOf(newData.id) == -1) {
             console.log("adding to array");

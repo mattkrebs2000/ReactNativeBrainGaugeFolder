@@ -239,8 +239,7 @@ getDaysInAYear = () => {
       .doc(data.id)
       .set({ data })
       .then((docRef) => {
-        // console.log("Document written with Id: ", docRef.id);
-        navigation.navigate("Profile");
+           navigation.navigate("Profile");
       })
       .catch((error) => {
         alert(error);
@@ -301,10 +300,9 @@ getDaysInAYear = () => {
                 style={styles.image}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
               <Text style={styles.text3}>
-                Click Here if you do not want to include these results and To
-                Log Out.
+                Click Here if you do not want to include these results.
               </Text>
             </TouchableOpacity>
           </View>
@@ -381,50 +379,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-// Basic Example:
-
-// import React, {useState, useRef, useEffect} from "react";
-// import {
-//   Text,
-//   View,
-//   Button,
-// } from "react-native";
-
-// const Game = () => {
-//     const [seconds, setSeconds] = useState(0);
-//     const interval = useRef(null);
-
-//     const startCounter = () =>
-//       (interval.current = setInterval(() => {
-//         setSeconds((prevState) => prevState + 1);
-//       }, 10));
-
-//     const stopCounter = () => clearInterval(interval.current);
-
-//         return (
-//           <View>
-//             <View>
-//               <Text id="time-left">{seconds}</Text>
-//             </View>
-//             <View>
-//               <Button
-//                 title="Start"
-//                 id="start_stop"
-//                 onPress={startCounter}
-//               >
-//                 Start/Stop
-//               </Button>
-//               <Button
-//                 title="Stop"
-//                 id="stop"
-//                 onPress={stopCounter}
-//               >
-//                 Stop
-//               </Button>
-//             </View>
-//           </View>
-//         );
-
-// }
-// export default Game;

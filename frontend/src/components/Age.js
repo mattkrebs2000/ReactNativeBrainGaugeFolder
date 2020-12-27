@@ -63,7 +63,7 @@ const Age = ({ navigation }) => {
           }
         });
 
-        setYourData([]);
+       
 
         setMinSelfAssess(Math.min(...selfAssessArray));
         setMaxSelfAssess(Math.max(...selfAssessArray));
@@ -137,13 +137,10 @@ const Age = ({ navigation }) => {
   };
 
   
+ 
   useEffect(() => {
     populate();
-  }, [isFocused]);
-
-    useEffect(() => {
-    populate();
-    }, [yForHundredMore]);
+  }, [isFocused, yForHundredMore]);
 
 
 

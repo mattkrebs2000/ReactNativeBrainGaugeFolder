@@ -24,7 +24,6 @@ const Appetitemanage = ({ navigation }) => {
   useEffect(() => {
     populate();
     setYourData([]);
-    console.log("3 HIIIII", yourData);
   }, [isFocused]);
 
   const deleteItem = () => {
@@ -42,10 +41,8 @@ const Appetitemanage = ({ navigation }) => {
         })
         .then(function () {
           populate();
-          console.log("Document successfully updated!");
         })
         .catch(function (error) {
-          // The document probably doesn't exist.
           console.error("Error updating document: ", error);
         });
     } else {
@@ -71,15 +68,8 @@ const Appetitemanage = ({ navigation }) => {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
 
-          console.log(
-            "1 ",
-            "length is " + yourData.length,
-            yourData.indexOf(newData.id) == -1
-          );
-
           if (newData.currentAge > 0 && yourData.indexOf(newData.id) == -1) {
-            console.log("adding to array");
-
+            
             setYourData((arr) => {
               return [...arr, newData];
             });
@@ -92,7 +82,6 @@ const Appetitemanage = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
-  console.log("4 ", yourData);
   return (
     <SafeAreaView style={styles.container2}>
       <View>

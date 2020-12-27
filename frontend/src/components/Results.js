@@ -35,7 +35,7 @@ const Home = () => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => navigation.navigate("CreateAccount")}
-            // onPress={this.signUp}
+    
           >
             <Text
               accessibilityLabel="Sign In"
@@ -50,8 +50,6 @@ const Home = () => {
 
           <TouchableOpacity
             style={styles.btn}
-
-            // onPress={this.signUp}
           >
             <Text
               accessibilityLabel="Sign Up"

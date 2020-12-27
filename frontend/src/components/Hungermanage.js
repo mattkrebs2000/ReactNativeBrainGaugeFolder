@@ -24,7 +24,6 @@ const Appetitemanage = ({ navigation }) => {
  useEffect(() => {
    populate();
    setYourData([])
-   console.log("3 HIIIII", yourData);
  }, [isFocused]);
 
 
@@ -42,8 +41,7 @@ const Appetitemanage = ({ navigation }) => {
           "data.text3": 0,
         })
         .then(function () {
-          populate();
-          console.log("Document successfully updated!");
+          populate();      
         })
         .catch(function (error) {
           // The document probably doesn't exist.
@@ -71,8 +69,6 @@ const Appetitemanage = ({ navigation }) => {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
-
-          console.log("1 ", "length is " + yourData.length ,yourData.indexOf(newData.id) == -1);
 
           if (newData.text3 > 0 && yourData.indexOf(newData.id) == -1) {
 

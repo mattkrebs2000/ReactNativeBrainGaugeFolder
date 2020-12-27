@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
+
 const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
 
     console.log("Sleep");
@@ -24,6 +25,14 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
             navigation.navigate("Profile");
           }}
           title="< Data"
+        />
+      ),
+        headerRight: () => (
+        <Button
+          onPress={() => {
+            setPage(6);
+          }}
+          title="Skip >"
         />
       ),
     })
@@ -180,77 +189,3 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
 });
-
-// import React, { useState } from "react";
-// import { Text, StyleSheet, View } from "react-native";
-// import Slider from "@react-native-community/slider";
-
-// const Sleep = () => {
-//   const [value1, setValue] = useState(0);
-//   const [texts1, setText] = useState(" ");
-
-//   handleChange = (e) => setValue(e.target.value1);
-
-//   text = () => {
-//     switch (value1) {
-//       case 1:
-//         text = "Very Tired";
-//         break;
-//       case 2:
-//         text = "Tired";
-//         break;
-//       case 3:
-//         text = "Not Tired but Not Refreshed";
-//         break;
-//       case 4:
-//         text = "Refreshed";
-//         break;
-//       case 5:
-//         text = "Very Refreshed";
-//         break;
-//     }
-//     return setText({ text });
-//   };
-
-//   return (
-//     <View>
-//       <Text>{value1}Hello</Text>
-//       <Text>{texts1}</Text>
-
-//       <Text style={styles.text}>{value1 && value1}oh</Text>
-//       <Slider
-//         style={styles.slider}
-//         //   onValueChange={handleChange}
-
-//         onValueChange={function (event) {
-//           return setValue(event.target.value1);
-//         }}
-//        Not Included style={{ width: 300, height: 40 }}
-//         minimumValue={0}
-//         maximumValue={100}
-//         minimumTrackTintColor="red"
-//         step="1"
-//         maximumTrackTintColor="#004fff"
-//         value1="2"
-//       />
-//       <Text>{texts1}</Text>
-//     </View>
-//   );
-// };
-
-// export default Sleep;
-
-// const styles = StyleSheet.create({
-//   slider: {
-//     width: 300,
-//     opacity: 1,
-//     height: 50,
-//     marginTop: 50,
-//   },
-//   text: {
-//     fontSize: 14,
-//     textAlign: "center",
-//     fontWeight: "500",
-//     margin: 10,
-//   },
-// });

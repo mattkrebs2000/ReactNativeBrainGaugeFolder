@@ -42,7 +42,6 @@ const Appetitemanage = ({ navigation }) => {
         })
         .then(function () {
           populate();
-          console.log("Document successfully updated!");
         })
         .catch(function (error) {
           // The document probably doesn't exist.
@@ -71,15 +70,8 @@ const Appetitemanage = ({ navigation }) => {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
 
-          console.log(
-            "1 ",
-            "length is " + yourData.length,
-            yourData.indexOf(newData.id) == -1
-          );
-
           if (newData.text1 > 0 && yourData.indexOf(newData.id) == -1) {
-            console.log("adding to array");
-
+           
             setYourData((arr) => {
               return [...arr, newData];
             });

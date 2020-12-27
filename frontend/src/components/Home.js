@@ -35,7 +35,7 @@ const Home = ({navigation}) => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => navigation.navigate("CreateAccount")}
-            // onPress={this.signUp}
+        
           >
             <Text
               accessibilityLabel="Sign In"
@@ -51,7 +51,6 @@ const Home = ({navigation}) => {
           <TouchableOpacity
             style={styles.btn}
 
-            // onPress={this.signUp}
           >
             <Text
               accessibilityLabel="Sign Up"
@@ -104,7 +103,7 @@ const styles = StyleSheet.create({
     borderColor: "#167bff",
     borderWidth: 1,
     width: 100,
-    height: 45,
+    height: 35,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "black",
@@ -126,6 +125,7 @@ const styles = StyleSheet.create({
   },
   container2: {
     flex: 1,
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
