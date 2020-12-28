@@ -1,1 +1,1 @@
-<a href="https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/LogIn.mp4"></a>
+<a href="https://media.giphy.com/media/VNyqZIyPvnG6twx8NY/giphy.gif" width="200" height="400"></a>
