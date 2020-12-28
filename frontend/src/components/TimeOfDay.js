@@ -183,7 +183,7 @@ const Sleep = ({ navigation }) => {
                 },
               }}
               tickValues={[0.02, 0.25, 0.50, 0.75, 1]}
-              tickFormat={["Midnight", "6 am", "12 pm", "6 pm", "Midnight"]}
+              tickFormat={["12 am", "6 am", "12 pm", "6 pm", "12 am"]}
             />
 
             <VictoryAxis

@@ -32,8 +32,7 @@ const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
         {/* Sign Up Form */}
         <View style={styles.form}>
           <Text style={styles.text3}>
-            How do you feel relative to the amount of food you've eaten
-            recently?
+            How would you describe {"\n"}yourself relative to the amount {"\n"} of food you've eaten lately?
           </Text>
           <Text> {"\n"} </Text>
           <Slider
@@ -61,10 +60,8 @@ const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
-            
               setPage(4);
             }}
-
           >
             <Text style={styles.text}>Submit</Text>
           </TouchableOpacity>

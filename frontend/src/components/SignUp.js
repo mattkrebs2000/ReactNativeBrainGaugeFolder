@@ -135,7 +135,6 @@ const SignUp = ({ navigation }) => {
                 setBirthdate(date.getDate());
                 setBirthmonth(date.getMonth() + 1);
 
-                alert(birthdate + "/" + birthmonth + "/" + birthyear);
               }}
               onCancel={() => {
                 setVisibility(false);

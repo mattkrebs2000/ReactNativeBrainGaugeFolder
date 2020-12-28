@@ -41,7 +41,7 @@ const TimeInADay = ({ navigation }) => {
         })
         .then(function () {
           populate();
-          console.log("Document successfully updated!");
+         
         })
         .catch(function (error) {
           // The document probably doesn't exist.
@@ -65,12 +65,17 @@ const TimeInADay = ({ navigation }) => {
       .firestore()
       .collection("Performance")
       .where("data.email", "==", emailGlobal)
+      .orderBy("data.currentDate")
+      .orderBy("data.timeElapsedInADay")
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
 
-          if (newData.timeElapsedInAWeek > 0 && yourData.indexOf(newData.id) == -1) {
+          if (
+            newData.timeElapsedInAWeek > 0 &&
+            yourData.indexOf(newData.id) == -1
+          ) {
             console.log("adding to array");
 
             setYourData((arr) => {
@@ -85,18 +90,12 @@ const TimeInADay = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
-  console.log("4 ", yourData);
   return (
     <SafeAreaView style={styles.container2}>
       <View>
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Time Of Week Data</Text>
           <Text style={styles.text5}>_________________________</Text>
-
-          <Text style={styles.text4}>"HEELLO</Text>
-          <View>
-            <Text style={styles.text4}>Number Speed </Text>
-          </View>
         </TouchableOpacity>
 
         <View style={styles.chart}>
@@ -107,7 +106,8 @@ const TimeInADay = ({ navigation }) => {
                   onPress={() =>
                     alert(
                       "This data was recorded on \r\n" +
-                      info.DayOfWeek+ ", "+
+                        info.DayOfWeek +
+                        ", " +
                         info.currentDate +
                         " at " +
                         info.currentTime
@@ -116,7 +116,8 @@ const TimeInADay = ({ navigation }) => {
                   style={styles.divide}
                 >
                   <Text style={{ fontSize: 17 }}>
-                    {i + 1}. {info.DayOfWeek}, {info.currentDate} at {info.currentTime}.  Speed: {info.speed}
+                    {i + 1}. {info.DayOfWeek}, {info.currentDate} at{" "}
+                    {info.currentTime}. Speed: {info.speed}
                   </Text>
                 </TouchableOpacity>
 
@@ -158,6 +159,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     flex: 0.45,
     justifyContent: "center",
+    
   },
   new: {
     color: "red",
@@ -177,6 +179,7 @@ const styles = StyleSheet.create({
     marginRight: 0,
     marginLeft: 0,
     backgroundColor: "black",
+    
   },
   middle: {
     alignItems: "center",
@@ -185,6 +188,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     marginLeft: 20,
     marginRight: 20,
+    
   },
   chart: {
     backgroundColor: "black",
@@ -192,11 +196,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
     width: 340,
+    
   },
   container2: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
+    
   },
   btn: {
     borderColor: "#167bff",
@@ -210,34 +216,39 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 3,
     color: "black",
+    
   },
   text: {
     color: "white",
     fontSize: 16,
     textAlign: "center",
+    
   },
   text11: {
     color: "white",
     fontSize: 10,
     textAlign: "right",
+    
   },
   text4: {
     color: "white",
     fontSize: 18,
     textAlign: "center",
-    backgroundColor: "green",
+    
   },
   text5: {
     color: "white",
     fontSize: 18,
     textAlign: "center",
     marginBottom: 20,
+    
   },
   text6: {
     color: "white",
     fontSize: 18,
     flex: 1,
     marginBottom: 20,
+    
   },
   text9: {
     color: "white",
@@ -245,6 +256,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 100,
     borderRadius: 50,
+    
   },
   btn9: {
     borderColor: "#167bff",
@@ -260,5 +272,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 3,
     color: "red",
+    
   },
 });

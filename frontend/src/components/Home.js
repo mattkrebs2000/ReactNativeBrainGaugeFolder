@@ -28,14 +28,14 @@ const Home = ({navigation}) => {
           />
         </View>
         <Text style={styles.text2}>
-          This is the App that measures your mental responsiveness and tells you
+          This is the App that measures {"\n"}your reaction time and tells you
+          {"\n"}
           when you are at your best.
         </Text>
         <View style={styles.buttons}>
           <TouchableOpacity
             style={styles.btn}
-            onPress={() => navigation.navigate("CreateAccount")}
-        
+            onPress={() => navigation.navigate("SignIn")}
           >
             <Text
               accessibilityLabel="Sign In"
@@ -50,7 +50,7 @@ const Home = ({navigation}) => {
 
           <TouchableOpacity
             style={styles.btn}
-
+            onPress={() => navigation.navigate("CreateAccount")}
           >
             <Text
               accessibilityLabel="Sign Up"

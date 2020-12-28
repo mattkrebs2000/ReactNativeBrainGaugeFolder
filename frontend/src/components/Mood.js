@@ -183,7 +183,7 @@ const Mood = ({ navigation }) => {
                 },
               }}
               tickValues={[2, 25, 50, 75, 100]}
-              tickFormat={["Not Active", "", "", "", "Very Active"]}
+              tickFormat={["Very Upset", "", "", "", "Very Happy"]}
             />
 
             <VictoryAxis

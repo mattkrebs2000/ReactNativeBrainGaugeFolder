@@ -57,8 +57,8 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
         {/* Sign Up Form */}
         <View style={styles.form}>
           <Text style={styles.text3}>
-            How do you feel relative to the amount of sleep you've gotten
-            recently?
+            How do you feel relative {"\n"}to the amount of sleep you've
+            gotten recently?
           </Text>
           <Text> {"\n"} </Text>
           <Slider

@@ -184,7 +184,7 @@ const Appetite = ({ navigation }) => {
                 },
               }}
               tickValues={[2, 25, 50, 75, 100]}
-              tickFormat={["Not Active", "", "", "", "Very Active"]}
+              tickFormat={["Very Hungry", "", "", "", "Stuffed"]}
             />
 
             <VictoryAxis

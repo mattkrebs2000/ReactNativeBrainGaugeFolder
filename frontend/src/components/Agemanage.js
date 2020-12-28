@@ -63,13 +63,14 @@ const Appetitemanage = ({ navigation }) => {
       .firestore()
       .collection("Performance")
       .where("data.email", "==", emailGlobal)
+      .orderBy("data.currentDate")
+      .orderBy("data.timeElapsedInADay")
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data().data;
 
           if (newData.currentAge > 0 && yourData.indexOf(newData.id) == -1) {
-            
             setYourData((arr) => {
               return [...arr, newData];
             });
@@ -89,10 +90,6 @@ const Appetitemanage = ({ navigation }) => {
           <Text style={styles.text2}>Age Data</Text>
           <Text style={styles.text5}>_________________________</Text>
 
-          <Text style={styles.text4}>"HEELLO</Text>
-          <View>
-            <Text style={styles.text4}>Number Speed </Text>
-          </View>
         </TouchableOpacity>
 
         <View style={styles.chart}>

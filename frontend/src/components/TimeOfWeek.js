@@ -71,6 +71,8 @@ const TimeOfWeek = ({ navigation }) => {
         let sumOfProducts = [];
         let sumOfSquares = [];
 
+        console.log("HERE IS THE AVERAGE", aveSpeed);
+
         maximumArray.forEach((pieceofdata) => {
           let yData = pieceofdata - aveSpeed;
           sumOfYDiff.push(yData);
