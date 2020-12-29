@@ -1,7 +1,7 @@
 Log In
 
 ![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/LogIn.gif)
-![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/Onee.gif)
+![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/Onee.gif | width=100)
 ![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/Twoo.mp4)
 ![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/Three.mp4)
 ![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/Four.mp4)
