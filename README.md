@@ -1,10 +1,9 @@
 
-# FinalProject
-
+# Brain Gauge Mobile App
 
 ![alt text][logo]
 
-[logo]: /Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png
+[logo]: https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png
 
 This Mobile App takes in users Reaction Time to touch on a square that appears at varying intervals and compares those times with the users Age, the Time of Day, the Time of Week, the Time of Year, and some additional variables that the user can choose to include ("Sleep", "Mood", "Exercise" and "Hunger"). The user can view results in a ScatterPlot which includes a LineOfBestFit indicating Positive or Negative correlation between the variables And can also review and delete entries. 
 
