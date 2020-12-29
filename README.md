@@ -6,7 +6,7 @@ Log In
 ![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/threeee.gif)
 ![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/fourrrr.gif)
 ![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/fiveee.gif)
-![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/Six.mp4)
-![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/Seven.mp4)
+![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/sixxxx.mp4)
+![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/sevennn.mp4)
 
 
