@@ -1,1 +1,1 @@
-![](https://media.giphy.com/media/VNyqZIyPvnG6twx8NY/giphy.gif)
+![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/LogIn2.mp4)
