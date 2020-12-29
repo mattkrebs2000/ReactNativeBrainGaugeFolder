@@ -8,5 +8,5 @@ Log In
 ![](https://media.giphy.com/media/x0jVFwiJ3JZn0hCJsn/giphy.gif)
 ![](https://media.giphy.com/media/2UTCchw3MjUukLFLn2/giphy.gif)
 ![](https://media.giphy.com/media/d0k4TN6xl2XVASARmR/giphy.gif)
-![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/One.mov)
+![](https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/Onee.mp4)
 
