@@ -163,7 +163,11 @@ const Game = ({
     }
   };
 
-getDaysInAYear = () => {
+const getDaysInAYear = () => {
+
+  if (emailGlobal.length>3){
+
+
   const check = new Date();
   const dayInYear = check.getFullYear();
   
@@ -174,7 +178,10 @@ getDaysInAYear = () => {
 		else
 		{
 		return 365;
-		}
+    }
+  } else {
+    return 365; 
+  }
 	}
 
 
@@ -232,7 +239,7 @@ getDaysInAYear = () => {
       text4: value4,
       id: firebase.firestore().collection("Performance").doc().id,
     };
-
+if (emailGlobal.length>3){
     return firebase
       .firestore()
       .collection("Performance")
@@ -244,6 +251,13 @@ getDaysInAYear = () => {
       .catch((error) => {
         alert(error);
       });
+    } else {
+
+      alert(
+        "Your results will not be appearing because you are touring as a 'guest'. To begin recording data, create an account then sign in."
+      ),
+        navigation.navigate("CreateAccount");
+    }
   };
 
   return (

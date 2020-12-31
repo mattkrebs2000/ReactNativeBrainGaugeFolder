@@ -34,7 +34,11 @@ const Welcome = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.container2}>
         <View style={styles.flex1}>
-          <Text style={styles.text}>You are logged in as:</Text>
+          {emailGlobal.length > 4 ? (
+            <Text style={styles.text}>You are logged in as:</Text>
+          ) : (
+            <Text style={styles.text}>You are touring as a Guest</Text>
+          )}
           <Text style={styles.text2}>{emailGlobal}</Text>
         </View>
         <View style={styles.flex2}>

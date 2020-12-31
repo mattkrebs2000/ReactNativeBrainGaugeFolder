@@ -35,6 +35,22 @@ const SignUp = ({ navigation }) => {
     setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
   }, [password]);
 
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+          title="Guest Entry"
+        />
+      ),
+    });
+  }, []);
+
+
+
   const onRegisterPress = () => {
     if (password !== confirmPassword) {
       alert("Passwords don't match.");

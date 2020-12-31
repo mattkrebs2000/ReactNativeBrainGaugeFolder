@@ -39,6 +39,8 @@ const SignIn = ({ navigation }) => {
     }
   }, [email]);
 
+  
+
   const onLoginPress = () => {
     firebase
       .auth()
