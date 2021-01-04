@@ -9,6 +9,7 @@ This Mobile App takes in users Reaction Time to touch on a square that appears a
 
 ## Deployment 
 
+Available in IOS: apple.co/2Xckyt3 and Android: bit.ly/3rUyZ31
 
 
 ## User Experience
