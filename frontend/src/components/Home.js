@@ -1,4 +1,4 @@
-import React, { useEffect, useContext} from "react";
+import React, { useEffect, useContext } from "react";
 
 import {
   SafeAreaView,
@@ -9,9 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const Home = ({navigation}) => {
-
-
+const Home = ({ navigation }) => {
   console.log("Home");
   return (
     <SafeAreaView style={styles.container2}>
@@ -22,7 +20,7 @@ const Home = ({navigation}) => {
           <Image
             source={{
               uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
             }}
             style={styles.img}
           />

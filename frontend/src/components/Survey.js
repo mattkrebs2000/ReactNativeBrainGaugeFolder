@@ -10,11 +10,8 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 
-
 const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
-
-    console.log("Sleep");
-
+  console.log("Sleep");
 
   useEffect(() => {
     navigation.setOptions({
@@ -27,7 +24,7 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
           title="< Data"
         />
       ),
-        headerRight: () => (
+      headerRight: () => (
         <Button
           onPress={() => {
             setPage(6);
@@ -35,7 +32,7 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
           title="Skip >"
         />
       ),
-    })
+    });
   }, []);
 
   return (
@@ -45,7 +42,7 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
           <Image
             source={{
               uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
             }}
             style={styles.img}
           />
@@ -57,8 +54,8 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
         {/* Sign Up Form */}
         <View style={styles.form}>
           <Text style={styles.text3}>
-            How do you feel relative {"\n"}to the amount of sleep you've
-            gotten recently?
+            How do you feel relative {"\n"}to the amount of sleep you've gotten
+            recently?
           </Text>
           <Text> {"\n"} </Text>
           <Slider

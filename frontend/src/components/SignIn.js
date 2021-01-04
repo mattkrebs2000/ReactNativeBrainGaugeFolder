@@ -23,7 +23,7 @@ const SignIn = ({ navigation }) => {
   const { birthdateGlobal, setBirthdateGlobal } = useContext(birthdateContext);
   const [password, setPassword] = useState("");
 
- console.log(emailGlobal, "ISITTHERE", email)
+  console.log(emailGlobal, "ISITTHERE", email);
 
   useEffect(() => {
     console.log("1");
@@ -38,8 +38,6 @@ const SignIn = ({ navigation }) => {
       console.log("do nothing");
     }
   }, [email]);
-
-  
 
   const onLoginPress = () => {
     firebase
@@ -78,7 +76,7 @@ const SignIn = ({ navigation }) => {
           <Image
             source={{
               uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
             }}
             style={styles.img}
           />

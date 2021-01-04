@@ -10,8 +10,7 @@ import {
 import Slider from "@react-native-community/slider";
 
 const Exercise = ({ setPage, setValue4, texts4, value4 }) => {
-
-    console.log("Welcome");
+  console.log("Welcome");
 
   return (
     <View style={styles.container} behavior="padding">
@@ -20,7 +19,7 @@ const Exercise = ({ setPage, setValue4, texts4, value4 }) => {
           <Image
             source={{
               uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
             }}
             style={styles.img}
           />
@@ -32,7 +31,8 @@ const Exercise = ({ setPage, setValue4, texts4, value4 }) => {
         {/* Sign Up Form */}
         <View style={styles.form}>
           <Text style={styles.text3}>
-            How would you describe {"\n"}yourself relative to your recent level of physical activity?
+            How would you describe {"\n"}yourself relative to your recent level
+            of physical activity?
           </Text>
           <Text> {"\n"} </Text>
           <Slider

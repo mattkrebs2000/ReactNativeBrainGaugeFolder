@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 const Home = () => {
-//   const navigation = useNavigation();
+  //   const navigation = useNavigation();
 
   console.log("Results");
   return (
@@ -22,7 +22,7 @@ const Home = () => {
           <Image
             source={{
               uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
             }}
             style={styles.img}
           />
@@ -35,7 +35,6 @@ const Home = () => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => navigation.navigate("CreateAccount")}
-    
           >
             <Text
               accessibilityLabel="Sign In"
@@ -48,9 +47,7 @@ const Home = () => {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.btn}
-          >
+          <TouchableOpacity style={styles.btn}>
             <Text
               accessibilityLabel="Sign Up"
               style={styles.text3}

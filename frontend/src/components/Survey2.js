@@ -10,8 +10,7 @@ import {
 import Slider from "@react-native-community/slider";
 
 const Mood = ({ setPage, setValue2, texts2, value2 }) => {
-
-    console.log("Mood");
+  console.log("Mood");
 
   return (
     <View style={styles.container} behavior="padding">
@@ -20,7 +19,7 @@ const Mood = ({ setPage, setValue2, texts2, value2 }) => {
           <Image
             source={{
               uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
             }}
             style={styles.img}
           />

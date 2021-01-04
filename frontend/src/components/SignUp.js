@@ -35,7 +35,6 @@ const SignUp = ({ navigation }) => {
     setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
   }, [password]);
 
-
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -48,8 +47,6 @@ const SignUp = ({ navigation }) => {
       ),
     });
   }, []);
-
-
 
   const onRegisterPress = () => {
     if (password !== confirmPassword) {
@@ -95,7 +92,7 @@ const SignUp = ({ navigation }) => {
           <Image
             source={{
               uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
             }}
             style={styles.img}
           />
@@ -150,7 +147,6 @@ const SignUp = ({ navigation }) => {
                 setBirthyear(date.getYear() + 1900);
                 setBirthdate(date.getDate());
                 setBirthmonth(date.getMonth() + 1);
-
               }}
               onCancel={() => {
                 setVisibility(false);

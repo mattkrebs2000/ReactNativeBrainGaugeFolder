@@ -10,7 +10,6 @@ import {
 import Slider from "@react-native-community/slider";
 
 const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
-
   console.log("Appetite");
 
   return (
@@ -20,7 +19,7 @@ const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
           <Image
             source={{
               uri:
-                "/Users/matt/Desktop/HTML-JS/BootCampWork/ReactNativeBrainGaugeFolder/frontend/assets/brain.png",
+                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
             }}
             style={styles.img}
           />
@@ -32,7 +31,8 @@ const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
         {/* Sign Up Form */}
         <View style={styles.form}>
           <Text style={styles.text3}>
-            How would you describe {"\n"}yourself relative to the amount {"\n"} of food you've eaten lately?
+            How would you describe {"\n"}yourself relative to the amount {"\n"}{" "}
+            of food you've eaten lately?
           </Text>
           <Text> {"\n"} </Text>
           <Slider
