@@ -26,8 +26,24 @@ const Appetite = ({ navigation }) => {
   const [yForTwo, setYForTwo] = useState(0);
   const [yForHundred, setYForHundred] = useState(0);
   const [explanation, setExplanation] = useState("");
-
   const isFocused = useIsFocused();
+
+  const [pressed, setPressed] = useState(false);
+  const [color, setColor] = useState("red");
+
+const changeColor = () => {
+    if(!pressed){
+       setPressed(true),
+       setColor("green"),
+       alert("YOOO")
+    } else {
+      setPressed(false),
+       setColor("red"),
+       alert("YOOOu")
+    }
+  }
+
+
 
   const populate = () => {
     setOrderedPairArray([]);
@@ -211,20 +227,23 @@ const Appetite = ({ navigation }) => {
               style={{ data: { fill: "#004fff" } }}
               size={7}
               data={orderedPairArray}
-              labels={({ datum }) =>
-                `Self Rating: ${datum.x}, Speed: ${datum.y}`
-              }
-              labelComponent={
-                <VictoryTooltip
-                  style={{
-                    fontSize: 20,
-                  }}
-                  constrainToVisibleArea
-                  dy={0}
-                  centerOffset={{ y: -80 }}
-                  renderInPortal={false}
-                />
-              }
+              
+              
+
+              // labels={({ datum }) =>
+              //   `Self Rating: ${datum.x}, Speed: ${datum.y}`
+              // }
+              // labelComponent={
+              //   <VictoryTooltip
+              //     style={{
+              //       fontSize: 20,
+              //     }}
+              //     constrainToVisibleArea
+              //     dy={0}
+              //     centerOffset={{ y: -80 }}
+              //     renderInPortal={false}
+              //   />
+              // }
             />
           </VictoryChart>
         </View>

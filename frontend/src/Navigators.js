@@ -45,6 +45,7 @@ const headerStyle = {
 };
 const headerTitleStyle = {
   color: "white",
+  
 };
 
 const IconBar = () => {

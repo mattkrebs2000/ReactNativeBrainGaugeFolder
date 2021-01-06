@@ -20,7 +20,6 @@ import CryptoES from "crypto-es";
 const SignUp = ({ navigation }) => {
   console.log("SignUp");
 
-  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -104,13 +103,6 @@ const SignUp = ({ navigation }) => {
             placeholder="Email"
             onChangeText={(text) => setEmail(text)}
             value={email}
-            style={styles.input}
-          />
-
-          <TextInput
-            placeholder="UserName"
-            onChangeText={(text) => setUserName(text)}
-            value={userName}
             style={styles.input}
           />
 
