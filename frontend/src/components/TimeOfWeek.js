@@ -212,20 +212,6 @@ const TimeOfWeek = ({ navigation }) => {
               style={{ data: { fill: "#004fff" } }}
               size={7}
               data={orderedPairArray}
-              labels={({ datum }) =>
-                `${datum.day} at ${datum.time}, Speed: ${datum.y}`
-              }
-              labelComponent={
-                <VictoryTooltip
-                  style={{
-                    fontSize: 20,
-                  }}
-                  constrainToVisibleArea
-                  dy={0}
-                  centerOffset={{ y: -80 }}
-                  renderInPortal={false}
-                />
-              }
             />
           </VictoryChart>
         </View>
