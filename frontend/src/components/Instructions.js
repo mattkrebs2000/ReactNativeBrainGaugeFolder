@@ -28,7 +28,7 @@ const Instructions = ({navigation, setPage
          onPress={() => setPage(1)}
        >
          <Text accessibilityLabel="Back" style={styles.text5}>
-           Survey
+          
          </Text>
        </TouchableOpacity>
      ),
