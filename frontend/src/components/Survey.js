@@ -17,20 +17,19 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
     navigation.setOptions({
       title: "Survey",
       headerLeft: () => (
-        <Button
-          onPress={() => {
-            navigation.navigate("Profile");
-          }}
-          title="< Data"
-        />
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+          <Text accessibilityLabel="Back" style={styles.text5} >
+            Go Back
+          </Text>
+
+        </TouchableOpacity>
       ),
       headerRight: () => (
-        <Button
-          onPress={() => {
-            setPage(6);
-          }}
-          title="Skip >"
-        />
+       <TouchableOpacity onPress={() => setPage(6)}>
+          <Text accessibilityLabel="Skip" style={styles.text5}>
+            Skip 
+          </Text>
+        </TouchableOpacity>
       ),
     });
   }, []);
@@ -60,7 +59,7 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
           <Text> {"\n"} </Text>
           <Slider
             style={styles.slider}
-            value="50"
+            value={50}
             onValueChange={(event) => {
               setValue1(event);
             }}
@@ -68,7 +67,7 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
             minimumValue={0}
             maximumValue={100}
             minimumTrackTintColor="#004fff"
-            step="1"
+            step={1}
             maximumTrackTintColor="red"
           />
           <View>
@@ -185,4 +184,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
   },
+text5:  {
+
+fontSize: 20,
+color:"white",
+
+}
+
+
+
 });

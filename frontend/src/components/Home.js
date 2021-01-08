@@ -26,9 +26,7 @@ const Home = ({ navigation }) => {
           />
         </View>
         <Text style={styles.text2}>
-          This is the App that measures {"\n"}your reaction time and tells you
-          {"\n"}
-          when you are at your best.
+         
         </Text>
         <View style={styles.buttons}>
           <TouchableOpacity

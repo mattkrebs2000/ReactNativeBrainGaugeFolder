@@ -43,9 +43,9 @@ const Mood = ({ setPage, setValue2, texts2, value2 }) => {
             minimumValue={0}
             maximumValue={100}
             minimumTrackTintColor="#004fff"
-            step="1"
+            step={1}
             maximumTrackTintColor="red"
-            value="50"
+            value={50}
           />
           <View>
             <Text style={styles.text}>

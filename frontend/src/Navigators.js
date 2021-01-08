@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Text } from "react-native";
 import {
-
   useNavigation,
   NavigationContainer,
   DrawerActions,
@@ -43,24 +42,18 @@ import { DrawerContent } from "./components/DrawerContent";
 const headerStyle = {
   backgroundColor: "black",
 };
-const headerTitleStyle = {
-  color: "white",
-  
-};
 
 const IconBar = () => {
-  
-  <View style={{ backgroundColor: "red"}}>
+  <View style={{ backgroundColor: "red" }}>
     <Icon name="add" />
-  </View>
-}
+  </View>;
+};
 
 export const Navigators = ({ navigation }) => {
   const [emailGlobal, setEmailGlobal] = useState("");
   const [birthdateGlobal, setBirthdateGlobal] = useState("");
   const [yourData, setYourData] = useState([]);
   const [maxOfYAxis, setMaxOfYAxis] = useState(0);
-
 
   const AuthStack = createStackNavigator();
   const AuthStackScreen = () => (
@@ -70,8 +63,10 @@ export const Navigators = ({ navigation }) => {
         component={Home}
         options={{
           title: "Home",
+          headerTitleAlign: "center",
           headerStyle,
-          headerTitleStyle,
+
+          headerTintColor: "white",
         }}
       />
       <AuthStack.Screen
@@ -79,8 +74,9 @@ export const Navigators = ({ navigation }) => {
         component={SignIn}
         options={{
           title: "Sign In",
+          headerTitleAlign: "center",
           headerStyle,
-          headerTitleStyle,
+          headerTintColor: "white",
         }}
       />
       <AuthStack.Screen
@@ -88,8 +84,10 @@ export const Navigators = ({ navigation }) => {
         component={CreateAccount}
         options={{
           title: "Create Account",
+          headerTitleAlign: "center",
           headerStyle,
-          headerTitleStyle,
+
+          headerTintColor: "white",
         }}
       />
       <AuthStack.Screen
@@ -98,9 +96,11 @@ export const Navigators = ({ navigation }) => {
         options={{
           animationEnabled: false,
           title: "Data",
+          headerTitleAlign: "center",
           headerStyle,
-          headerTitleStyle,
+
           headerLeft: () => console.log("Hi"),
+          headerTintColor: "white",
         }}
       />
       <AuthStack.Screen
@@ -108,8 +108,9 @@ export const Navigators = ({ navigation }) => {
         component={Braingauge}
         options={{
           title: "Survey",
+          headerTitleAlign: "center",
           headerStyle,
-          headerTitleStyle,
+          headerTintColor: "white",
         }}
       />
     </AuthStack.Navigator>
@@ -146,12 +147,11 @@ export const Navigators = ({ navigation }) => {
       <Drawer.Screen name="TimeOfDay" component={TimeOfDay} />
       <Drawer.Screen name="TimeOfDayManage" component={TimeOfDayManage} />
       <Drawer.Screen name="TimeOfWeek" component={TimeOfWeek} />
-      <Drawer.Screen name="TimeOfWeekManage" component={TimeOfWeekManage}/>
-       <Drawer.Screen name="TimeOfYear" component={TimeOfYear} />
-      <Drawer.Screen name="TimeOfYearManage" component={TimeOfYearManage}/>
+      <Drawer.Screen name="TimeOfWeekManage" component={TimeOfWeekManage} />
+      <Drawer.Screen name="TimeOfYear" component={TimeOfYear} />
+      <Drawer.Screen name="TimeOfYearManage" component={TimeOfYearManage} />
     </Drawer.Navigator>
   );
-
 
   return (
     <birthdateContext.Provider

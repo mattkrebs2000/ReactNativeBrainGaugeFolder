@@ -68,10 +68,10 @@ const SignIn = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      {/* App Header */}
+    <SafeAreaView style={styles.container} behavior="padding">
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
+        {/* App Header */}
 
-      <SafeAreaView style={styles.container} behavior="padding">
         <TouchableOpacity style={styles.middle}>
           <Image
             source={{
@@ -97,6 +97,7 @@ const SignIn = ({ navigation }) => {
             // onChangeText={email => this.setState({ email })}
 
             style={styles.input}
+            placeholderTextColor="gray"
           />
 
           <TextInput
@@ -108,6 +109,7 @@ const SignIn = ({ navigation }) => {
             // onChangeText={password => this.setState({ password })}
 
             style={styles.input}
+            placeholderTextColor="gray"
           />
         </View>
 
@@ -130,8 +132,8 @@ const SignIn = ({ navigation }) => {
         >
           Don't have an Account? Sign Up
         </Text>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 

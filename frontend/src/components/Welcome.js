@@ -41,6 +41,7 @@ const Welcome = ({ navigation }) => {
           )}
           <Text style={styles.text2}>{emailGlobal}</Text>
         </View>
+
         <View style={styles.flex2}>
           <Text
             style={styles.text2}
@@ -50,17 +51,17 @@ const Welcome = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={styles.containerofimage}
-            onPress={() => navigation.navigate("BrainGauge")}
-          >
+            onPress={() => navigation.navigate("BrainGauge")}>
             <Image
               source={{
                 uri:
-                  "https://media.giphy.com/media/35B3Val0pYgtpScqsz/giphy.gif",
+                  "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
               }}
-              style={styles.image}
+              style={styles.image2}
             ></Image>
           </TouchableOpacity>
         </View>
+
         <View style={styles.flex3}>
           <Text style={styles.text2} onPress={() => navigation.toggleDrawer()}>
             See Results
@@ -127,12 +128,18 @@ const styles = StyleSheet.create({
 
     borderRadius: 5,
   },
+  image2: {
+    width: "100%",
+    height: 99,
+
+    borderRadius: 5,
+  },
   containerofimage: {
     flex: 2,
     width: 200,
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     marginBottom: "10%",
   },
   bottombuttons: {
@@ -162,7 +169,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   flex1: {
-    flex: .4,
+    flex: 0.4,
     marginTop: 10,
   },
   flex2: {
@@ -172,6 +179,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   flex4: {
-    flex: .5,
+    flex: 0.5,
   },
 });

@@ -37,12 +37,13 @@ const SignUp = ({ navigation }) => {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Button
-          onPress={() => {
-            navigation.navigate("Profile");
-          }}
-          title="Guest Entry"
-        />
+        <TouchableOpacity onPress={() => 
+            navigation.navigate("Profile")}
+            >
+          <Text accessibilityLabel="Guest Entry" style={styles.text5}>
+            Guest Entry
+          </Text>
+        </TouchableOpacity>
       ),
     });
   }, []);
@@ -83,90 +84,93 @@ const SignUp = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
+    <SafeAreaView style={styles.container}>
       {/* App Header */}
 
-      <SafeAreaView style={styles.container} behavior="padding">
-        <View style={styles.middle}>
-          <Image
-            source={{
-              uri:
-                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
-            }}
-            style={styles.img}
-          />
-        </View>
+      <View style={styles.middle}>
+        <Image
+          source={{
+            uri:
+              "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
+          }}
+          style={styles.img}
+        />
+      </View>
 
-        {/* Sign Up Form */}
-        <View style={styles.form}>
-          <TextInput
-            placeholder="Email"
-            onChangeText={(text) => setEmail(text)}
-            value={email}
-            style={styles.input}
-          />
+      {/* Sign Up Form */}
+      <KeyboardAvoidingView style={styles.form} behavior="height">
+        <TextInput
+          placeholder="Email"
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+          style={styles.input}
+          placeholderTextColor="gray"
+        />
 
-          <TextInput
-            placeholder="Password"
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-            style={styles.input}
-          />
+        <TextInput
+          placeholder="Password"
+          onChangeText={(text) => setPassword(text)}
+          value={password}
+          style={styles.input}
+          placeholderTextColor="gray"
+        />
 
-          <TextInput
-            placeholder="Re-enter password"
-            onChangeText={(text) => setConfirmPassword(text)}
-            value={confirmPassword}
-            style={styles.input}
-          />
-          <View style={styles.input2}>
-            <Text style={styles.input3}>
-              <Text
-                title="BirthDate: "
-                onPress={() => {
-                  setVisibility(true);
-                }}
-              >
-                Your Birthdate:
-                {birthmonth}/{birthdate}/{birthyear}
-              </Text>
+        <TextInput
+          placeholder="Re-enter password"
+          onChangeText={(text) => setConfirmPassword(text)}
+          value={confirmPassword}
+          style={styles.input}
+          placeholderTextColor="gray"
+        />
+        <View style={styles.input2}>
+          <Text style={styles.input3}>
+            <Text
+              title="BirthDate: "
+              onPress={() => {
+                setVisibility(true);
+              }}
+            >
+              Your Birthdate:
+              {birthmonth}/{birthdate}/{birthyear}
             </Text>
+          </Text>
 
-            <DateTimeModal
-              isVisible={visibility}
-              format="DD/MM/YYYY"
-              onConfirm={(date) => {
-                setBirthyear(date.getYear() + 1900);
-                setBirthdate(date.getDate());
-                setBirthmonth(date.getMonth() + 1);
-              }}
-              onCancel={() => {
-                setVisibility(false);
-              }}
-              mode="date"
-            />
-          </View>
+          <DateTimeModal
+            isVisible={visibility}
+            format="DD/MM/YYYY"
+            onConfirm={(date) => {
+              setBirthyear(date.getYear() + 1900);
+              setBirthdate(date.getDate());
+              setBirthmonth(date.getMonth() + 1);
+            }}
+            onCancel={() => {
+              setVisibility(false);
+            }}
+            mode="date"
+          />
         </View>
+      </KeyboardAvoidingView>
 
-        {/* Sign Up Button */}
+      {/* Sign Up Button */}
+      <KeyboardAvoidingView >
         <TouchableOpacity style={styles.btn} onPress={() => onRegisterPress()}>
           <Text accessibilityLabel="Sign up" style={styles.text}>
             Sign Up
           </Text>
         </TouchableOpacity>
+      </KeyboardAvoidingView>
 
-        {/* Log In */}
-        <Text
-          accessibilityLabel="Link to Sign In page"
-          style={{ color: "#167bff", padding: 20 }}
-          onPress={() => {
-            navigation.navigate("SignIn");
-          }}
-        >
-          Already have an account? Sign In
-        </Text>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+      {/* Log In */}
+      <Text
+        accessibilityLabel="Link to Sign In page"
+        style={{ color: "#167bff", padding: 20 }}
+        onPress={() => {
+          navigation.navigate("SignIn");
+        }}
+      >
+        Already have an account? Sign In
+      </Text>
+    </SafeAreaView>
   );
 };
 
@@ -262,5 +266,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     backgroundColor: "red",
     width: 20,
+  },
+  text5: {
+    color: "#004fff",
+    fontSize: 20,
+    marginRight: 5
   },
 });
