@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect} from "react";
 import {
   Text,
   StyleSheet,
@@ -22,6 +22,28 @@ const Review = ({
   setPage,
   page,
 }) => {
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: "Survey",
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => setPage(1)}>
+          <Text accessibilityLabel="Back" style={styles.text5}>
+            Back
+          </Text>
+        </TouchableOpacity>
+      ),
+      headerRight: () => (
+        <TouchableOpacity onPress={() => setPage(6)}>
+          <Text accessibilityLabel="Skip" style={styles.text6}></Text>
+        </TouchableOpacity>
+      ),
+      title: "",
+    });
+  }, []);
+
+
+
   return (
     <View style={styles.container} behavior="padding">
       <SafeAreaView style={styles.container} behavior="padding">
@@ -147,5 +169,10 @@ const styles = StyleSheet.create({
   lower: {
     flex: 0.38,
     justifyContent: "flex-start",
+  },
+  text5: {
+    fontSize: 20,
+    color: "white",
+    marginLeft: 10,
   },
 });

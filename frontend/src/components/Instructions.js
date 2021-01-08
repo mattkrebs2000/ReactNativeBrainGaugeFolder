@@ -9,33 +9,37 @@ import {
   Button
 } from "react-native";
 import { AuthContext } from "../context";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Instructions = ({navigation, setPage
 }) => {
 
   console.log("Instructions")
 
-useEffect(() => {
-  navigation.setOptions({
-    title: "Game",
-    headerLeft: () => (
-      <Button
-        onPress={() => {
-          setPage(1);
-        }}
-        title="< Survey"
-      />
-    ),
-    headerRight: () => (
-      <Button
-        onPress={() => {
-          setPage(1);
-        }}
-        title=""
-      />
-    )
-  });
-}, []);
+ useEffect(() => {
+   navigation.setOptions({
+     title: "Survey",
+     headerLeft: () => (
+       <TouchableOpacity
+         icon={() => <Icon name="arrow-left" color="#167bff" size={45} />}
+         label="Return"
+         labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+        
+         onPress={() => setPage(1)}
+       >
+         <Text accessibilityLabel="Back" style={styles.text5}>
+           Survey
+         </Text>
+       </TouchableOpacity>
+     ),
+     headerRight: () => (
+       <TouchableOpacity onPress={() => setPage(6)}>
+         <Text accessibilityLabel="Skip" style={styles.text6}></Text>
+       </TouchableOpacity>
+     ),
+     title: "",
+   });
+ }, []);
 
 
 
@@ -158,9 +162,14 @@ const styles = StyleSheet.create({
     flex: 0.2,
     justifyContent: "flex-start",
   },
- container2: {
+  container2: {
     flexDirection: "column",
     flex: 1,
     justifyContent: "flex-start",
+  },
+  text5: {
+    fontSize: 17,
+    color: "white",
+    marginLeft: 10,
   },
 });

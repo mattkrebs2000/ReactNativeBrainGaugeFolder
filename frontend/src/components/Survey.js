@@ -17,7 +17,8 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
     navigation.setOptions({
       title: "Survey",
       headerLeft: () => (
-        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+        <TouchableOpacity 
+        onPress={() => navigation.navigate("Profile")}>
           <Text accessibilityLabel="Back" style={styles.text5} >
             Go Back
           </Text>
@@ -26,7 +27,7 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
       ),
       headerRight: () => (
        <TouchableOpacity onPress={() => setPage(6)}>
-          <Text accessibilityLabel="Skip" style={styles.text5}>
+          <Text accessibilityLabel="Skip" style={styles.text6}>
             Skip 
           </Text>
         </TouchableOpacity>
@@ -186,8 +187,16 @@ const styles = StyleSheet.create({
   },
 text5:  {
 
-fontSize: 20,
+fontSize: 17,
 color:"white",
+marginLeft: 10,
+
+},
+text6:  {
+
+fontSize: 17,
+color:"white",
+marginRight: 10,
 
 }
 

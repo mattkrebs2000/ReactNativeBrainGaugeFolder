@@ -44,21 +44,24 @@ const Welcome = ({ navigation }) => {
 
         <View style={styles.flex2}>
           <Text
-            style={styles.text2}
+            style={styles.text6}
             onPress={() => navigation.navigate("BrainGauge")}
           >
             Play Game
           </Text>
-          <TouchableOpacity
-            style={styles.containerofimage}
-            onPress={() => navigation.navigate("BrainGauge")}>
-            <Image
-              source={{
-                uri:
-                  "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
-              }}
-              style={styles.image2}
-            ></Image>
+         
+            <TouchableOpacity
+              style={styles.containerofimage}
+              onPress={() => navigation.navigate("BrainGauge")}
+            >
+              <Image
+                source={{
+                  uri:
+                    "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
+                }}
+                style={styles.image2}
+              ></Image>
+           
           </TouchableOpacity>
         </View>
 
@@ -122,6 +125,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontSize: 20,
   },
+  text6: {
+    flex: 0.5,
+    color: "white",
+    textAlign: "center",
+    justifyContent: "center",
+    fontSize: 20,
+    
+  },
   image: {
     width: "90%",
     height: "100%",
@@ -129,8 +140,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   image2: {
-    width: "100%",
-    height: 99,
+    width: "90%",
+    height: 90,
 
     borderRadius: 5,
   },
