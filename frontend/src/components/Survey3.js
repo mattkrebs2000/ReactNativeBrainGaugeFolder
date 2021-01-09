@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FAD9C5",
     height: 1,
     marginTop: 20,
-    marginBottom: 20,
+   
   },
   text3: {
     color: "white",
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   form: {
-    flex: 1.5,
+    flex: 1.3,
     alignItems: "center",
     justifyContent: "center",
     color: "white",
@@ -143,13 +143,13 @@ const styles = StyleSheet.create({
   middle: {
     width: 150,
     alignItems: "center",
-    flex: 1,
+    flex: 0.6,
     justifyContent: "flex-end",
   },
 
   img: {
-    width: "100%",
-    height: 120,
+    width: "90%",
+    height: 90,
     borderRadius: 5,
   },
   text2: {

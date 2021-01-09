@@ -152,13 +152,13 @@ const styles = StyleSheet.create({
   middle: {
     width: 150,
     alignItems: "center",
-    flex: 0.6,
+    flex: 0.25,
     justifyContent: "flex-end",
   },
 
   img: {
     width: "100%",
-    height: 120,
+    height: 90,
     borderRadius: 5,
   },
   text2: {
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   text5: {
-    fontSize: 20,
+    fontSize: 17,
     color: "white",
     marginLeft: 10,
   },

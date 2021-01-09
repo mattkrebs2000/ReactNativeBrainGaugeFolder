@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Text,
   Image,
+  Platform, 
 } from "react-native";
 import emailContext from "../emailContext.js";
 import birthdateContext from "../birthdateContext.js";
@@ -81,7 +82,7 @@ const Game = ({
 
   //This function helps to control placement of the square
   const rando = () => {
-    return Math.floor(Math.random() * 60) + 30;
+    return Math.floor(Math.random() * 45) + 5;
   };
 
   const rando2 = () => {
@@ -98,9 +99,6 @@ const Game = ({
     } //ends for loop
     return colorNumbers;
   };
-
-  //This function is the onPress function. What happens when the square appearing is clicked.
-
   const move = () => {
     setHidden(true);
 
@@ -182,10 +180,7 @@ const getDaysInAYear = () => {
   } else {
     return 365; 
   }
-	}
-
-
-
+  }
 
   const ageOfGame = () => {
     const object = new Object();
@@ -193,7 +188,7 @@ const getDaysInAYear = () => {
     const check = new Date();
     const dayInWeek = check.getDay();
     const day = check.getDate();
-    const month = check.getMonth();
+    const month = check.getMonth() + 1;
     const year = check.getFullYear();
     const hours = regTime();
     const minutes = minutess();
@@ -300,16 +295,16 @@ if (emailGlobal.length>3){
           <View style={styles.container4}>
             <Text style={styles.text2}>
               {" "}
-              Click Red Button to log this entry and see how these results
+              Click Brain Gauge logo to log this entry and see how these results
               compare with your previous entries.{" "}
             </Text>
             <TouchableOpacity onPress={() => Submit()}>
               <Image
                 id="resultspage"
                 source={{
-                  uri:
-                    "https://www.freepnglogos.com/uploads/button-png/red-button-circle-image-pixabay-20.png",
-                }}
+              uri:
+                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
+            }}
                 alt="description of image"
                 style={styles.image}
               />
@@ -380,8 +375,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 115,
+    height: 90,
   },
 
   container3: {

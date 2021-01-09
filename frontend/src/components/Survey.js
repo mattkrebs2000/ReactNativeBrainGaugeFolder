@@ -17,18 +17,16 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
     navigation.setOptions({
       title: "Survey",
       headerLeft: () => (
-        <TouchableOpacity 
-        onPress={() => navigation.navigate("Profile")}>
-          <Text accessibilityLabel="Back" style={styles.text5} >
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+          <Text accessibilityLabel="Back" style={styles.text5}>
             Go Back
           </Text>
-
         </TouchableOpacity>
       ),
       headerRight: () => (
-       <TouchableOpacity onPress={() => setPage(6)}>
+        <TouchableOpacity onPress={() => setPage(6)}>
           <Text accessibilityLabel="Skip" style={styles.text6}>
-            Skip 
+            Skip
           </Text>
         </TouchableOpacity>
       ),
@@ -131,7 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FAD9C5",
     height: 1,
     marginTop: 20,
-    marginBottom: 20,
+   
   },
   text3: {
     color: "white",
@@ -140,7 +138,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   form: {
-    flex: 1.5,
+    flex: 1.3,
     alignItems: "center",
     justifyContent: "center",
     color: "white",
@@ -167,14 +165,15 @@ const styles = StyleSheet.create({
   middle: {
     width: 150,
     alignItems: "center",
-    flex: 1,
+    flex: 0.6,
     justifyContent: "flex-end",
   },
 
   img: {
-    width: "100%",
-    height: 120,
+    width: "90%",
+    height: 90,
     borderRadius: 5,
+    
   },
   text2: {
     color: "white",
@@ -185,21 +184,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
   },
-text5:  {
-
-fontSize: 17,
-color:"white",
-marginLeft: 10,
-
-},
-text6:  {
-
-fontSize: 17,
-color:"white",
-marginRight: 10,
-
-}
-
-
-
+  text5: {
+    fontSize: 17,
+    color: "white",
+    marginLeft: 10,
+  },
+  text6: {
+    fontSize: 17,
+    color: "white",
+    marginRight: 10,
+  },
 });

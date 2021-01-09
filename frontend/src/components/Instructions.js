@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   text3: {
     color: "white",
-    fontSize: 19,
+    fontSize: 16,
     textAlign: "center",
   },
   mid: {
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   lower: {
-    flex: 0.2,
+    flex: 0.35,
     justifyContent: "flex-start",
   },
   container2: {
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   text5: {
-    fontSize: 17,
+    fontSize: 16,
     color: "white",
     marginLeft: 10,
   },
