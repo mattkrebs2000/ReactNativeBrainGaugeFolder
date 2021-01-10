@@ -281,9 +281,6 @@ if (emailGlobal.length>3){
       {session < 9 ? (
         <View style={styles.container}>
           <TouchableOpacity
-            onPress={() => {
-              move();
-            }}
             style={{
               opacity: hidden ? "0%" : "100%",
               marginTop: y,
@@ -291,6 +288,9 @@ if (emailGlobal.length>3){
               height: hidden ? 0 : 100,
               width: 100,
               backgroundColor: color,
+            }}
+            onPress={() => {
+              move();
             }}
           ></TouchableOpacity>
         </View>
@@ -306,9 +306,9 @@ if (emailGlobal.length>3){
               <Image
                 id="resultspage"
                 source={{
-              uri:
-                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
-            }}
+                  uri:
+                    "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
+                }}
                 alt="description of image"
                 style={styles.image}
               />
