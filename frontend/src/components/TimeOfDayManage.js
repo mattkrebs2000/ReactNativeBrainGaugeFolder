@@ -66,8 +66,8 @@ const TimeInADay = ({ navigation }) => {
       .firestore()
       .collection("Performance")
       .where("data.email", "==", emailGlobal)
-      .orderBy("data.currentDate")
-      .orderBy("data.timeElapsedInADay")
+      .orderBy("data.timestamp")
+
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -104,7 +104,6 @@ const TimeInADay = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Time Of Day Data</Text>
           <Text style={styles.text5}>_________________________</Text>
-
         </TouchableOpacity>
 
         <View style={styles.chart}>

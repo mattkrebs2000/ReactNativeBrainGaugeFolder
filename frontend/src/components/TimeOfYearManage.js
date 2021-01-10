@@ -1,4 +1,3 @@
-
 import React, { useEffect, useContext, useState } from "react";
 import { ListItem } from "react-native-elements";
 import { useIsFocused } from "@react-navigation/native";
@@ -66,8 +65,7 @@ const TimeInAYear = ({ navigation }) => {
       .firestore()
       .collection("Performance")
       .where("data.email", "==", emailGlobal)
-      .orderBy("data.currentDate")
-      .orderBy("data.timeElapsedInADay")
+      .orderBy("data.timestamp")
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -104,7 +102,6 @@ const TimeInAYear = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Time Of Week Data</Text>
           <Text style={styles.text5}>_________________________</Text>
-
         </TouchableOpacity>
 
         <View style={styles.chart}>
@@ -260,4 +257,3 @@ const styles = StyleSheet.create({
     color: "red",
   },
 });
-

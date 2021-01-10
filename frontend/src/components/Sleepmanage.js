@@ -65,8 +65,8 @@ const Appetitemanage = ({ navigation }) => {
       .firestore()
       .collection("Performance")
       .where("data.email", "==", emailGlobal)
-      .orderBy("data.currentDate")
-      .orderBy("data.timeElapsedInADay")
+      .orderBy("data.timestamp")
+
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -92,7 +92,6 @@ const Appetitemanage = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Sleep Data</Text>
           <Text style={styles.text5}>_________________________</Text>
-
         </TouchableOpacity>
 
         <View style={styles.chart}>
@@ -101,8 +100,7 @@ const Appetitemanage = ({ navigation }) => {
               <ListItem key={i} style={styles.text6}>
                 <TouchableOpacity
                   onPress={() =>
-                 
-                         alert(
+                    alert(
                       "This data was recorded on \r\n" +
                         info.currentDate +
                         " at " +

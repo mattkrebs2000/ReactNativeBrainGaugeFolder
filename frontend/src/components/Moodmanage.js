@@ -44,7 +44,6 @@ const Appetitemanage = ({ navigation }) => {
           console.log("Document successfully updated!");
         })
         .catch(function (error) {
-       
           console.error("Error updating document: ", error);
         });
     } else {
@@ -65,8 +64,8 @@ const Appetitemanage = ({ navigation }) => {
       .firestore()
       .collection("Performance")
       .where("data.email", "==", emailGlobal)
-      .orderBy("data.currentDate")
-      .orderBy("data.timeElapsedInADay")
+      .orderBy("data.timestamp")
+
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -85,14 +84,12 @@ const Appetitemanage = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
-  
   return (
     <SafeAreaView style={styles.container2}>
       <View>
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Mood Data</Text>
           <Text style={styles.text5}>_________________________</Text>
-
         </TouchableOpacity>
 
         <View style={styles.chart}>
@@ -101,7 +98,7 @@ const Appetitemanage = ({ navigation }) => {
               <ListItem key={i} style={styles.text6}>
                 <TouchableOpacity
                   onPress={() =>
-                         alert(
+                    alert(
                       "This data was recorded on \r\n" +
                         info.currentDate +
                         " at " +

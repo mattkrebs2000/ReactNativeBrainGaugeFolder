@@ -100,6 +100,7 @@ const Game = ({
     return colorNumbers;
   };
   const move = () => {
+    console.log("session", session)
     setHidden(true);
 
     setX(() => rando2() + "%");
@@ -183,6 +184,7 @@ const getDaysInAYear = () => {
   }
 
   const ageOfGame = () => {
+    const timeofgame = new Date() / 1000;
     const object = new Object();
     const birth = new Date(birthdateGlobal);
     const check = new Date();
@@ -193,6 +195,7 @@ const getDaysInAYear = () => {
     const hours = regTime();
     const minutes = minutess();
     const pmam = pmoram();
+    object.Timestamp = timeofgame;
     object.Time = hours + ":" + minutes + " " + pmam;
     object.Today = month + "/" + day + "/" + year;
 
@@ -218,6 +221,7 @@ const getDaysInAYear = () => {
 
   const Submit = () => {
     const data = {
+      timestamp: ageOfGame().Timestamp,
       currentTime: ageOfGame().Time,
       currentDate: ageOfGame().Today,
       currentAge: ageOfGame().age,

@@ -41,7 +41,6 @@ const TimeInADay = ({ navigation }) => {
         })
         .then(function () {
           populate();
-         
         })
         .catch(function (error) {
           // The document probably doesn't exist.
@@ -65,8 +64,8 @@ const TimeInADay = ({ navigation }) => {
       .firestore()
       .collection("Performance")
       .where("data.email", "==", emailGlobal)
-      .orderBy("data.currentDate")
-      .orderBy("data.timeElapsedInADay")
+      .orderBy("data.timestamp")
+
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -159,7 +158,6 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     flex: 0.45,
     justifyContent: "center",
-    
   },
   new: {
     color: "red",
@@ -179,7 +177,6 @@ const styles = StyleSheet.create({
     marginRight: 0,
     marginLeft: 0,
     backgroundColor: "black",
-    
   },
   middle: {
     alignItems: "center",
@@ -188,7 +185,6 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     marginLeft: 20,
     marginRight: 20,
-    
   },
   chart: {
     backgroundColor: "black",
@@ -196,13 +192,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
     width: 340,
-    
   },
   container2: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
-    
   },
   btn: {
     borderColor: "#167bff",
@@ -216,39 +210,33 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 3,
     color: "black",
-    
   },
   text: {
     color: "white",
     fontSize: 16,
     textAlign: "center",
-    
   },
   text11: {
     color: "white",
     fontSize: 10,
     textAlign: "right",
-    
   },
   text4: {
     color: "white",
     fontSize: 18,
     textAlign: "center",
-    
   },
   text5: {
     color: "white",
     fontSize: 18,
     textAlign: "center",
     marginBottom: 20,
-    
   },
   text6: {
     color: "white",
     fontSize: 18,
     flex: 1,
     marginBottom: 20,
-    
   },
   text9: {
     color: "white",
@@ -256,7 +244,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 100,
     borderRadius: 50,
-    
   },
   btn9: {
     borderColor: "#167bff",
@@ -272,6 +259,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 3,
     color: "red",
-    
   },
 });

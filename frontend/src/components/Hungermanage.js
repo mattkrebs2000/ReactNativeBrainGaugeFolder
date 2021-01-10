@@ -19,13 +19,12 @@ const Appetitemanage = ({ navigation }) => {
   const { emailGlobal } = useContext(emailContext);
   const [yourData, setYourData] = useState([]);
   const [iddelete, setiddelete] = useState("2");
-   const isFocused = useIsFocused();
+  const isFocused = useIsFocused();
 
- useEffect(() => {
-   populate();
-   setYourData([])
- }, [isFocused]);
-
+  useEffect(() => {
+    populate();
+    setYourData([]);
+  }, [isFocused]);
 
   const deleteItem = () => {
     if (firebase.firestore().collection("Performance").doc(iddelete)) {
@@ -41,7 +40,7 @@ const Appetitemanage = ({ navigation }) => {
           "data.text3": 0,
         })
         .then(function () {
-          populate();      
+          populate();
         })
         .catch(function (error) {
           // The document probably doesn't exist.
@@ -65,8 +64,8 @@ const Appetitemanage = ({ navigation }) => {
       .firestore()
       .collection("Performance")
       .where("data.email", "==", emailGlobal)
-      .orderBy("data.currentDate")
-      .orderBy("data.timeElapsedInADay")
+      .orderBy("data.timestamp")
+
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -87,8 +86,6 @@ const Appetitemanage = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
- 
-
   console.log("4 ", yourData);
   return (
     <SafeAreaView style={styles.container2}>
@@ -96,7 +93,6 @@ const Appetitemanage = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Appetite Data</Text>
           <Text style={styles.text5}>_________________________</Text>
-
         </TouchableOpacity>
 
         <View style={styles.chart}>
@@ -106,7 +102,10 @@ const Appetitemanage = ({ navigation }) => {
                 <TouchableOpacity
                   onPress={() =>
                     alert(
-                      "This was recorded on " + info.currentDate + " at " + info.currentTime
+                      "This was recorded on " +
+                        info.currentDate +
+                        " at " +
+                        info.currentTime
                     )
                   }
                   style={styles.divide}
