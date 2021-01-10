@@ -59,7 +59,6 @@ const Sleep = ({ navigation }) => {
           }
         });
 
-
         let totalSpeed = maximumArray.length;
         let totalAssess = selfAssessArray.length;
         let sumSpeed = maximumArray.reduce((a, b) => a + b);
@@ -131,25 +130,26 @@ const Sleep = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Time Of Day</Text>
           <Text style={styles.text5}>_________________________</Text>
+        </TouchableOpacity>
+        <View style={styles.section2}>
           {orderedPairArray.length > 1 && yForHundred ? (
             <Text style={styles.text4}>{explanation}</Text>
           ) : (
             <Text style={styles.text4}>
-              {" "}
               "To this point you have not provided enough data for us to see if
               we can conclude connections between the given factors and Reaction
               Time. Click 'Other Results', 'Return', and 'Play Game' to begin
               the process."
             </Text>
           )}
-        </TouchableOpacity>
+        </View>
         <View style={styles.chart}>
           <VictoryChart
             padding={{ left: 70, top: 10, right: 50, bottom: 50 }}
             width={350}
             height={250}
             theme={VictoryTheme.material}
-            domain={{ x: [0, 1.], y: [0, maxOfYAxis * 4] }}
+            domain={{ x: [0, 1], y: [0, maxOfYAxis * 4] }}
           >
             {orderedPairArray.length > 1 && yForHundred ? (
               <VictoryLine
@@ -161,7 +161,7 @@ const Sleep = ({ navigation }) => {
                 }}
                 data={[
                   { x: 0, y: yForTwo },
-                  { x: 1.00, y: yForHundred },
+                  { x: 1.0, y: yForHundred },
                 ]}
               />
             ) : null}
@@ -182,7 +182,7 @@ const Sleep = ({ navigation }) => {
                   fontSize: 15,
                 },
               }}
-              tickValues={[0.02, 0.25, 0.50, 0.75, 1]}
+              tickValues={[0.02, 0.25, 0.5, 0.75, 1]}
               tickFormat={["12 am", "6 am", "12 pm", "6 pm", "12 am"]}
             />
 
@@ -247,8 +247,8 @@ const styles = StyleSheet.create({
   },
   middle: {
     alignItems: "center",
-    flex: 0.8,
-    marginTop: 40,
+    flex: 0.3,
+    marginTop: 5,
     backgroundColor: "black",
     marginLeft: 20,
     marginRight: 20,
@@ -258,6 +258,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  section2: { flex: 0.5 },
+
   container2: {
     justifyContent: "center",
     alignItems: "center",
@@ -287,13 +289,16 @@ const styles = StyleSheet.create({
   },
   text4: {
     color: "white",
-    fontSize: 18,
+    fontSize: 16,
     textAlign: "center",
+    justifyContent: "center",
+    marginLeft: 5,
+    marginRight: 5,
   },
   text5: {
     color: "white",
-    fontSize: 18,
+    fontSize: 10,
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 5,
   },
 });

@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   middle: {
     alignItems: "center",
     flex: 0.33,
-    marginTop: 40,
+    marginTop: 5,
     backgroundColor: "black",
     marginLeft: 20,
     marginRight: 20,
@@ -235,9 +235,9 @@ const styles = StyleSheet.create({
   },
   text5: {
     color: "white",
-    fontSize: 18,
+    fontSize: 10,
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 5,
   },
   text6: {
     color: "white",

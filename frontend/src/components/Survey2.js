@@ -106,7 +106,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FAD9C5",
     height: 1,
     marginTop: 20,
-  
   },
   text3: {
     color: "white",
@@ -115,11 +114,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   form: {
-    flex: 1.3,
+    flex: 1.1,
     alignItems: "center",
     justifyContent: "center",
     color: "white",
     width: 300,
+    marginTop: 30,
   },
   btn: {
     width: 300,
@@ -158,6 +158,6 @@ const styles = StyleSheet.create({
   },
   lower: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
   },
 });

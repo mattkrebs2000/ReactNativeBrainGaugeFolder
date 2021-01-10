@@ -18,7 +18,6 @@ import {
 } from "victory-native";
 import emailContext from "../emailContext.js";
 
-
 const Age = ({ navigation }) => {
   const { emailGlobal } = useContext(emailContext);
   const [yourData, setYourData] = useState([]);
@@ -35,7 +34,7 @@ const Age = ({ navigation }) => {
   const isFocused = useIsFocused();
 
   const populate = () => {
-     setOrderedPairArray([]);
+    setOrderedPairArray([]);
     let maximumArray = [];
     let selfAssessArray = [];
     return firebase
@@ -62,8 +61,6 @@ const Age = ({ navigation }) => {
             });
           }
         });
-
-       
 
         setMinSelfAssess(Math.min(...selfAssessArray));
         setMaxSelfAssess(Math.max(...selfAssessArray));
@@ -108,7 +105,6 @@ const Age = ({ navigation }) => {
         let adjustedMax = Math.ceil((maxi + maxi * 0.1) / 10) * 10;
         setMaxOfYAxis(adjustedMax);
 
-     
         if (slopeRound > 0) {
           setExplanation(
             "Because the Blue Line has a positive slope (" +
@@ -136,13 +132,9 @@ const Age = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
-  
- 
   useEffect(() => {
     populate();
   }, [isFocused, yForHundredMore]);
-
-
 
   return (
     <SafeAreaView style={styles.container2}>
@@ -150,18 +142,19 @@ const Age = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Age</Text>
           <Text style={styles.text5}>_________________________</Text>
+        </TouchableOpacity>
+        <View style={styles.section2}>
           {orderedPairArray.length > 1 && yForHundred ? (
             <Text style={styles.text4}>{explanation}</Text>
           ) : (
             <Text style={styles.text4}>
-              {" "}
               "To this point you have not provided enough data for us to see if
               we can conclude connections between the given factors and Reaction
               Time. Click 'Other Results', 'Return', and 'Play Game' to begin
               the process."
             </Text>
           )}
-        </TouchableOpacity>
+        </View>
         <View style={styles.chart}>
           {orderedPairArray.length > 1 && maxSelfAssess > minSelfAssess ? (
             <VictoryChart
@@ -174,18 +167,20 @@ const Age = ({ navigation }) => {
                 y: [0, maxOfYAxis * 4],
               }}
             >
-             {orderedPairArray.length > 1 && yForHundredMore ? (<VictoryLine
-                width={400}
-                style={{
-                  data: { stroke: "#004fff", strokeWidth: 5 },
-                  parent: { border: "2px solid #ccc" },
-                  labels: { fontSize: 22, fill: "#004fff" },
-                }}
-                data={[
-                  { x: minSelfAssess, y: yForTwoMore },
-                  { x: maxSelfAssess, y: yForHundredMore },
-                ]}
-              />) : null }
+              {orderedPairArray.length > 1 && yForHundredMore ? (
+                <VictoryLine
+                  width={400}
+                  style={{
+                    data: { stroke: "#004fff", strokeWidth: 5 },
+                    parent: { border: "2px solid #ccc" },
+                    labels: { fontSize: 22, fill: "#004fff" },
+                  }}
+                  data={[
+                    { x: minSelfAssess, y: yForTwoMore },
+                    { x: maxSelfAssess, y: yForHundredMore },
+                  ]}
+                />
+              ) : null}
               <VictoryAxis
                 orientation="bottom"
                 offsetY={50}
@@ -349,8 +344,8 @@ const styles = StyleSheet.create({
   },
   middle: {
     alignItems: "center",
-    flex: 0.8,
-    marginTop: 40,
+    flex: 0.3,
+    marginTop: 5,
     backgroundColor: "black",
     marginLeft: 20,
     marginRight: 20,
@@ -360,6 +355,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  section2: { flex: 0.5 },
+
   container2: {
     justifyContent: "center",
     alignItems: "center",
@@ -389,13 +386,16 @@ const styles = StyleSheet.create({
   },
   text4: {
     color: "white",
-    fontSize: 18,
+    fontSize: 16,
     textAlign: "center",
+    justifyContent: "center",
+    marginLeft: 5,
+    marginRight: 5,
   },
   text5: {
     color: "white",
-    fontSize: 18,
+    fontSize: 10,
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 5,
   },
 });

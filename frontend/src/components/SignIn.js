@@ -82,7 +82,7 @@ const SignIn = ({ navigation }) => {
           />
           <Text style={styles.text2}></Text>
         </TouchableOpacity>
-        <Text> {"\n"} </Text>
+      
         <Text style={styles.text2}>Sign In</Text>
         <View style={styles.divider_bar}></View>
 

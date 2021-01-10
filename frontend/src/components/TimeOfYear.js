@@ -131,18 +131,19 @@ const TimeOfYear = ({ navigation }) => {
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Time Of Year</Text>
           <Text style={styles.text5}>_________________________</Text>
+        </TouchableOpacity>
+        <View style={styles.section2}>
           {orderedPairArray.length > 1 && yForHundred ? (
             <Text style={styles.text4}>{explanation}</Text>
           ) : (
             <Text style={styles.text4}>
-              {" "}
               "To this point you have not provided enough data for us to see if
               we can conclude connections between the given factors and Reaction
               Time. Click 'Other Results', 'Return', and 'Play Game' to begin
               the process."
             </Text>
           )}
-        </TouchableOpacity>
+        </View>
         <View style={styles.chart}>
           <VictoryChart
             padding={{ left: 70, top: 10, right: 50, bottom: 50 }}
@@ -183,7 +184,13 @@ const TimeOfYear = ({ navigation }) => {
                 },
               }}
               tickValues={[0.02, 0.25, 0.5, 0.75, 1]}
-              tickFormat={["Jan 1 \r\n 12:00 am", " ", "", " ", "Dec 31 \r\n 11:59 pm"]}
+              tickFormat={[
+                "Jan 1 \r\n 12:00 am",
+                " ",
+                "",
+                " ",
+                "Dec 31 \r\n 11:59 pm",
+              ]}
             />
 
             <VictoryAxis
@@ -247,8 +254,8 @@ const styles = StyleSheet.create({
   },
   middle: {
     alignItems: "center",
-    flex: 0.8,
-    marginTop: 40,
+    flex: 0.3,
+    marginTop: 5,
     backgroundColor: "black",
     marginLeft: 20,
     marginRight: 20,
@@ -258,6 +265,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  section2: { flex: 0.5 },
+
   container2: {
     justifyContent: "center",
     alignItems: "center",
@@ -287,14 +296,16 @@ const styles = StyleSheet.create({
   },
   text4: {
     color: "white",
-    fontSize: 18,
+    fontSize: 16,
     textAlign: "center",
+    justifyContent: "center",
+    marginLeft: 5,
+    marginRight: 5,
   },
   text5: {
     color: "white",
-    fontSize: 18,
+    fontSize: 10,
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 5,
   },
 });
-
