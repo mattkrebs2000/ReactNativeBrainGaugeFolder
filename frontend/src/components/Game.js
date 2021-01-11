@@ -9,6 +9,7 @@ import {
   Platform, 
 } from "react-native";
 import emailContext from "../emailContext.js";
+import Timer from "./gameTimer/Timer";
 import birthdateContext from "../birthdateContext.js";
 import { firebase } from "../firebase/config.js";
 const currentDayNumber = require("current-day-number");
@@ -44,41 +45,9 @@ const Game = ({
     setHidden(false);
   };
 
-  const interval = useRef(null);
-
-  const startCounter = () =>
-    (interval.current = setInterval(() => {
-      setSeconds((prevState) => prevState + 1);
-    }, 10));
-
-  // holds onto each score;
-  const myScores = () => {
-    if (session < 9) {
-      let newState = [...arrayOfScores, seconds];
-      setArrayOfScores(newState);
-      setSession(session + 1);
-    }
-  };
-
-  const stopCounter = () => clearInterval(interval.current);
-
-  //startCounter on load - because hidden is set to false and on changes to "hidden";
-
   useEffect(() => {
     setAverage((total / (session - 1)).toFixed(2));
   }, [total]);
-
-  useEffect(() => {
-    if (hidden) {
-      stopCounter();
-      setTotal(total + seconds);
-      myScores();
-    } else {
-      setSeconds(0);
-      startCounter();
-      setColor(getRandomColor());
-    }
-  }, [hidden]);
 
   //This function helps to control placement of the square
   const rando = () => {
@@ -89,16 +58,6 @@ const Game = ({
     return Math.floor(Math.random() * 60) + 10;
   };
 
-  //This function creates unique colors Ex: #234432;
-
-  const getRandomColor = () => {
-    var letters = "3456789AB".split("");
-    var colorNumbers = "#";
-    for (var i = 0; i < 6; i++) {
-      colorNumbers += letters[Math.round(Math.random() * 8)];
-    } //ends for loop
-    return colorNumbers;
-  };
   const move = () => {
     console.log("session", session)
     setHidden(true);
@@ -263,6 +222,8 @@ if (emailGlobal.length>3){
     <SafeAreaView style={styles.contatiner2}>
       <Text style={styles.top}>Your Reaction Time:</Text>
       <Text style={styles.text}>{seconds}</Text>
+
+      <Text style={styles.text}><Timer hidden={hidden} setTotal={setTotal} total={total} session={session} arrayOfScores={arrayOfScores} setArrayOfScores={setArrayOfScores} setSession={setSession} setColor={setColor}/></Text>
 
       <Text style={styles.text}>Average:</Text>
       <Text style={styles.text}>{average > 2 ? average : " "}</Text>
