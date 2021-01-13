@@ -221,8 +221,6 @@ if (emailGlobal.length>3){
   return (
     <SafeAreaView style={styles.contatiner2}>
       <Text style={styles.top}>Your Reaction Time:</Text>
-      <Text style={styles.text}>{seconds}</Text>
-
       <Text style={styles.text}><Timer hidden={hidden} setTotal={setTotal} total={total} session={session} arrayOfScores={arrayOfScores} setArrayOfScores={setArrayOfScores} setSession={setSession} setColor={setColor}/></Text>
 
       <Text style={styles.text}>Average:</Text>

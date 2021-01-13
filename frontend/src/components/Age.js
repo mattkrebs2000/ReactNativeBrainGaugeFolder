@@ -17,8 +17,10 @@ import {
   VictoryLine,
 } from "victory-native";
 import emailContext from "../emailContext.js";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const Age = ({ navigation }) => {
+  const [spinning, setSpinning] = useState(false);
   const { emailGlobal } = useContext(emailContext);
   const [yourData, setYourData] = useState([]);
   const [maxOfYAxis, setMaxOfYAxis] = useState(25);
@@ -136,24 +138,26 @@ const Age = ({ navigation }) => {
     populate();
   }, [isFocused, yForHundredMore]);
 
+  useEffect(() => {
+    setSpinning(true);
+    setTimeout(() => {
+      setSpinning(false);
+    }, 3000);
+  }, [explanation]);
+
   return (
     <SafeAreaView style={styles.container2}>
+      <Spinner
+        visible={spinning}
+        textStyle={styles.spinnerTextStyle}
+      />
       <View style={styles.center}>
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Age</Text>
           <Text style={styles.text5}>_________________________</Text>
         </TouchableOpacity>
         <View style={styles.section2}>
-          {orderedPairArray.length > 1 && yForHundred ? (
-            <Text style={styles.text4}>{explanation}</Text>
-          ) : (
-            <Text style={styles.text4}>
-              "To this point you have not provided enough data for us to see if
-              we can conclude connections between the given factors and Reaction
-              Time. Click 'Other Results', 'Return', and 'Play Game' to begin
-              the process."
-            </Text>
-          )}
+          <Text style={styles.text4}>{explanation}</Text>
         </View>
         <View style={styles.chart}>
           {orderedPairArray.length > 1 && maxSelfAssess > minSelfAssess ? (
@@ -397,5 +401,8 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     marginBottom: 5,
+  },
+  spinnerTextStyle: {
+    color: "#FFF",
   },
 });
