@@ -63,7 +63,6 @@ const SignUp = ({ navigation }) => {
         const data = {
           id: uid,
           email,
-          userName,
           password: encrypt,
           birthdate,
         };
@@ -147,12 +146,13 @@ const SignUp = ({ navigation }) => {
               setVisibility(false);
             }}
             mode="date"
+            pickerContainerStyleIOS={{backgroundColor:"white"}}
           />
         </View>
       </KeyboardAvoidingView>
 
       {/* Sign Up Button */}
-      <KeyboardAvoidingView >
+      <KeyboardAvoidingView>
         <TouchableOpacity style={styles.btn} onPress={() => onRegisterPress()}>
           <Text accessibilityLabel="Sign up" style={styles.text}>
             Sign Up
@@ -223,8 +223,8 @@ const styles = StyleSheet.create({
   },
   input3: {
     fontSize: 20,
-    color: "gray",
-    opacity: 0.4,
+    color: "white",
+    opacity: 0.8,
   },
   btn: {
     width: 300,

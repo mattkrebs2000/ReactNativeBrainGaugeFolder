@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "ReactNativeBrainGauge",
+    "name": "Brain Gauge",
     "slug": "ReactNativeBrainGauge",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -21,7 +21,7 @@
       "bundleIdentifier": "com.braingaugeapp.name"
     },
     "android": {
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
