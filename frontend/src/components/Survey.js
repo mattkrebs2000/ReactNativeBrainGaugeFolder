@@ -34,9 +34,8 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
   }, []);
 
   return (
-    <View style={styles.container} behavior="padding">
-      <SafeAreaView style={styles.container} behavior="padding">
-        <View style={styles.middle}>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.section1}>
           <Image
             source={{
               uri:
@@ -45,17 +44,18 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
             style={styles.img}
           />
         </View>
-        <Text> {"\n"} </Text>
+        <View style={styles.section2}>
         <Text style={styles.text2}>Sleep</Text>
         <View style={styles.divider_bar}></View>
+        </View>
 
         {/* Sign Up Form */}
-        <View style={styles.form}>
+        <View style={styles.section3}>
           <Text style={styles.text3}>
             How do you feel relative {"\n"}to the amount of sleep you've gotten
             recently?
           </Text>
-          <Text> {"\n"} </Text>
+         
           <Slider
             style={styles.slider}
             value={50}
@@ -77,7 +77,7 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
         </View>
 
         {/* Sign Up Button */}
-        <View style={styles.lower}>
+        <View style={styles.section4}>
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
@@ -92,7 +92,6 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
         </View>
         {/* Log In */}
       </SafeAreaView>
-    </View>
   );
 };
 
@@ -102,8 +101,6 @@ const styles = StyleSheet.create({
   slider: {
     width: 300,
     opacity: 1,
-    height: 50,
-    marginTop: 50,
   },
   text: {
     fontSize: 14,
@@ -116,7 +113,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "black",
     alignItems: "center",
-    justifyContent: "center",
     width: "100%",
     marginLeft: "auto",
     marginRight: "auto",
@@ -128,22 +124,14 @@ const styles = StyleSheet.create({
     width: 300,
     backgroundColor: "#FAD9C5",
     height: 1,
-    marginTop: 20,
+    marginTop: 10,
   },
   text3: {
     color: "white",
     textAlign: "center",
-    justifyContent: "flex-start",
     fontSize: 20,
   },
-  form: {
-    flex: 1.1,
-    alignItems: "center",
-    justifyContent: "center",
-    color: "white",
-    width: 300,
-    marginTop: 30,
-  },
+
   btn: {
     width: 300,
     height: 45,
@@ -162,13 +150,32 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
   },
-  middle: {
+section1: {
     width: 150,
     alignItems: "center",
-    flex: 0.6,
-    justifyContent: "flex-end",
+    flex: 0.7,
+   
+  },
+  section2: {
+    width: 150,
+    alignItems: "center",
+    flex: 0.5,
   },
 
+  section3: {
+    flex: 1.2,
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white",
+    width: 300,
+  
+  },
+
+  section4: {
+    flex: .5,
+    justifyContent: "center",
+  
+  },
   img: {
     width: "90%",
     height: 90,
@@ -177,12 +184,10 @@ const styles = StyleSheet.create({
   text2: {
     color: "white",
     fontSize: 35,
-    textAlign: "center",
+ justifyContent:"flex-start",
+    
   },
-  lower: {
-    flex: 1,
-    justifyContent: "center",
-  },
+
   text5: {
     fontSize: 17,
     color: "white",

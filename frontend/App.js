@@ -5,6 +5,5 @@ const App = () => {
   return (
       <Navigators />
   );
-
 }
 export default App;

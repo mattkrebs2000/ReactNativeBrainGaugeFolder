@@ -13,6 +13,7 @@ import {
   KeyboardAvoidingView,
   Image,
   SafeAreaView,
+  Dimensions,
 } from "react-native";
 import { firebase } from "../firebase/config.js";
 import CryptoES from "crypto-es";
@@ -40,8 +41,8 @@ const SignUp = ({ navigation }) => {
         <TouchableOpacity onPress={() => 
             navigation.navigate("Profile")}
             >
-          <Text accessibilityLabel="Guest Entry" style={styles.text5}>
-            Guest Entry
+          <Text accessibilityLabel="Guest" style={styles.text5}>
+            Guest
           </Text>
         </TouchableOpacity>
       ),
@@ -198,7 +199,7 @@ const styles = StyleSheet.create({
     borderColor: "#004fff",
     padding: 7,
     width: 300,
-    marginBottom: 25,
+    marginBottom: 12,
     borderRadius: 10,
     shadowColor: "white",
     shadowOffset: { width: 0.5, height: 0.5 },
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
   middle: {
     width: 150,
     alignItems: "center",
-    paddingBottom: 40,
+   paddingBottom: 15,
   },
 
   img: {
