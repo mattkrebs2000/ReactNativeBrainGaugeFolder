@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   text3: {
     color: "white",
-    fontSize: 20,
+    fontSize: 15,
     textAlign: "center",
   },
   buttons: {

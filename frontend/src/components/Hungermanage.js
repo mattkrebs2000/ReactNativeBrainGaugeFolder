@@ -62,10 +62,7 @@ const Appetitemanage = ({ navigation }) => {
   const populate = () => {
     return firebase
       .firestore()
-      .collection("Performance")
-      .where("data.email", "==", emailGlobal)
-      .orderBy("data.timestamp")
-
+      .collection("todos")
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
