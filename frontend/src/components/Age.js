@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { useIsFocused } from "@react-navigation/native";
 import { firebase } from "../firebase/config.js";
 import {
+  LogBox,
   SafeAreaView,
   StyleSheet,
   View,
@@ -18,6 +19,8 @@ import {
 } from "victory-native";
 import emailContext from "../emailContext.js";
 import Spinner from "react-native-loading-spinner-overlay";
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 const Age = ({ navigation }) => {
   const [spinning, setSpinning] = useState(false);
@@ -151,6 +154,7 @@ const Age = ({ navigation }) => {
         visible={spinning}
         textStyle={styles.spinnerTextStyle}
       />
+      
       <View style={styles.center}>
         <TouchableOpacity style={styles.middle}>
           <Text style={styles.text2}>Age</Text>
@@ -158,6 +162,7 @@ const Age = ({ navigation }) => {
         </TouchableOpacity>
         <View style={styles.section2}>
           <Text style={styles.text4}>{explanation}</Text>
+        </View>
         </View>
         <View style={styles.chart}>
           {orderedPairArray.length > 1 && maxSelfAssess > minSelfAssess ? (
@@ -203,12 +208,12 @@ const Age = ({ navigation }) => {
                   },
                 }}
                 tickValues={[minSelfAssess, maxSelfAssess]}
-                tickFormat={["First Entry", "Latest Entry"]}
+                tickFormat={["First Entry", "Last Entry"]}
               />
 
               <VictoryAxis
                 dependentAxis
-                offsetX={71}
+                offsetX={75}
                 label="Reaction Time"
                 standalone={false}
                 tickValues={[
@@ -218,7 +223,7 @@ const Age = ({ navigation }) => {
                   maxOfYAxis * 4,
                 ]}
                 style={{
-                  axisLabel: { fill: "white", fontSize: 18, padding: 55 },
+                  axisLabel: { fill: "white", fontSize: 18, padding: 45 },
                   tickLabels: {
                     fill: "white",
                     fontSize: 18,
@@ -246,7 +251,7 @@ const Age = ({ navigation }) => {
           ) : (
             <VictoryChart
               padding={{ left: 70, top: 10, right: 50, bottom: 50 }}
-              width={350}
+              width={200}
               height={250}
               theme={VictoryTheme.material}
               domain={{
@@ -324,7 +329,7 @@ const Age = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+   
     </SafeAreaView>
   );
 };
@@ -335,7 +340,7 @@ const styles = StyleSheet.create({
   container3: {
     alignItems: "center",
     backgroundColor: "black",
-    flex: 0.27,
+    flex: 0.20,
   },
 
   text2: {
@@ -348,7 +353,6 @@ const styles = StyleSheet.create({
   },
   middle: {
     alignItems: "center",
-    flex: 0.3,
     marginTop: 5,
     backgroundColor: "black",
     marginLeft: 20,
@@ -356,16 +360,17 @@ const styles = StyleSheet.create({
   },
   chart: {
     backgroundColor: "black",
-    flex: 1,
+    flex: .9,
     alignItems: "center",
   },
-  section2: { flex: 0.5 },
+  
 
   container2: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
     flexDirection: "column",
+    flex:1,
   },
   btn: {
     borderColor: "#167bff",
@@ -405,4 +410,9 @@ const styles = StyleSheet.create({
   spinnerTextStyle: {
     color: "#FFF",
   },
+  center: {
+flex: .7,
+width: "100%",
+
+  }
 });

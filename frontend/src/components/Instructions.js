@@ -49,12 +49,13 @@ const Instructions = ({navigation, setPage
 
 
   return (
-    <View style={styles.container2} behavior="padding">
+    
       <SafeAreaView style={styles.container} behavior="padding">
-        <Text> {"\n"} </Text>
+       <View style={styles.section1}>
         <Text style={styles.text2}>Instructions</Text>
         <View style={styles.divider_bar}></View>
-        <View style={styles.mid}>
+        </View>
+        <View style={styles.section2}>
           <Text style={styles.text3}>
             This game is designed to test your reaction speed by measuring the
             time it takes you to touch the boxes that appear on the page.
@@ -66,7 +67,7 @@ const Instructions = ({navigation, setPage
         </View>
 
         {/* Sign Up Button */}
-        <View style={styles.lower}>
+        <View style={styles.section3}>
           <TouchableOpacity
             style={styles.btn}
             onPress={() => {
@@ -80,7 +81,7 @@ const Instructions = ({navigation, setPage
         </View>
         {/* Log In */}
       </SafeAreaView>
-    </View>
+    
   );
 };
 
@@ -98,7 +99,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "black",
     alignItems: "center",
-    justifyContent: "center",
     width: "100%",
     marginLeft: "auto",
     marginRight: "auto",
@@ -117,12 +117,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
   },
-  mid: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    width: 300,
-  },
+ 
   btn: {
     width: 300,
     height: 45,
@@ -141,32 +136,35 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
   },
-  middle: {
-    width: 150,
-    alignItems: "center",
-    flex: 0.6,
-    justifyContent: "flex-end",
-  },
 
   img: {
     width: "100%",
     height: 120,
     borderRadius: 5,
   },
+  
+
   text2: {
     color: "white",
     fontSize: 35,
     textAlign: "center",
   },
-  lower: {
-    flex: 0.35,
+  section1: {
+    flex: 0.20,
     justifyContent: "flex-start",
   },
-  container2: {
-    flexDirection: "column",
+  section2: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 300,
+  },
+  section3: {
+    flex: 0.25,
     justifyContent: "flex-start",
   },
+
+
   text5: {
     fontSize: 16,
     color: "white",

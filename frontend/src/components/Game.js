@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Text,
   Image,
-  Platform, 
+  Platform,
 } from "react-native";
 import emailContext from "../emailContext.js";
 import Timer from "./gameTimer/Timer";
@@ -59,7 +59,7 @@ const Game = ({
   };
 
   const move = () => {
-    console.log("session", session)
+    console.log("session", session);
     setHidden(true);
 
     setX(() => rando2() + "%");
@@ -121,26 +121,23 @@ const Game = ({
     }
   };
 
-const getDaysInAYear = () => {
+  const getDaysInAYear = () => {
+    if (emailGlobal.length > 3) {
+      const check = new Date();
+      const dayInYear = check.getFullYear();
 
-  if (emailGlobal.length>3){
-
-
-  const check = new Date();
-  const dayInYear = check.getFullYear();
-  
-		if( (0 == dayInYear % 4) && (0 != dayInYear % 100) || (0 == dayInYear % 400) )
-		{
-		return 366;
-		}
-		else
-		{
-		return 365;
+      if (
+        (0 == dayInYear % 4 && 0 != dayInYear % 100) ||
+        0 == dayInYear % 400
+      ) {
+        return 366;
+      } else {
+        return 365;
+      }
+    } else {
+      return 365;
     }
-  } else {
-    return 365; 
-  }
-  }
+  };
 
   const ageOfGame = () => {
     const timeofgame = new Date() / 1000;
@@ -162,18 +159,21 @@ const getDaysInAYear = () => {
     const ageInDays = (check - birth) / milliDay;
     object.age = Math.round((ageInDays / 365) * 100000) / 100000;
     object.Day =
-      ((check.getHours() * 60 + check.getMinutes()) * 60 + check.getSeconds()) / 86400;
+      ((check.getHours() * 60 + check.getMinutes()) * 60 + check.getSeconds()) /
+      86400;
     object.Week =
       (dayInWeek +
         ((check.getHours() * 60 + check.getMinutes()) * 60 +
           check.getSeconds()) /
-          86400) / 7;
+          86400) /
+      7;
 
-           object.Year =
-        ((currentDayNumber() +
-          ((check.getHours() * 60 + check.getMinutes()) * 60 +
-            check.getSeconds()) /
-            86400) / getDaysInAYear());
+    object.Year =
+      (currentDayNumber() +
+        ((check.getHours() * 60 + check.getMinutes()) * 60 +
+          check.getSeconds()) /
+          86400) /
+      getDaysInAYear();
 
     return object;
   };
@@ -186,8 +186,8 @@ const getDaysInAYear = () => {
       currentAge: ageOfGame().age,
       timeElapsedInADay: ageOfGame().Day,
       timeElapsedInAWeek: ageOfGame().Week,
-       timeElapsedInAYear: ageOfGame().Year,
-      DayOfWeek:dayOfWeek(),
+      timeElapsedInAYear: ageOfGame().Year,
+      DayOfWeek: dayOfWeek(),
       birthdate: birthdateGlobal,
       email: emailGlobal,
       speed: Number(average),
@@ -197,20 +197,19 @@ const getDaysInAYear = () => {
       text4: value4,
       id: firebase.firestore().collection("Performance").doc().id,
     };
-if (emailGlobal.length>3){
-    return firebase
-      .firestore()
-      .collection("Performance")
-      .doc(data.id)
-      .set({ data })
-      .then((docRef) => {
-           navigation.navigate("Profile");
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    if (emailGlobal.length > 3) {
+      return firebase
+        .firestore()
+        .collection("Performance")
+        .doc(data.id)
+        .set({ data })
+        .then((docRef) => {
+          navigation.navigate("Profile");
+        })
+        .catch((error) => {
+          alert(error);
+        });
     } else {
-
       alert(
         "Your results will not be appearing because you are touring as a 'guest'. To begin recording data, create an account then sign in."
       ),
@@ -219,23 +218,36 @@ if (emailGlobal.length>3){
   };
 
   return (
-    <SafeAreaView style={styles.contatiner2}>
-      <Text style={styles.top}>Your Reaction Time:</Text>
-      <Text style={styles.text}><Timer hidden={hidden} setTotal={setTotal} total={total} session={session} arrayOfScores={arrayOfScores} setArrayOfScores={setArrayOfScores} setSession={setSession} setColor={setColor}/></Text>
+    <SafeAreaView style={styles.container2}>
+      <View style={styles.section1}>
+        <Text style={styles.top}>Your Reaction Time:</Text>
+        <Text style={styles.text}>
+          <Timer
+            hidden={hidden}
+            setTotal={setTotal}
+            total={total}
+            session={session}
+            arrayOfScores={arrayOfScores}
+            setArrayOfScores={setArrayOfScores}
+            setSession={setSession}
+            setColor={setColor}
+          />
+        </Text>
 
-      <Text style={styles.text}>Average:</Text>
-      <Text style={styles.text}>{average > 2 ? average : " "}</Text>
-      <Text style={styles.text}>Total Time:</Text>
-      <Text style={styles.text}>{total}</Text>
-      <Text style={styles.text}>Completed {session - 1}/8: </Text>
-      <Text style={styles.text}>
-        {arrayOfScores.map((num, i) => (
-          <Text key={i} style={styles.text}>
-            {" "}
-            {num}{" "}
-          </Text>
-        ))}
-      </Text>
+        <Text style={styles.text}>Average:</Text>
+        <Text style={styles.text}>{average > 2 ? average : " "}</Text>
+        <Text style={styles.text}>Total Time:</Text>
+        <Text style={styles.text}>{total}</Text>
+        <Text style={styles.text}>Completed {session - 1}/8: </Text>
+        <Text style={styles.text}>
+          {arrayOfScores.map((num, i) => (
+            <Text key={i} style={styles.text}>
+              {" "}
+              {num}{" "}
+            </Text>
+          ))}
+        </Text>
+      </View>
 
       {session < 9 ? (
         <View style={styles.container}>
@@ -288,7 +300,7 @@ export default Game;
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+   flex: .6,
     backgroundColor: "black",
   },
 
@@ -297,12 +309,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "black",
     maxWidth: "100%",
-    margin: "auto",
-    padding: 10,
-    position: "relative",
-    height: "80%",
+    height: "100%",
+    backgroundColor:"black",
   },
   text: {
     textAlign: "center",
@@ -317,7 +326,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: "white",
     backgroundColor: "black",
-    paddingTop: 50,
     padding: 20,
   },
   text3: {
@@ -335,7 +343,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: "white",
     backgroundColor: "black",
-    paddingTop: 10,
   },
   image: {
     width: 115,
@@ -343,11 +350,15 @@ const styles = StyleSheet.create({
   },
 
   container3: {
-    height: "100%",
-    backgroundColor: "black",
+    flex: .6,
     alignItems: "center",
   },
   container4: {
     alignItems: "center",
+  },
+  section1: {
+    width: "100%",
+    flex: .42,
+    backgroundColor:"red",
   },
 });

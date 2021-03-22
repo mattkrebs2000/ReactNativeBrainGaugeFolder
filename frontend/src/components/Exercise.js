@@ -145,6 +145,7 @@ const Exercise = ({ navigation }) => {
         <View style={styles.section2}>
           <Text style={styles.text4}>{explanation}</Text>
         </View>
+        </View>
         <View style={styles.chart}>
           <VictoryChart
             padding={{ left: 70, top: 10, right: 50, bottom: 50 }}
@@ -185,7 +186,7 @@ const Exercise = ({ navigation }) => {
                 },
               }}
               tickValues={[2, 25, 50, 75, 100]}
-              tickFormat={["Not Active", "", "", "", "Very Active"]}
+              tickFormat={["Inactive", "", "", "", "Very \r\n Active"]}
             />
 
             <VictoryAxis
@@ -200,7 +201,7 @@ const Exercise = ({ navigation }) => {
                 maxOfYAxis * 4,
               ]}
               style={{
-                axisLabel: { fill: "white", fontSize: 18, padding: 55 },
+                axisLabel: { fill: "white", fontSize: 18, padding: 45 },
                 tickLabels: {
                   fill: "white",
                   fontSize: 18,
@@ -225,7 +226,7 @@ const Exercise = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+     
     </SafeAreaView>
   );
 };
@@ -235,8 +236,8 @@ export default Exercise;
 const styles = StyleSheet.create({
   container3: {
     alignItems: "center",
-    backgroundColor: "black",
-    flex: 0.27,
+    justifyContent: "center",
+    flex: 0.20,
   },
 
   text2: {
@@ -249,7 +250,6 @@ const styles = StyleSheet.create({
   },
   middle: {
     alignItems: "center",
-    flex: 0.3,
     marginTop: 5,
     backgroundColor: "black",
     marginLeft: 20,
@@ -257,16 +257,16 @@ const styles = StyleSheet.create({
   },
   chart: {
     backgroundColor: "black",
-    flex: 1,
+    flex: .9,
     alignItems: "center",
   },
-  section2: { flex: 0.5 },
 
   container2: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
     flexDirection: "column",
+    flex: 1, 
   },
   btn: {
     borderColor: "#167bff",
@@ -303,4 +303,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 5,
   },
+  center: {
+    flex: .7,
+    width: "100%",
+    
+      },
+      spinnerTextStyle: {
+        color: "#FFF",
+      },
 });
