@@ -110,23 +110,26 @@ const styles = StyleSheet.create({
   },
   container2: {
     flexDirection: "column",
+    flex: 1, 
     alignItems: "center",
   },
   text: {
-    flex: 0.5,
+    
     color: "white",
     fontSize: 30,
+    
   },
 
   text2: {
-    flex: 0.5,
+  
     color: "white",
     textAlign: "center",
     justifyContent: "center",
     fontSize: 20,
+    paddingBottom: 2,
   },
   text6: {
-    flex: 0.5,
+   
     color: "white",
     textAlign: "center",
     justifyContent: "center",
@@ -146,7 +149,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   containerofimage: {
-    flex: 2,
+ 
     width: 200,
     flexDirection: "column",
     alignItems: "center",
@@ -154,7 +157,6 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
   },
   bottombuttons: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
   },
@@ -180,7 +182,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   flex1: {
-    flex: 0.4,
+    flex: 0.5,
     marginTop: 10,
   },
   flex2: {
