@@ -321,6 +321,6 @@ const styles = StyleSheet.create({
   section1: {
     width: "100%",
     flex: .42,
-    backgroundColor:"red",
+    backgroundColor:"black",
   },
 });
