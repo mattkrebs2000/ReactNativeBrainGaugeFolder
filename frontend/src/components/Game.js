@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import emailContext from "../emailContext.js";
 import Timer from "./gameTimer/Timer";
+import Square from "./square/Square";
 import birthdateContext from "../birthdateContext.js";
 import { firebase } from "../firebase/config.js";
 const currentDayNumber = require("current-day-number");
@@ -26,8 +27,6 @@ const Game = ({
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { birthdateGlobal } = useContext(birthdateContext);
 
-  const [x, setX] = useState(157);
-  const [y, setY] = useState(0);
   const [hidden, setHidden] = useState(false);
   const [session, setSession] = useState(1);
   const [seconds, setSeconds] = useState(0);
@@ -35,40 +34,9 @@ const Game = ({
   const [total, setTotal] = useState(0);
   const [arrayOfScores, setArrayOfScores] = useState([]);
 
-  //function establishes the time that it takes for the real timer to begin.
-  function timingUsed() {
-    var randomNumber = Math.floor(Math.random() * 4000) + 500;
-    setTimeout(Ready, randomNumber);
-  }
-
-  const Ready = () => {
-    setHidden(false);
-  };
-
   useEffect(() => {
     setAverage((total / (session - 1)).toFixed(2));
   }, [total]);
-
-  //This function helps to control placement of the square
-  const rando = () => {
-    return Math.floor(Math.random() * 45) + 5;
-  };
-
-  const rando2 = () => {
-    return Math.floor(Math.random() * 60) + 10;
-  };
-
-  const move = () => {
-    console.log("session", session);
-    setHidden(true);
-
-    setX(() => rando2() + "%");
-    setY(() => rando() + "%");
-
-    if (session < 8) {
-      timingUsed();
-    }
-  };
 
   const minutess = () => {
     let check = new Date();
@@ -251,19 +219,13 @@ const Game = ({
 
       {session < 9 ? (
         <View style={styles.container}>
-          <TouchableOpacity
-            style={{
-              opacity: hidden ? "0%" : "100%",
-              marginTop: y,
-              marginLeft: x,
-              height: hidden ? 0 : 100,
-              width: 100,
-              backgroundColor: color,
-            }}
-            onPress={() => {
-              move();
-            }}
-          ></TouchableOpacity>
+        
+        <Square
+        hidden={hidden}
+        color={color}
+        setHidden={setHidden}
+        session={session}
+      />
         </View>
       ) : (
         <View style={styles.container3}>
