@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     
   },
   section1: {
-    width:300,
+    width:150,
     justifyContent: "center",
     alignItems:"center",
     flex: 0.40,
@@ -239,8 +239,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   img: {
-    width: "60%",
-    height: "90%",
+    width: "100%",
+    height: 90,
     borderRadius: 5,
   },
   img2: {
