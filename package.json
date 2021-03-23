@@ -1,1 +1,7 @@
-{}
+{
+  "dependencies": {
+    "install": "^0.13.0",
+    "npm": "^7.7.0",
+    "react-native-size-matters": "^0.4.0"
+  }
+}

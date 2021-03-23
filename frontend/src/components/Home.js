@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from "react";
 
+import { ScaledSheet } from 'react-native-size-matters';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -66,9 +68,73 @@ const Home = ({ navigation }) => {
 
 export default Home;
 
-const styles = StyleSheet.create({
+// const styles = StyleSheet.create({
+//   container: {
+//     height: "100%",
+//     backgroundColor: "black",
+//     color: "white",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+//   text: {
+//     color: "white",
+//     fontSize: 40,
+//     marginBottom: 30,
+//   },
+//   img: {
+//     width: "100%",
+//     height: 150,
+//     borderRadius: 5,
+//   },
+//   text2: {
+//     color: "white",
+//     margin: "12%",
+//     textAlign: "center",
+//     justifyContent: "flex-start",
+
+//     fontSize: 15,
+//   },
+//   middle: {
+//     width: 200,
+//   },
+//   btn: {
+//     borderColor: "#167bff",
+//     borderWidth: 1,
+//     width: 100,
+//     height: 35,
+//     alignItems: "center",
+//     justifyContent: "center",
+//     backgroundColor: "black",
+//     borderRadius: 10,
+//     shadowColor: "white",
+//     shadowOffset: { width: 1, height: 1 },
+//     shadowOpacity: 1,
+//     shadowRadius: 3,
+//     color: "white",
+//     margin: 5,
+//   },
+//   text3: {
+//     color: "white",
+//     fontSize: 15,
+//     textAlign: "center",
+//   },
+//   buttons: {
+//     flexDirection: "row",
+//   },
+//   container2: {
+//     flex: 1,
+//     flexDirection: "column",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     backgroundColor: "black",
+//   },
+// });
+
+
+
+const styles = ScaledSheet.create({
   container: {
-    height: "100%",
+    height: "100@s",
     backgroundColor: "black",
     color: "white",
     alignItems: "center",
@@ -76,44 +142,44 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 40,
-    marginBottom: 30,
+    fontSize: "40@s",
+    marginBottom: "30@s",
   },
   img: {
-    width: "100%",
-    height: 150,
+    width: "170@vs",
+    height: "90@s",
+   
     borderRadius: 5,
   },
   text2: {
     color: "white",
-    margin: "12%",
+    margin: "28@s",
     textAlign: "center",
     justifyContent: "flex-start",
-
     fontSize: 15,
   },
   middle: {
-    width: 200,
+    width: "100%",
   },
   btn: {
     borderColor: "#167bff",
     borderWidth: 1,
-    width: 100,
-    height: 35,
+    width: "100@s",
+    height: "35@s",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "black",
     borderRadius: 10,
     shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
+    shadowOffset: { width: "1@s", height: "1@s" },
     shadowOpacity: 1,
     shadowRadius: 3,
     color: "white",
-    margin: 5,
+    margin: "5@s",
   },
   text3: {
     color: "white",
-    fontSize: 15,
+    fontSize: "20@ms",
     textAlign: "center",
   },
   buttons: {
