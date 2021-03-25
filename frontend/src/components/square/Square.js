@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {
     TouchableOpacity,  
   } from "react-native";
+
+import { scale } from 'react-native-size-matters';
   
   const Square = ({setHidden, hidden, color, session}) => {
     const [x, setX] = useState(157);
@@ -43,8 +45,8 @@ import {
         opacity: hidden ? "0%" : "100%",
         marginTop: y,
         marginLeft: x,
-        height: hidden ? 0 : 100,
-        width: 100,
+        height: hidden ? 0 : scale(75),
+        width: scale(75),
         backgroundColor: color,
       }}
       onPress={() => {

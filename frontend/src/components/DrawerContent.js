@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { scale, ScaledSheet } from 'react-native-size-matters';
 import {
   useTheme,
   Drawer,
@@ -17,9 +18,9 @@ export function DrawerContent(props) {
     <View style={{ flex: 1 }}>
       <Drawer.Section style={styles.drawerSection2}>
         <DrawerItem
-          icon={() => <Icon name="arrow-left" color="#167bff" size={45} />}
+          icon={() => <Icon name="arrow-left" color="#167bff" size={scale(45)} />}
           label="Return"
-          labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+          labelStyle={{ color: "white", fontSize: scale(30), marginLeft: scale(20) }}
           onPress={() => {
             props.navigation.navigate("Return");
           }}
@@ -36,11 +37,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("Age");
                   }}
                 >
-                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                  <Icon name="chart-scatter-plot" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Age"
-              labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+              labelStyle={{ color: "white", fontSize: scale(30), marginLeft: scale(20) }}
               onPress={() => {
                 props.navigation.navigate("Age");
               }}
@@ -53,11 +54,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("Agemanage");
                   }}
                 >
-                  <Icon name="database-edit" color="#167bff" size={45} />
+                  <Icon name="database-edit" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Manage Age Data"
-              labelStyle={{ color: "white" }}
+              labelStyle={{ color: "white", fontSize: scale(15)}}
               onPress={() => {
                 props.navigation.navigate("Agemanage");
               }}
@@ -70,11 +71,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("Appetite");
                   }}
                 >
-                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                  <Icon name="chart-scatter-plot" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Appetite"
-              labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+              labelStyle={{ color: "white", fontSize: scale(30), marginLeft: scale(20) }}
               onPress={() => {
                 props.navigation.navigate("Appetite");
               }}
@@ -86,11 +87,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("Appetitemanage");
                   }}
                 >
-                  <Icon name="database-edit" color="#167bff" size={45} />
+                  <Icon name="database-edit" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Manage Appetite Data"
-              labelStyle={{ color: "white" }}
+              labelStyle={{ color: "white", fontSize: scale(15)}}
               onPress={() => {
                 props.navigation.navigate("Appetitemanage");
               }}
@@ -103,11 +104,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("Exercise");
                   }}
                 >
-                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                  <Icon name="chart-scatter-plot" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Exercise"
-              labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+              labelStyle={{ color: "white", fontSize: scale(30), marginLeft: scale(20) }}
               onPress={() => {
                 props.navigation.navigate("Exercise");
               }}
@@ -120,11 +121,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("Exercisemanage");
                   }}
                 >
-                  <Icon name="database-edit" color="#167bff" size={45} />
+                  <Icon name="database-edit" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Manage Exercise Data"
-              labelStyle={{ color: "white" }}
+              labelStyle={{ color: "white", fontSize: scale(15)}}
               onPress={() => {
                 props.navigation.navigate("Exercisemanage");
               }}
@@ -137,11 +138,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("Mood");
                   }}
                 >
-                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                  <Icon name="chart-scatter-plot" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Mood"
-              labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+              labelStyle={{ color: "white", fontSize: scale(30), marginLeft: scale(20) }}
               onPress={() => {
                 props.navigation.navigate("Mood");
               }}
@@ -153,11 +154,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("Moodmanage");
                   }}
                 >
-                  <Icon name="database-edit" color="#167bff" size={45} />
+                  <Icon name="database-edit" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Manage Mood Data"
-              labelStyle={{ color: "white" }}
+              labelStyle={{ color: "white", fontSize: scale(15)}}
               onPress={() => {
                 props.navigation.navigate("Moodmanage");
               }}
@@ -170,11 +171,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("Sleep");
                   }}
                 >
-                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                  <Icon name="chart-scatter-plot" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Sleep"
-              labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+              labelStyle={{ color: "white", fontSize: scale(30), marginLeft: scale(20) }}
               onPress={() => {
                 props.navigation.navigate("Sleep");
               }}
@@ -187,11 +188,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("Sleepmanage");
                   }}
                 >
-                  <Icon name="database-edit" color="#167bff" size={45} />
+                  <Icon name="database-edit" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Manage Sleep Data"
-              labelStyle={{ color: "white" }}
+              labelStyle={{ color: "white", fontSize: scale(15)}}
               onPress={() => {
                 props.navigation.navigate("Sleepmanage");
               }}
@@ -203,11 +204,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("TimeOfDay");
                   }}
                 >
-                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                  <Icon name="chart-scatter-plot" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Time-Day"
-              labelStyle={{ color: "white", fontSize: 30, marginLeft: 10 }}
+              labelStyle={{ color: "white", fontSize: scale(30), marginLeft: 10 }}
               onPress={() => {
                 props.navigation.navigate("TimeOfDay");
               }}
@@ -219,11 +220,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("TimeOfDayManage");
                   }}
                 >
-                  <Icon name="database-edit" color="#167bff" size={45} />
+                  <Icon name="database-edit" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Manage Time-Day Data"
-              labelStyle={{ color: "white" }}
+              labelStyle={{ color: "white", fontSize: scale(15)}}
               onPress={() => {
                 props.navigation.navigate("TimeOfDayManage");
               }}
@@ -235,11 +236,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("TimeOfWeek");
                   }}
                 >
-                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                  <Icon name="chart-scatter-plot" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Time-Week"
-              labelStyle={{ color: "white", fontSize: 30, marginLeft: 10 }}
+              labelStyle={{ color: "white", fontSize: scale(30), marginLeft: 10 }}
               onPress={() => {
                 props.navigation.navigate("TimeOfWeek");
               }}
@@ -251,11 +252,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("TimeOfWeekManage");
                   }}
                 >
-                  <Icon name="database-edit" color="#167bff" size={45} />
+                  <Icon name="database-edit" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Manage Time-Week Data"
-              labelStyle={{ color: "white" }}
+              labelStyle={{ color: "white", fontSize: scale(15)}}
               onPress={() => {
                 props.navigation.navigate("TimeOfWeekManage");
               }}
@@ -267,11 +268,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("TimeOfYear");
                   }}
                 >
-                  <Icon name="chart-scatter-plot" color="#167bff" size={45} />
+                  <Icon name="chart-scatter-plot" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Time-Year"
-              labelStyle={{ color: "white", fontSize: 30, marginLeft: 10 }}
+              labelStyle={{ color: "white", fontSize: scale(30), marginLeft: 10 }}
               onPress={() => {
                 props.navigation.navigate("TimeOfYear");
               }}
@@ -283,11 +284,11 @@ export function DrawerContent(props) {
                     props.navigation.navigate("TimeOfYearManage");
                   }}
                 >
-                  <Icon name="database-edit" color="#167bff" size={45} />
+                  <Icon name="database-edit" color="#167bff" size={scale(45)} />
                 </TouchableOpacity>
               )}
               label="Manage Time-Year Data"
-              labelStyle={{ color: "white" }}
+              labelStyle={{ color: "white", fontSize: scale(15)}}
               onPress={() => {
                 props.navigation.navigate("TimeOfYearManage");
               }}
@@ -298,7 +299,7 @@ export function DrawerContent(props) {
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
           label=""
-          labelStyle={{ color: "white", fontSize: 30, marginLeft: 20 }}
+          labelStyle={{ color: "white", fontSize: scale(30), marginLeft: scale(20) }}
           onPress={() => {
             props.navigation.navigate("Return");
           }}
@@ -314,7 +315,7 @@ const styles = StyleSheet.create({
     color: "#167bff",
   },
   userInfoSection: {
-    paddingLeft: 20,
+    paddingLeft: scale(20),
     color: "#167bff",
   },
   title: {
@@ -329,7 +330,7 @@ const styles = StyleSheet.create({
     color: "#167bff",
   },
   row: {
-    marginTop: 20,
+    marginTop: scale(20),
     flexDirection: "row",
     alignItems: "center",
     color: "#167bff",

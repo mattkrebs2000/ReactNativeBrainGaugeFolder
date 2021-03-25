@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { scale } from 'react-native-size-matters';
 import { Button, Text } from "react-native";
 import {
   useNavigation,
@@ -122,13 +123,13 @@ export const Navigators = ({ navigation }) => {
     <Drawer.Navigator
       drawerStyle={{
         backgroundColor: "black",
-        width: 320,
+        width: scale(320),
         opacity: 0.85,
       }}
       drawerContentOptions={{
         inactiveTintColor: "white",
         activeTintColor: "#167bff",
-        itemStyle: { marginVertical: 20 },
+        itemStyle: { marginVertical: scale(20) },
       }}
       drawerContent={(props) => <DrawerContent {...props} />}
     >
