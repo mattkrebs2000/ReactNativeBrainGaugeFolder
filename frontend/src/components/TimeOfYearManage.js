@@ -1,6 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
 import { ListItem } from "react-native-elements";
 import { useIsFocused } from "@react-navigation/native";
+
+
+import { scale, ScaledSheet } from 'react-native-size-matters';
+
+
 import { firebase } from "../firebase/config.js";
 import {
   SafeAreaView,
@@ -109,7 +114,7 @@ const TimeInAYear = ({ navigation }) => {
             {yourData.map((info, i) => (
               <ListItem key={i} style={styles.text6}>
                 <TouchableOpacity style={styles.divide}>
-                  <Text style={{ fontSize: 17 }}>
+                  <Text style={{ fontSize: scale(17) }}>
                     {i + 1}. {info.currentDate} at {info.currentTime}. Speed:{" "}
                     {info.speed}
                   </Text>
@@ -117,13 +122,13 @@ const TimeInAYear = ({ navigation }) => {
 
                 <View style={styles.new2}>
                   <TouchableOpacity style={styles.btn} id={info.id}>
-                    <Button
+                    <Text
                       id={info.id}
                       accessibilityLabel="Sign In"
                       style={styles.text11}
                       title="Delete"
                       onPress={() => setiddelete(info.id)}
-                    ></Button>
+                    >Delete</Text>
                   </TouchableOpacity>
                 </View>
               </ListItem>
@@ -147,7 +152,7 @@ const TimeInAYear = ({ navigation }) => {
 
 export default TimeInAYear;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container3: {
     alignItems: "center",
     backgroundColor: "black",
@@ -167,7 +172,7 @@ const styles = StyleSheet.create({
 
   text2: {
     color: "white",
-    fontSize: 35,
+    fontSize: "35@s",
     textAlign: "center",
     marginRight: 0,
     marginLeft: 0,
@@ -176,17 +181,17 @@ const styles = StyleSheet.create({
   middle: {
     alignItems: "center",
     flex: 0.33,
-    marginTop: 5,
+    marginTop: "5@s",
     backgroundColor: "black",
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: "20@s",
+    marginRight: "20@s",
   },
   chart: {
     backgroundColor: "black",
     flex: 2,
     flexDirection: "row",
-    padding: 10,
-    width: 340,
+    padding: "10@s",
+    width: "340@s",
   },
   container2: {
     justifyContent: "center",
@@ -195,63 +200,65 @@ const styles = StyleSheet.create({
   },
   btn: {
     borderColor: "#167bff",
-    borderWidth: 2,
-    width: 75,
-    height: 40,
+    borderWidth: "2@s",
+    width: "75@s",
+    height: "40@s",
     backgroundColor: "black",
-    borderRadius: 10,
+    borderRadius: "10@s",
     shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
+    shadowOffset: { width: "1@s", height: "1@s" },
     shadowOpacity: 1,
     shadowRadius: 3,
     color: "black",
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     color: "white",
-    fontSize: 16,
+    fontSize: "16@s",
     textAlign: "center",
   },
   text11: {
     color: "white",
-    fontSize: 10,
+    fontSize: "14@s",
     textAlign: "right",
   },
   text4: {
     color: "white",
-    fontSize: 18,
+    fontSize: "18@s",
     textAlign: "center",
     backgroundColor: "green",
   },
   text5: {
     color: "white",
-    fontSize: 10,
+    fontSize: "10@s",
     textAlign: "center",
-    marginBottom: 5,
+    marginBottom: "5@s",
   },
   text6: {
     color: "white",
-    fontSize: 18,
+    fontSize: "18@s",
     flex: 1,
-    marginBottom: 20,
+    marginBottom: "20@s",
   },
   text9: {
     color: "white",
-    fontSize: 20,
+    fontSize: "20@s",
     textAlign: "center",
-    width: 100,
+    width: "100@s",
     borderRadius: 50,
   },
   btn9: {
     borderColor: "#167bff",
-    borderWidth: 2,
-    width: 130,
-    height: 40,
+    borderWidth: "2@s",
+    width: "130@s",
+    height: "40@s",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "black",
     borderRadius: 10,
     shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
+    shadowOffset: { width: "1@s", height: "1@s" },
     shadowOpacity: 1,
     shadowRadius: 3,
     color: "red",

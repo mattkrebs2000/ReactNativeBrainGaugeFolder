@@ -1,6 +1,9 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useIsFocused } from "@react-navigation/native";
 import { firebase } from "../firebase/config.js";
+
+import { scale, ScaledSheet } from 'react-native-size-matters';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -147,19 +150,19 @@ const Sleep = ({ navigation }) => {
         </View>
         <View style={styles.chart}>
           <VictoryChart
-            padding={{ left: 70, top: 10, right: 50, bottom: 50 }}
-            width={350}
-            height={250}
+            padding={{ left: scale(70), top: scale(10), right: scale(50), bottom: scale(50) }}
+            width={scale(350)}
+            height={scale(250)}
             theme={VictoryTheme.material}
             domain={{ x: [0, 1], y: [0, maxOfYAxis * 4] }}
           >
             {orderedPairArray.length > 1 && yForHundred ? (
               <VictoryLine
-                width={400}
+                width={scale(400)}
                 style={{
-                  data: { stroke: "#004fff", strokeWidth: 5 },
+                  data: { stroke: "#004fff", strokeWidth: scale(5) },
                   parent: { border: "2px solid #ccc" },
-                  labels: { fontSize: 22, fill: "#004fff" },
+                  labels: { fontSize: scale(22), fill: "#004fff" },
                 }}
                 data={[
                   { x: 0, y: yForTwo },
@@ -169,19 +172,19 @@ const Sleep = ({ navigation }) => {
             ) : null}
             <VictoryAxis
               orientation="bottom"
-              offsetY={50}
+              offsetY={scale(50)}
               scale="time"
               standalone={false}
               style={{
                 axisLabel: {
                   fill: "white",
-                  fontSize: 18,
-                  padding: 30,
-                  margin: 20,
+                  fontSize: scale(18),
+                  padding: scale(30),
+                  margin: scale(20),
                 },
                 tickLabels: {
                   fill: "white",
-                  fontSize: 15,
+                  fontSize: scale(15),
                 },
               }}
               tickValues={[0.02, 0.25, 0.5, 0.75, 1]}
@@ -190,7 +193,7 @@ const Sleep = ({ navigation }) => {
 
             <VictoryAxis
               dependentAxis
-              offsetX={75}
+              offsetX={scale(75)}
               label="Reaction Time"
               standalone={false}
               tickValues={[
@@ -200,17 +203,17 @@ const Sleep = ({ navigation }) => {
                 maxOfYAxis * 4,
               ]}
               style={{
-                axisLabel: { fill: "white", fontSize: 18, padding: 45 },
+                axisLabel: { fill: "white", fontSize: scale(18), padding: scale(45) },
                 tickLabels: {
                   fill: "white",
-                  fontSize: 18,
+                  fontSize: scale(18),
                 },
               }}
             />
 
             <VictoryScatter
               style={{ data: { fill: "#004fff" } }}
-              size={7}
+              size={scale(7)}
               data={orderedPairArray}
             />
           </VictoryChart>
@@ -232,7 +235,7 @@ const Sleep = ({ navigation }) => {
 
 export default Sleep;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container3: {
     alignItems: "center",
     backgroundColor: "black",
@@ -241,7 +244,7 @@ const styles = StyleSheet.create({
 
   text2: {
     color: "white",
-    fontSize: 35,
+    fontSize: "35@s",
     textAlign: "center",
     marginRight: 0,
     marginLeft: 0,
@@ -249,18 +252,17 @@ const styles = StyleSheet.create({
   },
   middle: {
     alignItems: "center",
-
-    marginTop: 5,
+    marginTop: "5@s",
     backgroundColor: "black",
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: "20@s",
+    marginRight: "20@s",
   },
   chart: {
     backgroundColor: "black",
     flex: .9,
     alignItems: "center",
   },
-
+  
 
   container2: {
     justifyContent: "center",
@@ -271,38 +273,38 @@ const styles = StyleSheet.create({
   },
   btn: {
     borderColor: "#167bff",
-    borderWidth: 1,
-    width: 150,
-    height: 45,
+    borderWidth: "1@s",
+    width: "150@s",
+    height: "45@s",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "black",
-    borderRadius: 10,
+    borderRadius: "10@s",
     shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowOffset: { width: "1@s", height: "1@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "3@s",
     color: "white",
-    margin: 5,
+    margin: "5@s",
   },
   text: {
     color: "white",
-    fontSize: 20,
+    fontSize: "20@s",
     textAlign: "center",
   },
   text4: {
     color: "white",
-    fontSize: 16,
+    fontSize: "16@s",
     textAlign: "center",
     justifyContent: "center",
-    marginLeft: 5,
-    marginRight: 5,
+    marginLeft: "5@s",
+    marginRight: "5@s",
   },
   text5: {
     color: "white",
-    fontSize: 10,
+    fontSize: "10@s",
     textAlign: "center",
-    marginBottom: 5,
+    marginBottom: "5@s",
   },
   spinnerTextStyle: {
     color: "#FFF",
@@ -310,6 +312,10 @@ const styles = StyleSheet.create({
   center: {
 flex: .7,
 width: "100%",
+justifyContent: "center",
 
-  }
+  },
+      spinnerTextStyle: {
+        color: "#FFF",
+      },
 });

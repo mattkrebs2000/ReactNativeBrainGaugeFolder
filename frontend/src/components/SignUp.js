@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScaledSheet } from 'react-native-size-matters';
+import { scale, ScaledSheet } from 'react-native-size-matters';
 import DatePicker from "react-native-datepicker";
 import DateTimeModal from "react-native-modal-datetime-picker";
 
@@ -154,8 +154,8 @@ const SignUp = ({ navigation }) => {
       </KeyboardAvoidingView>
 
       {/* Sign Up Button */}
-      <KeyboardAvoidingView>
-        <TouchableOpacity style={styles.btn} onPress={() => onRegisterPress()}>
+      <KeyboardAvoidingView style={styles.btn} >
+        <TouchableOpacity onPress={() => onRegisterPress()}>
           <Text accessibilityLabel="Sign up" style={styles.text}>
             Sign Up
           </Text>
@@ -163,9 +163,9 @@ const SignUp = ({ navigation }) => {
       </KeyboardAvoidingView>
 
       {/* Log In */}
-      <Text
+      <Text style={styles.lastsection}
         accessibilityLabel="Link to Sign In page"
-        style={{ color: "#167bff", padding: 20 }}
+        style={{ color: "#167bff", padding: scale(20), fontSize: scale(10)}}
         onPress={() => {
           navigation.navigate("SignIn");
         }}
@@ -238,7 +238,7 @@ const styles = ScaledSheet.create({
     shadowOpacity: "1@s",
     shadowRadius: "3@s",
     color: "white",
-    flex: .08,
+    flex: .1,
   },
   text: {
     color: "white",
@@ -246,12 +246,11 @@ const styles = ScaledSheet.create({
     textAlign: "center",
   },
   middle: {
-    width: 150,
+    width: "150@s",
     alignItems: "center",
     justifyContent: "center",
-   paddingBottom: "15@s",
-   paddingTop: "15@s",
-   flex: .18, 
+  marginTop:0,
+   flex: .26, 
   },
 
   img: {
@@ -266,15 +265,15 @@ const styles = ScaledSheet.create({
 
   modal: {
     color: "white",
-    fontSize: 35,
+    fontSize: "35@s",
     textAlign: "center",
     backgroundColor: "red",
-    width: 20,
+    width: "20@s",
   },
   text5: {
     color: "#004fff",
-    fontSize: 20,
-    marginRight: 5
+    fontSize: "20@s",
+    marginRight: "5@s"
   },
   last: {
 color: "#167bff", 
@@ -283,7 +282,6 @@ fontSize: "10@s",
 },
 lastsection: {
   flex: .1,
-
   justifyContent:"center",
 }, 
 });
