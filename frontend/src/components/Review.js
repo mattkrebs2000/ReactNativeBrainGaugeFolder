@@ -1,4 +1,5 @@
 import React, { useEffect} from "react";
+import { ScaledSheet } from 'react-native-size-matters';
 import {
   Text,
   StyleSheet,
@@ -95,12 +96,12 @@ const Review = ({
 
 export default Review;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   text: {
-    fontSize: 14,
+    fontSize: "14@s",
     textAlign: "center",
-    fontWeight: "500",
-    margin: 10,
+    fontWeight: "500@s",
+    margin: "10@s",
   },
 
   container: {
@@ -116,14 +117,14 @@ const styles = StyleSheet.create({
   },
 
   divider_bar: {
-    width: 300,
+    width: "300@s",
     backgroundColor: "#FAD9C5",
     height: 1,
-    marginTop: 20,
+    marginTop: "20@s",
   },
   text3: {
     color: "white",
-    fontSize: 20,
+    fontSize: "20@s",
     textAlign: "center",
   },
   mid: {
@@ -132,38 +133,38 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   btn: {
-    width: 300,
-    height: 45,
+    width: "300@s",
+    height: "45@s",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#004fff",
-    borderRadius: 10,
+    borderRadius: "10@s",
     shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowOffset: { width: "1@s", height: "1@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "3@s",
     color: "white",
   },
   text: {
     color: "white",
-    fontSize: 20,
+    fontSize: "20@s",
     textAlign: "center",
   },
   middle: {
-    width: 150,
+    width: "150@s",
     alignItems: "center",
-    flex: 0.25,
+    flex: 0.28,
     justifyContent: "flex-end",
   },
 
   img: {
-    width: "100%",
-    height: 90,
+    width: "170@vs",
+    height: "90@s",
     borderRadius: 5,
   },
   text2: {
     color: "white",
-    fontSize: 35,
+    fontSize: "35@s",
     textAlign: "center",
   },
   lower: {
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   text5: {
-    fontSize: 17,
+    fontSize: "10@s",
     color: "white",
     marginLeft: 10,
   },

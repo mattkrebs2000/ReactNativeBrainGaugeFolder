@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { ScaledSheet } from 'react-native-size-matters';
 import {
   Text,
   StyleSheet,
@@ -97,16 +98,17 @@ const Sleep = ({ navigation, setPage, setValue1, texts1, value1 }) => {
 
 export default Sleep;
 
-const styles = StyleSheet.create({
+
+const styles = ScaledSheet.create({
   slider: {
-    width: 300,
+    width: "300@s",
     opacity: 1,
   },
   text: {
-    fontSize: 14,
+    fontSize: "14@s",
     textAlign: "center",
-    fontWeight: "500",
-    margin: 10,
+    fontWeight: "500@s",
+    margin: "10@s",
   },
 
   container: {
@@ -121,43 +123,45 @@ const styles = StyleSheet.create({
   },
 
   divider_bar: {
-    width: 300,
+    width: "300@s",
     backgroundColor: "#FAD9C5",
     height: 1,
-    marginTop: 10,
+    marginTop: "10@s",
   },
   text3: {
     color: "white",
     textAlign: "center",
-    fontSize: 20,
+    fontSize: "20@s",
+    marginBottom: "25@s",
   },
 
   btn: {
-    width: 300,
-    height: 45,
+    width: "300@s",
+    height: "45@s",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#004fff",
-    borderRadius: 10,
+    borderRadius: "10@s",
     shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowOffset: { width: "1@s", height: "1@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "3@s",
     color: "white",
   },
   text: {
     color: "white",
-    fontSize: 20,
+    fontSize: "20@s",
     textAlign: "center",
   },
 section1: {
-    width: 150,
+    width: "150@s",
     alignItems: "center",
     flex: 0.7,
+    justifyContent: "center",
    
   },
   section2: {
-    width: 150,
+    width: "150@s",
     alignItems: "center",
     flex: 0.5,
   },
@@ -165,9 +169,9 @@ section1: {
   section3: {
     flex: 1.2,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     color: "white",
-    width: 300,
+    width: "300@s",
   
   },
 
@@ -177,24 +181,24 @@ section1: {
   
   },
   img: {
-    width: "90%",
-    height: 90,
+    width: "170@vs",
+    height: "90@s",
     borderRadius: 5,
   },
   text2: {
     color: "white",
-    fontSize: 35,
+    fontSize: "35@s",
  justifyContent:"flex-start",
     
   },
 
   text5: {
-    fontSize: 17,
+    fontSize: "10@s",
     color: "white",
     marginLeft: 10,
   },
   text6: {
-    fontSize: 17,
+    fontSize: "10@s",
     color: "white",
     marginRight: 10,
   },

@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import { ScaledSheet } from 'react-native-size-matters';
 import { firebase } from "../firebase/config.js";
 import {
   SafeAreaView,
@@ -100,7 +101,7 @@ const Welcome = ({ navigation }) => {
 };
 export default Welcome;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     height: "100%",
     backgroundColor: "black",
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
   text: {
     
     color: "white",
-    fontSize: 30,
+    fontSize: "30@s",
     
   },
 
@@ -125,32 +126,30 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     justifyContent: "center",
-    fontSize: 20,
-    paddingBottom: 2,
+    fontSize: "20@s",
+    paddingBottom: "2@s",
   },
   text6: {
    
     color: "white",
     textAlign: "center",
     justifyContent: "center",
-    fontSize: 20,
+    fontSize: "20@s",
     
   },
   image: {
-    width: "90%",
-    height: "100%",
-
+    width: "170@vs",
+    height: "90@s",
     borderRadius: 5,
   },
   image2: {
-    width: "90%",
-    height: 90,
-
+    width: "170@vs",
+    height: "90@s",
     borderRadius: 5,
   },
   containerofimage: {
  
-    width: 200,
+    width: "200@s",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -162,23 +161,23 @@ const styles = StyleSheet.create({
   },
   btn: {
     borderColor: "#167bff",
-    borderWidth: 1,
-    width: 100,
-    height: 45,
+    borderWidth: "1@s",
+    width: "100@s",
+    height: "45@s",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "black",
-    borderRadius: 10,
+    borderRadius: "10@s",
     shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowOffset: { width: "1@s", height: "1@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "3@s",
     color: "white",
-    margin: 5,
+    margin: "5@s",
   },
   text3: {
     color: "white",
-    fontSize: 20,
+    fontSize: "15@s",
     textAlign: "center",
   },
   flex1: {

@@ -1,4 +1,5 @@
 import React from "react";
+import { ScaledSheet } from 'react-native-size-matters';
 import {
   Text,
   StyleSheet,
@@ -77,105 +78,107 @@ const Appetite = ({ setPage, setValue3, texts3, value3, page }) => {
 };
 
 export default Appetite;
+const styles = ScaledSheet.create({
+  slider: {
+    width: "300@s",
+    opacity: 1,
+  },
+  text: {
+    fontSize: "14@s",
+    textAlign: "center",
+    fontWeight: "500@s",
+    margin: "10@s",
+  },
 
-const styles = StyleSheet.create({
-slider: {
-width: 300,
-opacity: 1,
-},
-text: {
-fontSize: 14,
-textAlign: "center",
-fontWeight: "500",
-margin: 10,
-},
+  container: {
+    flex: 1,
+    backgroundColor: "black",
+    alignItems: "center",
+    width: "100%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    color: "white",
+    flexDirection: "column",
+  },
 
-container: {
-flex: 1,
-backgroundColor: "black",
-alignItems: "center",
-width: "100%",
-marginLeft: "auto",
-marginRight: "auto",
-color: "white",
-flexDirection: "column",
-},
+  divider_bar: {
+    width: "300@s",
+    backgroundColor: "#FAD9C5",
+    height: 1,
+    marginTop: "10@s",
+  },
+  text3: {
+    color: "white",
+    textAlign: "center",
+    fontSize: "20@s",
+    marginBottom: "25@s",
+  },
 
-divider_bar: {
-width: 300,
-backgroundColor: "#FAD9C5",
-height: 1,
-marginTop: 10,
-},
-text3: {
-color: "white",
-textAlign: "center",
-fontSize: 20,
-},
-
-btn: {
-width: 300,
-height: 45,
-alignItems: "center",
-justifyContent: "center",
-backgroundColor: "#004fff",
-borderRadius: 10,
-shadowColor: "white",
-shadowOffset: { width: 1, height: 1 },
-shadowOpacity: 1,
-shadowRadius: 3,
-color: "white",
-},
-text: {
-color: "white",
-fontSize: 20,
-textAlign: "center",
-},
+  btn: {
+    width: "300@s",
+    height: "45@s",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#004fff",
+    borderRadius: "10@s",
+    shadowColor: "white",
+    shadowOffset: { width: "1@s", height: "1@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "3@s",
+    color: "white",
+  },
+  text: {
+    color: "white",
+    fontSize: "20@s",
+    textAlign: "center",
+  },
 section1: {
-width: 150,
-alignItems: "center",
-flex: 0.7,
+    width: "150@s",
+    alignItems: "center",
+    flex: 0.7,
+    justifyContent: "center",
+   
+  },
+  section2: {
+    width: "150@s",
+    alignItems: "center",
+    flex: 0.5,
+  },
 
-},
-section2: {
-width: 150,
-alignItems: "center",
-flex: 0.5,
-},
+  section3: {
+    flex: 1.2,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    color: "white",
+    width: "300@s",
+  
+  },
 
-section3: {
-flex: 1.2,
-alignItems: "center",
-justifyContent: "center",
-color: "white",
-width: 300,
-},
+  section4: {
+    flex: .5,
+    justifyContent: "center",
+  
+  },
+  img: {
+    width: "170@vs",
+    height: "90@s",
+    borderRadius: 5,
+  },
+  text2: {
+    color: "white",
+    fontSize: "35@s",
+ justifyContent:"flex-start",
+    
+  },
 
-section4: {
-flex: .5,
-justifyContent: "center",
-
-},
-img: {
-width: "90%",
-height: 90,
-borderRadius: 5,
-},
-text2: {
-color: "white",
-fontSize: 35,
-justifyContent:"flex-start",
-
-},
-
-text5: {
-fontSize: 17,
-color: "white",
-marginLeft: 10,
-},
-text6: {
-fontSize: 17,
-color: "white",
-marginRight: 10,
-},
+  text5: {
+    fontSize: "10@s",
+    color: "white",
+    marginLeft: 10,
+  },
+  text6: {
+    fontSize: "10@s",
+    color: "white",
+    marginRight: 10,
+  },
 });

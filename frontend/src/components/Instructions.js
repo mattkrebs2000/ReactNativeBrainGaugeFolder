@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { ScaledSheet } from 'react-native-size-matters';
 import {
   Text,
   StyleSheet,
@@ -87,12 +88,12 @@ const Instructions = ({navigation, setPage
 
 export default Instructions;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   text: {
-    fontSize: 14,
+    fontSize: "14@s",
     textAlign: "center",
     fontWeight: "500",
-    margin: 10,
+    margin: "10@s",
   },
 
   container: {
@@ -107,57 +108,50 @@ const styles = StyleSheet.create({
   },
 
   divider_bar: {
-    width: 300,
+    width: "300@s",
     backgroundColor: "#FAD9C5",
     height: 1,
-    marginTop: 20,
+    marginTop: "20@s",
   },
   text3: {
     color: "white",
-    fontSize: 16,
+    fontSize: "16@s",
     textAlign: "center",
   },
  
   btn: {
-    width: 300,
-    height: 45,
+    width: "300@s",
+    height: "45@s",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#004fff",
-    borderRadius: 10,
+    borderRadius: "10@s",
     shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowOffset: { width: "1@s", height: "1@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "3@s",
     color: "white",
   },
   text: {
     color: "white",
-    fontSize: 20,
+    fontSize: "20@s",
     textAlign: "center",
   },
-
-  img: {
-    width: "100%",
-    height: 120,
-    borderRadius: 5,
-  },
-  
 
   text2: {
     color: "white",
-    fontSize: 35,
+    fontSize: "35@s",
     textAlign: "center",
   },
   section1: {
-    flex: 0.20,
-    justifyContent: "flex-start",
+    flex: 0.30,
+    justifyContent: "center",
   },
   section2: {
-    flex: 1,
+    flex: 1.1,
     alignItems: "center",
-    justifyContent: "center",
-    width: 300,
+    justifyContent: "flex-start",
+    width: "300@s",
   },
   section3: {
     flex: 0.25,
@@ -166,7 +160,7 @@ const styles = StyleSheet.create({
 
 
   text5: {
-    fontSize: 16,
+    fontSize: "10@s",
     color: "white",
     marginLeft: 10,
   },

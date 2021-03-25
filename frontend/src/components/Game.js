@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
+import { ScaledSheet } from 'react-native-size-matters';
 import {
   SafeAreaView,
   StyleSheet,
@@ -260,7 +261,7 @@ const Game = ({
 
 export default Game;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
    flex: .6,
     backgroundColor: "black",
@@ -278,37 +279,38 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     alignItems: "center",
-    fontSize: 17,
+    fontSize: "17@s",
     color: "white",
     backgroundColor: "black",
   },
   text2: {
     textAlign: "center",
     alignItems: "center",
-    fontSize: 17,
+    fontSize: "17@s",
     color: "white",
     backgroundColor: "black",
-    padding: 20,
+    padding: "20@s",
   },
   text3: {
     textAlign: "center",
     alignItems: "center",
-    fontSize: 17,
+    fontSize: "17@s",
     color: "white",
     backgroundColor: "black",
-    paddingTop: 20,
-    padding: 40,
+    paddingTop: "20@s",
+    padding: "40@s",
   },
   top: {
     textAlign: "center",
     alignItems: "center",
-    fontSize: 17,
+    fontSize: "17@s",
     color: "white",
     backgroundColor: "black",
   },
   image: {
-    width: 115,
-    height: 90,
+    width: "90@vs",
+    height: "50@s",
+    borderRadius: 5,
   },
 
   container3: {

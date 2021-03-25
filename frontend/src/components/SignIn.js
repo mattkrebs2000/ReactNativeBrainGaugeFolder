@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { ScaledSheet } from 'react-native-size-matters';
 import emailContext from "../emailContext.js";
 import birthdateContext from "../birthdateContext.js";
 
@@ -156,7 +157,7 @@ const SignIn = ({ navigation }) => {
 
 export default SignIn;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
@@ -166,11 +167,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   divider_bar: {
-    width: 300,
+    width: "300@s",
     backgroundColor: "#FAD9C5",
     height: 1,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: "10@s",
+    marginBottom: "10@s",
   },
   divider_bar2: {
     width: 0,
@@ -197,19 +198,19 @@ const styles = StyleSheet.create({
   paddingTop:10,
   },
   section4: {
-    width: 300,
-    height: 30,
-    flex: 0.1,
-    minHeight: 20,
-    maxHeight: 55,
+    width: "300@s",
+    height: "30@s",
+    flex: "0.1@s",
+    minHeight: "20@s",
+    maxHeight: "55@s",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#004fff",
-    borderRadius: 10,
+    borderRadius: "10@s",
     shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowOffset: { width: "1@s", height: "1@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "3@s",
     color: "white",
   },
   section5: {
@@ -219,28 +220,28 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 20,
+    fontSize: "20@s",
     textAlign: "center",
   },
 
   input: {
-    borderWidth: 2,
+    borderWidth: "2@s",
     borderColor: "#004fff",
-    padding: 10,
-    width: 300,
-    marginBottom: 25,
-    borderRadius: 10,
+    padding: "10@s",
+    width: "300@s",
+    marginBottom: "25@s",
+    borderRadius: "10@s",
     shadowColor: "white",
-    shadowOffset: { width: 0.5, height: 0.5 },
-    shadowOpacity: 1,
-    shadowRadius: 0.5,
+    shadowOffset: { width: "0.5@s", height: "0.5@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "0.5@s",
     color: "white",
-    lineHeight: 24,
-    fontSize: 20,
+    lineHeight: "24@s",
+    fontSize: "20@s",
   },
   img: {
-    width: "100%",
-    height: 90,
+    width: "170@vs",
+    height: "90@s",
     borderRadius: 5,
   },
   img2: {
@@ -250,14 +251,19 @@ const styles = StyleSheet.create({
   },
   text2: {
     color: "white",
-    fontSize: 35,
+    fontSize: "35@s",
     textAlign: "center",
   },
 
   text3: {
     color: "white",
-    fontSize: 0,
+    fontSize: "35@s",
     textAlign: "center",
+  },
+  text6: {
+    fontSize: "10@s",
+    textAlign: "center",
+    color: "#167bff",
   },
 
 });

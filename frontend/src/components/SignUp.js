@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ScaledSheet } from 'react-native-size-matters';
 import DatePicker from "react-native-datepicker";
 import DateTimeModal from "react-native-modal-datetime-picker";
 
@@ -176,8 +177,7 @@ const SignUp = ({ navigation }) => {
 };
 
 export default SignUp;
-
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
@@ -187,73 +187,76 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
     color: "white",
+    flexDirection: "column",
   },
   form: {
-    height: "54%",
     alignItems: "center",
     justifyContent: "center",
     color: "white",
+    flex: .6,
   },
   input: {
-    borderWidth: 2,
+    borderWidth: "2@s",
     borderColor: "#004fff",
-    padding: 7,
-    width: 300,
-    marginBottom: 12,
-    borderRadius: 10,
+    padding: "7@s",
+    width: "300@s",
+    marginBottom: "12@s",
+    borderRadius: "10@s",
     shadowColor: "white",
-    shadowOffset: { width: 0.5, height: 0.5 },
-    shadowOpacity: 1,
-    shadowRadius: 0.5,
+    shadowOffset: { width: "0.5@s", height: "0.5@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "0.5@s",
     color: "white",
-    lineHeight: 24,
-    fontSize: 20,
+    lineHeight: "24@s",
+    fontSize: "20@s",
   },
   input2: {
-    borderWidth: 2,
+    borderWidth: "2@s",
     borderColor: "#004fff",
-    padding: 7,
-    width: 300,
-    marginBottom: 25,
-    borderRadius: 10,
-
-    shadowOpacity: 1,
-    shadowRadius: 0.5,
+    padding: "7@s",
+    width: "300@s",
+    marginBottom: "25@s",
+    borderRadius: "10@s",
+    shadowOpacity: "1@s",
+    shadowRadius: "0.5@s",
     color: "white",
-    height: 43,
+    height: "43@s",
   },
   input3: {
-    fontSize: 20,
+    fontSize: "20@s",
     color: "white",
-    opacity: 0.8,
+    opacity: "0.8@s",
   },
   btn: {
-    width: 300,
-    height: 45,
+    width: "300@s",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#004fff",
-    borderRadius: 10,
+    borderRadius: "10@s",
     shadowColor: "white",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowOffset: { width: "1@s", height: "1@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "3@s",
     color: "white",
+    flex: .08,
   },
   text: {
     color: "white",
-    fontSize: 20,
+    fontSize: "15@s",
     textAlign: "center",
   },
   middle: {
     width: 150,
     alignItems: "center",
-   paddingBottom: 15,
+    justifyContent: "center",
+   paddingBottom: "15@s",
+   paddingTop: "15@s",
+   flex: .18, 
   },
 
   img: {
-    width: "100%",
-    height: 90,
+    width: "130@vs",
+    height: "100@vs",
     borderRadius: 5,
   },
   text2: {
@@ -273,4 +276,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginRight: 5
   },
+  last: {
+color: "#167bff", 
+
+fontSize: "10@s", 
+},
+lastsection: {
+  flex: .1,
+
+  justifyContent:"center",
+}, 
 });
