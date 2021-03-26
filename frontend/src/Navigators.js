@@ -41,7 +41,8 @@ import Braingauge from "./Braingauge";
 import { DrawerContent } from "./components/DrawerContent";
 
 const headerStyle = {
-  backgroundColor: "black",
+  backgroundColor: "red",
+ 
 };
 
 const IconBar = () => {
