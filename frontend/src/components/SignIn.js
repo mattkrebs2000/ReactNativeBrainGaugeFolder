@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { ScaledSheet } from 'react-native-size-matters';
+import { scale, ScaledSheet } from 'react-native-size-matters';
 import emailContext from "../emailContext.js";
 import birthdateContext from "../birthdateContext.js";
 
@@ -143,7 +143,7 @@ const SignIn = ({ navigation }) => {
       <View style={styles.divider_bar}></View>
       <Text
         accessibilityLabel="Link to Sign In page"
-        style={{ color: "#167bff" }}
+        style={{ color: "#167bff", fontSize: scale(10)}}
         onPress={() => {
           navigation.navigate("CreateAccount");
         }}
@@ -217,6 +217,7 @@ const styles = ScaledSheet.create({
     width:"100%",
     alignItems:"center",
     flex: .2,
+    
   },
   text: {
     color: "white",
@@ -265,5 +266,6 @@ const styles = ScaledSheet.create({
     textAlign: "center",
     color: "#167bff",
   },
+
 
 });

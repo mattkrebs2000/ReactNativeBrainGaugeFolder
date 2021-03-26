@@ -41,12 +41,12 @@ import Braingauge from "./Braingauge";
 import { DrawerContent } from "./components/DrawerContent";
 
 const headerStyle = {
-  backgroundColor: "red",
+  backgroundColor: "black",
  
 };
 
 const IconBar = () => {
-  <View style={{ backgroundColor: "red" }}>
+  <View style={{ backgroundColor: "black", fontSize: scale(12) }}>
     <Icon name="add" />
   </View>;
 };
@@ -67,7 +67,9 @@ export const Navigators = ({ navigation }) => {
           title: "Home",
           headerTitleAlign: "center",
           headerStyle,
-
+          headerTitleStyle: {
+           fontSize: scale(12),
+          },
           headerTintColor: "white",
         }}
       />
@@ -79,6 +81,9 @@ export const Navigators = ({ navigation }) => {
           headerTitleAlign: "center",
           headerStyle,
           headerTintColor: "white",
+          headerTitleStyle: {
+            fontSize: scale(12),
+           },
         }}
       />
       <AuthStack.Screen
@@ -88,7 +93,9 @@ export const Navigators = ({ navigation }) => {
           title: "Create Account",
           headerTitleAlign: "center",
           headerStyle,
-
+          headerTitleStyle: {
+            fontSize: scale(12),
+           },
           headerTintColor: "white",
         }}
       />
@@ -100,9 +107,15 @@ export const Navigators = ({ navigation }) => {
           title: "Data",
           headerTitleAlign: "center",
           headerStyle,
+          headerTitleStyle: {
+            fontSize: scale(12),
+           },
 
           headerLeft: () => console.log("Hi"),
           headerTintColor: "white",
+          headerTitleStyle: {
+            fontSize: scale(12),
+           },
         }}
       />
       <AuthStack.Screen
@@ -113,6 +126,9 @@ export const Navigators = ({ navigation }) => {
           headerTitleAlign: "center",
           headerStyle,
           headerTintColor: "white",
+          headerTitleStyle: {
+            fontSize: scale(12),
+           },
         }}
       />
     </AuthStack.Navigator>

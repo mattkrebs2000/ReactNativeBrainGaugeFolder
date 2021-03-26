@@ -272,7 +272,7 @@ const styles = ScaledSheet.create({
   },
   text5: {
     color: "#004fff",
-    fontSize: "20@s",
+    fontSize: "12@s",
     marginRight: "5@s"
   },
   last: {

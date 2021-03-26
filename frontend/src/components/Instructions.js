@@ -160,8 +160,13 @@ const styles = ScaledSheet.create({
 
 
   text5: {
-    fontSize: "10@s",
+    fontSize: "12@s",
     color: "white",
     marginLeft: 10,
+  },
+  text6: {
+    fontSize: "12@s",
+    color: "white",
+    marginRight: 10,
   },
 });
